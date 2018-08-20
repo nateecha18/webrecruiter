@@ -1,175 +1,1861 @@
-
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-<title>Job Application Form Widget Flat Responsive Widget Template :: w3layouts</title>
-<!-- for-mobile-apps -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Job Application Form Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<!-- //for-mobile-apps -->
-<link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/static/css/j-forms.css">
-<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/img/favicon.ico">
+
+	<title>Apply Job</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="/static/img/favicon.png" />
+
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Kanit:100,200,400,500,600|Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+	<!-- CSS Files -->
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/static/css/material-bootstrap-wizard.css" rel="stylesheet" />
+	<!-- <script src="/static/js/jquery-2.2.4.min.js"></script> -->
+	<script src="/static/js/jquery-2.2.4.min.js"></script>
+
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/static/css/demo.css" rel="stylesheet" />
+
+	<!-- CSS Attachment File -->
+	<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
+	<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+	<!-- CSS Majic Search -->
+	<link href="/static/css/jquery.magicsearch.css" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
+
+	<!-- CSS & JS Multiple Input by Tagify -->
+	<link rel="stylesheet" href="/static/css/tagify.css">
+	<script src="/static/js/tagify.js"></script>
+
 </head>
+
 <body>
-<div class="content">
-		<h1>job application form widget</h1>
-		<div class="main">
-			<form class="contact-forms">
-				<!-- end /.header-->
-
-					<!-- start name -->
-					<div class="first-line">
-						<div class="span6 main-row">
-							<div class="input">
-
-								<input type="text" id="first_name" name="first_name" placeholder="First name">
-							</div>
-						</div>
-						<div class="span6 main-row">
-							<div class="input">
-
-								<input type="text" id="last_name" name="last_name" placeholder="Last name">
-							</div>
-						</div>
-					</div>
-					<!-- end name -->
-
-					<!-- start email phone -->
-					<div class="first-line">
-						<div class="span6 main-row">
-							<div class="input">
-
-								<input type="email" placeholder="Email" id="email" name="email">
-							</div>
-						</div>
-						<div class="span6 main-row">
-							<div class="input">
-
-								<input type="text" placeholder="Phone" id="phone" name="phone">
-							</div>
-						</div>
-					</div>
+	<div class="image-container set-full-height" style="background-image: url('/static/img/bg-applyjob.jpg'); background-attachment: fixed">
 
 
-					<!-- start country -->
-					<div class="main-row">
-						<label class="input select">
-							<select name="country">
-								<option value="none" selected="" disabled="">Select country</option>
+		<!--  Made With Material Kit  -->
+		<a href="http://demos.creative-tim.com/material-kit/index.html?ref=material-bootstrap-wizard" class="made-with-mk">
+			<div class="brand">MK</div>
+			<div class="made-with">Made with <strong>Material Kit</strong></div>
+		</a>
 
-								<option value="Philippines">Philippines</option>
-								<option value="Portugal">Portugal</option>
-								<option value="South Africa">South Africa</option>
-								<option value="Spain">Spain</option>
-								<option value="Switzerland">Switzerland</option>
-							</select>
-							<i></i>
-						</label>
-					</div>
-					<!-- end country -->
+		<!--   Big container   -->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<!--      Wizard container        -->
+					<div class="wizard-container">
+						<div class="card wizard-card" data-color="orange" id="wizardProfile">
+							<form action="" method="">
+								<!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
-					<!-- start city post code -->
-					<div class="first-line">
-						<div class="span8 main-row">
-							<div class="input">
-
-								<input type="text" id="city" placeholder="City" name="city">
-							</div>
-						</div>
-
-					</div>
-					<!-- end city post code -->
-
-					<!-- start address -->
-					<div class="main-row">
-						<div class="input">
-
-							<input type="text" id="address" placeholder="Address" name="address">
-						</div>
-					</div>
-					<!-- end address -->
-
-
-					<!-- start position -->
-					<div class="main-row">
-						<label class="input select">
-							<select name="position">
-								<option value="none" selected disabled="">Choose desired position</option>
-								<option value="tech lead">Operator</option>
-								<option value="product manager"> Manager</option>
-								<option value="senior developer"> Developer</option>
-								<option value="QA specialist">Designer</option>
-							</select>
-							<i></i>
-						</label>
-					</div>
-					<!-- end position -->
-
-					<!-- start message -->
-					<div class="main-row">
-						<div class="input">
-							<textarea placeholder="Additional info" spellcheck="false" name="message"></textarea>
-								<span class="tooltip tooltip-right-top">Key Skills</span>
-						</div>
-					</div>
-					<!-- end message -->
-
-					<!-- start files -->
-
-						<div class=" main-row">
-							<label class="input append-small-btn">
-								<div class="upload-btn">
-									Browse
-									<input type="file" name="file1" onchange="document.getElementById('file1_input').value = this.value;">
+								<div class="wizard-header">
+									<h2 class="wizard-title">
+										ใบสมัครงาน
+									</h2>
+									<!-- <h3>Advance information Technology</h3> -->
 								</div>
-								<input type="text" id="file1_input" readonly="" placeholder="Add your CV">
-								<span class="hint">Only: pdf / doc Size: lessthan 1 Mb</span>
-							</label>
+								<div class="wizard-navigation">
+									<ul>
+										<li><a href="#basic" data-toggle="tab">Basic information</a></li>
+										<li><a href="#edu" data-toggle="tab">Education</a></li>
+										<li><a href="#skill" data-toggle="tab">Skills</a></li>
+										<li><a href="#experience" data-toggle="tab">Experience</a></li>
+										<li><a href="#attachment" data-toggle="tab">Attachment</a></li>
+									</ul>
+								</div>
+
+								<div class="tab-content">
+									<!-- Start Basic Information -->
+									<div class="tab-pane" id="basic">
+										<div class="row">
+											<h5 class="info-text"> เริ่มต้นกรอกข้อมูล บอกข้อมูลของคุณกับเรา <br> เพื่อประหยัดเวลา กรุณากรอกข้อมูลที่เป็นความจริงและครบถ้วน</h5>
+											<div class="col-sm-4 col-sm-offset-1">
+												<div class="picture-container">
+													<div class="picture">
+														<img src="/static/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+														<input type="file" id="wizard-picture">
+													</div>
+													<h6>เปลี่ยนรูปภาพ</h6>
+												</div>
+											</div>
+
+											<div class="col-sm-6">
+
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">payment</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">หมายเลขบัตรประชาชน (ID Number)</label>
+														<input name="id number" type="text" class="form-control">
+													</div>
+												</div>
+
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">record_voice_over</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">ชื่อเล่น (Nickname)</label>
+														<input name="nickname" type="text" class="form-control">
+													</div>
+												</div>
+
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">label</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">คำนำหน้าชื่อ</label>
+														<select name="name_title" class="form-control">
+															<option disabled="" selected=""></option>
+															<option value="mr"> นาย (Mr.) </option>
+															<option value="mrs"> นาง (Mrs.) </option>
+															<option value="miss"> นางสาว (Miss) </option>
+														</select>
+													</div>
+												</div>
+
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">face</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">ชื่อจริง (Firstname)</label>
+														<input name="firstname" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">face</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">นามสกุล (Lastname)</label>
+														<input name="lastname" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">calendar_today</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">วันเกิด (Date of Birth)</label>
+														<input name="bdate" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">opacity</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">กรุ๊ปเลือด (Blood)</label>
+														<select name="blood" class="form-control">
+															<option disabled="" selected=""></option>
+															<option value='A'>A</option>
+															<option value='B'>B</option>
+															<option value='O'>O</option>
+															<option value='AB'>AB</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">notes</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">สัญชาติ (Nationality)</label>
+														<select name="nationality" class="form-control">
+															<option disabled="" selected=""></option><option value='189'>ไทย</option><option value='1'>อันดอร์รา</option><option value='2'>สหรัฐอาหรับเอมิเรตส์</option><option value='3'>อัฟกานิสถาน</option><option value='4'>แอนติกาและบาร์บูดา</option><option value='5'>แองกวิลลา</option><option value='6'>แอลเบเนีย</option><option value='7'>อาร์เมเนีย</option><option value='8'>ดัตช์</option><option value='9'>แองโกลา</option><option value='10'>แอนตาร์กติกา</option><option value='11'>อาร์เจนตินา</option><option value='12'>ซามัว</option><option value='13'>ออสเตรีย</option><option value='14'>ออสเตรเลีย</option><option value='15'>Arubanic</option><option value='16'>อาเซอร์ไบจาน</option><option value='17'>บอสเนีย</option><option value='18'>บาร์เบโดส</option><option value='19'>บังคลาเทศ</option><option value='20'>เบลเยียม</option><option value='21'>บูร์กินาฟาโซ</option><option value='22'>บัลแกเรีย</option><option value='23'>บาห์เรน</option><option value='24'>บุรุนดี</option><option value='25'>เบนิน</option><option value='26'>บลู</option><option value='27'>เบอร์มิวดา</option><option value='28'>บรูไน</option><option value='29'>โบลิเวีย</option><option value='30'>บราซิล</option><option value='31'>บาฮามาส</option><option value='32'>ภูฏาน</option><option value='33'>หมู่เกาะบูเวต</option><option value='34'>บอตสวานา</option><option value='35'>เบลารุส</option><option value='36'>เบลีซ</option><option value='37'>แคนาดา</option><option value='38'>คองโก</option><option value='39'>แอฟริกากลาง</option><option value='40'>สวิส</option><option value='41'>โกตดิวัวร์</option><option value='42'>หมู่เกาะคุก</option><option value='43'>ชิลี</option><option value='44'>แคเมอรูน</option><option value='45'>จีน</option><option value='46'>โคลอมเบีย</option><option value='47'>คอสตาริกา</option><option value='48'>เซอร์เบียและมอนเตเนโกร</option><option value='49'>คิวบา</option><option value='50'>เคปเวิร์ด</option><option value='51'>ไซปรัส</option><option value='52'>เช็ก</option><option value='53'>เยอรมัน</option><option value='54'>จิบูตี</option><option value='55'>เดนมาร์ก</option><option value='56'>โดมินิกัน</option><option value='57'>แอลจีเรีย</option><option value='58'>เอกวาดอร์</option><option value='59'>เอสโตเนีย</option><option value='60'>อียิปต์</option><option value='61'>ฝรั่งเศส</option><option value='62'>เอริเทรีย</option><option value='63'>สเปน</option><option value='64'>เอธิโอเปียน</option><option value='65'>ยูโรเปียน ยูเนียน</option><option value='66'>ฟินแลนด์</option><option value='67'>ฟิจิ</option><option value='68'>อังกฤษ</option><option value='69'>ไมโครนีเซีย</option><option value='70'>กาบอง</option><option value='71'>เกรเนดา</option><option value='72'>จอร์เจีย</option><option value='73'>กานา</option><option value='74'>ยิบรอลตา</option><option value='75'>แกมเบีย</option><option value='76'>ประกินี</option><option value='77'>อิเควทอเรียลกินี</option><option value='78'>กรีก</option><option value='79'>เซาท์จอร์เจีย</option><option value='80'>กัวเตมาลา</option><option value='81'>อเมริกัน</option><option value='82'>กายอานา</option><option value='83'>ฮ่องกง</option><option value='84'>เกาะเฮิร์ดและหมู่เกาะแมกดอนัลด์</option><option value='85'>ฮอนดูรัส</option><option value='86'>โครเอเชีย</option><option value='87'>ไฮติ</option><option value='88'>ฮังการี</option><option value='89'>อินโดนีเซีย</option><option value='90'>ไอริช</option><option value='91'>อิสราเอล</option><option value='92'>อินเดีย</option><option value='93'>Brit.Ind.Oc.Ter</option><option value='94'>อิรัก</option><option value='95'>อิหร่าน</option><option value='96'>ไอซ์แลนด์</option><option value='97'>อิตาลี</option><option value='98'>เกาะจาเมกา</option><option value='99'>จอร์แดน</option><option value='100'>ญี่ปุ่น</option><option value='101'>เคนย่า</option><option value='102'>คีร์กีซ</option><option value='103'>กัมพูชา</option><option value='104'>คิริบาส</option><option value='105'>โคโมโรส</option><option value='106'>เซนต์คิตส์และเนวิส</option><option value='107'>เกาหลีเหนือ</option><option value='108'>เกาหลีใต้</option><option value='109'>คูเวต</option><option value='110'>คาซัคสถาน</option><option value='111'>ลาว</option><option value='112'>เลบานอน</option><option value='113'>ลูเชีย</option><option value='114'>ลิกเตนสไตน์</option><option value='115'>ศรีลังกา</option><option value='116'>ไลบีเรีย</option><option value='117'>เลโซโท</option><option value='118'>ลิธัวเนีย</option><option value='119'>ลักเซมเบิร์ก</option><option value='120'>ลัตเวีย</option><option value='121'>ลิเบีย</option><option value='122'>โมร็อกโก</option><option value='123'>โมนาโค</option><option value='124'>มอลโดวา</option><option value='125'>มาดากัสการ์</option><option value='126'>มาร์แชลล์</option><option value='127'>มาซิโดเนีย</option><option value='128'>มาลี</option><option value='129'>พม่า</option><option value='130'>มองโกเลีย</option><option value='131'>โปรตุเกส</option><option value='132'>Marianian</option><option value='133'>มอริเตเนีย</option><option value='134'>มอนต์เซอร์รัต</option><option value='135'>มอลตา</option><option value='136'>มอริเชียส</option><option value='137'>มัลดีฟส์</option><option value='138'>มาลาวี</option><option value='139'>เม็กซิกัน</option><option value='140'>มาเลเซีย</option><option value='141'>โมซัมบิก</option><option value='142'>นามิเบีย</option><option value='143'>ไนเจอร์</option><option value='144'>หมู่เกาะนอร์โฟล์ค</option><option value='145'>ไนจีเรีย</option><option value='146'>นิการากัว</option><option value='147'>นอร์เวย์</option><option value='148'>เนปาล</option><option value='149'>นาอูรู</option><option value='150'>นาโต</option><option value='151'>นีอูเอ</option><option value='152'>นิวซีแลนด์</option><option value='153'>โอมาน</option><option value='154'>ออเรนจ์</option><option value='155'>ปานามา</option><option value='156'>เปรู</option><option value='157'>ปาปัวนิวกินี</option><option value='158'>ฟิลิปปินส์</option><option value='159'>ปากีสถาน</option><option value='160'>โปแลนด์ </option><option value='161'>ปาเลสไตน์</option><option value='162'>ปาเลา</option><option value='163'>ปารากวัย</option><option value='164'>กาตาร์</option><option value='165'>โรมาเนีย</option><option value='166'>รัสเซีย</option><option value='167'>รวันดา</option><option value='168'>ซาอุดิอาราเบีย</option><option value='169'>โซโลมอน</option><option value='170'>เซเชลส์ </option><option value='171'>ซูดาน</option><option value='172'>สวีเดน</option><option value='173'>สิงคโปร์</option><option value='174'>เซนต์เฮเลนา</option><option value='175'>สโลเวเนีย</option><option value='176'>สโลวาเกีย</option><option value='177'>เซียร์</option><option value='178'>ซานมารีโน</option><option value='179'>เซเนกัล</option><option value='180'>โซมาลี</option><option value='181'>ซูรินาเม</option><option value='182'>เซาตูเม</option><option value='183'>เอลซัลวาดอร์</option><option value='184'>ซีเรีย</option><option value='185'>สวาซิแลนด์</option><option value='186'>หมู่เกาะเติกส์และหมู่เกาะเคคอส</option><option value='187'>ชาด</option><option value='188'>โตโก</option><option value='190'>ทาจิกิสถาน</option><option value='191'>โตเกเลา </option><option value='192'>ติมอร์ ตะวันออก</option><option value='193'>เติร์กเมนิสถาน</option><option value='194'>ตูนิเซีย</option><option value='195'>ตองกา</option><option value='196'>ติมอร์ตะวันออก</option><option value='197'>ตุรกี</option><option value='198'>ตรินิแดดและโตเบโก</option><option value='199'>ตูวาลู</option><option value='200'>แทนซาเนีย</option><option value='201'>ยูเครน</option><option value='202'>ยูกันดา</option><option value='203'>เกาะเล็กรอบนอกของสหรัฐอเมริกา</option><option value='204'>สหประชาชาติ</option><option value='205'>อุรุกวัย</option><option value='206'>อุซเบกิสถาน</option><option value='207'>นครวาติกัน</option><option value='208'>วินเซน</option><option value='209'>เวเนซุเอลา</option><option value='210'>เวียตนาม</option><option value='211'>วานูอาตู</option><option value='212'>วาลลิสและฟุตูนา</option><option value='213'>เยเมน </option><option value='214'>แอฟริกาใต้</option><option value='215'>แซมเบีย</option><option value='216'>ซิมบับเว</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">notes</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">เชื้อชาติ (Race)</label>
+														<select name="race" class="form-control">
+															<option disabled="" selected=""></option>
+															<option value='3'>ไทย</option>
+															<option value='1'>จีน</option>
+															<option value='2'>อินเดีย</option>
+															<option value='4'>ญี่ปุ่น</option>
+															<option value='5'>เกาหลี</option>
+															<option value='6'>ลาว</option>
+															<option value='7'>มาเลเซีย</option>
+															<option value='8'>พม่า</option>
+															<option value='9'>เวียดนาม</option>
+															<option value='10'>อื่นๆ</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">notes</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">ศาสนา (Religion)</label>
+														<select name="nationality" class="form-control">
+															<option disabled="" selected=""></option>
+															<option value="1" >คริสต์</option>
+															<option value="2" >พราหมณ์ – ฮินดู</option>
+															<option value="3" >พุทธ</option>
+															<option value="4" >อิสลาม</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">notes</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">สถานภาพ (Marital Status)</label>
+														<select name="race" class="form-control">
+															<option disabled="" selected=""></option>
+															<option value='S'>โสด (Single)</option>
+															<option value='M'>สมรส (Married)</option>
+															<option value='I'>หม้าย (Widowed)</option>
+															<option value='D'>หย่า (Divorced)</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-10 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">email</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">อีเมลล์ (Email)</label>
+														<input name="email" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">phone_iphone</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">เบอร์มือถือ (Mobile No.)</label>
+														<input name="mobile_no" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">phone</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">เบอร์โทรศัพท์บ้าน (Home Phone No.)</label>
+														<input name="homePhone_no" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-5 col-sm-offset-1">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">public</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">Facebook</label>
+														<input name="mobile_no" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">public</i>
+													</span>
+													<div class="form-group label-floating">
+														<label class="control-label">Line ID</label>
+														<input name="homePhone_no" type="text" class="form-control">
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+									<!-- End Basic Information -->
+
+									<!-- Start Education Information -->
+									<div class="tab-pane" id="edu">
+										<h3 class="info-text">สถานภาพทางทหาร</h3>
+
+										<div class="col-sm-5 col-sm-offset-1">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">accessibility_new</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">สถานะ (Military Status)</label>
+													<select name="military_status" class="form-control">
+														<option disabled="" selected=""></option>
+														<option value="MilitaryPass">ผ่านการเกณฑ์ทหาร</option>
+														<option value="MilitaryGrace">ผ่อนผัน</option>
+														<option value="militaryExempt">ได้รับการยกเว้น</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">accessibility_new</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">เรียนสำเร็จวิชารักษาดินแดนบท</label>
+													<input name="ROTCCurriculum" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-5 col-sm-offset-1">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">card_membership</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">โดยยศ</label>
+													<input name="ROTCByRank" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">calendar_today</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">เมื่อวันที่</label>
+													<input name="ROTCRankDate" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-5 col-sm-offset-1">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">card_membership</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">ยศครั้งล่าสุด</label>
+													<input name="ROTCLastRank" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">calendar_today</i>
+												</span>
+												<div class="form-group label-floating">
+													<label class="control-label">รับราชการแล้วเมื่อ</label>
+													<input name="ROTCGovernmentOfficerDate" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<hr>
+										</div>
+										<div class="col-sm-10 col-sm-offset-1 text-left">
+											<h3 class="info-text">ข้อมูลการศึกษา</h3>
+										</div>
+										<div class="row">
+											<div class="col-sm-10 col-sm-offset-1">
+												<div class="col-sm-4">
+													<div class="choice" data-toggle="collapse" href="#collapseIsStudy" role="checkbox" aria-expanded="false" aria-controls="collapseIsStudy">
+														<input type="checkbox" name="isStudy" value="isStudy">
+														<div class="icon">
+															<i class="fa fa-pencil"></i>
+														</div>
+														<h5>อยู่ระหว่างการศึกษา</h5>
+													</div>
+												</div>
+												<div class="collapse" id="collapseIsStudy">
+													<div class="col-sm-8">
+														<div class="input-group">
+															<span class="input-group-addon">
+																<i class="material-icons">school</i>
+															</span>
+															<div class="form-group label-floating">
+																<label class="control-label">ชื่อสถานศึกษา</label>
+																<input name="nowEdu_institution" type="text" class="form-control">
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-8">
+														<div class="input-group">
+															<span class="input-group-addon">
+																<i class="material-icons">card_membership</i>
+															</span>
+															<div class="form-group label-floating">
+																<label class="control-label">ชื่อวุฒิการศึกษา/สาขาวิชา</label>
+																<input name="nowEdu_certificate" type="text" class="form-control">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-10 col-sm-offset-1">
+											<hr>
+										</div>
+
+										<!-- ฟอร์มประวัติการศึกษา -->
+										<form>
+											<div class="form-content">
+												<div class="col-md-12">
+													<div class="col-sm-8 col-sm-offset-1">
+														<h3>ประวัติการศึกษา</h3>
+													</div>
+													<div class="form-group">
+														<div class="col-md-2">
+															<p><button type="button" id="btnAdd" class="btn btn-default"><i class="material-icons">add</i></button></p>
+														</div>
+													</div>
+												</div>
+
+												<div class="row group">
+													<div class="col-md-12">
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">school</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ประเภทการศึกษา (Education Level)</label>
+																	<select name="edu_level" class="form-control">
+																		<!-- <option disabled="" selected=""></option> -->
+																		<option value="level_priSch">ประถมศึกษา(Primary School)</option>
+																		<option value="level_secSch">มัธยมศึกษาตอนต้น (Secondary School)</option>
+																		<option value="level_hiSch">มัธยมศึกษาตอนปลาย (High School)</option>
+																		<option value="level_voca">อาชีวะศึกษา (ปวช.) (Vocational)</option>
+																		<option value="level_hiVoca">วิทยาลัย (ปวท./ปวส.) (High Vocational)</option>
+																		<option value="level_bacDe" selected="">ปริญญาตรี (Bachelor Degree)</option>
+																		<option value="level_masDe">ปริญญาโท (Master Degree)</option>
+																		<option value="level_other">อื่นๆ (Other Graduate)</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">public</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ประเทศที่จบ (Country)</label>
+																	<select name="edu_country" class="form-control">
+																		<!-- <option disabled="" selected=""></option> -->
+																		<option value='15' >Arubanic</option><option value='93' >Brit.Ind.Oc.Ter</option><option value='132' >Marianian</option><option value='78' >กรีก</option><option value='103' >กัมพูชา</option><option value='80' >กัวเตมาลา</option><option value='164' >กาตาร์</option><option value='73' >กานา</option><option value='70' >กาบอง</option><option value='82' >กายอานา</option><option value='71' >เกรเนดา</option><option value='108' >เกาหลีใต้</option><option value='107' >เกาหลีเหนือ</option><option value='98' >เกาะจาเมกา</option><option value='203' >เกาะเล็กรอบนอกของสหรัฐอเมริกา</option><option value='84' >เกาะเฮิร์ดและหมู่เกาะแมกดอนัลด์</option><option value='75' >แกมเบีย</option><option value='41' >โกตดิวัวร์</option><option value='38' >คองโก</option><option value='47' >คอสตาริกา</option><option value='110' >คาซัคสถาน</option><option value='104' >คิริบาส</option><option value='49' >คิวบา</option><option value='102' >คีร์กีซ</option><option value='109' >คูเวต</option><option value='101' >เคนย่า</option><option value='50' >เคปเวิร์ด</option><option value='37' >แคนาดา</option><option value='44' >แคเมอรูน</option><option value='105' >โคโมโรส</option><option value='86' >โครเอเชีย</option><option value='46' >โคลอมเบีย</option><option value='72' >จอร์เจีย</option><option value='99' >จอร์แดน</option><option value='54' >จิบูตี</option><option value='45' >จีน</option><option value='187' >ชาด</option><option value='43' >ชิลี</option><option value='52' >เช็ก</option><option value='178' >ซานมารีโน</option><option value='12' >ซามัว</option><option value='168' >ซาอุดิอาราเบีย</option><option value='216' >ซิมบับเว</option><option value='184' >ซีเรีย</option><option value='171' >ซูดาน</option><option value='181' >ซูรินาเม</option><option value='170' >เซเชลส์ </option><option value='106' >เซนต์คิตส์และเนวิส</option><option value='174' >เซนต์เฮเลนา</option><option value='179' >เซเนกัล</option><option value='48' >เซอร์เบียและมอนเตเนโกร</option><option value='182' >เซาตูเม</option><option value='79' >เซาท์จอร์เจีย</option><option value='177' >เซียร์</option><option value='215' >แซมเบีย</option><option value='180' >โซมาลี</option><option value='169' >โซโลมอน</option><option value='51' >ไซปรัส</option><option value='100' >ญี่ปุ่น</option><option value='8' >ดัตช์</option><option value='55' >เดนมาร์ก</option><option value='56' >โดมินิกัน</option><option value='198' >ตรินิแดดและโตเบโก</option><option value='195' >ตองกา</option><option value='192' >ติมอร์ ตะวันออก</option><option value='196' >ติมอร์ตะวันออก</option><option value='197' >ตุรกี</option><option value='194' >ตูนิเซีย</option><option value='199' >ตูวาลู</option><option value='193' >เติร์กเมนิสถาน</option><option value='191' >โตเกเลา </option><option value='188' >โตโก</option><option value='190' >ทาจิกิสถาน</option><option value='200' >แทนซาเนีย</option><option value='189' selected="">ไทย</option><option value='207' >นครวาติกัน</option><option value='147' >นอร์เวย์</option><option value='150' >นาโต</option><option value='142' >นามิเบีย</option><option value='149' >นาอูรู</option><option value='146' >นิการากัว</option><option value='152' >นิวซีแลนด์</option><option value='151' >นีอูเอ</option><option value='148' >เนปาล</option><option value='145' >ไนจีเรีย</option><option value='143' >ไนเจอร์</option><option value='30' >บราซิล</option><option value='28' >บรูไน</option><option value='26' >บลู</option><option value='34' >บอตสวานา</option><option value='17' >บอสเนีย</option><option value='19' >บังคลาเทศ</option><option value='22' >บัลแกเรีย</option><option value='18' >บาร์เบโดส</option><option value='23' >บาห์เรน</option><option value='31' >บาฮามาส</option><option value='24' >บุรุนดี</option><option value='21' >บูร์กินาฟาโซ</option><option value='25' >เบนิน</option><option value='20' >เบลเยียม</option><option value='35' >เบลารุส</option><option value='36' >เบลีซ</option><option value='27' >เบอร์มิวดา</option><option value='29' >โบลิเวีย</option><option value='76' >ประกินี</option><option value='159' >ปากีสถาน</option><option value='155' >ปานามา</option><option value='157' >ปาปัวนิวกินี</option><option value='163' >ปารากวัย</option><option value='161' >ปาเลสไตน์</option><option value='162' >ปาเลา</option><option value='156' >เปรู</option><option value='131' >โปรตุเกส</option><option value='160' >โปแลนด์ </option><option value='61' >ฝรั่งเศส</option><option value='129' >พม่า</option><option value='67' >ฟิจิ</option><option value='66' >ฟินแลนด์</option><option value='158' >ฟิลิปปินส์</option><option value='32' >ภูฏาน</option><option value='130' >มองโกเลีย</option><option value='134' >มอนต์เซอร์รัต</option><option value='136' >มอริเชียส</option><option value='133' >มอริเตเนีย</option><option value='124' >มอลโดวา</option><option value='135' >มอลตา</option><option value='137' >มัลดีฟส์</option><option value='127' >มาซิโดเนีย</option><option value='125' >มาดากัสการ์</option><option value='126' >มาร์แชลล์</option><option value='138' >มาลาวี</option><option value='128' >มาลี</option><option value='140' >มาเลเซีย</option><option value='139' >เม็กซิกัน</option><option value='141' >โมซัมบิก</option><option value='123' >โมนาโค</option><option value='122' >โมร็อกโก</option><option value='69' >ไมโครนีเซีย</option><option value='74' >ยิบรอลตา</option><option value='202' >ยูกันดา</option><option value='201' >ยูเครน</option><option value='65' >ยูโรเปียน ยูเนียน</option><option value='213' >เยเมน </option><option value='53' >เยอรมัน</option><option value='167' >รวันดา</option><option value='166' >รัสเซีย</option><option value='165' >โรมาเนีย</option><option value='119' >ลักเซมเบิร์ก</option><option value='120' >ลัตเวีย</option><option value='111' >ลาว</option><option value='114' >ลิกเตนสไตน์</option><option value='118' >ลิธัวเนีย</option><option value='121' >ลิเบีย</option><option value='113' >ลูเชีย</option><option value='117' >เลโซโท</option><option value='112' >เลบานอน</option><option value='116' >ไลบีเรีย</option><option value='211' >วานูอาตู</option><option value='212' >วาลลิสและฟุตูนา</option><option value='208' >วินเซน</option><option value='209' >เวเนซุเอลา</option><option value='210' >เวียตนาม</option><option value='115' >ศรีลังกา</option><option value='63' >สเปน</option><option value='176' >สโลวาเกีย</option><option value='175' >สโลเวเนีย</option><option value='185' >สวาซิแลนด์</option><option value='40' >สวิส</option><option value='172' >สวีเดน</option><option value='204' >สหประชาชาติ</option><option value='81' >สหรัฐอเมริกา</option><option value='2' >สหรัฐอาหรับเอมิเรตส์</option><option value='173' >สิงคโปร์</option><option value='42' >หมู่เกาะคุก</option><option value='186' >หมู่เกาะเติกส์และหมู่เกาะเคคอส</option><option value='144' >หมู่เกาะนอร์โฟล์ค</option><option value='33' >หมู่เกาะบูเวต</option><option value='154' >ออเรนจ์</option><option value='14' >ออสเตรเลีย</option><option value='13' >ออสเตรีย</option><option value='68' >อังกฤษ</option><option value='1' >อันดอร์รา</option><option value='3' >อัฟกานิสถาน</option><option value='16' >อาเซอร์ไบจาน</option><option value='11' >อาร์เจนตินา</option><option value='7' >อาร์เมเนีย</option><option value='77' >อิเควทอเรียลกินี</option><option value='97' >อิตาลี</option><option value='92' >อินเดีย</option><option value='89' >อินโดนีเซีย</option><option value='94' >อิรัก</option><option value='91' >อิสราเอล</option><option value='95' >อิหร่าน</option><option value='60' >อียิปต์</option><option value='206' >อุซเบกิสถาน</option><option value='205' >อุรุกวัย</option><option value='58' >เอกวาดอร์</option><option value='64' >เอธิโอเปียน</option><option value='62' >เอริเทรีย</option><option value='183' >เอลซัลวาดอร์</option><option value='59' >เอสโตเนีย</option><option value='5' >แองกวิลลา</option><option value='9' >แองโกลา</option><option value='10' >แอนตาร์กติกา</option><option value='4' >แอนติกาและบาร์บูดา</option><option value='39' >แอฟริกากลาง</option><option value='214' >แอฟริกาใต้</option><option value='57' >แอลจีเรีย</option><option value='6' >แอลเบเนีย</option><option value='153' >โอมาน</option><option value='96' >ไอซ์แลนด์</option><option value='90' >ไอริช</option><option value='83' >ฮ่องกง</option><option value='85' >ฮอนดูรัส</option><option value='88' >ฮังการี</option><option value='87' >ไฮติ</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">school</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ชื่อสถานศึกษา (Institute Name)</label>
+																	<select name="edu_instituteName" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="6c15410a-c78e-4842-8d08-f5e22bddc66d" is-active="0">Northumbria University</option>
+																		<option value="e8a4cc74-d1af-46cd-97af-7ecfe5f9a1ac" is-active="0">Voronech State University, Russia</option>
+																		<option value="09cc9b01-69e2-4fec-8da6-bad2670dde09" is-active="0">เซนต์หลุยส์ศึกษา</option>
+																		<option value="63ccec5a-4238-4013-b227-d6a967e157c1" is-active="0">มหาวิทยาลัยนครพนม</option>
+																		<option value="e7f9994d-1cfc-4f45-b299-067f3f390a81" is-active="0">โรงเรียนกำแพง</option>
+																		<option value="3d9a2f84-3392-45ab-bfad-5acc81604bb2" is-active="0">โรงเรียนกุสุมาลย์วิทยาคม</option>
+																		<option value="2dbfc503-2787-4e21-a992-e041b33b9041" is-active="0">โรงเรียนจริยานุสรณ์</option>
+																		<option value="e3bed07f-8871-4953-a0ea-0b935b843a11" is-active="0">โรงเรียนชัยภูมิภักดีชุมพล</option>
+																		<option value="001f15bf-5445-4faa-940c-b38740259635" is-active="0">โรงเรียนชุมชนบ้านทุ่งช้าง</option>
+																		<option value="f7f031b5-543b-494f-b96f-df9de9faddd5" is-active="0">โรงเรียนเดื่อวิทยาคาร</option>
+																		<option value="e3631991-382a-4a5f-851d-9564c18b1efe" is-active="0">โรงเรียนเตรียมอุดมศึกษาน้อมเกล้า</option>
+																		<option value="438af0c4-be4b-4133-ba54-57c180c7335a" is-active="0">โรงเรียนท่าจีนอุดมวิทยา</option>
+																		<option value="f1dd3847-2606-4acf-8187-10375fb57601" is-active="0">โรงเรียนทุ่งช้าง</option>
+																		<option value="c314c56b-0d0b-460c-811f-69c11ef1ae2b" is-active="0">โรงเรียนเทพศิรินทร์ นนทบุรี</option>
+																		<option value="69d9c374-5b8c-45e3-ae98-93c85697c0c0" is-active="0">โรงเรียนบรปือวิทยาคาร</option>
+																		<option value="02562f36-db65-4f36-83d8-70a7a13e8c29" is-active="0">โรงเรียนบ้านนา</option>
+																		<option value="061a142e-2337-450e-8b29-ea07d6e6e5af" is-active="0">โรงเรียนบ้านหนองนายขุ้ย</option>
+																		<option value="166ac885-5532-4ef1-bf80-085db46cc32e" is-active="0">โรงเรียนบ้านหนองเหล็กโนนหนองหว้า</option>
+																		<option value="951377a5-89bd-4a10-b868-585fe219b3f3" is-active="0">โรงเรียนประชานาถ</option>
+																		<option value="b76ae542-fbf9-4a4d-87d5-a16134553ec8" is-active="0">โรงเรียนฟากกว๊านวิทยาคม</option>
+																		<option value="6541cc35-7133-448d-8d56-2cb7af732e59" is-active="0">โรงเรียนภูมิซรอลวิทยา</option>
+																		<option value="ebba3785-dea8-46dd-846d-58b50fc5cc24" is-active="0">โรงเรียนภูสิงห์ประชาเสริมวิทย์</option>
+																		<option value="de81da92-33b3-4a79-997f-5b1297d860f1" is-active="0">โรงเรียนราชินี</option>
+																		<option value="238d8fa2-c2fc-4910-a8a2-6c5c9852cd78" is-active="0">โรงเรียนราชินีบน</option>
+																		<option value="a7798dfd-f58e-4b58-817b-ec48ac5c83ff" is-active="0">โรงเรียนวชิราวุธ</option>
+																		<option value="5d237f3e-ec4b-4e87-89c3-a4ea2f977958" is-active="0">โรงเรียนศึกษาวัฒนา</option>
+																		<option value="c7044216-3118-4fb0-926a-3a5647bb6b62" is-active="0">โรงเรียนสตรีศรีสุริโยทัย</option>
+																		<option value="6f286792-7926-47ff-b2ae-08d3c6ca23d8" is-active="0">โรงเรียนหวายคำวิทยา</option>
+																		<option value="1b908b20-09ea-4354-87bc-ef9a2260c1ca" is-active="0">ลำปางอินเตอร์เทค</option>
+																		<option value="1090146c-5bca-484a-b5ff-27d2ab4ea59c" is-active="0">ศูนย์บริการการศึกษานอกโรงเรียนอำเภอโขงเจียม</option>
+																		<option value="9df3f1c0-2920-46ce-95a1-09e33badb8eb" is-active="0">สายปัญญาในพระบรมราชินูปถัมภ์</option>
+																		<option value="3e6c146f-4d94-41a8-ba21-dd7bceb141f2" is-active="0">หาดใหญ่วิทยาลัยสมบูรณ์กลกันยา</option>
+																		<option value="U0001" is-active="0">Alfred University</option>
+																		<option value="U0002" is-active="0">Amherst College</option>
+																		<option value="fd105f98-cdeb-48ea-bbdc-346fc13f9bf6" is-active="1">Central Queensland University</option>
+																		<option value="44dcac96-f6a7-4497-a4b9-b33db6dc988d" is-active="1">College of Management Mahidol University</option>
+																		<option value="3ff8743c-3113-4fd2-9590-17770d4a61c1" is-active="1">National Institute of Development Administration</option>
+																		<option value="f3d492c0-d0bb-450f-bc11-404303315d76" is-active="1">New York University</option>
+																		<option value="c1ce5b23-bb26-439b-bdbc-5695d4b52479" is-active="1">Thai-Nichi Institute Of Technology</option>
+																		<option value="e84b6e2d-50b0-4ecc-9e52-ffe48c706792" is-active="1">The University of Manchester</option>
+																		<option value="302377d5-4255-4741-903c-965cba67d6cf" is-active="1">The University of Newcastle</option>
+																		<option value="857885a2-9432-414d-a815-0594ed44dcf8" is-active="1">University of Essex</option>
+																		<option value="445d4c33-7b73-45d3-a087-5da9f5541afc" is-active="1">มหาวิทยาลัยกรุงเทพธนบรี</option>
+																		<option value="1cc1a55c-fdf4-4bab-a19d-5341cc711db0" is-active="1">มหาวิทยาลัยกรุงเทพธนบุรี</option>
+																		<option value="5befdb47-4c8b-40b4-bb69-b08e7aeda46a" is-active="1">มหาวิทยาลัยเซียะเหมิน</option>
+																		<option value="b510d68f-ccc8-4a43-97f9-dc120b99b50a" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลอีสาน วิทยาเขตกาฬสินธุ์</option>
+																		<option value="106ef97e-d9d0-4572-b81d-d7223b53a696" is-active="1">มหาวิทยาลัยนอร์ทกรุงเทพ</option>
+																		<option value="06e17ba9-8456-42d8-8926-6edd446dbe5c" is-active="1">มหาวิทยาลัยปทุมธานี</option>
+																		<option value="8d15c27c-51e2-462d-853d-1c1f1eeed8da" is-active="1">มหาวิทยาลัยพิษณุโลก</option>
+																		<option value="926b171a-63ee-498c-85db-584572c174b6" is-active="1">มหาวิทยาลัยราชพฤกษ์</option>
+																		<option value="b835ca2a-a5b8-4c6a-b4c4-b6708dbed61c" is-active="1">มหาวิทยาลัยราชภัฏกำแพงเพชร</option>
+																		<option value="4abc7275-6592-4d5a-ac1d-46aac6234381" is-active="1">มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต</option>
+																		<option value="d0d99f5b-d0c3-413e-bdfd-8fa69fb40f04" is-active="1">โรงเรียนกาญจนาภิเษกวิทยาลัย สุราษฎร์ธานี</option>
+																		<option value="df1fb838-e866-4ecb-9c21-94573eb94d4c" is-active="1">โรงเรียนกุนนทีรุทธารามวิทยาคม</option>
+																		<option value="e85175e0-a975-4bc5-899a-5f6564216680" is-active="1">โรงเรียนเขวาใหญ่พิทยาสรรค์</option>
+																		<option value="e2a1975a-7f69-43d2-9e35-02400618de89" is-active="1">โรงเรียนค้อวังวิทยาคม</option>
+																		<option value="4cf0d438-915f-4f7f-bf46-8bb53770c7d2" is-active="1">โรงเรียนโคกคอนวิทยาคม</option>
+																		<option value="88e4d71b-66d9-4a31-8d04-da797df74f66" is-active="1">โรงเรียนเจริญใจ</option>
+																		<option value="9f036fcd-4b9b-441b-a3dd-ccf84f2c9db2" is-active="1">โรงเรียนชุมชนโคกสารวิทยา</option>
+																		<option value="0a91a1ee-5add-41b5-829a-0c9cfdb592a4" is-active="1">โรงเรียนชุมชนวัดบ้านหนองกง</option>
+																		<option value="47f4cbae-f6bb-4d5c-a894-2159e53ccd70" is-active="1">โรงเรียนไชยาวิทยา จังหวัดสุราษฎร์ธานี</option>
+																		<option value="f127c530-adb1-415f-8e85-c0fbe881fd2c" is-active="1">โรงเรียนดงใหญ่วิทยาคม รัชมังคลาภิเษก จังหวัดมหาสารคาม</option>
+																		<option value="eae6b862-e3bd-4779-be91-db7ef1d7f586" is-active="1">โรงเรียนดอนศิลาผางามวิทยาคม</option>
+																		<option value="b42aa41e-de2e-4ce4-bf4d-8dc06cdf44cd" is-active="1">โรงเรียนตรีคูณวิทยบัลลังก์</option>
+																		<option value="2bc8dec2-662f-4047-bfff-a45521588c18" is-active="1">โรงเรียนเทพศิรินทร์คลองสิบสาม ปทุมธานี</option>
+																		<option value="b087b023-07bf-4f39-938c-062f5855454b" is-active="1">โรงเรียนเทศบาล 4 (อมร สะเพียรชัยอุทิศ)</option>
+																		<option value="d0fbffe7-4359-440c-9fa4-a3f8c1fa3b49" is-active="1">โรงเรียนธนบุรีวรเทพีพลารักษ์</option>
+																		<option value="404773aa-6b68-48f9-8c4e-9fb830d69a14" is-active="1">โรงเรียนนครไทย</option>
+																		<option value="404c25dc-336b-48fc-b316-7aec61fa5331" is-active="1">โรงเรียนนวบริหารธุรกิจ</option>
+																		<option value="4112b80b-0d78-4c21-add9-6cdd905b6c2a" is-active="1">โรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า</option>
+																		<option value="5cda12cd-5338-4b6e-b7a1-56288042e3c8" is-active="1">โรงเรียนนายร้อยพระจุลจอมเกล้าฯ</option>
+																		<option value="2c9fcee0-08da-4099-a4a4-7c458d2d592c" is-active="1">โรงเรียนนาหนองทุ่มวิทยา</option>
+																		<option value="d0b330b7-91ea-42bc-85f0-4b033a8986c2" is-active="1">โรงเรียนน้ำโสมพิทยาคม</option>
+																		<option value="f2f9b564-3084-4422-a88a-6c3282f56e0c" is-active="1">โรงเรียนบางปะกอกวิทยาคม</option>
+																		<option value="756dfd16-5da1-42cc-aa23-ba10e7494408" is-active="1">โรงเรียนบ้านกันทรารมย์</option>
+																		<option value="08d3904c-7fa5-4993-a825-0e6fd57cd7cb" is-active="1">โรงเรียนบ้านโคกยางหนองตาสี</option>
+																		<option value="63f7a1e5-a57a-4beb-a565-9de34ed96d7b" is-active="1">โรงเรียนบ้านชะโงม</option>
+																		<option value="68251aed-b149-4ff2-a494-a2541daabc5a" is-active="1">โรงเรียนบ้านดงน้อยวิทยา</option>
+																		<option value="160db072-510d-4d03-b06e-07330c52eda7" is-active="1">โรงเรียนบ้านตรึม(ตรึมวิทยานุเคราะห์)</option>
+																		<option value="fefa117b-151b-4081-acdd-c135528b39c2" is-active="1">โรงเรียนบ้านนาตาลใต้</option>
+																		<option value="0957f8fc-6f9b-47af-ad3e-b792d1a1b975" is-active="1">โรงเรียนบ้านน้ำริน</option>
+																		<option value="cf57c279-7ace-41b8-975b-7548f49509ed" is-active="1">โรงเรียนบ้านปง</option>
+																		<option value="3fd766ea-0844-4b34-8002-960be417dfaa" is-active="1">โรงเรียนบ้านม่วงคำ จังหวัดแพร่</option>
+																		<option value="d833dc7a-a729-4bd5-84ca-b36c68923995" is-active="1">โรงเรียนเบิดพิทยาสรรค์</option>
+																		<option value="8183a6c9-98a6-4d33-9ceb-49a97330ef7c" is-active="1">โรงเรียนผดุงประธานพณิชยการ จังหวัดยะลา</option>
+																		<option value="7f38b67f-f49e-4fa3-8a89-0a8d30ba2b42" is-active="1">โรงเรียนพณิชยการตั้งตรงจิตร</option>
+																		<option value="5e24970b-a9df-41a9-9082-ce99c8169424" is-active="1">โรงเรียนพาณิชยการสยาม</option>
+																		<option value="ad149126-67a2-4f3b-b3e2-70ea84653c78" is-active="1">โรงเรียนพุทธศาสตร์วิทยา</option>
+																		<option value="b5e42036-7d09-467c-a194-5fb9b65ce44a" is-active="1">โรงเรียนโพธิ์ทอง &quot;จินดามณี&quot;</option>
+																		<option value="75ec663d-012d-4704-9ec2-53f6da9385c5" is-active="1">โรงเรียนยุพราชวิทยาลัย</option>
+																		<option value="919870d2-f2c8-44a6-888e-641f909982f0" is-active="1">โรงเรียนราชสีมาวิทยาลัย</option>
+																		<option value="db3ea533-e71f-4414-ae78-8250c434dd36" is-active="1">โรงเรียนละหานทรายรัชดาภิเษก</option>
+																		<option value="58c4c0a1-7ded-4c0f-b88b-2cc0f8044eae" is-active="1">โรงเรียนวังชมภูวิทยาคม</option>
+																		<option value="347b0dc2-fad2-4abb-805a-38a8ae9aa78c" is-active="1">โรงเรียนวัฒนาบริหารธุรกิจ</option>
+																		<option value="1d6c2c41-6a21-48dc-85a0-684525aeed59" is-active="1">โรงเรียนวัดเกรียงไกร (โพธิ์ประสิทธิ์)</option>
+																		<option value="8b5353fa-3114-4baf-a32e-1ec15e279bb8" is-active="1">โรงเรียนวัดดอน</option>
+																		<option value="7edb5826-119c-44c2-9e78-2e8848bb0683" is-active="1">โรงเรียนวัดบวรมงคล</option>
+																		<option value="106a88cc-42ae-4c8a-99e6-79f773a16058" is-active="1">โรงเรียนวัดบ้านประคาทอง</option>
+																		<option value="d8919391-2cfd-4b77-902f-f92a29808aa5" is-active="1">โรงเรียนวัดพุทธบูชา</option>
+																		<option value="c08781f2-10db-4e1d-9c31-3f2a0dd36b9d" is-active="1">โรงเรียนวัดศรีวารีน้อย</option>
+																		<option value="405b4557-3a54-4c10-ae1b-2f1d33490c78" is-active="1">โรงเรียนวัดหนองใหญ่</option>
+																		<option value="6f6e963f-ab0c-484d-b1e3-647105df5231" is-active="1">โรงเรียนวัดหัวเวียง (เขมสุทธิวิทยาคาร)</option>
+																		<option value="4eae717f-95f3-493f-bf0c-4205d655184f" is-active="1">โรงเรียนวัดอินทาราม</option>
+																		<option value="71d633e0-2fc8-4268-a1fb-65a3e0e96255" is-active="1">โรงเรียนวาปีปทุม</option>
+																		<option value="21946c67-85c6-40dd-a65c-06a13223ee70" is-active="1">โรงเรียนวีเทค</option>
+																		<option value="62330f69-eac2-4df6-9000-4135faf9726b" is-active="1">โรงเรียนศรีวิกรมบริหารธุรกิจ</option>
+																		<option value="efbe3107-d25b-443c-9098-016a800b1a1d" is-active="1">โรงเรียนศึกษานารี</option>
+																		<option value="4f483be3-30d8-4cb5-932c-83c1708e90a7" is-active="1">โรงเรียนสตรีปากพนัง</option>
+																		<option value="b8183859-168a-448f-b777-3c9a127ac207" is-active="1">โรงเรียนสตรีมหาพฤฒาราม</option>
+																		<option value="f7295656-932b-4ab1-93c1-d8119f2a17eb" is-active="1">โรงเรียนสมอทองทีปพลีผลอุปถัมภ์</option>
+																		<option value="e7b62779-2fb5-4324-96e1-268cc564e706" is-active="1">โรงเรียนสระยายโสมวิทยา จังหวัดสุพรรณบุรี</option>
+																		<option value="2edf3f56-870b-44de-910d-e404a2248bb3" is-active="1">โรงเรียนสวนกุหลาบวิทยาลัย รังสิต</option>
+																		<option value="d4f917d9-992e-4dfb-8f88-4d21bd18180d" is-active="1">โรงเรียนสว่างวิทยา</option>
+																		<option value="4cd14436-af1c-47e9-a84b-319953bf1ae2" is-active="1">โรงเรียนสาธุประดิษฐ์พณิชยการ</option>
+																		<option value="42e851e5-19a6-44b2-bc41-72c66ce5b00f" is-active="1">โรงเรียนสายน้ำผึ้ง</option>
+																		<option value="9bbfa46e-7140-46cb-8238-bcff10c071c2" is-active="1">โรงเรียนสารสาสน์บริหารธุรกิจกนกอนุสรณ์</option>
+																		<option value="8195fd6e-293a-4c2d-bda7-f84d243dcf5d" is-active="1">โรงเรียนสิงหวิทยาคม</option>
+																		<option value="80f10cbf-fc18-409f-9b8a-6da27d1c65eb" is-active="1">โรงเรียนสีชมพูศึกษา</option>
+																		<option value="1436bd21-7e54-4353-8e87-6903451cede0" is-active="1">โรงเรียนสีดาวิทยา</option>
+																		<option value="4b7dafe6-505f-445d-bcb7-ee9971822028" is-active="1">โรงเรียนสุรศักดิ์มนตรี</option>
+																		<option value="218e60fb-9d70-4689-a1c9-b6cebbdb4fb9" is-active="1">โรงเรียนสุราษฎร์ธานี</option>
+																		<option value="1dacba81-7478-47f9-a296-a33b9a250811" is-active="1">โรงเรียนสุเหร่าทรายกองดิน</option>
+																		<option value="9735f88c-2ea5-412d-a7e0-9a32d22f7e6f" is-active="1">โรงเรียนหลวงพ่อปานคลองด่านอนุสรณ์</option>
+																		<option value="4736fa90-8a4c-4957-a122-cd487c0edfda" is-active="1">โรงเรียนห้วยเม็กวิทยาคม</option>
+																		<option value="341c9f60-9589-420c-8a7a-d3239de0fe83" is-active="1">โรงเรียนอดุลศาสนกิจศึกษา</option>
+																		<option value="b603b849-c668-4797-aa61-b01a7f309e7f" is-active="1">โรงเรียนอุทยานศึกษากระบี่</option>
+																		<option value="566c453f-a9b6-4ff6-a8fd-312576cbe2ea" is-active="1">โรวเรียนเทคโนโลยีบริหารธุรกิจรักไทย</option>
+																		<option value="27ac1161-3116-4196-b7b7-27e0b54a32c1" is-active="1">วิทยาเทคโนโลยีกรุงเทพ</option>
+																		<option value="c5985159-8fea-466f-8102-543b28f41c28" is-active="1">วิทยาลัยการอาชีพสองพี่น้อง</option>
+																		<option value="97b37921-1a31-4d2d-bdb2-4191ec712671" is-active="1">วิทยาลัยเทคนิคตาก</option>
+																		<option value="91f54e27-1913-4803-9de0-c93b716509b9" is-active="1">วิทยาลัยเทคนิคบึงกาฬ</option>
+																		<option value="0a4bdf3e-e959-4cbe-84c3-f5d5a65c79e0" is-active="1">วิทยาลัยเทคนิคสมุทรปราการ</option>
+																		<option value="1c69b981-b964-477d-bb77-16d251d1f5ed" is-active="1">วิทยาลัยเทคนิคอุดรธานี</option>
+																		<option value="91f36106-c596-4478-af3c-a7fbd2ea600a" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการสยาม ในพระอุปถัมภ์</option>
+																		<option value="63243a8f-d158-45bf-b86a-c52b89cadfec" is-active="1">วิทยาลัยเทคโนโลยีสหะพาณิชย์บริหารธุรกิจ</option>
+																		<option value="03fa1c2d-d920-4133-8aef-aefaf3595884" is-active="1">วิทยาลัยเทคโนโลยีสันตพล อุดรธานี</option>
+																		<option value="84607733-e4e9-4b84-b7a8-9f3f88246986" is-active="1">วิทยาลัยนานาชาติม.ศิลปากร</option>
+																		<option value="c89e6621-8b59-459a-aed6-7819d9880180" is-active="1">วิทยาลัยพาณิชยการบางนา</option>
+																		<option value="2312b845-20a3-447e-b9cc-5a3eae97cb01" is-active="1">วิทยาลัยหลวงประธานราษฎร์นิกร</option>
+																		<option value="994dc377-2b14-4632-982d-4e99ca61e33a" is-active="1">วิทยาลัยอาชีวศึกษาเทศบาลอ้อมน้อย</option>
+																		<option value="b4de65c8-ccb9-4f47-beb9-3866c4be4013" is-active="1">วิทยาลัยอาชีวศึกษาปากพนัง</option>
+																		<option value="fec7a9d2-66c1-446c-9a04-18faa3b9c456" is-active="1">วิทยาลัยอาชีวศึกษาอุดรธานี</option>
+																		<option value="68b40650-7cf3-4878-8b7b-8cf6e54000c9" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย อำเภอเชียงคาน</option>
+																		<option value="f6d2079f-8b59-4241-aa59-b8a8d662c8ed" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย อำเภอบางปะกง</option>
+																		<option value="5c9c73e2-d818-4112-ae03-89fb3c3d1657" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย อำเภอเมืองอุตรดิตถ์</option>
+																		<option value="e6398203-a916-47c7-b593-66e24386b7e1" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัยเขตคลองเตย</option>
+																		<option value="2d4cb44c-1f0c-4867-b0be-d0f6308a6e58" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัยเขตจอมทอง</option>
+																		<option value="ff9f0bba-4e02-44c3-80f1-f88e06f59db2" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัยเขตสะพานสูง</option>
+																		<option value="d53ad586-c2a8-4d37-b844-87fccf2ce452" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัยอำเภอกุมภวาปี</option>
+																		<option value="661c7471-91fc-42a4-93bd-52202d26a40c" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัยอำเภอวานรนิวาส</option>
+																		<option value="0952fedd-6ddc-444d-902b-2abf4faf664a" is-active="1">ศูนย์การศึกษานอกโรงเรียนจังหวัดปทุมธานี</option>
+																		<option value="3dd78c55-cef2-44c0-9102-efa7792db3ce" is-active="1">ศูนย์การศึกษานอกโรงเรียนจังหวัดสมุทรปราการ</option>
+																		<option value="ae8cc27d-60f1-44fa-b3ca-127d44a4b376" is-active="1">ศูนย์บริการการศึกษานอกโรงเรียน อำเภอเมืองสมุทรปราการ</option>
+																		<option value="5b44de20-5646-48fb-8466-f925d49217ba" is-active="1">ศูนย์บริการการศึกษานอกโรงเรียนเขตปทุมวัน</option>
+																		<option value="b158e9d7-5dec-4078-b7c8-d3408f0f0793" is-active="1">ศูนย์บริการการศึกษานอกโรงเรียนอำเภอเมืองนครปฐม</option>
+																		<option value="b61373a5-5e10-4e61-a1e8-63e7af459e24" is-active="1">ศูนย์บริการการศึกษานอกโรงเรียนอำเภอเมืองลพบุรี</option>
+																		<option value="b8071b5d-c8c9-442c-ac6e-608926078775" is-active="1">ศูนย์บริการการศึกษานอกโรงเรียนอำเภอเมืองเลย</option>
+																		<option value="d3c892d4-9ebb-4213-94e1-a297a555e4d7" is-active="1">สถาบันเทคโนโลยีราชมงคล วิทยาเขตนนทบุรี</option>
+																		<option value="U0003" is-active="1">Bournemouth University</option>
+																		<option value="U0004" is-active="1">Brunel University</option>
+																		<option value="U0005" is-active="1">California State University, Long Beach</option>
+																		<option value="U0006" is-active="1">California State University, Los Angeles</option>
+																		<option value="U0007" is-active="1">Cass Business School</option>
+																		<option value="U0008" is-active="1">Cleveland State University</option>
+																		<option value="U0009" is-active="1">Domus Academy</option>
+																		<option value="U0010" is-active="1">Ecole Hoteliev De Lausanne</option>
+																		<option value="U0011" is-active="1">George Washington University</option>
+																		<option value="U0012" is-active="1">Georgia Southern University</option>
+																		<option value="U0013" is-active="1">Keio University, Japan</option>
+																		<option value="U0014" is-active="1">Leeds Metropolitan University</option>
+																		<option value="U0015" is-active="1">Lincoln University</option>
+																		<option value="U0016" is-active="1">London College Of Fashion</option>
+																		<option value="U0017" is-active="1">London Metropolitan College</option>
+																		<option value="U0018" is-active="1">London Metropolitan University</option>
+																		<option value="U0019" is-active="1">Macquarie University</option>
+																		<option value="U0020" is-active="1">Malardalen University</option>
+																		<option value="U0021" is-active="1">Mission College</option>
+																		<option value="U0022" is-active="1">Monash University</option>
+																		<option value="U0023" is-active="1">Murray State University</option>
+																		<option value="U0024" is-active="1">New Hampshire College</option>
+																		<option value="U0025" is-active="1">Nottingham Trent University</option>
+																		<option value="U0026" is-active="1">Pratt Institute</option>
+																		<option value="U0027" is-active="1">Queensland University Of Technology</option>
+																		<option value="U0028" is-active="1">Ritsumeikan Asia Pacific University</option>
+																		<option value="U0029" is-active="1">San Diego State University</option>
+																		<option value="U0030" is-active="1">Scripps College</option>
+																		<option value="U0031" is-active="1">Southern University</option>
+																		<option value="U0032" is-active="1">Swiss Hotel Management School</option>
+																		<option value="U0033" is-active="1">Ueda College of Fashion</option>
+																		<option value="U0034" is-active="1">University College London</option>
+																		<option value="U0035" is-active="1">University Of Birmingham</option>
+																		<option value="U0036" is-active="1">University Of California, Los Angeles</option>
+																		<option value="U0037" is-active="1">University Of Dallas</option>
+																		<option value="U0038" is-active="1">University Of Florida</option>
+																		<option value="U0039" is-active="1">University Of La Verne</option>
+																		<option value="U0040" is-active="1">University Of Leeds</option>
+																		<option value="U0041" is-active="1">University Of London</option>
+																		<option value="U0042" is-active="1">University of Marne-la-Valle</option>
+																		<option value="U0043" is-active="1">University Of Melbourne</option>
+																		<option value="U0044" is-active="1">University of Newcastle, Australia</option>
+																		<option value="U0045" is-active="1">University Of Nottingham</option>
+																		<option value="U0046" is-active="1">University of Reading</option>
+																		<option value="U0047" is-active="1">University Of Salford</option>
+																		<option value="U0048" is-active="1">University of Strathclyde</option>
+																		<option value="U0049" is-active="1">University Of Surrey</option>
+																		<option value="U0050" is-active="1">University Of Tennessee</option>
+																		<option value="U0051" is-active="1">University of the Arts London</option>
+																		<option value="U0052" is-active="1">University Of Warwick</option>
+																		<option value="U0053" is-active="1">University Of Westminster</option>
+																		<option value="U0054" is-active="1">University Of Wollongong</option>
+																		<option value="U0055" is-active="1">กรมยุทธศึกษาทหารเรือ</option>
+																		<option value="U0056" is-active="1">กรุงเทพการบัญชีวิทยาลัย</option>
+																		<option value="U0057" is-active="1">เกริกวิทยาลัย</option>
+																		<option value="U0058" is-active="1">จุฬาลงกรณ์มหาวิทยาลัย</option>
+																		<option value="U0059" is-active="1">มหาวิทยาลัยกรุงเทพ</option>
+																		<option value="U0060" is-active="1">มหาวิทยาลัยเกริก</option>
+																		<option value="U0061" is-active="1">มหาวิทยาลัยเกษตรศาสตร์</option>
+																		<option value="U0062" is-active="1">มหาวิทยาลัยเกษมบัณฑิต</option>
+																		<option value="U0063" is-active="1">มหาวิทยาลัยขอนแก่น</option>
+																		<option value="U0064" is-active="1">มหาวิทยาลัยเชียงใหม่</option>
+																		<option value="U0065" is-active="1">มหาวิทยาลัยเซนต์จอห์น</option>
+																		<option value="U0066" is-active="1">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</option>
+																		<option value="U0067" is-active="1">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
+																		<option value="U0068" is-active="1">มหาวิทยาลัยเทคโนโลยีมหานคร</option>
+																		<option value="U0069" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคล</option>
+																		<option value="U0070" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคล วิทยาเขตจักรพงษภูวนาถ</option>
+																		<option value="U0071" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคล วิทยาเขตพระนครเหนือ</option>
+																		<option value="U0072" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลกรุงเทพ</option>
+																		<option value="U0073" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</option>
+																		<option value="U0074" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตจักรพงษภูวนารถ</option>
+																		<option value="U0075" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตอุเทนถวาย</option>
+																		<option value="U0076" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</option>
+																		<option value="U0077" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</option>
+																		<option value="U0078" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลรัตนโกสินทร์</option>
+																		<option value="U0079" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลรัตนโกสินทร์ บพิตรพิมุข จักรวรรด</option>
+																		<option value="U0080" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลรัตนโกสินทร์ วิทยาเขตบพิตรพิมุข</option>
+																		<option value="U0081" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลรัตนโกสินทร์ วิทยาเขตวังไกลกังวล</option>
+																		<option value="U0082" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</option>
+																		<option value="U0083" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา วิทยาเขตตาก</option>
+																		<option value="U0084" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</option>
+																		<option value="U0085" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลอีสาน</option>
+																		<option value="U0086" is-active="1">มหาวิทยาลัยเทคโนโลยีสุรนารี</option>
+																		<option value="U0087" is-active="1">มหาวิทยาลัยธนบุรี</option>
+																		<option value="U0088" is-active="1">มหาวิทยาลัยธรรมศาสตร์</option>
+																		<option value="U0089" is-active="1">มหาวิทยาลัยธุรกิจบัณฑิตย์</option>
+																		<option value="U0090" is-active="1">มหาวิทยาลัยนเรศวร</option>
+																		<option value="U0091" is-active="1">มหาวิทยาลัยบูรพา</option>
+																		<option value="U0092" is-active="1">มหาวิทยาลัยพะเยา</option>
+																		<option value="U0093" is-active="1">มหาวิทยาลัยพายัพ</option>
+																		<option value="U0094" is-active="1">มหาวิทยาลัยภาคตะวันออกเฉียงเหนือ</option>
+																		<option value="U0095" is-active="1">มหาวิทยาลัยมหามงกุฏราชวิทยาลัย</option>
+																		<option value="U0096" is-active="1">มหาวิทยาลัยมหาสารคาม</option>
+																		<option value="U0097" is-active="1">มหาวิทยาลัยมหิดล</option>
+																		<option value="U0098" is-active="1">มหาวิทยาลัยแม่โจ้</option>
+																		<option value="U0099" is-active="1">มหาวิทยาลัยแม่ฟ้าหลวง</option>
+																		<option value="U0100" is-active="1">มหาวิทยาลัยโยนก/มหาวิทยาลัยเนชั่น</option>
+																		<option value="U0101" is-active="1">มหาวิทยาลัยรังสิต</option>
+																		<option value="U0102" is-active="1">มหาวิทยาลัยรัตนบัณฑิต</option>
+																		<option value="U0103" is-active="1">มหาวิทยาลัยราชธานี</option>
+																		<option value="U0104" is-active="1">มหาวิทยาลัยราชภัฎพิบูลสงคราม</option>
+																		<option value="U0105" is-active="1">มหาวิทยาลัยราชภัฏกาญจนบุรี</option>
+																		<option value="U0106" is-active="1">มหาวิทยาลัยราชภัฏจันทรเกษม</option>
+																		<option value="U0107" is-active="1">มหาวิทยาลัยราชภัฏเชียงราย</option>
+																		<option value="U0108" is-active="1">มหาวิทยาลัยราชภัฏเชียงใหม่</option>
+																		<option value="U0109" is-active="1">มหาวิทยาลัยราชภัฏธนบุรี</option>
+																		<option value="U0110" is-active="1">มหาวิทยาลัยราชภัฏนครปฐม</option>
+																		<option value="U0111" is-active="1">มหาวิทยาลัยราชภัฏนครราชสีมา</option>
+																		<option value="U0112" is-active="1">มหาวิทยาลัยราชภัฏนครศรีธรรมราช</option>
+																		<option value="U0113" is-active="1">มหาวิทยาลัยราชภัฏนครสวรรค์</option>
+																		<option value="U0114" is-active="1">มหาวิทยาลัยราชภัฏบ้านสมเด็จเจ้าพระยา</option>
+																		<option value="U0115" is-active="1">มหาวิทยาลัยราชภัฏบุรีรัมย์</option>
+																		<option value="U0116" is-active="1">มหาวิทยาลัยราชภัฏพระนคร</option>
+																		<option value="U0117" is-active="1">มหาวิทยาลัยราชภัฏเพชรบุรี</option>
+																		<option value="U0118" is-active="1">มหาวิทยาลัยราชภัฏมหาสารคาม</option>
+																		<option value="U0119" is-active="1">มหาวิทยาลัยราชภัฏราชนครินทร์</option>
+																		<option value="U0120" is-active="1">มหาวิทยาลัยราชภัฏรำไพพรรณี</option>
+																		<option value="U0121" is-active="1">มหาวิทยาลัยราชภัฏลำปาง</option>
+																		<option value="U0122" is-active="1">มหาวิทยาลัยราชภัฏเลย</option>
+																		<option value="U0123" is-active="1">มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์</option>
+																		<option value="U0124" is-active="1">มหาวิทยาลัยราชภัฏศรีสะเกษ</option>
+																		<option value="U0125" is-active="1">มหาวิทยาลัยราชภัฏสวนดุสิต</option>
+																		<option value="U0126" is-active="1">มหาวิทยาลัยราชภัฏสวนสุนันทา</option>
+																		<option value="U0127" is-active="1">มหาวิทยาลัยราชภัฏสุรินทร์</option>
+																		<option value="U0128" is-active="1">มหาวิทยาลัยราชภัฏหมู่บ้านจอมบึง</option>
+																		<option value="U0129" is-active="1">มหาวิทยาลัยราชภัฏอุดรธานี</option>
+																		<option value="U0130" is-active="1">มหาวิทยาลัยราชภัฏอุตรดิตถ์</option>
+																		<option value="U0131" is-active="1">มหาวิทยาลัยราชภัฏอุบลราชธานี</option>
+																		<option value="U0132" is-active="1">มหาวิทยาลัยรามคำแหง</option>
+																		<option value="U0133" is-active="1">มหาวิทยาลัยวงษ์ชวลิตกุล</option>
+																		<option value="U0134" is-active="1">มหาวิทยาลัยวลัยลักษณ์</option>
+																		<option value="U0135" is-active="1">มหาวิทยาลัยศรีนครินทรวิโรฒ</option>
+																		<option value="U0136" is-active="1">มหาวิทยาลัยศรีปทุม</option>
+																		<option value="U0137" is-active="1">มหาวิทยาลัยศิลปากร</option>
+																		<option value="U0138" is-active="1">มหาวิทยาลัยสงขลานครินทร์</option>
+																		<option value="U0139" is-active="1">มหาวิทยาลัยสยาม</option>
+																		<option value="U0140" is-active="1">มหาวิทยาลัยสุโขทัยธรรมาธิราช</option>
+																		<option value="U0141" is-active="1">มหาวิทยาลัยหอการค้าไทย</option>
+																		<option value="U0142" is-active="1">มหาวิทยาลัยอัสสัมชัญ</option>
+																		<option value="U0143" is-active="1">มหาวิทยาลัยอุบลราชธานี</option>
+																		<option value="U0144" is-active="1">มหาวิทยาลัยเอเชียอาคเนย์</option>
+																		<option value="U0145" is-active="1">โรงยานนาเวศวิทยาคม</option>
+																		<option value="U0146" is-active="1">โรงเรียนกรุงเทพการบัญชีวิทยาลัย</option>
+																		<option value="U0147" is-active="1">โรงเรียนกรุงธนวิทยาภวัน</option>
+																		<option value="U0148" is-active="1">โรงเรียนกองทัพบกอุปถัมภ์ ช่างกล ขส.ทบ.</option>
+																		<option value="U0149" is-active="1">โรงเรียนกันทรวิชัย</option>
+																		<option value="U0150" is-active="1">โรงเรียนกันทรารมณ์</option>
+																		<option value="U0151" is-active="1">โรงเรียนกาญจนวิทยา</option>
+																		<option value="U0152" is-active="1">โรงเรียนกาฬสินธุ์พิทยาสัย</option>
+																		<option value="U0153" is-active="1">โรงเรียนกุดจับประชาสรรค์</option>
+																		<option value="U0154" is-active="1">โรงเรียนกุดรังประชาสรรค์</option>
+																		<option value="U0155" is-active="1">โรงเรียนกุดอ้อสุขสวัสดิ์วิทยา</option>
+																		<option value="U0156" is-active="1">โรงเรียนเกริกวิทยาลัย</option>
+																		<option value="U0157" is-active="1">โรงเรียนเกษมโปลีเทคนิค</option>
+																		<option value="U0158" is-active="1">โรงเรียนไกรภักดีวิทยาคม</option>
+																		<option value="U0159" is-active="1">โรงเรียนขุนยวมวิทยา</option>
+																		<option value="U0160" is-active="1">โรงเรียนเขื่อนพิทยาสรรค์</option>
+																		<option value="U0161" is-active="1">โรงเรียนคลองปักหลัก</option>
+																		<option value="U0162" is-active="1">โรงเรียนคลองพนสฤษดิ์พิทยา</option>
+																		<option value="U0163" is-active="1">โรงเรียนคำเขื่อนแก้วชนูปถัมภ์</option>
+																		<option value="U0164" is-active="1">โรงเรียนคำเพิ่มพิทยา</option>
+																		<option value="U0165" is-active="1">โรงเรียนคูเมืองวิทยาคม</option>
+																		<option value="U0166" is-active="1">โรงเรียนโคกนางามพิทยาสรรพ์</option>
+																		<option value="U0167" is-active="1">โรงเรียนโคกยางวิทยา</option>
+																		<option value="U0168" is-active="1">โรงเรียนจตุรพักตรพิมานรัชดาภิเษก</option>
+																		<option value="U0169" is-active="1">โรงเรียนจตุรภูมิพิทยาคาร</option>
+																		<option value="U0170" is-active="1">โรงเรียนจตุราษฎร์พิทยาคม</option>
+																		<option value="U0171" is-active="1">โรงเรียนจันทร์ประดิษฐารามวิทยาคม</option>
+																		<option value="U0172" is-active="1">โรงเรียนจันทรุเบกษาอนุสรณ์</option>
+																		<option value="U0173" is-active="1">โรงเรียนเจ้าพระยาวิทยาคม</option>
+																		<option value="U0174" is-active="1">โรงเรียนแจ้งวิทยา</option>
+																		<option value="U0175" is-active="1">โรงเรียนชลกันยานุกูล</option>
+																		<option value="U0176" is-active="1">โรงเรียนชะอวดวิทยาคาร</option>
+																		<option value="U0177" is-active="1">โรงเรียนชะอำคุณหญิงเนื่องบุรี</option>
+																		<option value="U0178" is-active="1">โรงเรียนชุมชนกระนวน</option>
+																		<option value="U0179" is-active="1">โรงเรียนชุมชนบ้านโค้งไผ่</option>
+																		<option value="U0180" is-active="1">โรงเรียนชุมชนบ้านบุ่งคล้าวิทยา</option>
+																		<option value="U0181" is-active="1">โรงเรียนชุมชนบ้านโพธิ์ตาก</option>
+																		<option value="U0182" is-active="1">โรงเรียนชุมชนบ้านหนองสะโน</option>
+																		<option value="U0183" is-active="1">โรงเรียนเชียงใหม่เทคโนโลยี</option>
+																		<option value="U0184" is-active="1">โรงเรียนเชื้อจรูญวิทย์</option>
+																		<option value="U0185" is-active="1">โรงเรียนโชคชัยสามัคคี</option>
+																		<option value="U0186" is-active="1">โรงเรียนเซนต์จอห์นเทคโนโลยี</option>
+																		<option value="U0187" is-active="1">โรงเรียนเซนต์จอห์นโปลีเทคนิค</option>
+																		<option value="U0188" is-active="1">โรงเรียนเซนต์โยเซฟคอนเวนต์</option>
+																		<option value="U0189" is-active="1">โรงเรียนฐานเทคโนโลยี</option>
+																		<option value="U0190" is-active="1">โรงเรียนดงกลางพัฒนศึกษา</option>
+																		<option value="U0191" is-active="1">โรงเรียนดงเจนวิทยาคม</option>
+																		<option value="U0192" is-active="1">โรงเรียนดงมะไฟพิทยาคม&#160;</option>
+																		<option value="U0193" is-active="1">โรงเรียนดรุณพิทยา</option>
+																		<option value="U0194" is-active="1">โรงเรียนดอนบอสโก</option>
+																		<option value="U0195" is-active="1">โรงเรียนเตรียมอุดมศึกษา</option>
+																		<option value="U0196" is-active="1">โรงเรียนไตรมิตรวิทยาลัย</option>
+																		<option value="U0197" is-active="1">โรงเรียนทองแสนขันวิทยา</option>
+																		<option value="U0198" is-active="1">โรงเรียนท่าชัยวิทยา</option>
+																		<option value="U0199" is-active="1">โรงเรียนทุ่งทรายวิทยา</option>
+																		<option value="U0200" is-active="1">โรงเรียนทุ่งศรีเมืองวิทยา</option>
+																		<option value="U0201" is-active="1">โรงเรียนเทคนิคพณิชยการจำนงค์</option>
+																		<option value="U0202" is-active="1">โรงเรียนเทคนิคพณิชยการเจ้าพระยา</option>
+																		<option value="U0203" is-active="1">โรงเรียนเทคนิควิทยา</option>
+																		<option value="U0204" is-active="1">โรงเรียนเทคโนโลยี่ช่างอุตสาหกรรมกรุงเทพ</option>
+																		<option value="U0205" is-active="1">โรงเรียนเทคโนโลยีไทยสุริยะ</option>
+																		<option value="U0206" is-active="1">โรงเรียนเทคโนโลยีนครกบินทร์</option>
+																		<option value="U0207" is-active="1">โรงเรียนเทคโนโลยีบริหารธุรกิจเปรมฤทัย</option>
+																		<option value="U0208" is-active="1">โรงเรียนเทคโนโลยีภูมิสิทธิ์พาณิชยการช่างกล</option>
+																		<option value="U0209" is-active="1">โรงเรียนเทพศิรินทร์ พุแค</option>
+																		<option value="U0210" is-active="1">โรงเรียนเทศบาลวัดหนองผา</option>
+																		<option value="U0211" is-active="1">โรงเรียนไทยรัฐวิทยา</option>
+																		<option value="U0212" is-active="1">โรงเรียนไทยวิจิตรศิลปอาชีวะ</option>
+																		<option value="U0213" is-active="1">โรงเรียนธาตุพนม</option>
+																		<option value="U0214" is-active="1">โรงเรียนธารทหาร(แสงสว่างอุปถัมภ์)</option>
+																		<option value="U0215" is-active="1">โรงเรียนธารทองพิทยาคม</option>
+																		<option value="U0216" is-active="1">โรงเรียนธุรกิจอาชีวะ</option>
+																		<option value="U0217" is-active="1">โรงเรียนนครวิทยาคม</option>
+																		<option value="U0218" is-active="1">โรงเรียนนครอาชีวศึกษา</option>
+																		<option value="U0219" is-active="1">โรงเรียนนนทรีวิทยา</option>
+																		<option value="U0220" is-active="1">โรงเรียนนาข่าวิทยาคม</option>
+																		<option value="U0221" is-active="1">โรงเรียนนาเชือกพิทยาสรรค์</option>
+																		<option value="U0222" is-active="1">โรงเรียนนาทมวิทยา</option>
+																		<option value="U0223" is-active="1">โรงเรียนนาน้อย</option>
+																		<option value="U0224" is-active="1">โรงเรียนนายเรือ</option>
+																		<option value="U0225" is-active="1">โรงเรียนนารีนุกูล</option>
+																		<option value="U0226" is-active="1">โรงเรียนนิคมสร้างตนเองปราสาท</option>
+																		<option value="U0227" is-active="1">โรงเรียนโนนเมืองวิทยาคาร</option>
+																		<option value="U0228" is-active="1">โรงเรียนบดินทรเดชา (สิงห์ สิงหเสนี)</option>
+																		<option value="U0229" is-active="1">โรงเรียนบัวน้อยวิทยา</option>
+																		<option value="U0230" is-active="1">โรงเรียนบางบ่อวิทยาคม</option>
+																		<option value="U0231" is-active="1">โรงเรียนบางบาล</option>
+																		<option value="U0232" is-active="1">โรงเรียนบางมดวิทยา</option>
+																		<option value="U0233" is-active="1">โรงเรียนบางมูลนากภูมิวิทยาคม</option>
+																		<option value="U0234" is-active="1">โรงเรียนบางเมืองเขียนผ่องอนุสรณ์</option>
+																		<option value="U0235" is-active="1">โรงเรียนบางเสด็จวิทยาคม</option>
+																		<option value="U0236" is-active="1">โรงเรียนบ้านกุดชะนวน</option>
+																		<option value="U0237" is-active="1">โรงเรียนบ้านกุรุคุ</option>
+																		<option value="U0238" is-active="1">โรงเรียนบ้านกู่คันธนามหนองฝั่งแดง</option>
+																		<option value="U0239" is-active="1">โรงเรียนบ้านแก้งขี้เหล็ก</option>
+																		<option value="U0240" is-active="1">โรงเรียนบ้านแก่งชัชวลิตวิทยา</option>
+																		<option value="U0241" is-active="1">โรงเรียนบ้านแก้งวิทยา</option>
+																		<option value="U0242" is-active="1">โรงเรียนบ้านขนวน</option>
+																		<option value="U0243" is-active="1">โรงเรียนบ้านคลองน้ำใส</option>
+																		<option value="U0244" is-active="1">โรงเรียนบ้านคำเกิ่งหนองจิก</option>
+																		<option value="U0245" is-active="1">โรงเรียนบ้านไครัง (ราษฎร์อุทิศ)</option>
+																		<option value="U0246" is-active="1">โรงเรียนบ้านโจ้โก้</option>
+																		<option value="U0247" is-active="1">โรงเรียนบ้านช่องลม</option>
+																		<option value="U0248" is-active="1">โรงเรียนบ้านชัยชนะ</option>
+																		<option value="U0249" is-active="1">โรงเรียนบ้านโชคเจริญ</option>
+																		<option value="U0250" is-active="1">โรงเรียนบ้านซำสะกวยน้อย</option>
+																		<option value="U0251" is-active="1">โรงเรียนบ้านเซือมแพงใหญ่</option>
+																		<option value="U0252" is-active="1">โรงเรียนบ้านดินดำเหล่าเสนไต้</option>
+																		<option value="U0253" is-active="1">โรงเรียนบ้านเดื่อ</option>
+																		<option value="U0254" is-active="1">โรงเรียนบ้านเดื่อดอนกลาง</option>
+																		<option value="U0255" is-active="1">โรงเรียนบ้านตากิ่ม</option>
+																		<option value="U0256" is-active="1">โรงเรียนบ้านตาพวนสร้างแซ่ง</option>
+																		<option value="U0257" is-active="1">โรงเรียนบ้านต้าย(นิกรบำรุง)</option>
+																		<option value="U0258" is-active="1">โรงเรียนบ้านทด</option>
+																		<option value="U0259" is-active="1">โรงเรียนบ้านทับคล้อ</option>
+																		<option value="U0260" is-active="1">โรงเรียนบ้านท่าเสด็จ</option>
+																		<option value="U0261" is-active="1">โรงเรียนบ้านนาทอน</option>
+																		<option value="U0262" is-active="1">โรงเรียนบ้านนาน้ำชุ่ม</option>
+																		<option value="U0263" is-active="1">โรงเรียนบ้านนาโม้</option>
+																		<option value="U0264" is-active="1">โรงเรียนบ้านน้ำเลียง</option>
+																		<option value="U0265" is-active="1">โรงเรียนบ้านโนนชาตยูง</option>
+																		<option value="U0266" is-active="1">โรงเรียนบ้านโนนม่วง</option>
+																		<option value="U0267" is-active="1">โรงเรียนบ้านโนนเมือง</option>
+																		<option value="U0268" is-active="1">โรงเรียนบ้านโนนสำราญ</option>
+																		<option value="U0269" is-active="1">โรงเรียนบ้านบ่อหลวง</option>
+																		<option value="U0270" is-active="1">โรงเรียนบ้านบ่อใหญ่</option>
+																		<option value="U0271" is-active="1">โรงเรียนบ้านบากหนองแดง</option>
+																		<option value="U0272" is-active="1">โรงเรียนบ้านบางกะปิ</option>
+																		<option value="U0273" is-active="1">โรงเรียนบ้านบุวิทยาสรรค์</option>
+																		<option value="U0274" is-active="1">โรงเรียนบ้านปัก</option>
+																		<option value="U0275" is-active="1">โรงเรียนบ้านป่าซ่าน</option>
+																		<option value="U0276" is-active="1">โรงเรียนบ้านป่าตองหนองงู</option>
+																		<option value="U0277" is-active="1">โรงเรียนบ้านโป่งวิทยาคม</option>
+																		<option value="U0278" is-active="1">โรงเรียนบ้านพระบาทนาหงส์</option>
+																		<option value="U0279" is-active="1">โรงเรียนบ้านโพธิ์ห้วย</option>
+																		<option value="U0280" is-active="1">โรงเรียนบ้านโพธิ์เหล่าวิชา</option>
+																		<option value="U0281" is-active="1">โรงเรียนบ้านม่วงพิทยาคม</option>
+																		<option value="U0282" is-active="1">โรงเรียนบ้านแม่เปา</option>
+																		<option value="U0283" is-active="1">โรงเรียนบ้านร่องคำ</option>
+																		<option value="U0284" is-active="1">โรงเรียนบ้านวังอ้อ</option>
+																		<option value="U0285" is-active="1">โรงเรียนบ้านศรีถาวร</option>
+																		<option value="U0286" is-active="1">โรงเรียนบ้านสวนห้อม</option>
+																		<option value="U0287" is-active="1">โรงเรียนบ้านสะเดาใหญ่</option>
+																		<option value="U0288" is-active="1">โรงเรียนบ้านโสน</option>
+																		<option value="U0289" is-active="1">โรงเรียนบ้านหนองกุง</option>
+																		<option value="U0290" is-active="1">โรงเรียนบ้านหนองข่า</option>
+																		<option value="U0291" is-active="1">โรงเรียนบ้านหนองแคทราย</option>
+																		<option value="U0292" is-active="1">โรงเรียนบ้านหนองเฒ่า</option>
+																		<option value="U0293" is-active="1">โรงเรียนบ้านหนองบัว</option>
+																		<option value="U0294" is-active="1">โรงเรียนบ้านหนองบัวสันตุ</option>
+																		<option value="U0295" is-active="1">โรงเรียนบ้านหนองประเสริฐ</option>
+																		<option value="U0296" is-active="1">โรงเรียนบ้านหนองไผ่</option>
+																		<option value="U0297" is-active="1">โรงเรียนบ้านหนองพะแนง</option>
+																		<option value="U0298" is-active="1">โรงเรียนบ้านหนองโพธิ์</option>
+																		<option value="U0299" is-active="1">โรงเรียนบ้านหนองแม่แตง</option>
+																		<option value="U0300" is-active="1">โรงเรียนบ้านหนองแสลบ</option>
+																		<option value="U0301" is-active="1">โรงเรียนบ้านหลักด่าน</option>
+																		<option value="U0302" is-active="1">โรงเรียนบ้านห้วยโป่ง</option>
+																		<option value="U0303" is-active="1">โรงเรียนบาลีสาธิตศึกษา วัดเขตอุดม</option>
+																		<option value="U0304" is-active="1">โรงเรียนเบญจมราชูทิศราชบุรี</option>
+																		<option value="U0305" is-active="1">โรงเรียนเบญจมานุสรณ์</option>
+																		<option value="U0306" is-active="1">โรงเรียนปทุมคงคา</option>
+																		<option value="U0307" is-active="1">โรงเรียนปทุมพิทยาคม</option>
+																		<option value="U0308" is-active="1">โรงเรียนปทุมวิไล</option>
+																		<option value="U0309" is-active="1">โรงเรียนประโคนชัยพิทยาคม</option>
+																		<option value="U0310" is-active="1">โรงเรียนประชาสงเคราะห์วิทยา</option>
+																		<option value="U0311" is-active="1">โรงเรียนปรางค์กู่</option>
+																		<option value="U0312" is-active="1">โรงเรียนปากพนัง</option>
+																		<option value="U0313" is-active="1">โรงเรียนป่าสังข์ป่าม่วงวิทยา</option>
+																		<option value="U0314" is-active="1">โรงเรียนผอบ ณ นคร 1</option>
+																		<option value="U0315" is-active="1">โรงเรียนผู้ใหญ่ วัดสิทธิทาราม</option>
+																		<option value="U0316" is-active="1">โรงเรียนผู้ใหญ่วัดศรีมงคล</option>
+																		<option value="U0317" is-active="1">โรงเรียนผู้ใหญ่หอวัง</option>
+																		<option value="U0318" is-active="1">โรงเรียนพงษ์ภิญโญเทคโนโลยี</option>
+																		<option value="U0319" is-active="1">โรงเรียนพณิชยการกรุงเทพ</option>
+																		<option value="U0320" is-active="1">โรงเรียนพณิชยการจรัลสนิทวงศ์</option>
+																		<option value="U0321" is-active="1">โรงเรียนพณิชยการจำนงค์</option>
+																		<option value="U0322" is-active="1">โรงเรียนพณิชยการทุ่งสง</option>
+																		<option value="U0323" is-active="1">โรงเรียนพณิชยการพลาญชัยร้อยเอ็ด</option>
+																		<option value="U0324" is-active="1">โรงเรียนพยุหะวิทยา</option>
+																		<option value="U0325" is-active="1">โรงเรียนพรหมานุสรณ์</option>
+																		<option value="U0326" is-active="1">โรงเรียนพระโขนงพิทยาลัย</option>
+																		<option value="U0327" is-active="1">โรงเรียนพระบาทนาสิงห์พิทยาคม</option>
+																		<option value="U0328" is-active="1">โรงเรียนพระปริยัติธรรมวัดไชโยวรวิหาร</option>
+																		<option value="U0329" is-active="1">โรงเรียนพระปริยัติธรรมวัดพระธาตุพนม</option>
+																		<option value="U0330" is-active="1">โรงเรียนพระปริยัติธรรมสามัญวัดกลาง</option>
+																		<option value="U0331" is-active="1">โรงเรียนพระรามหกเทคโนโลยี</option>
+																		<option value="U0332" is-active="1">โรงเรียนพัทลุง</option>
+																		<option value="U0333" is-active="1">โรงเรียนพันจ่า กรมยุทธศึกษาทหารเรือ</option>
+																		<option value="U0334" is-active="1">โรงเรียนพิบูลย์รักษ์พิทยา</option>
+																		<option value="U0335" is-active="1">โรงเรียนพุทธจักรวิทยา</option>
+																		<option value="U0336" is-active="1">โรงเรียนโพธิ์กลางวิทยาคม</option>
+																		<option value="U0337" is-active="1">โรงเรียนโพธิ์ไทรงามวิทยาคม</option>
+																		<option value="U0338" is-active="1">โรงเรียนโพธิสัมพันธ์พิทยาคาร</option>
+																		<option value="U0339" is-active="1">โรงเรียนโพนงามศึกษา</option>
+																		<option value="U0340" is-active="1">โรงเรียนโพนสูงประชาสรรค์</option>
+																		<option value="U0341" is-active="1">โรงเรียนภูเขียว</option>
+																		<option value="U0342" is-active="1">โรงเรียนม่วงแก้ววิทยาคาร</option>
+																		<option value="U0343" is-active="1">โรงเรียนม่วงสามสิบอัมพวันวิทยา</option>
+																		<option value="U0344" is-active="1">โรงเรียนมหรรณพาราม</option>
+																		<option value="U0345" is-active="1">โรงเรียนมหาภาพกระจาดทองอุปถัมภ์</option>
+																		<option value="U0346" is-active="1">โรงเรียนมักกะสันพิทยา</option>
+																		<option value="U0347" is-active="1">โรงเรียนมัธยมเซกา</option>
+																		<option value="U0348" is-active="1">โรงเรียนมัธยมบุญคงอุปการ</option>
+																		<option value="U0349" is-active="1">โรงเรียนมัธยมวัดธาตุทอง</option>
+																		<option value="U0350" is-active="1">โรงเรียนมัธยมวัดมกุฏกษัตริย์</option>
+																		<option value="U0351" is-active="1">โรงเรียนมัธยมวัดสิงห์</option>
+																		<option value="U0352" is-active="1">โรงเรียนมิตรภาพ</option>
+																		<option value="U0353" is-active="1">โรงเรียนเมืองเดชบ้านสมสะอาด</option>
+																		<option value="U0354" is-active="1">โรงเรียนเมืองสรวงวิทยา</option>
+																		<option value="U0355" is-active="1">โรงเรียนแม่จันวิทยาคม</option>
+																		<option value="U0356" is-active="1">โรงเรียนยโสธรพิทยาคม</option>
+																		<option value="U0357" is-active="1">โรงเรียนยางชุมน้อยพิทยาคม</option>
+																		<option value="U0358" is-active="1">โรงเรียนรมย์บุรีพิทยาคม รัชมังคลาภิเษก</option>
+																		<option value="U0359" is-active="1">โรงเรียนรังษีวิทยา</option>
+																		<option value="U0360" is-active="1">โรงเรียนรังสรรค์วิทยาคม</option>
+																		<option value="U0361" is-active="1">โรงเรียนรัฐราษฎร์อุปถัมภ์&#160;</option>
+																		<option value="U0362" is-active="1">โรงเรียนรัตนโกสินทร์สมโภชลาดกระบัง</option>
+																		<option value="U0363" is-active="1">โรงเรียนรัตนเทคโนโลยี</option>
+																		<option value="U0364" is-active="1">โรงเรียนราชดำริ</option>
+																		<option value="U0365" is-active="1">โรงเรียนราชวินิตบางเขน</option>
+																		<option value="U0366" is-active="1">โรงเรียนราชวินิตบางแคปานขำ</option>
+																		<option value="U0367" is-active="1">โรงเรียนราษฎร์ร่วมแรงรัฐ (กำจัดอุปถัมภ์)</option>
+																		<option value="U0368" is-active="1">โรงเรียนฤทธิยะวรรณาลัย 2</option>
+																		<option value="U0369" is-active="1">โรงเรียนลาดชะโดสามัคคี</option>
+																		<option value="U0370" is-active="1">โรงเรียนวชิรธรรมสาธิต</option>
+																		<option value="U0371" is-active="1">โรงเรียนวังกรดนุกุลศึกษา</option>
+																		<option value="U0372" is-active="1">โรงเรียนวังกรดนุกูลศึกษา</option>
+																		<option value="U0373" is-active="1">โรงเรียนวังแขมวิทยาคม</option>
+																		<option value="U0374" is-active="1">โรงเรียนวังจันทร์วิทยา</option>
+																		<option value="U0375" is-active="1">โรงเรียนวังหินวิทยาคม</option>
+																		<option value="U0376" is-active="1">โรงเรียนวัดเขมาภิรตาราม</option>
+																		<option value="U0377" is-active="1">โรงเรียนวัดดอนยอ</option>
+																		<option value="U0378" is-active="1">โรงเรียนวัดนางพระยา</option>
+																		<option value="U0379" is-active="1">โรงเรียนวัดบ้านพังน้อย</option>
+																		<option value="U0380" is-active="1">โรงเรียนวัดโบสถ์ศึกษา</option>
+																		<option value="U0381" is-active="1">โรงเรียนวัดโบสถ์อินทร์บุรี</option>
+																		<option value="U0382" is-active="1">โรงเรียนวัดประดาทอง</option>
+																		<option value="U0383" is-active="1">โรงเรียนวัดประดู่ในทรงธรรม</option>
+																		<option value="U0384" is-active="1">โรงเรียนวัดประสาท</option>
+																		<option value="U0385" is-active="1">โรงเรียนวัดปากน้ำวิทยาคม</option>
+																		<option value="U0386" is-active="1">โรงเรียนวัดโภคาราม</option>
+																		<option value="U0387" is-active="1">โรงเรียนวัดราชโอรส</option>
+																		<option value="U0388" is-active="1">โรงเรียนวัดอำมาตย์วิทยา</option>
+																		<option value="U0389" is-active="1">โรงเรียนวิมุตยารามพิทยากร</option>
+																		<option value="U0390" is-active="1">โรงเรียนวิศวกรรมรถไฟ</option>
+																		<option value="U0391" is-active="1">โรงเรียนแวงใหญ่วิทยาคม</option>
+																		<option value="U0392" is-active="1">โรงเรียนศรีณรงค์วิทยาคาร</option>
+																		<option value="U0393" is-active="1">โรงเรียนศรีพฤฒา</option>
+																		<option value="U0394" is-active="1">โรงเรียนศรีวิกรม์</option>
+																		<option value="U0395" is-active="1">โรงเรียนศรีสวัสดิ์วิทยาคาร จังหวัดน่าน</option>
+																		<option value="U0396" is-active="1">โรงเรียนศรีสะเกษวิทยาลัย</option>
+																		<option value="U0397" is-active="1">โรงเรียนศิลาจารพิพัฒน์</option>
+																		<option value="U0398" is-active="1">โรงเรียนเศรษฐบุตรบำเพ็ญ</option>
+																		<option value="U0399" is-active="1">โรงเรียนสกลนครธุรกิจบัณฑิต</option>
+																		<option value="U0400" is-active="1">โรงเรียนสตรีวรนาถบางเขน</option>
+																		<option value="U0401" is-active="1">โรงเรียนสมเด็จพิทยาคม</option>
+																		<option value="U0402" is-active="1">โรงเรียนสมานมิตรวิทยา</option>
+																		<option value="U0403" is-active="1">โรงเรียนสมุทรพิทยาคม</option>
+																		<option value="U0404" is-active="1">โรงเรียนสยามธุรกิจในพระอุปถัมภ์</option>
+																		<option value="U0405" is-active="1">โรงเรียนสยามธุรกิจพณิชยการ</option>
+																		<option value="U0406" is-active="1">โรงเรียนสรรพาวุธวิทยา</option>
+																		<option value="U0407" is-active="1">โรงเรียนสวัสดิ์รัตนาภิมุข</option>
+																		<option value="U0408" is-active="1">โรงเรียนสหะพาณิชย์</option>
+																		<option value="U0409" is-active="1">โรงเรียนสามขาวิทยา</option>
+																		<option value="U0410" is-active="1">โรงเรียนสายธารวิทยา</option>
+																		<option value="U0411" is-active="1">โรงเรียนสารคามพิทยาคม</option>
+																		<option value="U0412" is-active="1">โรงเรียนสาหร่ายวิทยาคม</option>
+																		<option value="U0413" is-active="1">โรงเรียนสุมเส้าพิทยาคาร</option>
+																		<option value="U0414" is-active="1">โรงเรียนสุวรรณภูมิวิทยาลัย</option>
+																		<option value="U0415" is-active="1">โรงเรียนสุวิทย์เสรีอนุสรณ์</option>
+																		<option value="U0416" is-active="1">โรงเรียนสุเหร่าใหม่</option>
+																		<option value="U0417" is-active="1">โรงเรียนโสภณเทคโนโลยี</option>
+																		<option value="U0418" is-active="1">โรงเรียนหนองไข่น้ำ</option>
+																		<option value="U0419" is-active="1">โรงเรียนหนองบัวแดงวิทยา</option>
+																		<option value="U0420" is-active="1">โรงเรียนหนองประเสริฐ</option>
+																		<option value="U0421" is-active="1">โรงเรียนหนองรีวิทยา</option>
+																		<option value="U0422" is-active="1">โรงเรียนหล่มเก่าพิทยาคม</option>
+																		<option value="U0423" is-active="1">โรงเรียนห้วยเตยวิทยา</option>
+																		<option value="U0424" is-active="1">โรงเรียนห้วยแถลงพิทยาคม</option>
+																		<option value="U0425" is-active="1">โรงเรียนห้วยราชพิทยาคม</option>
+																		<option value="U0426" is-active="1">โรงเรียนหัวตะพานวิทยาคม</option>
+																		<option value="U0427" is-active="1">โรงเรียนหัวหินวัฒนาลัย</option>
+																		<option value="U0428" is-active="1">โรงเรียนเหล่าประชาอุทิศ</option>
+																		<option value="U0429" is-active="1">โรงเรียนอนุกูลนารี</option>
+																		<option value="U0430" is-active="1">โรงเรียนอ้อมน้อยโสภณชนูปถัมภ์</option>
+																		<option value="U0431" is-active="1">โรงเรียนอัสสัมชัญพาณิชยการ</option>
+																		<option value="U0432" is-active="1">โรงเรียนอากาศอำนวยการศึกษา</option>
+																		<option value="U0433" is-active="1">โรงเรียนอาชีวศึกษาวีรศิลปิน</option>
+																		<option value="U0434" is-active="1">โรงเรียนอาชีวะสายลม</option>
+																		<option value="U0435" is-active="1">โรงเรียนอำนาจเจริญ</option>
+																		<option value="U0436" is-active="1">โรงเรียนอุดมวิทยายน</option>
+																		<option value="U0437" is-active="1">โรงเรียนอุดรพณิชยการ-ช่างกล</option>
+																		<option value="U0438" is-active="1">โรงเรียนอุตรดิตถ์เทคโนโลยี</option>
+																		<option value="U0439" is-active="1">โรงเรียนอุบลรัตน์พิทยาคม</option>
+																		<option value="U0440" is-active="1">โรงเรียนอู่ทอง</option>
+																		<option value="U0441" is-active="1">วิทยาลัยการอาชีพ นวมินทราชินีแม่ฮ่องสอน</option>
+																		<option value="U0442" is-active="1">วิทยาลัยการอาชีพกันทรลักษ์</option>
+																		<option value="U0443" is-active="1">วิทยาลัยการอาชีพกาญจนาภิเษกหนองจอก</option>
+																		<option value="U0444" is-active="1">วิทยาลัยการอาชีพด่านซ้าย</option>
+																		<option value="U0445" is-active="1">วิทยาลัยการอาชีพนครศรีธรรมราช</option>
+																		<option value="U0446" is-active="1">วิทยาลัยการอาชีพนวมินทราชินีมุกดาหาร</option>
+																		<option value="U0447" is-active="1">วิทยาลัยการอาชีพนวมินทราชูทิศ</option>
+																		<option value="U0448" is-active="1">วิทยาลัยการอาชีพบัวใหญ่</option>
+																		<option value="U0449" is-active="1">วิทยาลัยการอาชีพบางปะกง</option>
+																		<option value="U0450" is-active="1">วิทยาลัยการอาชีพบึงกาฬ</option>
+																		<option value="U0451" is-active="1">วิทยาลัยการอาชีพพนมไพร</option>
+																		<option value="U0452" is-active="1">วิทยาลัยการอาชีพเลิงนกทา</option>
+																		<option value="U0453" is-active="1">วิทยาลัยการอาชีพวารินชำราบ</option>
+																		<option value="U0454" is-active="1">วิทยาลัยการอาชีพหนองแค</option>
+																		<option value="U0455" is-active="1">วิทยาลัยการอาชีพหัวตะพาน</option>
+																		<option value="U0456" is-active="1">วิทยาลัยเกษตรและเทคโนโลยีร้อยเอ็ด</option>
+																		<option value="U0457" is-active="1">วิทยาลัยเกษตรและเทคโนโลยีอุทัยธานี</option>
+																		<option value="U0458" is-active="1">วิทยาลัยครูเพชรบุรีวิทยาลงกรณ์</option>
+																		<option value="U0459" is-active="1">วิทยาลัยช่างกลปทุมวัน</option>
+																		<option value="U0460" is-active="1">วิทยาลัยช่างศิลป์</option>
+																		<option value="U0461" is-active="1">วิทยาลัยช่างศิลป</option>
+																		<option value="U0462" is-active="1">วิทยาลัยเทคนิคกรุงเทพ</option>
+																		<option value="U0463" is-active="1">วิทยาลัยเทคนิคกาญจนบุรี</option>
+																		<option value="U0464" is-active="1">วิทยาลัยเทคนิคกาญจนาภิเษก มหานคร</option>
+																		<option value="U0465" is-active="1">วิทยาลัยเทคนิคกาฬสินธุ์</option>
+																		<option value="U0466" is-active="1">วิทยาลัยเทคนิคกำแพงเพชร</option>
+																		<option value="U0467" is-active="1">วิทยาลัยเทคนิคขอนแก่น</option>
+																		<option value="U0468" is-active="1">วิทยาลัยเทคนิคจังหวัดสมุทรสงคราม</option>
+																		<option value="U0469" is-active="1">วิทยาลัยเทคนิคฉะเชิงเทรา</option>
+																		<option value="U0470" is-active="1">วิทยาลัยเทคนิคชัยนาท</option>
+																		<option value="U0471" is-active="1">วิทยาลัยเทคนิคชุมพร</option>
+																		<option value="U0472" is-active="1">วิทยาลัยเทคนิคเชียงใหม่</option>
+																		<option value="U0473" is-active="1">วิทยาลัยเทคนิคดอนเมือง</option>
+																		<option value="U0474" is-active="1">วิทยาลัยเทคนิคเดชอุดม</option>
+																		<option value="U0475" is-active="1">วิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์</option>
+																		<option value="U0476" is-active="1">วิทยาลัยเทคนิคนครพนม</option>
+																		<option value="U0477" is-active="1">วิทยาลัยเทคนิคนครราชสีมา</option>
+																		<option value="U0478" is-active="1">วิทยาลัยเทคนิคนครศรีธรรมราช</option>
+																		<option value="U0479" is-active="1">วิทยาลัยเทคนิคปทุมธานี</option>
+																		<option value="U0480" is-active="1">วิทยาลัยเทคนิคพระนครศรีอยุธยา</option>
+																		<option value="U0481" is-active="1">วิทยาลัยเทคนิคพัทลุง</option>
+																		<option value="U0482" is-active="1">วิทยาลัยเทคนิคพิจิตร</option>
+																		<option value="U0483" is-active="1">วิทยาลัยเทคนิคพิษณุโลก</option>
+																		<option value="U0484" is-active="1">วิทยาลัยเทคนิคเพชรบูรณ์</option>
+																		<option value="U0485" is-active="1">วิทยาลัยเทคนิคแพร่</option>
+																		<option value="U0486" is-active="1">วิทยาลัยเทคนิคมหาสารคาม</option>
+																		<option value="U0487" is-active="1">วิทยาลัยเทคนิคมีนบุรี</option>
+																		<option value="U0488" is-active="1">วิทยาลัยเทคนิคยโสธร</option>
+																		<option value="U0489" is-active="1">วิทยาลัยเทคนิคยะลา</option>
+																		<option value="U0490" is-active="1">วิทยาลัยเทคนิคร้อยเอ็ด</option>
+																		<option value="U0491" is-active="1">วิทยาลัยเทคนิคลพบุรี</option>
+																		<option value="U0492" is-active="1">วิทยาลัยเทคนิคลำปาง</option>
+																		<option value="U0493" is-active="1">วิทยาลัยเทคนิคศรีสะเกษ</option>
+																		<option value="U0494" is-active="1">วิทยาลัยเทคนิคสกลนคร</option>
+																		<option value="U0495" is-active="1">วิทยาลัยเทคนิคสมุทรสงคราม</option>
+																		<option value="U0496" is-active="1">วิทยาลัยเทคนิคสุพรรณบุรี</option>
+																		<option value="U0497" is-active="1">วิทยาลัยเทคนิคสุราษฎร์ธานี</option>
+																		<option value="U0498" is-active="1">วิทยาลัยเทคนิคสุรินทร์</option>
+																		<option value="U0499" is-active="1">วิทยาลัยเทคนิคสุวรรณภูมิ</option>
+																		<option value="U0500" is-active="1">วิทยาลัยเทคนิคอ่างทอง</option>
+																		<option value="U0501" is-active="1">วิทยาลัยเทคนิคอำนาจเจริญ</option>
+																		<option value="U0502" is-active="1">วิทยาลัยเทคนิคอุทัยธานี</option>
+																		<option value="U0503" is-active="1">วิทยาลัยเทคนิคอุบลราชธานี</option>
+																		<option value="U0504" is-active="1">วิทยาลัยเทคโนโลยีกรุงเทพ</option>
+																		<option value="U0505" is-active="1">วิทยาลัยเทคโนโลยีกรุงธน</option>
+																		<option value="U0506" is-active="1">วิทยาลัยเทคโนโลยีขอนแก่นบริหารธุรกิจ</option>
+																		<option value="U0507" is-active="1">วิทยาลัยเทคโนโลยีช่างกลภาคใต้</option>
+																		<option value="U0508" is-active="1">วิทยาลัยเทคโนโลยีช่างอุตสาหกรรมกรุงเทพ</option>
+																		<option value="U0509" is-active="1">วิทยาลัยเทคโนโลยีดรุณาโปลีเทคนิค</option>
+																		<option value="U0510" is-active="1">วิทยาลัยเทคโนโลยีธุรกิจบัณฑิต</option>
+																		<option value="U0511" is-active="1">วิทยาลัยเทคโนโลยีธุรกิจอาชีวะ</option>
+																		<option value="U0512" is-active="1">วิทยาลัยเทคโนโลยีบริหารธุรกิจจำนงค์</option>
+																		<option value="U0513" is-active="1">วิทยาลัยเทคโนโลยีบุษยรัตน์บริหารธุรกิจ</option>
+																		<option value="U0514" is-active="1">วิทยาลัยเทคโนโลยีปทุมธานี</option>
+																		<option value="U0515" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการเจ้าพระยา</option>
+																		<option value="U0516" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการบ้านดุง</option>
+																		<option value="U0517" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการพลาญชัยร้อยเอ็ด</option>
+																		<option value="U0518" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการราชดำเนิน</option>
+																		<option value="U0519" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการสุโขทัย</option>
+																		<option value="U0520" is-active="1">วิทยาลัยเทคโนโลยีพระรามหก</option>
+																		<option value="U0521" is-active="1">วิทยาลัยเทคโนโลยีพิชญเกษม</option>
+																		<option value="U0522" is-active="1">วิทยาลัยเทคโนโลยีพุทธรักษา</option>
+																		<option value="U0523" is-active="1">วิทยาลัยเทคโนโลยีภาคตะวันออกเฉียงเหนือ</option>
+																		<option value="U0524" is-active="1">วิทยาลัยเทคโนโลยีมุกดาหาร</option>
+																		<option value="U0525" is-active="1">วิทยาลัยเทคโนโลยีเลยบริหารธุรกิจ</option>
+																		<option value="U0526" is-active="1">วิทยาลัยเทคโนโลยีวัฒนาบริหารธุรกิจ</option>
+																		<option value="U0527" is-active="1">วิทยาลัยเทคโนโลยีศรีวัฒนาบริหารธุรกิจ</option>
+																		<option value="U0528" is-active="1">วิทยาลัยเทคโนโลยีสยาม</option>
+																		<option value="U0529" is-active="1">วิทยาลัยเทคโนโลยีสยามธุรกิจ</option>
+																		<option value="U0530" is-active="1">วิทยาลัยเทคโนโลยีสยามธุรกิจ ในพระอุปถัมภ์ฯ</option>
+																		<option value="U0531" is-active="1">วิทยาลัยเทคโนโลยีสยามบริหารธุรกิจ</option>
+																		<option value="U0532" is-active="1">วิทยาลัยเทคโนโลยีสหะพาณิชย์</option>
+																		<option value="U0533" is-active="1">วิทยาลัยเทคโนโลยีอรรถวิทย์พณิชยการ</option>
+																		<option value="U0534" is-active="1">วิทยาลัยเทคโนโลยีอาชีวศึกษาอุบลราชธานี</option>
+																		<option value="U0535" is-active="1">วิทยาลัยเทคโนโลยีเอ็น-เทคอินเตอร์เนชั่นแนล</option>
+																		<option value="U0536" is-active="1">วิทยาลัยธาตุพนม</option>
+																		<option value="U0537" is-active="1">วิทยาลัยนาฏศิลปกาฬสินธุ์</option>
+																		<option value="U0538" is-active="1">วิทยาลัยนาฏศิลปเชียงใหม่</option>
+																		<option value="U0539" is-active="1">วิทยาลัยพณิชยการเชตุพน</option>
+																		<option value="U0540" is-active="1">วิทยาลัยพณิชยการธนบุรี</option>
+																		<option value="U0541" is-active="1">วิทยาลัยพณิชยการบางนา</option>
+																		<option value="U0542" is-active="1">วิทยาลัยพณิชยการอินทราชัย</option>
+																		<option value="U0543" is-active="1">วิทยาลัยเพาะช่าง</option>
+																		<option value="U0544" is-active="1">วิทยาลัยสารพัดช่างนครหลวง</option>
+																		<option value="U0545" is-active="1">วิทยาลัยสารพัดช่างพระนคร</option>
+																		<option value="U0546" is-active="1">วิทยาลัยสารพัดช่างศรีสะเกษ</option>
+																		<option value="U0547" is-active="1">วิทยาลัยสารพัดช่างสมุทรปราการ</option>
+																		<option value="U0548" is-active="1">วิทยาลัยสารพัดช่างสี่พระยา</option>
+																		<option value="U0549" is-active="1">วิทยาลัยอาชีวศึกษาดุสิตพณิชยการ</option>
+																		<option value="U0550" is-active="1">วิทยาลัยอาชีวศึกษาธนบุรี</option>
+																		<option value="U0551" is-active="1">วิทยาลัยอาชีวศึกษาโปลีเทคนิคภาคตะวันออกเฉียงเหนือ</option>
+																		<option value="U0552" is-active="1">วิทยาลัยอาชีวศึกษามหาสารคาม</option>
+																		<option value="U0553" is-active="1">วิทยาลัยอาชีวศึกษาเอี่ยมละออ</option>
+																		<option value="U0554" is-active="1">ศูนย์กลางสถาบันเทคโนโลยีราชมงคล</option>
+																		<option value="U0555" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย</option>
+																		<option value="U0556" is-active="1">สถาบันการบินพลเรือน</option>
+																		<option value="U0557" is-active="1">สถาบันเทคโนโลยีปทุมวัน</option>
+																		<option value="U0558" is-active="1">สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</option>
+																		<option value="U0559" is-active="1">สถาบันเทคโนโลยีราชมงคล วิทยาเขตพระนครเหนือ</option>
+																		<option value="U0560" is-active="1">สถาบันเทคโนโลยีราชมงคล วิทยาเขตภาคใต้ สงขลา</option>
+																		<option value="U0561" is-active="1">สถาบันบัณฑิตบริหารธุรกิจ ศศินทร์</option>
+																		<option value="U0562" is-active="1">สถาบันบัณฑิตพัฒนบริหารศาสตร์</option>
+																		<option value="U0563" is-active="1">สถาบันรัชต์ภาค</option>
+																		<option value="U0564" is-active="1">สถาบันราชภัฏเพชรบุรีวิทยาลงกรณ์</option>
+																		<option value="U0565" is-active="1">University of Canberra, Australia</option>
+																		<option value="U0566" is-active="1">University of New South Wales</option>
+																		<option value="U0567" is-active="1">กรมสรรพาวุธทหารเรือ</option>
+																		<option value="U0568" is-active="1">โรงเรียนจ่าอากาศ</option>
+																		<option value="U0569" is-active="1">โรงเรียนบ้านบัวงามวิทยา</option>
+																		<option value="U0570" is-active="1">โรงเรียนฝึกวิชาชีพรักษาความปลอดภัย ณ วัลลภ</option>
+																		<option value="U0571" is-active="1">สถาบันพัฒนาฝีมือแรงงาน ภาค10ลำปาง</option>
+																		<option value="U0572" is-active="1">Imperial College London</option>
+																		<option value="U0573" is-active="1">London South Bank University</option>
+																		<option value="U0574" is-active="1">Southeast University</option>
+																		<option value="U0575" is-active="1">University of St Andrews</option>
+																		<option value="U0576" is-active="1">Victoria University</option>
+																		<option value="U0577" is-active="1">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร วิทยาเขตเทเวศร์</option>
+																		<option value="U0578" is-active="1">มหาวิทยาลัยนานาชาติแสตมฟอร์ด</option>
+																		<option value="U0579" is-active="1">มหาวิทยาลัยราชภัฏเพชรบูรณ์</option>
+																		<option value="U0580" is-active="1">มหาวิทยาลัยราชภัฏสกลนคร</option>
+																		<option value="U0581" is-active="1">มหาวิทยาลัยหัวเฉียวเฉลิมพระเกียรติ</option>
+																		<option value="U0582" is-active="1">โรงเรียนขัติยะวงษา</option>
+																		<option value="U0583" is-active="1">โรงเรียนท่าคันโทวิทยาคาร</option>
+																		<option value="U0584" is-active="1">โรงเรียนเทคโนโลยีราชธานี</option>
+																		<option value="U0585" is-active="1">โรงเรียนเทคโนโลยีสว่างแดนดิน</option>
+																		<option value="U0586" is-active="1">โรงเรียนเทพลีลา</option>
+																		<option value="U0587" is-active="1">โรงเรียนบัวงามวิทยา</option>
+																		<option value="U0588" is-active="1">โรงเรียนบ้านโป่งบริหารธุรกิจ-เทคโนโลยี</option>
+																		<option value="U0589" is-active="1">โรงเรียนบ้านไผ่</option>
+																		<option value="U0590" is-active="1">โรงเรียนพิจิตรพิทยาคม</option>
+																		<option value="U0591" is-active="1">โรงเรียนภูกระดึงวิทยาคม</option>
+																		<option value="U0592" is-active="1">โรงเรียนมัธยมยางสีสุราช</option>
+																		<option value="U0593" is-active="1">โรงเรียนมัธยมวัดดุสิตาราม</option>
+																		<option value="U0594" is-active="1">โรงเรียนระยองวิทยาคม</option>
+																		<option value="U0595" is-active="1">โรงเรียนรุ่งเรืองอุปถัมภ์</option>
+																		<option value="U0596" is-active="1">โรงเรียนวัดสุทธิวราราม</option>
+																		<option value="U0597" is-active="1">โรงเรียนสตรีวิทยา 2</option>
+																		<option value="U0598" is-active="1">โรงเรียนสามพร้าววิทยา</option>
+																		<option value="U0599" is-active="1">โรงเรียนเสลภูมิพิทยาคม</option>
+																		<option value="U0600" is-active="1">โรงเรียนอรัญประเทศ</option>
+																		<option value="U0601" is-active="1">โรงเรียนอำมาตย์พานิชนุกูล</option>
+																		<option value="U0602" is-active="1">วิทยาลัยการอาชีพองครักษ์</option>
+																		<option value="U0603" is-active="1">วิทยาลัยเทคนิคกันทรลักษ์</option>
+																		<option value="U0604" is-active="1">วิทยาลัยเทคนิคชัยภูมิ</option>
+																		<option value="U0605" is-active="1">วิทยาลัยเทคนิคนครสวรรค์</option>
+																		<option value="U0606" is-active="1">วิทยาลัยเทคโนโลยีตั้งตรงจิตรพณิชยการ</option>
+																		<option value="U0607" is-active="1">วิทยาลัยเทคโนโลยีพณิชยการสกลนคร</option>
+																		<option value="U0608" is-active="1">วิทยาลัยอาชีวศึกษาเชียงใหม่</option>
+																		<option value="U0609" is-active="1">วิทยาลัยอาชีวศึกษาพณิชยการพิษณุโลก</option>
+																		<option value="U0610" is-active="1">วิทยาลัยอาชีวศึกษาร้อยเอ็ด</option>
+																		<option value="U0611" is-active="1">ศูนย์การเรียนปัญญาภิวัฒน์</option>
+																		<option value="U0612" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย ขุนหาญ</option>
+																		<option value="U0613" is-active="1">สถาบันเทคโนโลยีไทย-ญี่ปุ่น</option>
+																		<option value="8c6c5d8c-8f3e-4215-ba70-d75ddf3b66b2" is-active="1">ศูนย์การศึกษานอกระบบและการศึกษาตามอัธยาศัย อำเภอเมืองบุรีรัมย์</option>
+																		<option value="5f5ab36c-bf56-4828-b671-cc87dad309a9" is-active="1">วิทยาลัยการอาชีพพระสมุทรเจดีย์</option>
+																		<option value="5cda48e6-1155-4b77-ae4b-832ebd16577d" is-active="1">วิทยาลัยเทคโนโลยีภาคตะวันออก (อีเทค)</option>
+																		<option value="7472248b-4ad9-45ec-9ff6-ff631db7b597" is-active="1">มหาวิทยาลัยราชภัฎสงขลา</option>
+																		<option value="cch_Others" Title="อื่นๆ" data-option-type="others">อื่นๆ</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">school</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">อื่นๆโปรดระบุ</label>
+																	<input name="edu_otherInst" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">calendar_today</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ตั้งแต่ปี (From)</label>
+																	<select name="edu_fromYear" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">calendar_today</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ถึงปี (To)</label>
+																	<select name="edu_toYear" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">extension</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">สาขาวิชา (Major Subject)</label>
+																	<input name="edu_major" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">equalizer</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">เกรดเฉลี่ย (GPA)</label>
+																	<input name="edu_gpa" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-12 text-center">
+														<div class="form-group">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-danger btnRemove">ลบ</button>
+															</div>
+															<div class="col-md-8 col-sm-offset-2 text-center">
+																<hr>
+															</div>
+														</div>
+													</div>
+
+
+
+												</div>
+											</div>
+										</form>
+
+									</div>
+									<!-- End Education Information -->
+
+									<!-- Start Skill Information -->
+									<div class="tab-pane" id="skill">
+										<div class="row">
+											<h3 class="info-text">ความสามารถด้านคอมพิวเตอร์</h3>
+											<div class="col-sm-10 col-sm-offset-1">
+												<input name='tags' class=" " id='section-basic' placeholder='กรอกเขียนความสามารถด้านคอมพิวเตอร์ของคุณ' value='css, html, javascript, css' autofocus>
+											</div>
+											<div class="col-sm-10 col-sm-offset-1 text-center">
+												<button class="btn btn-simple tags--removeAllBtn text-center" type='button'>ลบทั้งหมด</button>
+											</div>
+											<div class="col-sm-10 col-sm-offset-1">
+												<hr>
+											</div>
+										</div>
+
+										<form>
+											<div class="form-content">
+												<div class="row">
+													<div class="col-sm-10 col-sm-offset-1 text-center">
+														<h3>ความสามารถด้านภาษา</h3>
+													</div>
+													<div class="form-group">
+														<div class="col-md-12 text-right">
+															<p><button type="button" id="btnAdd" class="btn btn-default" ><i class="material-icons">add</i></button></p>
+														</div>
+													</div>
+												</div>
+
+												<div class="row group">
+													<div class="col-md-12">
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">public</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ภาษา</label>
+																	<select name="skill_language" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="C9693B5B-CFCD-4716-A0C0-85443FC1B498" is-active="1">ไทย</option>
+																		<option value="4D5C3D6E-66A7-4B23-A836-3DCBCFEAED7B" is-active="1">อังกฤษ</option>
+																		<option value="6B21649D-A2EF-440E-B3E0-5B52ED6C38D5" is-active="1">ญี่ปุ่น</option>
+																		<option value="BD44B30B-82E9-4E45-B65A-20748C4DE3A1" is-active="0">จีน</option>
+																		<option value="7a52872c-18b1-447d-a91e-d80eb2fee8ca" is-active="1">มาเลเซีย</option>
+																		<option value="5680194A-E5EF-4A85-A1BC-E385A89766F8" is-active="1">เกาหลี</option>
+																		<option value="5196F88B-26E9-4436-AD19-F4D89D1B027E" is-active="1">เขมร</option>
+																		<option value="B07E8BD5-C49E-4AB5-9D2B-A9DB94A77B2E" is-active="1">เดนมาร์ก</option>
+																		<option value="15F31545-FF22-4905-A59F-2B76267CCC8C" is-active="1">เยอรมัน</option>
+																		<option value="821BEDDC-54AC-4004-BA46-AEB98DD94384" is-active="1">ฝรั่งเศส</option>
+																		<option value="93278EF1-ED08-45B9-B7BC-3F62A17AF8E4" is-active="1">ลาว</option>
+																		<option value="03727F3C-7A1B-4151-932C-0B2AA8A100F2" is-active="1">สเปน</option>
+																		<option value="128E9EB4-2227-4807-8AF8-1F1A81247DDB" is-active="1">อิตาลี</option>
+																		<option value="3A351FDE-2880-4D3F-99D6-55E4BB1015B0" is-active="1">จีน</option>
+																		<option value="82763194-9373-4D8A-A53B-ECE8962A082D" is-active="1">รัสเซีย</option>
+																		<option value="D17EE202-CD23-4F53-8488-B204F60406A6" is-active="1">อื่น ๆ</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">keyboard</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">พิมพ์ดีด (คำ/นาที)</label>
+																	<input name="skill_typing" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+													</div>
+													<div class="row">
+														<div class="col-sm-3 ">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">hearing</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ฟัง</label>
+																	<select name="skill_language_listen" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
+																		<option value="cch_Good" Title="ดี">ดี</option>
+																		<option value="cch_Fair" Title="พอใช้">พอใช้</option>
+																		<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-3 ">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">record_voice_over</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">พูด</label>
+																	<select name="skill_language_speak" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
+																		<option value="cch_Good" Title="ดี">ดี</option>
+																		<option value="cch_Fair" Title="พอใช้">พอใช้</option>
+																		<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-3 ">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">notes</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">อ่าน</label>
+																	<select name="skill_language_read" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
+																		<option value="cch_Good" Title="ดี">ดี</option>
+																		<option value="cch_Fair" Title="พอใช้">พอใช้</option>
+																		<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-3 ">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">create</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">เขียน</label>
+																	<select name="skill_language_write" class="form-control">
+																		<option disabled="" selected=""></option>
+																		<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
+																		<option value="cch_Good" Title="ดี">ดี</option>
+																		<option value="cch_Fair" Title="พอใช้">พอใช้</option>
+																		<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-12 text-center">
+														<div class="form-group">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-danger btnRemove">ลบ</button>
+															</div>
+															<div class="col-md-8 col-sm-offset-2 text-center">
+																<hr>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+
+									</div>
+									<!-- End Skill Information -->
+
+									<!-- Start experience Information -->
+									<div class="tab-pane" id="experience">
+										<form>
+											<div class="form-content">
+												<div class="row">
+													<div class="col-sm-10 col-sm-offset-1 text-center">
+														<h3>ประวัติการอบรม , ประกาศนียบัตร , รางวัล</h3>
+													</div>
+													<div class="form-group">
+														<div class="col-md-12 text-right">
+															<p><button type="button" id="btnAdd" class="btn btn-default" ><i class="material-icons">add</i></button></p>
+														</div>
+													</div>
+												</div>
+
+												<div class="row group">
+													<div class="col-md-12">
+														<div class="col-sm-2 col-sm-offset-1">
+															<div class="input-group">
+																<div class="form-group label-floating">
+																	<label class="control-label">ตั้งแต่</label>
+																	<input name="experience_form" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-2 col-sm-offset-1">
+															<div class="input-group">
+																<div class="form-group label-floating">
+																	<label class="control-label">ถึง</label>
+																	<input name="experience_to" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">category</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ชื่อหัวข้อหลักสูตร/ประกาศนียบัตร</label>
+																	<input name="experience" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">home</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">สถาบันฝึกอบรม</label>
+																	<input name="experience_institute" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">recent_actors</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">วุฒิบัตรที่ได้รับ</label>
+																	<input name="experience_cert" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-12 text-center">
+														<div class="form-group">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-danger btnRemove">ลบ</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+
+										<div class="col-sm-10 col-sm-offset-1">
+											<hr>
+										</div>
+										<!-- WORK Experience FORM -->
+										<form>
+											<div class="form-content">
+												<div class="row">
+													<div class="col-sm-10 col-sm-offset-1 text-center">
+														<h3>ประสบการณ์ทำงาน ฝึกงาน</h3>
+													</div>
+													<div class="form-group">
+														<div class="col-md-12 text-right">
+															<p><button type="button" id="btnAdd" class="btn btn-default" ><i class="material-icons">add</i></button></p>
+														</div>
+													</div>
+												</div>
+
+												<div class="row group">
+													<div class="col-md-12">
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">business</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ชื่อบริษัท (Company's Name)</label>
+																	<input name="experience_companyName" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">business</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ลักษณะธุรกิจ (Type of Business)</label>
+																	<input name="experience_companyType" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">calendar_today</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">วันที่เริ่ม</label>
+																	<input name="experience_companyStartDate" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">calendar_today</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ถึง</label>
+																	<input name="experience_companyEndDate" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-5 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">contacts</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">ตำแหน่งล่าสุด</label>
+																	<input name="experience_companyPosition" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-5">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">attach_money</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">เงินเดือนล่าสุด</label>
+																	<input name="experience_companySalary" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons">autorenew</i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">เหตุผลที่ลาออก</label>
+																	<input name="experience_companyReason" type="text" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-12 text-center">
+														<div class="form-group">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-danger btnRemove">ลบ</button>
+															</div>
+															<div class="col-md-8 col-sm-offset-2 text-center">
+																<hr>
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- End experience Information -->
+
+									<!-- Start Attachment Information -->
+									<div class="tab-pane" id="attachment">
+										<div class="col-sm-10 col-sm-offset-1">
+											<h3 class="info-text">แนบไฟล์</h3>
+										</div>
+										<div class="col-sm-5 col-sm-offset-1 text-center">
+											<h4 class="info-text">Resume</h4>
+											<div class="content">
+
+												<div class="box">
+													<input type="file" name="file-6[]" id="file-6" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
+													<label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
+												</div>
+
+											</div>
+										</div>
+										<div class="col-sm-5 text-center">
+											<h4 class="info-text">Transcript</h4>
+											<div class="content">
+
+												<div class="box">
+													<input type="file" name="file-6[]" id="file-6" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
+													<label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+									<!-- End Attachment Information -->
+								</div>
+								<div class="wizard-footer">
+									<div class="pull-right">
+										<input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' />
+										<input type='button' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+									</div>
+
+									<div class="pull-left">
+										<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+									</div>
+									<div class="clearfix"></div>
+								</div>
+
+							</form>
 						</div>
-
-
-					<!-- end files -->
-
-
-				<!-- end /.content -->
-
-				<div class="footer">
-					<button type="submit" class="primary-btn">Send</button>
-					<button type="reset" class="secondary-btn">Reset</button>
+					</div> <!-- wizard container -->
 				</div>
-				<!-- end /.footer -->
+			</div><!-- end row -->
+		</div> <!--  big container -->
 
-			</form>
+		<div class="footer">
+			<div class="container text-center">
+				<i class="fa fa-heart heart"></i>
+			</div>
 		</div>
-		<p class="copy_rights">&copy; 2016 Job Application Form Widget. All Rights Reserved | Design by  <a href="http://w3layouts.com/"> W3layouts</a></p>
-</div>
-		<!-- Scripts -->
-		<script src="/static/js/jquery.1.11.1.min.js"></script>
+	</div>
 
-		<!--[if lt IE 10]>
-				<script src="j-folder/js/jquery.placeholder.min.js"></script>
-			<![endif]-->
-
-		<script>
-			$(document).ready(function(){
-
-				// Phone masking
-				$('#phone').mask('(999) 999-9999', {placeholder:'x'});
-
-				// Post code masking
-				$('#post').mask('999-9999', {placeholder:'x'});
-
-			});
-		</script>
 </body>
+
+<!-- Multiple Input (Tag) by Tagify -->
+<script data-name="basic">
+(function(){
+
+	var input = document.querySelector('input[name=tags]'),
+	// init Tagify script on the above inputs
+	tagify = new Tagify(input, {
+		whitelist : ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "Avicsoft", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "Apex (Salesforce.com)", "APL", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "Active Server Pages", "ASP.NET", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blockly", "BlooP", "Blue", "Boo", "Boomerang", "Bourne shell (including bash and ksh)", "BREW", "BPEL", "B", "C--", "C++ – ISO/IEC 14882", "C# – ISO/IEC 23270", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Cayenne", "CDuce", "Cecil", "Cesil", "Céu", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "Citrine (programming language)", "CL (IBM)", "Claire", "Clarion", "Clean", "Clipper", "CLIPS", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL – ISO/IEC 1989", "CobolScript – COBOL Scripting language", "Cobra", "CODE", "CoffeeScript", "ColdFusion", "COMAL", "Combined Programming Language (CPL)", "COMIT", "Common Intermediate Language (CIL)", "Common Lisp (also known as CL)", "COMPASS", "Component Pascal", "Constraint Handling Rules (CHR)", "COMTRAN", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "CPL", "Cryptol", "csh", "Csound", "CSP", "CUDA", "Curl", "Curry", "Cybil", "Cyclone", "Cython", "M2001", "M4", "M#", "Machine code", "MAD (Michigan Algorithm Decoder)", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER now part of BIS", "MARK-IV now VISION:BUILDER", "Mary", "MASM Microsoft Assembly x86", "MATH-MATIC", "Mathematica", "MATLAB", "Maxima (see also Macsyma)", "Max (Max Msp – Graphical Programming Environment)", "MaxScript internal language 3D Studio Max", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metafont", "Microcode", "MicroScript", "MIIS", "Milk (programming language)", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "Mathcad", "MSIL – deprecated name for CIL", "MSL", "MUMPS", "Mystic Programming L"],
+		blacklist : ["react", "angular"]
+	});
+
+	// "remove all tags" button event listener
+	document.querySelector('.tags--removeAllBtn')
+	.addEventListener('click', tagify.removeAllTags.bind(tagify))
+
+	// Chainable event listeners
+	tagify.on('add', onAddTag)
+	.on('remove', onRemoveTag)
+	.on('invalid', onInvalidTag);
+
+	// tag added callback
+	function onAddTag(e){
+		console.log(e, e.detail);
+		console.log( tagify.DOM.originalInput.value )
+		tagify.off('add', onAddTag) // exmaple of removing a custom Tagify event
+	}
+
+	// tag remvoed callback
+	function onRemoveTag(e){
+		console.log(e, e.detail);
+	}
+
+	// invalid tag added callback
+	function onInvalidTag(e){
+		console.log(e, e.detail);
+	}
+	console.log(  tagify.value )
+
+
+})()
+</script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/static/js/jquery.multifield.js"></script>
+<script>
+$('.form-content').multifield({
+	section: '.group',
+	btnAdd:'#btnAdd',
+	btnRemove:'.btnRemove',
+});
+</script>
+
+<!--   Core JS Files   -->
+<!-- <script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script> -->
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/js/jquery.bootstrap.js" type="text/javascript"></script>
+
+<!-- Attachment File JS -->
+<script src="/static/js/custom-file-input.js"></script>
+
+
+<!--  Plugin for the Wizard -->
+<script src="/static/js/material-bootstrap-wizard.js"></script>
+
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="/static/js/jquery.validate.min.js"></script>
+
 </html>
