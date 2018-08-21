@@ -94,7 +94,6 @@
 											</div>
 
 											<div class="col-sm-6">
-
 												<div class="input-group">
 													<span class="input-group-addon">
 														<i class="material-icons">payment</i>
@@ -104,7 +103,6 @@
 														<input name="id number" type="text" class="form-control">
 													</div>
 												</div>
-
 												<div class="input-group">
 													<span class="input-group-addon">
 														<i class="material-icons">record_voice_over</i>
@@ -114,14 +112,13 @@
 														<input name="nickname" type="text" class="form-control">
 													</div>
 												</div>
-
 												<div class="input-group">
 													<span class="input-group-addon">
 														<i class="material-icons">label</i>
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">คำนำหน้าชื่อ</label>
-														<select name="name_title" class="form-control">
+														<select name="name_title" class="form-control" id="name_title">
 															<option disabled="" selected=""></option>
 															<option value="mr"> นาย (Mr.) </option>
 															<option value="mrs"> นาง (Mrs.) </option>
@@ -129,7 +126,6 @@
 														</select>
 													</div>
 												</div>
-
 											</div>
 
 											<div class="col-sm-5 col-sm-offset-1">
@@ -259,6 +255,39 @@
 												</div>
 											</div>
 
+											<div id="name_title_value">
+												<div class="col-sm-5 col-sm-offset-1">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="material-icons">accessibility_new</i>
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">สถานะ (Military Status)</label>
+															<select name="military_status" class="form-control" id="military_status">
+																<option disabled="" selected=""></option>
+																<option value="militaryPass">ผ่านการเกณฑ์ทหาร</option>
+																<option value="militaryGrace">ผ่อนผัน</option>
+																<option value="militaryExempt">ได้รับการยกเว้น</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div id="military_status_value">
+												<div class="col-sm-5">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="material-icons">accessibility_new</i>
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">เหตุผล</label>
+															<input name="military_reason" type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="input-group">
 													<span class="input-group-addon">
@@ -323,85 +352,6 @@
 
 									<!-- Start Education Information -->
 									<div class="tab-pane" id="edu">
-										<h3 class="info-text">สถานภาพทางทหาร</h3>
-
-										<div class="col-sm-5 col-sm-offset-1">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">accessibility_new</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">สถานะ (Military Status)</label>
-													<select name="military_status" class="form-control">
-														<option disabled="" selected=""></option>
-														<option value="MilitaryPass">ผ่านการเกณฑ์ทหาร</option>
-														<option value="MilitaryGrace">ผ่อนผัน</option>
-														<option value="militaryExempt">ได้รับการยกเว้น</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-5">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">accessibility_new</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">เรียนสำเร็จวิชารักษาดินแดนบท</label>
-													<input name="ROTCCurriculum" type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-
-										<div class="col-sm-5 col-sm-offset-1">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">card_membership</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">โดยยศ</label>
-													<input name="ROTCByRank" type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-5">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">calendar_today</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">เมื่อวันที่</label>
-													<input name="ROTCRankDate" type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-
-										<div class="col-sm-5 col-sm-offset-1">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">card_membership</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">ยศครั้งล่าสุด</label>
-													<input name="ROTCLastRank" type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-5">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">calendar_today</i>
-												</span>
-												<div class="form-group label-floating">
-													<label class="control-label">รับราชการแล้วเมื่อ</label>
-													<input name="ROTCGovernmentOfficerDate" type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-
-										<div class="col-sm-12">
-											<hr>
-										</div>
 										<div class="col-sm-10 col-sm-offset-1 text-left">
 											<h3 class="info-text">ข้อมูลการศึกษา</h3>
 										</div>

@@ -152,6 +152,28 @@ $(document).ready(function(){
 
     $('.set-full-height').css('height', 'auto');
 
+    // แสดงรายละเอียดแสดงสถานภาพทางทหาร เมื่อ name_title = 'mr'
+    $("#name_title").change(function()
+        {
+            if($(this).val() == "mr"){
+            $("#name_title_value").show();
+        } else {
+            $("#name_title_value").hide();
+        }
+        });
+    $("#name_title_value").hide();
+
+    // แสดงรายละเอียดแสดงเหตุผล เมื่อ Military Status == MilitaryGrace || militaryExempt
+    $("#military_status").change(function()
+        {
+          if($(this).val() == "militaryGrace" || $(this).val() == "militaryExempt" ){
+            $("#military_status_value").show();
+        } else {
+            $("#military_status_value").hide();
+        }
+        });
+    $("#military_status_value").hide();
+
 });
 
 
