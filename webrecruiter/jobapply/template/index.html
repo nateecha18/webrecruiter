@@ -40,6 +40,17 @@
 	<link rel="stylesheet" href="/static/css/tagify.css">
 	<script src="/static/js/tagify.js"></script>
 
+	<!-- <script>
+	function img(x){
+	if (x==0) {
+	document.getElementById('now_edu').style.display='block';
+
+}else {
+document.getElementById("now_edu").style.display='none';
+}
+return;
+}
+</script> -->
 </head>
 
 <body>
@@ -352,22 +363,39 @@
 
 									<!-- Start Education Information -->
 									<div class="tab-pane" id="edu">
-										<div class="col-sm-10 col-sm-offset-1 text-left">
-											<h3 class="info-text">ข้อมูลการศึกษา</h3>
-										</div>
-										<div class="row">
-											<div class="col-sm-10 col-sm-offset-1">
-												<div class="col-sm-4">
-													<div class="choice" data-toggle="collapse" href="#collapseIsStudy" role="checkbox" aria-expanded="false" aria-controls="collapseIsStudy">
-														<input type="checkbox" name="isStudy" value="isStudy">
-														<div class="icon">
-															<i class="fa fa-pencil"></i>
+										<form>
+											<div class="form-content">
+												<div class="col-sm-10 col-sm-offset-1 text-left">
+													<h3 class="info-text">ข้อมูลการศึกษา</h3>
+												</div>
+												<div class="row">
+													<div class="col-sm-4 col-sm-offset-2">
+														<div class="choice" data-toggle="wizard-radio" onclick="is_study(0)">
+															<input type="radio" name="job" value="Design" checked >
+															<div class="icon">
+																<i class="material-icons">school</i>
+															</div>
+															<h6>อยู่ระหว่างการศึกษา</h6>
 														</div>
-														<h5>อยู่ระหว่างการศึกษา</h5>
+													</div>
+
+													<div class="col-sm-4">
+														<div class="choice" data-toggle="wizard-radio" onclick="is_study(1)">
+															<input type="radio" name="job" value="Code" >
+															<div class="icon">
+																<i class="material-icons">work</i>
+															</div>
+															<h6>สำเร็จการศึกษา</h6>
+														</div>
 													</div>
 												</div>
-												<div class="collapse" id="collapseIsStudy">
-													<div class="col-sm-8">
+
+												<!-- ถ้าอยู่ระหว่างการศึกษาจะแสดงข้อมูลการศึกษาปัจจุบัน -->
+												<div class="col-md-12" id="now_edu">
+													<div class="col-sm-8 col-sm-offset-1">
+														<h3>การศึกษาปัจจุบัน</h3>
+													</div>
+													<div class="col-sm-5 col-sm-offset-1">
 														<div class="input-group">
 															<span class="input-group-addon">
 																<i class="material-icons">school</i>
@@ -378,10 +406,10 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-sm-8">
+													<div class="col-sm-5">
 														<div class="input-group">
 															<span class="input-group-addon">
-																<i class="material-icons">card_membership</i>
+																<i class="material-icons">school</i>
 															</span>
 															<div class="form-group label-floating">
 																<label class="control-label">ชื่อวุฒิการศึกษา/สาขาวิชา</label>
@@ -389,23 +417,25 @@
 															</div>
 														</div>
 													</div>
+													<div class="col-sm-10 col-sm-offset-1">
+														<hr>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col-sm-10 col-sm-offset-1">
-											<hr>
-										</div>
+										</form>
+
 
 										<!-- ฟอร์มประวัติการศึกษา -->
 										<form>
 											<div class="form-content">
 												<div class="col-md-12">
 													<div class="col-sm-8 col-sm-offset-1">
+														<br>
 														<h3>ประวัติการศึกษา</h3>
 													</div>
 													<div class="form-group">
 														<div class="col-md-2">
-															<p><button type="button" id="btnAdd" class="btn btn-default"><i class="material-icons">add</i></button></p>
+															<p><button type="button" id="btnAdd" class="btn btn-simple">เพิ่มประวัติการศึกษา</button></p>
 														</div>
 													</div>
 												</div>
@@ -1324,11 +1354,11 @@
 									<div class="tab-pane" id="skill">
 										<div class="row">
 											<h3 class="info-text">ความสามารถด้านคอมพิวเตอร์</h3>
-											<div class="col-sm-10 col-sm-offset-1">
-												<input name='tags' class=" " id='section-basic' placeholder='กรอกเขียนความสามารถด้านคอมพิวเตอร์ของคุณ' value='css, html, javascript, css' autofocus>
+											<div class="col-sm-10 col-sm-offset-1" rel="tooltip" title="ตัวอย่างการกรอก เช่น python , css , troupleshoot">
+												<input name='tags' class=" " id='section-basic' placeholder='กรอกความสามารถด้านคอมพิวเตอร์ของคุณ' value='' autofocus>
 											</div>
 											<div class="col-sm-10 col-sm-offset-1 text-center">
-												<button class="btn btn-simple tags--removeAllBtn text-center" type='button'>ลบทั้งหมด</button>
+												<button class="btn btn-simple tags--removeAllBtn text-center " type='button'>ลบทั้งหมด</button>
 											</div>
 											<div class="col-sm-10 col-sm-offset-1">
 												<hr>
@@ -1692,8 +1722,8 @@
 											<div class="content">
 
 												<div class="box">
-													<input type="file" name="file-6[]" id="file-6" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
-													<label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
+													<input type="file" name="file-6[]" id="file-1" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
+													<label for="file-1"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
 												</div>
 
 											</div>
@@ -1703,13 +1733,14 @@
 											<div class="content">
 
 												<div class="box">
-													<input type="file" name="file-6[]" id="file-6" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
-													<label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
+													<input type="file" name="file-6[]" id="file-2" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple />
+													<label for="file-2"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
 												</div>
 
 											</div>
 										</div>
 
+										<div class="col-sm-12 text-center"></div>
 									</div>
 									<!-- End Attachment Information -->
 								</div>

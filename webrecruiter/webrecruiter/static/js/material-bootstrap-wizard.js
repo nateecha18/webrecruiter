@@ -174,6 +174,9 @@ $(document).ready(function(){
         });
     $("#military_status_value").hide();
 
+    // ซ่อนข้อมูลการศึกษาปัจจุบันไว้ก่อน ถ้าเลือก Radio ที่กำลังลังศึกษาอยู่ค่อยเข้า function img()
+    $("#now_edu").hide();
+
 });
 
 
@@ -277,3 +280,14 @@ function debounce(func, wait, immediate) {
 		if (immediate && !timeout) func.apply(context, args);
 	};
 };
+
+// function เพิ่มข้อมูลการศึกษาปัจจุบัน ถ้ากำลังเรียนอยู่
+function is_study(x){
+  if (x==0) {
+    document.getElementById('now_edu').style.display='block';
+
+  }else {
+    document.getElementById("now_edu").style.display='none';
+  }
+  return;
+}

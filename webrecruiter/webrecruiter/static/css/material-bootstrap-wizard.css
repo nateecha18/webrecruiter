@@ -1304,12 +1304,13 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 }
 .btn.btn-simple, .btn.btn-default.btn-simple {
   background-color: transparent;
-  color: #999999;
+  color: #ff9800;
   box-shadow: none;
+  font-size: 13px;
 }
 .btn.btn-simple:hover, .btn.btn-simple:focus, .btn.btn-simple:active, .btn.btn-default.btn-simple:hover, .btn.btn-default.btn-simple:focus, .btn.btn-default.btn-simple:active {
   background-color: transparent;
-  color: #999999;
+  color: #ff9800;
 }
 .btn.btn-primary {
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
@@ -1921,6 +1922,11 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
     min-width: 140px;
   }
 }
+
+div.radio_test div {
+    display:none;
+}
+
 
 /*
 .immybox.immybox_witharrow{
