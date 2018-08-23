@@ -177,6 +177,9 @@ $(document).ready(function(){
     // ซ่อนข้อมูลการศึกษาปัจจุบันไว้ก่อน ถ้าเลือก Radio ที่กำลังลังศึกษาอยู่ค่อยเข้า function img()
     $("#now_edu").hide();
 
+    // Via JavaScript
+    $(":file").filestyle();
+
 });
 
 
