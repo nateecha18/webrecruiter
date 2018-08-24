@@ -133,7 +133,7 @@
 												<div class="picture-container">
 													<div class="picture">
 														<img src="/static/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-														<input type="file" id="wizard-picture">
+														<input type="file" id="wizard-picture" name="profile_pic">
 													</div>
 													<h6>เปลี่ยนรูปภาพ</h6>
 												</div>
@@ -146,7 +146,7 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">หมายเลขบัตรประชาชน (ID Number)</label>
-														<input name="id number" type="text" class="form-control">
+														<input name="id_number" type="text" class="form-control">
 													</div>
 												</div>
 												<div class="input-group">
@@ -272,7 +272,7 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">ศาสนา (Religion)</label>
-														<select name="nationality" class="form-control">
+														<select name="religion" class="form-control">
 															<option disabled="" selected=""></option>
 															<option value="1" >คริสต์</option>
 															<option value="2" >พราหมณ์ – ฮินดู</option>
@@ -290,7 +290,7 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">สถานภาพ (Marital Status)</label>
-														<select name="race" class="form-control">
+														<select name="status" class="form-control">
 															<option disabled="" selected=""></option>
 															<option value='S'>โสด (Single)</option>
 															<option value='M'>สมรส (Married)</option>
@@ -308,7 +308,7 @@
 															<i class="material-icons">accessibility_new</i>
 														</span>
 														<div class="form-group label-floating">
-															<label class="control-label">สถานะ (Military Status)</label>
+															<label class="control-label">สถานะทหาร (Military Status)</label>
 															<select name="military_status" class="form-control" id="military_status">
 																<option disabled="" selected=""></option>
 																<option value="militaryPass">ผ่านการเกณฑ์ทหาร</option>
@@ -357,6 +357,7 @@
 													</div>
 												</div>
 											</div>
+
 											<div class="col-sm-5">
 												<div class="input-group">
 													<span class="input-group-addon">
@@ -364,7 +365,7 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">เบอร์โทรศัพท์บ้าน (Home Phone No.)</label>
-														<input name="homePhone_no" type="text" class="form-control">
+														<input name="home_no" type="text" class="form-control">
 													</div>
 												</div>
 											</div>
@@ -376,10 +377,11 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">Facebook</label>
-														<input name="mobile_no" type="text" class="form-control">
+														<input name="facebook" type="text" class="form-control">
 													</div>
 												</div>
 											</div>
+
 											<div class="col-sm-5">
 												<div class="input-group">
 													<span class="input-group-addon">
@@ -387,7 +389,7 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">Line ID</label>
-														<input name="homePhone_no" type="text" class="form-control">
+														<input name="line" type="text" class="form-control">
 													</div>
 												</div>
 											</div>
@@ -406,7 +408,7 @@
 												<div class="row">
 													<div class="col-sm-4 col-sm-offset-2">
 														<div class="choice" data-toggle="wizard-radio" onclick="is_study(0)">
-															<input type="radio" name="job" value="Design" checked >
+															<input type="radio" name="isStudy" value="isStudy_yes" checked >
 															<div class="icon">
 																<i class="material-icons">school</i>
 															</div>
@@ -416,7 +418,7 @@
 
 													<div class="col-sm-4">
 														<div class="choice" data-toggle="wizard-radio" onclick="is_study(1)">
-															<input type="radio" name="job" value="Code" >
+															<input type="radio" name="isStudy" value="isStudy_no" >
 															<div class="icon">
 																<i class="material-icons">work</i>
 															</div>
@@ -2244,7 +2246,7 @@
 																</span>
 																<div class="form-group label-floating">
 																	<label class="control-label">พิมพ์ดีด (คำ/นาที)</label>
-																	<input name="skill_typing" type="text" class="form-control">
+																	<input name="skill_language_typing" type="text" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -2361,7 +2363,7 @@
 																</span>
 																<div class="form-group label-floating">
 																	<label class="control-label">ชื่อหัวข้อหลักสูตร/ประกาศนียบัตร</label>
-																	<input name="experience" type="text" class="form-control">
+																	<input name="experience_name" type="text" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -2524,7 +2526,29 @@
 											<h3 class="info-text">แนบไฟล์</h3>
 										</div>
 
-										<div class="col-sm-5 col-sm-offset-1 text-center">
+										<div class="col-sm-5 col-sm-offset-1">
+											<div class="form-group picture-container">
+												<div class="attach">
+													<img src="/static/img/resume-avatar.jpg" class="attach-src"  title=""/>
+													<input type="file" id="file-upload" name="attach_resume">
+												</div>
+												<h6>Resume</h6>
+												<label id="file-name" class="attach_label"></label>
+											</div>
+										</div>
+
+										<div class="col-sm-5">
+											<div class="form-group picture-container">
+												<div class="attach">
+													<img src="/static/img/transcript-avatar.jpg" class="attach-src"  title=""/>
+													<input type="file" id="file-upload2" name="attach_transcript">
+												</div>
+												<h6>Transcript</h6>
+												<label id="file-name2" class="attach_label"></label>
+											</div>
+										</div>
+
+										<!-- <div class="col-sm-5 col-sm-offset-1 text-center">
 											<h4 class="info-text">Resume</h4>
 											<div class="content">
 
@@ -2535,6 +2559,7 @@
 
 											</div>
 										</div>
+
 										<div class="col-sm-5 text-center">
 											<h4 class="info-text">Transcript</h4>
 											<div class="content">
@@ -2545,9 +2570,12 @@
 												</div>
 
 											</div>
-										</div>
+										</div> -->
 
-										<div class="col-sm-12 text-center"></div>
+										<div class="col-sm-12 text-center">
+											<br>
+											<br>
+										</div>
 									</div>
 									<!-- End Attachment Information -->
 								</div>

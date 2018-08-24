@@ -177,9 +177,6 @@ $(document).ready(function(){
     // ซ่อนข้อมูลการศึกษาปัจจุบันไว้ก่อน ถ้าเลือก Radio ที่กำลังลังศึกษาอยู่ค่อยเข้า function img()
     $("#now_edu").hide();
 
-    // Via JavaScript
-    $(":file").filestyle();
-
 });
 
 
@@ -294,3 +291,12 @@ function is_study(x){
   }
   return;
 }
+
+//label resume files
+$("#file-upload").change(function(){
+  $("#file-name").text(this.files[0].name);
+});
+//label transcript files
+$("#file-upload2").change(function(){
+  $("#file-name2").text(this.files[0].name);
+});

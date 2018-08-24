@@ -432,6 +432,26 @@ h2.title {
 .wizard-card .picture:hover {
   border-color: #2ca8ff;
 }
+
+/* เพิ่มเข้ามา */
+.wizard-card .attach {
+  width: 150px;
+  height: 180px;
+  background-color: #999999;
+  border: 4px solid #CCCCCC;
+  color: #FFFFFF;
+  border-radius: 5%;
+  margin: 5px auto;
+  margin-top: 55px;
+  overflow: hidden;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+.wizard-card .attach:hover {
+  border-color: #2ca8ff;
+}
+
+
 .wizard-card .moving-tab {
   position: absolute;
   text-align: center;
@@ -451,6 +471,9 @@ h2.title {
   box-shadow: 0 16px 26px -10px rgba(156, 39, 176, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2);
 }
 .wizard-card[data-color="purple"] .picture:hover {
+  border-color: #9c27b0;
+}
+.wizard-card[data-color="purple"] .attach:hover {
   border-color: #9c27b0;
 }
 .wizard-card[data-color="purple"] .choice:hover .icon, .wizard-card[data-color="purple"] .choice.active .icon {
@@ -476,6 +499,9 @@ h2.title {
 .wizard-card[data-color="green"] .picture:hover {
   border-color: #4caf50;
 }
+.wizard-card[data-color="green"] .attach:hover {
+  border-color: #4caf50;
+}
 .wizard-card[data-color="green"] .choice:hover .icon, .wizard-card[data-color="green"] .choice.active .icon {
   border-color: #4caf50;
   color: #4caf50;
@@ -497,6 +523,9 @@ h2.title {
   box-shadow: 0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
 }
 .wizard-card[data-color="blue"] .picture:hover {
+  border-color: #00bcd4;
+}
+.wizard-card[data-color="blue"] .attach:hover {
   border-color: #00bcd4;
 }
 .wizard-card[data-color="blue"] .choice:hover .icon, .wizard-card[data-color="blue"] .choice.active .icon {
@@ -522,6 +551,9 @@ h2.title {
 .wizard-card[data-color="orange"] .picture:hover {
   border-color: #ff9800;
 }
+.wizard-card[data-color="orange"] .attach:hover {
+  border-color: #ff9800;
+}
 .wizard-card[data-color="orange"] .choice:hover .icon, .wizard-card[data-color="orange"] .choice.active .icon {
   border-color: #ff9800;
   color: #ff9800;
@@ -543,6 +575,9 @@ h2.title {
   box-shadow: 0 16px 26px -10px rgba(244, 67, 54, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
 }
 .wizard-card[data-color="red"] .picture:hover {
+  border-color: #f44336;
+}
+.wizard-card[data-color="red"] .attach:hover {
   border-color: #f44336;
 }
 .wizard-card[data-color="red"] .choice:hover .icon, .wizard-card[data-color="red"] .choice.active .icon {
@@ -574,6 +609,7 @@ h2.title {
 .wizard-card .picture-src {
   width: 100%;
 }
+
 .wizard-card .tab-content {
   min-height: 340px;
   padding: 20px 15px;
@@ -1069,6 +1105,13 @@ label.control-label {
   margin-top: 0;
   font-size: 11px;
 }
+/* Label ชื่อไฟล์ที่ Attach */
+label.attach_label {
+  font-size: 17;
+  color: #ff9800;
+  font-weight: 500;
+}
+
 /* Label ก่อนกรอก */
 .form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
   top: -7px;
@@ -1925,6 +1968,35 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 
 div.radio_test div {
     display:none;
+}
+
+/* เพิ่มเข้ามา */
+.wizard-card .attach input[type="file"] {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0 !important;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.wizard-card .attach-src {
+  width: 100%;
+}
+.wizard-card .attach {
+  width: 150px;
+  height: 175px;
+  background-color: #999999;
+  border: 6px solid #CCCCCC;
+  color: #FFFFFF;
+  border-radius: 2%;
+  overflow: hidden;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+.wizard-card .attach:hover {
+  border-color: #2ca8ff;
 }
 
 /*
