@@ -5,7 +5,11 @@ from django.template import loader
 from django.contrib import admin
 from django.urls import path
 from . import views
+
+from django.views.generic import View
 from .models import Candidate_Basic, Candidate_Military, Candidate_Contact, Candidate_Now_Education,Candidate_History_Education,Candidate_Computer_Skill
+
+from jobapply.utils import render_to_pdf #created in step 4
 
 # Create your views here.
 def index(request):
@@ -103,3 +107,31 @@ def submit_applyjob(request):
 	# candidate_cert_experience=candidate_cert_experience,candidate_work_experience=candidate_work_experience
 
 	return render(request, "index.html")
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        all_candidate = Candidate_Basic.objects.all()
+
+        template = loader.get_template('invoice.html')
+        context = {
+            'invoice_id': 123,
+            'customer_name': 'John Cooper',
+            'amount': 139.99,
+            'today' : "Today",
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('invoice.html',context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %("1234")
+            content = "inline; filename='%s'" %(filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+
+def show_list(arg):
+	template=loader.get_template("index.html")
+	return HttpResponse(template.render())

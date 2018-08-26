@@ -113,12 +113,12 @@ class Candidate_Basic(models.Model):
     candidate_military = models.ForeignKey(Candidate_Military, on_delete=models.CASCADE,null=True)
     candidate_contact = models.ForeignKey(Candidate_Contact, on_delete=models.CASCADE,null=True)
     candidate_now_education = models.ForeignKey(Candidate_Now_Education, on_delete=models.CASCADE,null=True)
-    candidate_history_education = models.ForeignKey(Candidate_History_Education, on_delete=models.CASCADE,null=True)
-    candidate_computer_skill = models.ForeignKey(Candidate_Computer_Skill, on_delete=models.CASCADE,null=True)
-    candidate_language_skill = models.ForeignKey(Candidate_Language_Skill, on_delete=models.CASCADE,null=True)
-    candidate_attachment = models.ForeignKey(Candidate_Attachment, on_delete=models.CASCADE,null=True)
-    candidate_cert_experience = models.ForeignKey(Candidate_Cert_Experience, on_delete=models.CASCADE,null=True)
-    candidate_work_experience = models.ForeignKey(Candidate_Work_Experience, on_delete=models.CASCADE,null=True)
+    # candidate_history_education = models.ForeignKey(Candidate_History_Education, on_delete=models.CASCADE,null=True)
+    # candidate_computer_skill = models.ForeignKey(Candidate_Computer_Skill, on_delete=models.CASCADE,null=True)
+    # candidate_language_skill = models.ForeignKey(Candidate_Language_Skill, on_delete=models.CASCADE,null=True)
+    # candidate_attachment = models.ForeignKey(Candidate_Attachment, on_delete=models.CASCADE,null=True)
+    # candidate_cert_experience = models.ForeignKey(Candidate_Cert_Experience, on_delete=models.CASCADE,null=True)
+    # candidate_work_experience = models.ForeignKey(Candidate_Work_Experience, on_delete=models.CASCADE,null=True)
 
     def __int__(self):
         return self.id_number
