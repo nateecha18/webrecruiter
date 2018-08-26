@@ -98,11 +98,11 @@ def submit_applyjob(request):
 
 	candidate_basic = Candidate_Basic(id_number=id_number,position=position,salary=salary,
 	profile_pic=profile_pic,nickname=nickname,name_title=name_title,
-	firstname=firstname,lastname=lastname,bdate=bdate,blood=blood,nationality=nationality,
+	firstname=firstname,lastname=lastname,bdate=bdate,blood=blood,nationality=nationality,race=race,
 	religion=religion,status=status,candidate_military=candidate_military,candidate_contact=candidate_contact,
-	candidate_now_education=candidate_now_education,candidate_history_education=candidate_history_education)
+	candidate_now_education=candidate_now_education,candidate_computer_skill=candidate_computer_skill)
 	candidate_basic.save()
-	# ,candidate_computer_skill=candidate_computer_skill,
+	# ,candidate_history_education=candidate_history_education,
 	# candidate_language_skill=candidate_language_skill,candidate_attachment=candidate_attachment,
 	# candidate_cert_experience=candidate_cert_experience,candidate_work_experience=candidate_work_experience
 
@@ -111,13 +111,29 @@ def submit_applyjob(request):
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
         all_candidate = Candidate_Basic.objects.all()
-
+        print(str(all_candidate))
         template = loader.get_template('invoice.html')
         context = {
             'invoice_id': 123,
             'customer_name': 'John Cooper',
             'amount': 139.99,
             'today' : "Today",
+			'Candidate' : all_candidate,
+			# 'id_number' : {{ all_candidate.id_number }},
+			# 'position' : {{ all_candidate.position }},
+			# 'salary' : {{ all_candidate.salary }},
+			# 'profile_pic' : {{ all_candidate.profile_pic }},
+			# 'nickname' : {{ all_candidate.nickname }},
+			# 'name_title' : {{ all_candidate.name_title }},
+			# 'firstname' : {{ all_candidate.firstname }},
+			# 'lastname' : {{ all_candidate.lastname }},
+			# 'bdate' : {{ all_candidate.bdate }},
+			# 'blood' : {{ all_candidate.blood }},
+			# 'nationality' : {{ all_candidate.nationality }},
+			# 'race' : {{ all_candidate.race }},
+			# 'religion' : {{ all_candidate.religion }},
+			# 'status' : {{ all_candidate.status }},
+
         }
         html = template.render(context)
         pdf = render_to_pdf('invoice.html',context)
@@ -132,6 +148,9 @@ class GeneratePdf(View):
             return response
         return HttpResponse("Not found")
 
-def show_list(arg):
-	template=loader.get_template("index.html")
-	return HttpResponse(template.render())
+def show_list(request):
+	all_candidate = Candidate_Basic.objects.all()
+
+	# template=loader.get_template("show.html")
+	# return HttpResponse(template.render())
+	return render(request, "show.html", {'Candidate' : all_candidate})

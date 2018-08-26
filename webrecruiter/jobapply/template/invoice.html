@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Titleeiei</title>
+        <title>Candidate</title>
         <style type="text/css">
             body {
                 font-weight: 200;
@@ -39,14 +39,32 @@
     <body>
         <div class='wrapper'>
             <div class='header'>
-                <p class='title'>Invoice # {{ invoice_id }}</p>
+                <p class='title'>Candidate Details</p>
             </div>
         <div>
         <div class='details'>
-            Bill to: {{ customer_name }}<br/>
-            Amount:  {{ amount }}<br/>
-            Date: {{ today }}
-            <hr class='hrItem' />
+            {% for candidate in Candidate %}
+              <h4>Identification Number : {{ candidate.id_number }}</h4>
+              <p>Name : {{ candidate.name_title }} {{ candidate.firstname }}    {{ candidate.lastname }}</p>
+              <p>Nickname : {{ candidate.nickname }}</p>
+              <p>Position Applied For {{ candidate.position }}. Expected Salary is {{ candidate.salary }} Bath.</p>
+              <p>Birthday : {{ candidate.bdate }}</p>
+              <p>Blood Group : {{ candidate.blood }}</p>
+              <p>Nationality : {{ candidate.nationality }}</p>
+              <p>Race : {{ candidate.race }}</p>
+              <p>Religion : {{ candidate.religion }}</p>
+              <p>status : {{ candidate.status }}</p>
+              {% if candidate.name_title == 'mr'%}
+                  <p><b>Military Information</b></p>
+                  <p>Military Status : {{ candidate.candidate_military.military_status }}</p>
+                  {% if candidate.candidate_military.military_status != 'militaryPass'%}
+                      <p>Military Reason : {{ candidate.candidate_military.military_reason }}</p>
+                  {%endif%}
+              {%endif%}
+              <p>Computer Skill : {{ candidate.candidate_computer_skill.tags }}</p>
+              <hr class='hrItem' />
+
+            {% endfor%}
         </div>
     </div>
     </body>

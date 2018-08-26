@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Show List of Candidate</title>
+  </head>
+  <body>
+    <h1>Candidate List</h1>
+    <br>
+    {% for candidate in Candidate %}
+      <p>{{ candidate.nickname }}</p>
+    {% endfor%}
+  </body>
+</html>
