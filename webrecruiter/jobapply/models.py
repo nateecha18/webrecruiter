@@ -23,23 +23,23 @@ class Candidate_Contact(models.Model):
 class Candidate_Now_Education(models.Model):
     """docstring forCandidate_Education."""
     check_study = models.CharField(max_length=10)
-    nowEdu_level = models.CharField(max_length=250)
-    nowEdu_instituteName = models.CharField(max_length=300)
-    nowEdu_major = models.CharField(max_length=250)
-    nowEdu_gpa = models.CharField(max_length=10)
+    nowEdu_level = models.CharField(max_length=250,null=True)
+    nowEdu_instituteName = models.CharField(max_length=300,null=True)
+    nowEdu_major = models.CharField(max_length=250,null=True)
+    nowEdu_gpa = models.CharField(max_length=10,null=True)
 
     def __int__(self):
         return self.id
 
 class Candidate_History_Education(models.Model):
     """docstring forCandidate_History_Education."""
-    edu_level = models.CharField(max_length=250)
-    edu_country = models.CharField(max_length=250)
-    edu_instituteName = models.CharField(max_length=250)
-    edu_fromYear = models.CharField(max_length=10)
-    edu_toYear = models.CharField(max_length=10)
-    edu_major = models.CharField(max_length=250)
-    edu_gpa = models.CharField(max_length=10)
+    edu_level = models.CharField(max_length=250,null=True)
+    edu_country = models.CharField(max_length=250,null=True)
+    edu_instituteName = models.CharField(max_length=250,null=True)
+    edu_fromYear = models.CharField(max_length=10,null=True)
+    edu_toYear = models.CharField(max_length=10,null=True)
+    edu_major = models.CharField(max_length=250,null=True)
+    edu_gpa = models.CharField(max_length=10,null=True)
 
     def __int__(self):
         return self.id + '-' + self.edu_level
@@ -96,20 +96,20 @@ class Candidate_Attachment(models.Model):
 class Candidate_Basic(models.Model):
     """docstring for Candidate_basic."""
     id_number = models.CharField(primary_key=True,max_length=13)
-    position = models.CharField(max_length=250)
-    salary = models.IntegerField()
-    profile_pic = models.ImageField()
-    nickname = models.CharField(max_length=100)
-    name_title = models.CharField(max_length=50)
-    firstname = models.CharField(max_length=250)
-    lastname = models.CharField(max_length=250)
-    bdate = models.DateField()
-    blood = models.CharField(max_length=5)
-    nationality = models.CharField(max_length=100)
-    race = models.CharField(max_length=100)
-    nationality = models.CharField(max_length=100)
-    religion = models.CharField(max_length=100)
-    status = models.CharField(max_length=100)
+    position = models.CharField(max_length=250,null=True)
+    salary = models.IntegerField(null=True)
+    profile_pic = models.ImageField(null=True)
+    nickname = models.CharField(max_length=100,null=True)
+    name_title = models.CharField(max_length=50,null=True)
+    firstname = models.CharField(max_length=250,null=True)
+    lastname = models.CharField(max_length=250,null=True)
+    bdate = models.DateField(null=True)
+    blood = models.CharField(max_length=5,null=True)
+    nationality = models.CharField(max_length=100,null=True)
+    race = models.CharField(max_length=100,null=True)
+    nationality = models.CharField(max_length=100,null=True)
+    religion = models.CharField(max_length=100,null=True)
+    status = models.CharField(max_length=100,null=True)
     candidate_military = models.ForeignKey(Candidate_Military, on_delete=models.CASCADE,null=True)
     candidate_contact = models.ForeignKey(Candidate_Contact, on_delete=models.CASCADE,null=True)
     candidate_now_education = models.ForeignKey(Candidate_Now_Education, on_delete=models.CASCADE,null=True)

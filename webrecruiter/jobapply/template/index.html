@@ -408,9 +408,12 @@
 													<h3 class="info-text">ข้อมูลการศึกษา</h3>
 												</div>
 												<div class="row">
-													<div class="col-sm-4 col-sm-offset-2">
+													<div class="col-sm-10 col-sm-offset-1 text-center">
+														<h4 class="info-text">ปัจจุบันคุณอยู่ระหว่างการศึกษาหรือไม่ ?</h4>
+													</div>
+													<!-- <div class="col-sm-4 col-sm-offset-2">
 														<div class="choice" data-toggle="wizard-radio" onclick="is_study(0)">
-															<input type="radio" name="check_study" value="isStudy_yes" checked >
+															<input type="radio" name="check_study" value="isStudy_yes" >
 															<div class="icon">
 																<i class="material-icons">school</i>
 															</div>
@@ -420,13 +423,20 @@
 
 													<div class="col-sm-4">
 														<div class="choice" data-toggle="wizard-radio" onclick="is_study(1)">
-															<input type="radio" name="check_study" value="isStudy_no" >
+															<input type="radio" name="check_study" value="isStudy_no">
 															<div class="icon">
 																<i class="material-icons">work</i>
 															</div>
 															<h6>สำเร็จการศึกษา</h6>
 														</div>
+													</div> -->
+													<div class="col-sm-4 col-sm-offset-3 radio-inline">
+														<h5 style="font-weight: 300;"><input type="radio" name="check_study" value="isStudy_yes" onclick="is_study(0)">อยู่ระหว่างการศึกษา</h5>
 													</div>
+													<div class="col-sm-4 radio-inline">
+														<h5 style="font-weight: 300;"><input type="radio" name="check_study" value="isStudy_no" onclick="is_study(1)">สำเร็จการศึกษา</h5>
+													</div>
+
 												</div>
 
 												<!-- ถ้าอยู่ระหว่างการศึกษาจะแสดงข้อมูลการศึกษาปัจจุบัน -->
@@ -442,8 +452,8 @@
 															<div class="form-group label-floating">
 																<label class="control-label">ประเภทการศึกษา (Education Level)</label>
 																<select name="nowEdu_level" class="form-control">
-																	<!-- <option disabled="" selected=""></option> -->
-																	<option value="level_bacDe" selected="">ปริญญาตรี (Bachelor Degree)</option>
+																	<option disabled="" selected=""></option>
+																	<option value="level_bacDe">ปริญญาตรี (Bachelor Degree)</option>
 																	<option value="level_masDe">ปริญญาโท (Master Degree)</option>
 																	<option value="level_other">อื่นๆ (Other Graduate)</option>
 																</select>
