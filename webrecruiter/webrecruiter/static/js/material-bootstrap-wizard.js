@@ -155,7 +155,7 @@ $(document).ready(function(){
     // แสดงรายละเอียดแสดงสถานภาพทางทหาร เมื่อ name_title = 'mr'
     $("#name_title").change(function()
         {
-            if($(this).val() == "mr"){
+            if($(this).val() == "นาย"){
             $("#name_title_value").show();
         } else {
             $("#name_title_value").hide();

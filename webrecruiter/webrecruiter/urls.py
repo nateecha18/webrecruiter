@@ -21,5 +21,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobapply/', include('jobapply.urls')),
+    path('filter/', include('filter.urls')),
     # path('pdf/', GeneratePdf.as_view())
 ]

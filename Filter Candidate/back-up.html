@@ -1,0 +1,41 @@
+<li>
+  <div id="multiplefield-position">
+    <div class="row">
+      <div class="col-xs-12">
+        <label class="checkbox">
+          <input type="checkbox" data-toggle="checkbox" class="checkbox_position" value="1" onchange="positionChanged()">
+          ตำแหน่งที่สมัคร
+        </label>
+      </div>
+      <div class="position_detail">
+        <div class="col-xs-12">
+          <div class="text-right">
+            <button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
+          </div>
+        </div>
+        <div class="row group">
+
+
+          <div class="col-xs-10 col-xs-offset-1">
+            <select class="form-control input-sm" style="margin-top:20px;">
+              <option value="">ตำแหน่ง (is)</option>
+              <option value="">ไม่ใชหน่ง (isn't)</option>
+              <option value="">ตำแหน่งที่มี (contains)</option>
+              <option value="">ตำแหน่งที่ไม่มี (isn't contains)</option>
+            </select>
+          </div>
+          <div class="col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+              <input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ตำแหน่งที่สมัคร">
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="text-center">
+              <button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

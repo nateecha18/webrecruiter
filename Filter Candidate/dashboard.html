@@ -6,32 +6,32 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Dashboard by Creative Tim</title>
+	<title>Filter Candidate</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
 
 
 	<!-- Bootstrap core CSS     -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/filter_bootstrap.min.css" rel="stylesheet" />
 
 	<!-- Animation library for notifications   -->
-	<link href="assets/css/animate.min.css" rel="stylesheet"/>
+	<link href="assets/css/filter_animate.min.css" rel="stylesheet"/>
 
 	<!--  Paper Dashboard core CSS    -->
-	<link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+	<link href="assets/css/filter_paper-dashboard.css" rel="stylesheet"/>
 
 	<!--  CSS for Demo Purpose, don't include it in your project     -->
-	<link href="assets/css/demo.css" rel="stylesheet" />
+	<link href="assets/css/filter_demo.css" rel="stylesheet" />
 
 	<!--  Fonts and icons     -->
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Kanit:100,200,400,500,600|Roboto:100,300,400,500,700,900" rel="stylesheet">
 
-	<link href="assets/css/themify-icons.css" rel="stylesheet">
+	<link href="assets/css/filter_themify-icons.css" rel="stylesheet">
 
 	<!-- CSS Fresh Table -->
-	<link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+	<link href="assets/css/filter_fresh-bootstrap-table.css" rel="stylesheet" />
 
 
 </head>
@@ -49,7 +49,7 @@
 							<span class="icon-bar bar2"></span>
 							<span class="icon-bar bar3"></span>
 						</button>
-						<a class="navbar-brand" href="#">User Profile</a>
+						<a class="navbar-brand" href="#">Filter Candidate</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
@@ -100,25 +100,41 @@
 									<ul class="list-unstyled team-members">
 										<!-- ________________________________________________________________________________________________________________________ -->
 										<li>
-											<div class="row">
-												<div class="col-xs-12">
-													<label class="checkbox">
-														<input type="checkbox" data-toggle="checkbox" class="checkbox_position" value="1" onchange="positionChanged()">
-														ตำแหน่งที่สมัคร
-													</label>
-												</div>
-												<div class="position_detail">
-													<div class="col-xs-10 col-xs-offset-1">
-														<select class="form-control input-sm" style="margin-top:20px;">
-															<option value="">ตำแหน่ง (is)</option>
-															<option value="">ไม่ใช่ตำแหน่ง (isn't)</option>
-															<option value="">ตำแหน่งที่มี (contains)</option>
-															<option value="">ตำแหน่งที่ไม่มี (isn't contains)</option>
-														</select>
+											<div id="multiplefield-position">
+												<div class="row">
+													<div class="col-xs-12">
+														<label class="checkbox">
+															<input type="checkbox" data-toggle="checkbox" class="checkbox_position" value="1" onchange="positionChanged()">
+															ตำแหน่งที่สมัคร
+														</label>
 													</div>
-													<div class="col-xs-10 col-xs-offset-1">
-														<div class="form-group">
-															<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ตำแหน่งที่สมัคร">
+													<div class="position_detail">
+														<div class="col-xs-12">
+															<div class="text-right">
+																<button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
+															</div>
+														</div>
+														<div class="row group">
+
+
+															<div class="col-xs-10 col-xs-offset-1">
+																<select class="form-control input-sm" style="margin-top:20px;">
+																	<option value="">ตำแหน่ง (is)</option>
+																	<option value="">ไม่ใชหน่ง (isn't)</option>
+																	<option value="">ตำแหน่งที่มี (contains)</option>
+																	<option value="">ตำแหน่งที่ไม่มี (isn't contains)</option>
+																</select>
+															</div>
+															<div class="col-xs-10 col-xs-offset-1">
+																<div class="form-group">
+																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ตำแหน่งที่สมัคร">
+																</div>
+															</div>
+															<div class="col-xs-12">
+																<div class="text-center">
+																	<button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -245,13 +261,13 @@
 														</select>
 													</div>
 													<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:10px" id="status_oprator">
-																<option disabled="" selected=""></option>
-																<option value='S'>โสด (Single)</option>
-																<option value='M'>สมรส (Married)</option>
-																<option value='I'>หม้าย (Widowed)</option>
-																<option value='D'>หย่า (Divorced)</option>
-															</select>
+														<select class="form-control input-sm" style="margin-top:10px" id="status_oprator">
+															<option disabled="" selected=""></option>
+															<option value='S'>โสด (Single)</option>
+															<option value='M'>สมรส (Married)</option>
+															<option value='I'>หม้าย (Widowed)</option>
+															<option value='D'>หย่า (Divorced)</option>
+														</select>
 													</div>
 												</div>
 											</div>
@@ -277,25 +293,39 @@
 										</li>
 										<!-- ________________________________________________________________________________________________________________________ -->
 										<li>
-											<div class="row">
-												<div class="col-xs-12">
-													<label class="checkbox">
-														<input type="checkbox" data-toggle="checkbox" class="checkbox_university" value="1" onchange="universityChanged()">
-														มหาวิทยาลัย
-													</label>
-												</div>
-												<div class="university_detail">
-													<div class="col-xs-10 col-xs-offset-1">
-														<select class="form-control input-sm" style="margin-top:20px" id="university_oprator">
-															<option value="">มหาวิทยาลัย (is)</option>
-															<option value="">ไม่เอามหาวิทยาลัย (isn't)</option>
-															<option value="">มหาวิทยาลัยที่เป็น (contains)</option>
-															<option value="">มหาวิทยาลัยที่ไม่เป็น (isn't contains)</option>
-														</select>
+											<div id="multiplefield-university">
+												<div class="row">
+													<div class="col-xs-12">
+														<label class="checkbox">
+															<input type="checkbox" data-toggle="checkbox" class="checkbox_university" value="1" onchange="universityChanged()">
+															มหาวิทยาลัย
+														</label>
 													</div>
-													<div class="col-xs-10 col-xs-offset-1">
-														<div class="form-group">
-															<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="มหาวิทยาลัย">
+													<div class="university_detail">
+														<div class="col-xs-12">
+										          <div class="text-right">
+										            <button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
+										          </div>
+										        </div>
+														<div class="row group">
+															<div class="col-xs-10 col-xs-offset-1">
+																<select class="form-control input-sm" style="margin-top:20px" id="university_oprator">
+																	<option value="">มหาวิทยาลัย (is)</option>
+																	<option value="">ไม่เอามหาวิทยาลัย (isn't)</option>
+																	<option value="">มหาวิทยาลัยที่เป็น (contains)</option>
+																	<option value="">มหาวิทยาลัยที่ไม่เป็น (isn't contains)</option>
+																</select>
+															</div>
+															<div class="col-xs-10 col-xs-offset-1">
+																<div class="form-group">
+																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="มหาวิทยาลัย">
+																</div>
+															</div>
+															<div class="col-xs-12">
+										            <div class="text-center">
+										              <button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
+										            </div>
+										          </div>
 														</div>
 													</div>
 												</div>
@@ -382,25 +412,39 @@
 										</li>
 										<!-- ________________________________________________________________________________________________________________________ -->
 										<li>
-											<div class="row">
-												<div class="col-xs-12">
-													<label class="checkbox">
-														<input type="checkbox" data-toggle="checkbox" class="checkbox_computer" value="1" onchange="computerChanged()">
-														ความสามารถด้านคอมพิวเตอร์
-													</label>
-												</div>
-												<div class="computer_detail">
-													<div class="col-xs-10 col-xs-offset-1">
-														<select class="form-control input-sm" style="margin-top:20px" id="computer_oprator">
-															<option value="">มีความสามารถ (is)</option>
-															<option value="">ไม่เอาความสามารถ (isn't)</option>
-															<option value="">ความสามารถที่เป็น (contains)</option>
-															<option value="">ไม่เอาความสามารถที่เป็น (isn't contains)</option>
-														</select>
+											<div id="multiplefield-computer">
+												<div class="row">
+													<div class="col-xs-12">
+														<label class="checkbox">
+															<input type="checkbox" data-toggle="checkbox" class="checkbox_computer" value="1" onchange="computerChanged()">
+															ความสามารถด้านคอมพิวเตอร์
+														</label>
 													</div>
-													<div class="col-xs-10 col-xs-offset-1">
-														<div class="form-group">
-															<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านคอมพิวเตอร์">
+													<div class="computer_detail">
+														<div class="col-xs-12">
+										          <div class="text-right">
+										            <button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
+										          </div>
+										        </div>
+														<div class="row group">
+															<div class="col-xs-10 col-xs-offset-1">
+																<select class="form-control input-sm" style="margin-top:20px" id="computer_oprator">
+																	<option value="">มีความสามารถ (is)</option>
+																	<option value="">ไม่เอาความสามารถ (isn't)</option>
+																	<option value="">ความสามารถที่เป็น (contains)</option>
+																	<option value="">ไม่เอาความสามารถที่เป็น (isn't contains)</option>
+																</select>
+															</div>
+															<div class="col-xs-10 col-xs-offset-1">
+																<div class="form-group">
+																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านคอมพิวเตอร์">
+																</div>
+															</div>
+															<div class="col-xs-12">
+										            <div class="text-center">
+										              <button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
+										            </div>
+										          </div>
 														</div>
 													</div>
 												</div>
@@ -490,12 +534,12 @@
 												<div class="col-xs-12">
 													<br>
 													<div class="text-center">
-															<button type="submit" class="btn btn-info btn-fill btn-wd">Apply Filter</button>
+														<button type="submit" class="btn btn-info btn-fill btn-wd">Apply Filter</button>
 													</div>
 												</div>
 												<div class="col-xs-12">
 													<div class="text-center">
-															<button type="submit" class="btn btn-info btn-simple btn-wd">clear</button>
+														<button type="submit" class="btn btn-info btn-simple btn-wd">clear</button>
 													</div>
 												</div>
 
@@ -970,27 +1014,19 @@ $("#name_title_value").hide();
 </script>
 
 <!-- Multiple field Add -->
-<script src="ssets/js/jquery.multifield.js"></script>
+<script src="assets/js/jquery.multifield.js"></script>
 <script>
-$('#multiplefield-work_experience').multifield({
+$('#multiplefield-position').multifield({
 	section: '.group',
 	btnAdd:'#btnAdd',
 	btnRemove:'.btnRemove',
 });
-
-$('#multiplefield-his_edu').multifield({
+$('#multiplefield-university').multifield({
 	section: '.group',
 	btnAdd:'#btnAdd',
 	btnRemove:'.btnRemove',
 });
-
-$('#multiplefield-skill_language').multifield({
-	section: '.group',
-	btnAdd:'#btnAdd',
-	btnRemove:'.btnRemove',
-});
-
-$('#multiplefield-cert_experience').multifield({
+$('#multiplefield-computer').multifield({
 	section: '.group',
 	btnAdd:'#btnAdd',
 	btnRemove:'.btnRemove',
