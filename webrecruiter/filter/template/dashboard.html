@@ -224,6 +224,32 @@
 												<div class="row">
 													<div class="col-xs-12">
 														<label class="checkbox">
+															<input type="checkbox" data-toggle="checkbox" class="checkbox_gender" value="1" onchange="genderChanged()" name="checkbox_gender">
+															เพศ
+														</label>
+													</div>
+													<div class="gender_detail">
+														<div class="col-xs-10 col-xs-offset-1">
+															<select class="form-control input-sm" style="margin-top:20px" id="gender_oprator" name="operator_gender">
+																<option value="1">เพศ (is)</option>
+																<option value="2">ไม่เอาเพศ (isn't)</option>
+															</select>
+														</div>
+														<div class="col-xs-10 col-xs-offset-1">
+															<select class="form-control input-sm" style="margin-top:10px" id="gender_oprator" name="filter_gender">
+																<option disabled="" selected=""></option>
+																<option value='m'>ชาย (Men)</option>
+																<option value='w'>หญิง (Women)</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</li>
+											<!-- ________________________________________________________________________________________________________________________ -->
+											<li>
+												<div class="row">
+													<div class="col-xs-12">
+														<label class="checkbox">
 															<input type="checkbox" data-toggle="checkbox" class="checkbox_nationality" value="1" onchange="nationalityChanged()">
 															สัญชาติ
 														</label>
@@ -742,6 +768,7 @@ $(".position_detail").hide();
 $(".salary_detail").hide();
 $(".blood_detail").hide();
 $(".age_detail").hide();
+$(".gender_detail").hide();
 $(".nationality_detail").hide();
 $(".status_detail").hide();
 $(".edu_detail").hide();
@@ -780,6 +807,13 @@ function ageChanged(){
 		$(".age_detail").show();
 	} else {
 		$(".age_detail").hide();
+	}
+}
+function genderChanged(){
+	if($('.checkbox_gender').is(":checked")){
+		$(".gender_detail").show();
+	} else {
+		$(".gender_detail").hide();
 	}
 }
 function nationalityChanged(){

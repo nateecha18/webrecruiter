@@ -42,53 +42,73 @@ def submit_filter(request):
     operator_gpa = request.POST["operator_gpa"]
     filter_gpa = request.POST["filter_gpa"]
 
+    checkbox_gender = request.POST.get('checkbox_gender', False)
+    operator_gender = request.POST["operator_gender"]
+    filter_gender = request.POST["filter_gender"]
+
 
     position = FilterPosition(checkbox_position=checkbox_position,operator_position=operator_position,filter_position=filter_position)
     position.save()
 
+    all_candidate = CandidateBasic.objects.all()
     if (checkbox_position=='1') :
         if (operator_position=='1'):
-            all_candidate = CandidateBasic.objects.filter(position__iexact=filter_position)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(position__iexact=filter_position))
         elif (operator_position=='2'):
-            all_candidate = CandidateBasic.objects.filter(~Q(position__iexact=filter_position))
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(position__iexact=filter_position)))
         elif (operator_position=='3'):
-            all_candidate = CandidateBasic.objects.filter(position__icontains=filter_position)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(position__icontains=filter_position))
         elif (operator_position=='4'):
-            all_candidate = CandidateBasic.objects.filter(~Q(position__icontains=filter_position))
-    print("Check Position : " + str(all_candidate))
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(position__icontains=filter_position)))
+    print("Check Position1 : " + str(all_candidate))
 
     if (checkbox_salary=='1') :
+        print("Check Position2 : " + str(all_candidate))
         if (operator_salary=='1'):
-            all_candidate = CandidateBasic.objects.filter(salary=filter_salary)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(salary=filter_salary))
         elif (operator_salary=='2'):
-            all_candidate = CandidateBasic.objects.filter(salary__gte=filter_salary)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(salary__gte=filter_salary))
         elif (operator_salary=='3'):
-            all_candidate = CandidateBasic.objects.filter(salary__lte=filter_salary)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(salary__lte=filter_salary))
         elif (operator_salary=='4'):
-            all_candidate = CandidateBasic.objects.filter(salary__gt=filter_salary)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(salary__gt=filter_salary))
         elif (operator_salary=='5'):
-            all_candidate = CandidateBasic.objects.filter(salary__lt=filter_salary)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(salary__lt=filter_salary))
     print("Check Salary : " + str(all_candidate))
 
     if (checkbox_blood=='1') :
         if (operator_blood=='1'):
-            all_candidate = CandidateBasic.objects.filter(blood__icontains=filter_blood)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(blood__icontains=filter_blood))
         elif (operator_blood=='2'):
-            all_candidate = CandidateBasic.objects.filter(~Q(blood__icontains=filter_blood))
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(blood__icontains=filter_blood)))
 
     if (checkbox_gpa=='1') :
         if (operator_gpa=='1'):
-            all_candidate = CandidateBasic.objects.filter(nowEdu_gpa=filter_gpa)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(nowEdu_gpa=filter_gpa))
         elif (operator_gpa=='2'):
-            all_candidate = CandidateBasic.objects.filter(nowEdu_gpa__gte=filter_gpa)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(nowEdu_gpa__gte=filter_gpa))
         elif (operator_gpa=='3'):
-            all_candidate = CandidateBasic.objects.filter(nowEdu_gpa__lte=filter_gpa)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(nowEdu_gpa__lte=filter_gpa))
         elif (operator_gpa=='4'):
-            all_candidate = CandidateBasic.objects.filter(nowEdu_gpa__gt=filter_gpa)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(nowEdu_gpa__gt=filter_gpa))
         elif (operator_gpa=='5'):
-            all_candidate = CandidateBasic.objects.filter(nowEdu_gpa__lt=filter_gpa)
+            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(nowEdu_gpa__lt=filter_gpa))
 
-    if (checkbox_position!='1' and checkbox_salary!='1' and checkbox_blood!='1' and checkbox_gpa!='1') :
+    if (checkbox_gender=='1') :
+        if (operator_gender=='1'):
+            if (filter_gender=='m'):
+                print("______________________GENDER : M  / IS________________________")
+                all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(name_title="นาย"))
+                print("Selected Candidate Gender"+str(all_candidate))
+            else:
+                all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(name_title="นาย")))
+        elif (operator_gender=='2'):
+            if (filter_gender=='m'):
+                all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(name_title="นาย")))
+            else:
+                all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(name_title="นาย"))
+
+    if (checkbox_position!='1' and checkbox_salary!='1' and checkbox_blood!='1' and checkbox_gpa!='1' and checkbox_gender!='1') :
         all_candidate = CandidateBasic.objects.all()
     context = {
         'Candidate': all_candidate,
