@@ -25,10 +25,11 @@ def index(request):
     return render(request, "dashboard.html", {'Candidate': all_candidate})
 
 def submit_filter(request):
+
     checkbox_position = request.POST.get('checkbox_position', False)
-    operator_position = request.POST["operator_position"]
-    filter_position = request.POST["filter_position"]
-    print("Position : " + filter_position)
+    operator_position = request.POST.getlist('operator_position')
+    filter_position = request.POST.getlist('filter_position')
+    print("Position : " + str(filter_position))
 
     checkbox_salary = request.POST.get('checkbox_salary', False)
     operator_salary = request.POST["operator_salary"]
@@ -52,14 +53,20 @@ def submit_filter(request):
 
     all_candidate = CandidateBasic.objects.all()
     if (checkbox_position=='1') :
-        if (operator_position=='1'):
-            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(position__iexact=filter_position))
-        elif (operator_position=='2'):
-            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(position__iexact=filter_position)))
-        elif (operator_position=='3'):
-            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(position__icontains=filter_position))
-        elif (operator_position=='4'):
-            all_candidate = all_candidate.intersection(CandidateBasic.objects.filter(~Q(position__icontains=filter_position)))
+        checkbox_position_set=CandidateBasic.objects.none()
+        print("len :" + str(len(operator_position)))
+        for i in range(0,len(operator_position)):
+            if (operator_position[i]=='1'):
+                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(position__iexact=filter_position[i]))
+            if (operator_position[i]=='2'):
+                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(~Q(position__iexact=filter_position[i])))
+            if (operator_position[i]=='3'):
+                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(position__icontains=filter_position[i]))
+                print(str(i) + ":Selected Candidate :" + str(checkbox_position_set))
+            if (operator_position[i]=='4'):
+                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(~Q(position__icontains=filter_position[i])))
+        all_candidate = all_candidate.intersection(checkbox_position_set)
+
     print("Check Position1 : " + str(all_candidate))
 
     if (checkbox_salary=='1') :
