@@ -53,18 +53,18 @@ def submit_filter(request):
 
     all_candidate = CandidateBasic.objects.all()
     if (checkbox_position=='1') :
-        checkbox_position_set=CandidateBasic.objects.none()
+        checkbox_position_set=CandidateBasic.objects.all()
         print("len :" + str(len(operator_position)))
         for i in range(0,len(operator_position)):
             if (operator_position[i]=='1'):
-                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(position__iexact=filter_position[i]))
+                checkbox_position_set = checkbox_position_set.intersection(CandidateBasic.objects.filter(position__iexact=filter_position[i]))
             if (operator_position[i]=='2'):
-                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(~Q(position__iexact=filter_position[i])))
+                checkbox_position_set = checkbox_position_set.intersection(CandidateBasic.objects.filter(~Q(position__iexact=filter_position[i])))
             if (operator_position[i]=='3'):
-                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(position__icontains=filter_position[i]))
+                checkbox_position_set = checkbox_position_set.intersection(CandidateBasic.objects.filter(position__icontains=filter_position[i]))
                 print(str(i) + ":Selected Candidate :" + str(checkbox_position_set))
             if (operator_position[i]=='4'):
-                checkbox_position_set = checkbox_position_set.union(CandidateBasic.objects.filter(~Q(position__icontains=filter_position[i])))
+                checkbox_position_set = checkbox_position_set.intersection(CandidateBasic.objects.filter(~Q(position__icontains=filter_position[i])))
         all_candidate = all_candidate.intersection(checkbox_position_set)
 
     print("Check Position1 : " + str(all_candidate))
