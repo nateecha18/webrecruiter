@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<link rel="stylesheet" href="/static/css/tagify.css">
+<style media="screen">
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+#tags {
+  width: 100%;
+  padding: 10px;
+  float: none;
+  clear: both;
+}
+
+.tag {
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  background: #efefef;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+}
+
+.tag::after {
+  content: '\2612';
+  float: right;
+  display: block;
+  margin: -2px 0 0 10px;
+}
+
+</style>
+<body>
+
+  <select class="form-control input-sm" style="margin-top:0px;" name="filter_option" id="filter_option">
+    <option disabled="" selected="">Select a filter</option>
+    <option value="1">Position</option>
+    <option value="2">Salary</option>
+    <option value="3">Age</option>
+    <option value="4">เพศ</option>
+    <option value="5">สัญชาติ</option>
+    <option value="6">สถานภาพ</option>
+    <option value="7">สถานะการศึกษาปัจจุบัน</option>
+    <option value="8">มหาวิทยาลัย</option>
+    <option value="9">คณะ</option>
+    <option value="10">สาขาวิชา</option>
+    <option value="11">เกรดเฉลี่ย</option>
+    <option value="12">ความสามารถด้านคอมพิวเตอร์</option>
+    <option value="13">ความสามารถด้านภาษา</option>
+    <option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option>
+    <option value="15">ประสบการณ์ทำงาน ฝึกงาน</option>
+  </select>
+
+  <!-- POSITION -->
+  <div id="position_value">
+
+    <select class="form-control input-sm" style="margin-top:0px;" name="operator_position" id="position_option">
+      <option value="1">Position</option>
+      <option value="2">ไม่ใช่ตำแหน่ง (isn't)</option>
+      <option value="3">ตำแหน่งที่มี (contains)</option>
+      <option value="4">ตำแหน่งที่ไม่มี (isn't contains)</option>
+    </select>
+    <input id="inputdefault" type="text" placeholder="Position" name="filter_position">
+
+  </div>
+  <!-- SALARY -->
+  <div id="salary_value">
+
+    <select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary">
+      <option value="1">=</option>
+      <option value="2">มากกว่าเท่ากับ (>=)</option>
+      <option value="3">น้อยกว่าเท่ากับ (<=)</option>
+      <option value="4">มากกว่า (>)</option>
+      <option value="5">น้อยกว่า (<)</option>
+      <option value="6">ระหว่าง (Between)</option>
+    </select>
+    <input id="inputdefault" type="text" placeholder="Salary" name="filter_salary">
+  </div>
+
+  <button id="add" onclick="text_append()">ADD</button>
+  <!-- <div id="texthere" style="border: 1px solid rgb(204, 204, 204); margin: 5px 0pt; padding: 5px;"></div> -->
+  <div id="tags" class="cf">
+
+  </div>
+
+
+
+</body>
+
+<script src="/static/js/tagify.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+$("[id='filter_option']").change(function()
+{
+  if($(this).val() == "1"){
+    $("[id='position_value']").show();
+  } else {
+    $("[id='position_value']").hide();
+  }
+  if($(this).val() == "2"){
+    $("[id='salary_value']").show();
+  } else {
+    $("[id='salary_value']").hide();
+  }
+});
+$("[id='position_value']").hide();
+$("[id='salary_value']").hide();
+
+// $("#add").click(function() { //when user clicks add
+//   var type = $("#filter_option").val(); //get the input from the select
+//   $('#texthere').val(type);
+// });
+
+function text_append() {
+  window.alert("เข้า Append นะ")
+
+  filter_option = $('#position_option').val();
+  if (filter_option == "1") {
+    filter_option = "is";
+  }
+  val = $('#filter_option').val();
+  // $('#texthere').append($('#filter_option').val() + filter_option);
+  $('#tags').append($('<div>').addClass('tag').html(val));
+}
+
+$('#tags').on('click', '.tag', function(e) {
+    var $t = $(e.target);
+    txt = $.trim($t.text());
+    $t.remove();
+    delete $('#tagname').data('tmap')[txt];
+});
+
+
+</script>
+</html>

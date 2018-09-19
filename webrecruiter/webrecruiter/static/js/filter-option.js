@@ -47,6 +47,7 @@ $("[id='filter_option']").change(function()
 		$("[id='faculty_value']").hide();
 	}
 
+
 });
 $("[id='position_value']").hide();
 $("[id='salary_value']").hide();

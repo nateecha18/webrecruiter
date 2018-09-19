@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <select class="form-control input-sm" name="filter_option" id="filter_option">
+    <option disabled="" selected="">Select a filter</option>
+    <option value="1">Position</option>
+    <option value="2">Salary</option>
+    <option value="3">Age</option>
+    <option value="4">gender</option>
+    <option value="5">nationality</option>
+    <option value="6">status</option>
+  </select>
+  <div id="container">
+
+  </div>
+  <div id="big_container">
+
+  </div>
+  <button id="add">ADD</button>
+  <div id="boxes">
+    <!-- POSITION -->
+    <div class="position_value">
+
+      <select class="form-control input-sm" style="margin-top:0px;" name="operator_position">
+        <option value="1">is</option>
+        <option value="2">isn't</option>
+        <option value="3">contains</option>
+        <option value="4">isn't contains</option>
+      </select>
+      <input class="form-control" id="inputdefault" type="text" placeholder="Position" name="filter_position">
+    </div>
+
+    <!-- SALARY -->
+    <div class="salary_value">
+      <select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary">
+        <option value="1">=</option>
+        <option value="2">>=</option>
+        <option value="3"><=</option>
+        <option value="4">></option>
+        <option value="5"><</option>
+        <option value="6">Between</option>
+      </select>
+      <input class="form-control" id="inputdefault" type="text" placeholder="Salary" name="filter_salary">
+    </div>
+  </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$("#filter_option").change(function() {
+  let elem;
+  let val = $("#filter_option").val(); //get the input from the select
+  if (val == 1) {
+    elem = $("#boxes .position_value").clone(); //create a clone of the element
+  } else if (val == 2) {
+    elem = $("#boxes .salary_value").clone();
+  } //add more for other options
+  else {
+    return;
+  }
+  $("#container").append(elem); //add the new element to the bottom
+  elem.show(); //show it
+});
+
+$(".position_value").hide();
+$(".salary_value").hide();
+
+$("#add").on('click', function(){ //when user clicks add
+  let elem;
+  elem = $("#filter_option").clone(); //create a clone of the element
+  $("#big_container").append(elem); //add the new element to the bottom
+  elem.show(); //show it
+});
+
+
+</script>
+</html>

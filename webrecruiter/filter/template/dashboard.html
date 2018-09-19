@@ -30,6 +30,13 @@
 
 	<link href="/static/css/filter_themify-icons.css" rel="stylesheet">
 
+	<style media="screen">
+	.selected_table {
+		color:  #ff9800;
+		font-weight: 100;
+	}
+	</style>
+
 	<!-- CSS Fresh Table -->
 	<link href="/static/css/filter_fresh-bootstrap-table.css" rel="stylesheet" />
 
@@ -101,7 +108,6 @@
 									<div class="content">
 										<ul class="list-unstyled team-members">
 
-
 											<div id="multifield-filter">
 												<div class="col-xs-12">
 													<div class="text-right">
@@ -114,9 +120,9 @@
 															<div class="col-lg-10 col-lg-offset-1">
 																<select class="form-control input-sm" style="margin-top:0px;" name="filter_option" id="filter_option">
 																	<option disabled="" selected="">Select a filter</option>
-																	<option value="1">ตำแหน่ง</option>
-																	<option value="2">เงินเดือนที่ต้องการ</option>
-																	<option value="3">อายุ</option>
+																	<option value="1">Position</option>
+																	<option value="2">Salary</option>
+																	<option value="3">Age</option>
 																	<option value="4">เพศ</option>
 																	<option value="5">สัญชาติ</option>
 																	<option value="6">สถานภาพ</option>
@@ -136,7 +142,7 @@
 														<div class="col-lg-8" id="position_value">
 															<div class="col-lg-4">
 																<select class="form-control input-sm" style="margin-top:0px;" name="operator_position">
-																	<option value="1">ตำแหน่งที่สมัคร</option>
+																	<option value="1">Position</option>
 																	<option value="2">ไม่ใช่ตำแหน่ง (isn't)</option>
 																	<option value="3">ตำแหน่งที่มี (contains)</option>
 																	<option value="4">ตำแหน่งที่ไม่มี (isn't contains)</option>
@@ -144,7 +150,7 @@
 															</div>
 															<div class="col-lg-8">
 																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="ตำแหน่งที่สมัคร" name="filter_position">
+																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="Position" name="filter_position">
 																</div>
 															</div>
 														</div>
@@ -152,7 +158,7 @@
 														<div class="col-lg-8" id="salary_value">
 															<div class="col-lg-4">
 																<select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary">
-																	<option value="1">เท่ากับ (=)</option>
+																	<option value="1">=</option>
 																	<option value="2">มากกว่าเท่ากับ (>=)</option>
 																	<option value="3">น้อยกว่าเท่ากับ (<=)</option>
 																	<option value="4">มากกว่า (>)</option>
@@ -162,7 +168,7 @@
 															</div>
 															<div class="col-lg-8">
 																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="เงินเดือนที่ต้องการ" name="filter_salary">
+																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="Salary" name="filter_salary">
 																</div>
 															</div>
 														</div>
@@ -170,7 +176,7 @@
 														<div class="col-lg-8" id="age_value">
 															<div class="col-lg-4">
 																<select class="form-control input-sm" style="margin-top:0px" id="age_oprator">
-																	<option value="1">เท่ากับ (=)</option>
+																	<option value="1">=</option>
 																	<option value="2">มากกว่าเท่ากับ (>=)</option>
 																	<option value="3">น้อยกว่าเท่ากับ (<=)</option>
 																	<option value="4">มากกว่า (>)</option>
@@ -804,7 +810,7 @@
 									<tr>
 										<td>
 											<label class="checkbox">
-												<input type="checkbox" data-toggle="checkbox" style="margin-top:-10px">
+												<input type="checkbox" data-toggle="checkbox">
 											</label>
 										</td>
 										<td>{{candidate.id_number}}</td>
@@ -964,7 +970,6 @@ function operateFormatter(value, row, index) {
 		'</a>'
 	].join('');
 }
-
 
 </script>
 
@@ -1127,6 +1132,40 @@ $('#multifield-filter').multifield({
 	btnAdd:'#btnAdd',
 	btnRemove:'.btnRemove',
 });
+</script>
+
+
+<script type="text/javascript">
+$("#test_option").change(function()
+{
+	if($(this).val() == "1"){
+		$("#test_value").show();
+	} else {
+		$("#test_value").hide();
+	}
+});
+$("#test_value").hide();
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#fresh-table tbody').on( 'click', 'tr', function () {
+		$(this).toggleClass('selected_table');
+		var value=$(this).find('td:nth-child(3)').html();
+		alert(value);
+	});
+});
+
+// $(document).ready(function() {
+// 	$('#fresh-table tbody .checkbox').on( 'click', function () {
+// 		$('#fresh-table tbody').toggleClass('selected_table');
+// 		var value=$('#fresh-table tbody').find('td:nth-child(3)').html();
+// 		alert(value);
+// 	});
+// });
+
+
 </script>
 
 </html>

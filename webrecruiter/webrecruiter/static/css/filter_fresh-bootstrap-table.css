@@ -901,9 +901,9 @@ div.fixed-table-scroll-outer {
 .fresh-table .bootstrap-table .table .radio,
 .fresh-table .bootstrap-table .table .checkbox {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 20;
   padding: 0;
-  width: 15px;
+  width: 20px;
 }
 .fresh-table .bootstrap-table .table > tfoot > tr > th,
 .fresh-table .bootstrap-table .table > thead > tr > td,
