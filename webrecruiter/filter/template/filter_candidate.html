@@ -25,6 +25,7 @@
 	<link href="/static/css/filter_demo.css" rel="stylesheet" />
 
 	<!--  Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Kanit:100,200,400,500,600|Roboto:100,300,400,500,700,900" rel="stylesheet">
 
@@ -40,13 +41,19 @@
 		width: 40px;
 		height: 40px;
 		margin: 0 20px 0 0;
-		border: 1px solid #68B3C8;
+		border: 1px solid #828282;
 		border-radius: 100%;
 		text-align: center;
 		margin: 0 0 10px 0;
 		line-height: 40px;
-		color: #ccc;
+		color: #565656;
 	}
+  i.icon-delete { color: #ec5454; }
+  i.icon-add { color: #565656; }
+  i.icon-submit { color: #ffff; }
+  .material-icons.md-18 { font-size: 18px; }
+  .material-icons.md-24 { font-size: 24px; }
+
 	</style>
 
 
@@ -121,11 +128,7 @@
 									<div class="content">
 
 										<div id="filter">
-											<div class="col-xs-12">
-												<div class="text-right">
-													<button type="button" id="add" class="btn btn-info btn-simple btn-xs">Add Filter</button>
-												</div>
-											</div>
+
 											<div id="1" class="filter_list">
 												<div class="row">
 													<div class="col-lg-4">
@@ -135,9 +138,9 @@
 														<div class="col-lg-10">
 															<select class="form-control" name="filter_option" id="filter_option1">
 																<option disabled="" selected="">Select a filter</option>
-																<option value="1">Position</option>
-																<option value="2">Salary</option>
-																<option value="3">Age</option>
+																<option value="1">ตำแหน่ง</option>
+																<option value="2">เงินเดือน</option>
+																<option value="3">อายุ</option>
 																<option value="4">เพศ</option>
 																<option value="5">สัญชาติ</option>
 																<option value="6">สถานภาพ</option>
@@ -157,7 +160,7 @@
 													<div class="col-lg-7" id="position_value1">
 														<div class="col-lg-4">
 															<select class="form-control" style="margin-top:0px;" name="operator_position">
-																<option value="1">Position</option>
+																<option value="1">ตำแหน่ง (is)</option>
 																<option value="2">ไม่ใช่ตำแหน่ง (isnot)</option>
 																<option value="3">ตำแหน่งที่มี (contains)</option>
 																<option value="4">ตำแหน่งที่ไม่มี (isnot contains)</option>
@@ -165,7 +168,7 @@
 														</div>
 														<div class="col-lg-8">
 															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Position" name="filter_position">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="ตำแหน่ง" name="filter_position">
 															</div>
 														</div>
 													</div>
@@ -183,7 +186,7 @@
 														</div>
 														<div class="col-lg-8">
 															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Salary" name="filter_salary">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="เงินเดือน" name="filter_salary">
 															</div>
 														</div>
 													</div>
@@ -191,7 +194,7 @@
 													<div class="col-lg-7" id="age_value1">
 														<div class="col-lg-4">
 															<select class="form-control" style="margin-top:0px">
-																<option value="1">=</option>
+																<option value="1">เท่ากับ (=)</option>
 																<option value="2">มากกว่าเท่ากับ (>=)</option>
 																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
 																<option value="4">มากกว่า (>)</option>
@@ -301,508 +304,29 @@
 													<!--  Delete Button  -->
 													<div class="col-lg-1">
 														<div class="text-center" style="margin-top: 8px;">
-															<button type="submit" id="1"class="btn btn-info btn-simple btn-xs btn_remove">Delete</button>
+															<button type="submit" id="1"class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete">delete</i></button>
 														</div>
 													</div>
 												</div><!-- End Row -->
 											</div><!-- End filter_list -->
 
 										</div><!-- End Filter -->
-
+                    <div class="footer">
+                      <hr />
+                      <div >
+                        <div class="row">
+                          <button type="button" id="add" class="btn btn-icon" style="margin-left: 32px;"><i class="material-icons md-18 icon-add">add</i></button>
+                          <button type="submit" id="submit" class="btn btn-submit" style="margin-left: 10px;"><i class="material-icons md-18 icon-submit">filter_list</i></button>
+                        </div>
+                      </div>
+                    </div>
 									</div>
 								</div>
 							</div>
 						</form>
 
 
-						<form action="submit_filter/" method="POST" enctype=multipart/form-data>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="header">
-										<h4 class="title">Filter Candidate</h4>
-									</div>
-									<div class="content">
-										<ul class="list-unstyled team-members">
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div id="multiplefield-position">
-													<div class="row">
-														<div class="col-xs-12">
-															<label class="checkbox">
-																<input type="checkbox" data-toggle="checkbox" class="checkbox_position" value="1" onchange="positionChanged()" name="checkbox_position">
-																ตำแหน่งที่สมัคร
-															</label>
-														</div>
-														<div class="position_detail">
-															<div class="col-xs-12">
-																<div class="text-right">
-																	<button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
-																</div>
-															</div>
-															<div class="row group">
-
-
-																<div class="col-xs-10 col-xs-offset-1">
-																	<select class="form-control input-sm" style="margin-top:20px;" name="operator_position">
-																		<option value="1">ตำแหน่ง (is)</option>
-																		<option value="2">ไม่ใช่ตำแหน่ง (isn't)</option>
-																		<option value="3">ตำแหน่งที่มี (contains)</option>
-																		<option value="4">ตำแหน่งที่ไม่มี (isn't contains)</option>
-																	</select>
-																</div>
-																<div class="col-xs-10 col-xs-offset-1">
-																	<div class="form-group">
-																		<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ตำแหน่งที่สมัคร" name="filter_position">
-																	</div>
-																</div>
-																<div class="col-xs-12">
-																	<div class="text-center">
-																		<button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_salary" value="1" onchange="salaryChanged()" name="checkbox_salary">
-															เงินเดือนที่ต้องการ
-														</label>
-													</div>
-													<div class="salary_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="salary_oprator" name="operator_salary">
-																<option value="1">เท่ากับ (=)</option>
-																<option value="2">มากกว่าเท่ากับ (>=)</option>
-																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
-																<option value="4">มากกว่า (>)</option>
-																<option value="5">น้อยกว่า (<)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="เงินเดือนที่ต้องการ" name="filter_salary">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox" for="checkbox1">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_blood" value="1" onchange="bloodChanged()" name="checkbox_blood">
-															กรุ๊ปเลือด
-														</label>
-													</div>
-													<div class="blood_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="blood_oprator" name="operator_blood">
-																<option value="1">กรุ๊ปเลือด (is)</option>
-																<option value="2">ไม่เอากรุ๊ปเลือด (isn't)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="กรุ๊ปเลือด" name="filter_blood">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_age" value="1" onchange="ageChanged()">
-															อายุ
-														</label>
-													</div>
-													<div class="age_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="age_oprator">
-																<option value="1">เท่ากับ (=)</option>
-																<option value="2">มากกว่าเท่ากับ (>=)</option>
-																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
-																<option value="4">มากกว่า (>)</option>
-																<option value="5">น้อยกว่า (<)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="อายุ">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_gender" value="1" onchange="genderChanged()" name="checkbox_gender">
-															เพศ
-														</label>
-													</div>
-													<div class="gender_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="gender_oprator" name="operator_gender">
-																<option value="1">เพศ (is)</option>
-																<option value="2">ไม่เอาเพศ (isn't)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:10px" id="gender_oprator" name="filter_gender">
-																<option value='m' selected>ชาย (Men)</option>
-																<option value='w'>หญิง (Women)</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_nationality" value="1" onchange="nationalityChanged()">
-															สัญชาติ
-														</label>
-													</div>
-													<div class="nationality_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="nationality_oprator">
-																<option value="">สัญชาติ (is)</option>
-																<option value="">ไม่เอาสัญชาติ (isn't)</option>
-																<option value="">สัญชาติที่เป็น (contains)</option>
-																<option value="">สัญชาติที่ไม่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="สัญชาติ">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_status" value="1" onchange="statusChanged()">
-															สถานภาพ
-														</label>
-													</div>
-													<div class="status_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="status_oprator">
-																<option value="">สถานภาพ (is)</option>
-																<option value="">ไม่เอาสถานภาพ (isn't)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:10px" id="status_oprator">
-																<option disabled="" selected=""></option>
-																<option value='S'>โสด (Single)</option>
-																<option value='M'>สมรส (Married)</option>
-																<option value='I'>หม้าย (Widowed)</option>
-																<option value='D'>หย่า (Divorced)</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_edu" value="1" onchange="eduChanged()">
-															สถานะการศึกษาปัจจุบัน
-														</label>
-													</div>
-													<div class="edu_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="edu_oprator">
-																<option value="">อยู่ระหว่างการศึกษา</option>
-																<option value="">สำเร็จการศึกษาแล้ว</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div id="multiplefield-university">
-													<div class="row">
-														<div class="col-xs-12">
-															<label class="checkbox">
-																<input type="checkbox" data-toggle="checkbox" class="checkbox_university" value="1" onchange="universityChanged()">
-																มหาวิทยาลัย
-															</label>
-														</div>
-														<div class="university_detail">
-															<div class="col-xs-12">
-																<div class="text-right">
-																	<button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
-																</div>
-															</div>
-															<div class="row group">
-																<div class="col-xs-10 col-xs-offset-1">
-																	<select class="form-control input-sm" style="margin-top:20px" id="university_oprator">
-																		<option value="">มหาวิทยาลัย (is)</option>
-																		<option value="">ไม่เอามหาวิทยาลัย (isn't)</option>
-																		<option value="">มหาวิทยาลัยที่เป็น (contains)</option>
-																		<option value="">มหาวิทยาลัยที่ไม่เป็น (isn't contains)</option>
-																	</select>
-																</div>
-																<div class="col-xs-10 col-xs-offset-1">
-																	<div class="form-group">
-																		<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="มหาวิทยาลัย">
-																	</div>
-																</div>
-																<div class="col-xs-12">
-																	<div class="text-center">
-																		<button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_faculty" value="1" onchange="facultyChanged()">
-															คณะ
-														</label>
-													</div>
-													<div class="faculty_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="faculty_oprator">
-																<option value="">คณะ (is)</option>
-																<option value="">ไม่เอาคณะ (isn't)</option>
-																<option value="">คณะที่เป็น (contains)</option>
-																<option value="">คณะที่ไม่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="คณะ">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_major" value="1" onchange="majorChanged()">
-															สาขาวิชา
-														</label>
-													</div>
-													<div class="major_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="major_oprator">
-																<option value="">สาขา (is)</option>
-																<option value="">ไม่เอาสาขา (isn't)</option>
-																<option value="">สาขาที่เป็น (contains)</option>
-																<option value="">สาขาที่ไม่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="สาขาวิชา">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_gpa" value="1" onchange="gpaChanged()" name="checkbox_gpa">
-															เกรดเฉลี่ย (GPA)
-														</label>
-													</div>
-													<div class="gpa_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="gpa_oprator" name="operator_gpa">
-																<option value="1">เท่ากับ (=)</option>
-																<option value="2">มากกว่าเท่ากับ (>=)</option>
-																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
-																<option value="4">มากกว่า (>)</option>
-																<option value="5">น้อยกว่า (<)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="เกรดเฉลี่ย" name="filter_gpa">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div id="multiplefield-computer">
-													<div class="row">
-														<div class="col-xs-12">
-															<label class="checkbox">
-																<input type="checkbox" data-toggle="checkbox" class="checkbox_computer" value="1" onchange="computerChanged()">
-																ความสามารถด้านคอมพิวเตอร์
-															</label>
-														</div>
-														<div class="computer_detail">
-															<div class="col-xs-12">
-																<div class="text-right">
-																	<button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
-																</div>
-															</div>
-															<div class="row group">
-																<div class="col-xs-10 col-xs-offset-1">
-																	<select class="form-control input-sm" style="margin-top:20px" id="computer_oprator">
-																		<option value="">มีความสามารถ (is)</option>
-																		<option value="">ไม่เอาความสามารถ (isn't)</option>
-																		<option value="">ความสามารถที่เป็น (contains)</option>
-																		<option value="">ไม่เอาความสามารถที่เป็น (isn't contains)</option>
-																	</select>
-																</div>
-																<div class="col-xs-10 col-xs-offset-1">
-																	<div class="form-group">
-																		<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านคอมพิวเตอร์">
-																	</div>
-																</div>
-																<div class="col-xs-12">
-																	<div class="text-center">
-																		<button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_language" value="1" onchange="languageChanged()">
-															ความสามารถด้านภาษา
-														</label>
-													</div>
-													<div class="language_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="language_oprator">
-																<option value="">มีความสามารถภาษา (is)</option>
-																<option value="">ไม่เอาความสามารถภาษา (isn't)</option>
-																<option value="">ความสามารถภาษาที่เป็น (contains)</option>
-																<option value="">ไม่เอาความสามารถภาษาที่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านภาษา">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_cert" value="1" onchange="certChanged()">
-															การอบรม ประกาศนียบัตร และ รางวัล
-														</label>
-													</div>
-													<div class="cert_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="cert_oprator">
-																<option value="">มีการอบรม ประกาศนียบัตร หรือ รางวัล (is)</option>
-																<option value="">ไม่มีการอบรม ประกาศนียบัตร หรือ รางวัล (is) (isn't)</option>
-																<option value="">มีการอบรม ประกาศนียบัตร หรือ รางวัลที่เป็น (contains)</option>
-																<option value="">ไม่มีการอบรม ประกาศนียบัตร หรือ รางวัลที่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านภาษา">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<label class="checkbox">
-															<input type="checkbox" data-toggle="checkbox" class="checkbox_work" value="1" onchange="workChanged()">
-															ประสบการณ์ทำงาน ฝึกงาน
-														</label>
-													</div>
-													<div class="work_detail">
-														<div class="col-xs-10 col-xs-offset-1">
-															<select class="form-control input-sm" style="margin-top:20px" id="work_oprator">
-																<option value="">มีการอบรม ประกาศนียบัตร หรือ รางวัล (is)</option>
-																<option value="">ไม่มีการอบรม ประกาศนียบัตร หรือ รางวัล (is) (isn't)</option>
-																<option value="">มีการอบรม ประกาศนียบัตร หรือ รางวัลที่เป็น (contains)</option>
-																<option value="">ไม่มีการอบรม ประกาศนียบัตร หรือ รางวัลที่เป็น (isn't contains)</option>
-															</select>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<input class="form-control" style="border-radius:5px;height:29px;margin-top:10px;" id="inputdefault" type="text" placeholder="ความสามารถด้านภาษา">
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- ________________________________________________________________________________________________________________________ -->
-											<li>
-												<div class="row">
-													<div class="col-xs-12">
-														<br>
-														<div class="text-center">
-															<button type="submit" class="btn btn-info btn-fill btn-wd">Apply Filter</button>
-														</div>
-													</div>
-													<div class="col-xs-12">
-														<div class="text-center">
-															<button type="button" class="btn btn-info btn-simple btn-wd">clear</button>
-														</div>
-													</div>
-
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</form>
-
-
-						<div class="col-md-9">
+						<div class="col-md-12">
 							<div class="fresh-table">
 								<!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
 								Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
@@ -990,163 +514,9 @@ function operateFormatter(value, row, index) {
 
 </script>
 
-<script type="text/javascript">
-// function เพิ่มข้อมูลการศึกษาปัจจุบัน ถ้ากำลังเรียนอยู่
-$(".position_detail").hide();
-$(".salary_detail").hide();
-$(".blood_detail").hide();
-$(".age_detail").hide();
-$(".gender_detail").hide();
-$(".nationality_detail").hide();
-$(".status_detail").hide();
-$(".edu_detail").hide();
-$(".university_detail").hide();
-$(".faculty_detail").hide();
-$(".major_detail").hide();
-$(".gpa_detail").hide();
-$(".computer_detail").hide();
-$(".language_detail").hide();
-$(".cert_detail").hide();
-$(".work_detail").hide();
-
-function positionChanged(){
-	if($('.checkbox_position').is(":checked")){
-		$(".position_detail").show();
-	} else {
-		$(".position_detail").hide();
-	}
-}
-function salaryChanged(){
-	if($('.checkbox_salary').is(":checked")){
-		$(".salary_detail").show();
-	} else {
-		$(".salary_detail").hide();
-	}
-}
-function bloodChanged(){
-	if($('.checkbox_blood').is(":checked")){
-		$(".blood_detail").show();
-	} else {
-		$(".blood_detail").hide();
-	}
-}
-function ageChanged(){
-	if($('.checkbox_age').is(":checked")){
-		$(".age_detail").show();
-	} else {
-		$(".age_detail").hide();
-	}
-}
-function genderChanged(){
-	if($('.checkbox_gender').is(":checked")){
-		$(".gender_detail").show();
-	} else {
-		$(".gender_detail").hide();
-	}
-}
-function nationalityChanged(){
-	if($('.checkbox_nationality').is(":checked")){
-		$(".nationality_detail").show();
-	} else {
-		$(".nationality_detail").hide();
-	}
-}
-function statusChanged(){
-	if($('.checkbox_status').is(":checked")){
-		$(".status_detail").show();
-	} else {
-		$(".status_detail").hide();
-	}
-}
-function eduChanged(){
-	if($('.checkbox_edu').is(":checked")){
-		$(".edu_detail").show();
-	} else {
-		$(".edu_detail").hide();
-	}
-}
-function universityChanged(){
-	if($('.checkbox_university').is(":checked")){
-		$(".university_detail").show();
-	} else {
-		$(".university_detail").hide();
-	}
-}
-function facultyChanged(){
-	if($('.checkbox_faculty').is(":checked")){
-		$(".faculty_detail").show();
-	} else {
-		$(".faculty_detail").hide();
-	}
-}
-function majorChanged(){
-	if($('.checkbox_major').is(":checked")){
-		$(".major_detail").show();
-	} else {
-		$(".major_detail").hide();
-	}
-}
-function gpaChanged(){
-	if($('.checkbox_gpa').is(":checked")){
-		$(".gpa_detail").show();
-	} else {
-		$(".gpa_detail").hide();
-	}
-}
-function computerChanged(){
-	if($('.checkbox_computer').is(":checked")){
-		$(".computer_detail").show();
-	} else {
-		$(".computer_detail").hide();
-	}
-}
-function languageChanged(){
-	if($('.checkbox_language').is(":checked")){
-		$(".language_detail").show();
-	} else {
-		$(".language_detail").hide();
-	}
-}
-function certChanged(){
-	if($('.checkbox_cert').is(":checked")){
-		$(".cert_detail").show();
-	} else {
-		$(".cert_detail").hide();
-	}
-}
-function workChanged(){
-	if($('.checkbox_work').is(":checked")){
-		$(".work_detail").show();
-	} else {
-		$(".work_detail").hide();
-	}
-}
-</script>
-
 
 <script src="/static/js/filter-option.js"></script>
 <script src="/static/js/smart_filter.js"></script>
-
-<!-- Multiple field Add -->
-<script src="/static/js/jquery.multifield.js"></script>
-<script>
-$('#multiplefield-position').multifield({
-	section: '.group',
-	btnAdd:'#btnAdd',
-	btnRemove:'.btnRemove',
-});
-$('#multiplefield-university').multifield({
-	section: '.group',
-	btnAdd:'#btnAdd',
-	btnRemove:'.btnRemove',
-});
-$('#multiplefield-computer').multifield({
-	section: '.group',
-	btnAdd:'#btnAdd',
-	btnRemove:'.btnRemove',
-});
-</script>
-
 
 <script type="text/javascript">
 
