@@ -1,60 +1,60 @@
 
-$("[id='filter_option']").change(function()
+$("#filter_option1").change(function()
 {
 	if($(this).val() == "1"){
-		$("[id='position_value']").show();
+		$("#position_value1").show();
 	} else {
-		$("[id='position_value']").hide();
+		$("#position_value1").hide();
 	}
 	if($(this).val() == "2"){
-		$("[id='salary_value']").show();
+		$("#salary_value1").show();
 	} else {
-		$("[id='salary_value']").hide();
+		$("#salary_value1").hide();
 	}
 	if($(this).val() == "3"){
-		$("[id='age_value']").show();
+		$("#age_value1").show();
 	} else {
-		$("[id='age_value']").hide();
+		$("#age_value1").hide();
 	}
 	if($(this).val() == "4"){
-		$("[id='gender_value']").show();
+		$("#gender_value1").show();
 	} else {
-		$("[id='gender_value']").hide();
+		$("#gender_value1").hide();
 	}
 	if($(this).val() == "5"){
-		$("[id='nationality_value']").show();
+		$("#nationality_value1").show();
 	} else {
-		$("[id='nationality_value']").hide();
+		$("#nationality_value1").hide();
 	}
 	if($(this).val() == "6"){
-		$("[id='status_value']").show();
+		$("#status_value1").show();
 	} else {
-		$("[id='status_value']").hide();
+		$("#status_value1").hide();
 	}
 	if($(this).val() == "7"){
-		$("[id='edu_value']").show();
+		$("#edu_value1").show();
 	} else {
-		$("[id='edu_value']").hide();
+		$("#edu_value1").hide();
 	}
 	if($(this).val() == "8"){
-		$("[id='university_value']").show();
+		$("#university_value1").show();
 	} else {
-		$("[id='university_value']").hide();
+		$("#university_value1").hide();
 	}
 	if($(this).val() == "9"){
-		$("[id='faculty_value']").show();
+		$("#faculty_value1").show();
 	} else {
-		$("[id='faculty_value']").hide();
+		$("#faculty_value1").hide();
 	}
 
 
 });
-$("[id='position_value']").hide();
-$("[id='salary_value']").hide();
-$("[id='age_value']").hide();
-$("[id='gender_value']").hide();
-$("[id='nationality_value']").hide();
-$("[id='status_value']").hide();
-$("[id='edu_value']").hide();
-$("[id='university_value']").hide();
-$("[id='faculty_value']").hide();
+$("#position_value1").hide();
+$("#salary_value1").hide();
+$("#age_value1").hide();
+$("#gender_value1").hide();
+$("#nationality_value1").hide();
+$("#status_value1").hide();
+$("#edu_value1").hide();
+$("#university_value1").hide();
+$("#faculty_value1").hide();

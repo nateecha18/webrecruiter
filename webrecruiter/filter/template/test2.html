@@ -55,10 +55,12 @@
   <div id="texthere" style="border: 1px solid rgb(204, 204, 204); margin: 5px 0pt; padding: 5px;"></div>
 
 </body>
+
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-
 $("[id='filter_option']").change(function()
 {
   if($(this).val() == "1"){
@@ -74,11 +76,6 @@ $("[id='filter_option']").change(function()
 });
 $("[id='position_value']").hide();
 $("[id='salary_value']").hide();
-
-// $("#add").click(function() { //when user clicks add
-//   var type = $("#filter_option").val(); //get the input from the select
-//   $('#texthere').val(type);
-// });
 
 function text_append() {
   window.alert("เข้า Append นะ")

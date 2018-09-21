@@ -1,0 +1,92 @@
+$(document).ready(function(){
+  var i=1;
+  $('#add').click(function(){
+    i++;
+    var append_text = '';
+    // Head (Filter Select + Add More button)
+    append_text = '<div id="'+i+'" class="filter_list"> <div class="row"> <div class="col-lg-4"> <div class="col-lg-2 text-center"> <span class="number_circle">'+i+'</span> </div><div class="col-lg-10"> <select class="form-control" name="filter_option" id="filter_option'+i+'"> <option disabled="" selected="">Select a filter</option> <option value="1">Position</option> <option value="2">Salary</option> <option value="3">Age</option> <option value="4">เพศ</option> <option value="5">สัญชาติ</option> <option value="6">สถานภาพ</option> <option value="7">สถานะการศึกษาปัจจุบัน</option> <option value="8">มหาวิทยาลัย</option> <option value="9">คณะ</option> <option value="10">สาขาวิชา</option> <option value="11">เกรดเฉลี่ย</option> <option value="12">ความสามารถด้านคอมพิวเตอร์</option> <option value="13">ความสามารถด้านภาษา</option> <option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option> <option value="15">ประสบการณ์ทำงาน ฝึกงาน</option> </select> </div></div>';
+    // Detaill Input field
+    append_text += ' <div class="col-lg-7" id="position_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px;" name="operator_position"> <option value="1">Position</option> <option value="2">ไม่ใช่ตำแหน่ง (isnot)</option> <option value="3">ตำแหน่งที่มี (contains)</option> <option value="4">ตำแหน่งที่ไม่มี (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Position" name="filter_position"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="salary_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_salary"> <option value="1">=</option> <option value="2">มากกว่าเท่ากับ (>=)</option> <option value="3">น้อยกว่าเท่ากับ (<=)</option> <option value="4">มากกว่า (>)</option> <option value="5">น้อยกว่า (<)</option> <option value="6">ระหว่าง (Between)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Salary" name="filter_salary"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="age_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px"> <option value="1">=</option> <option value="2">มากกว่าเท่ากับ (>=)</option> <option value="3">น้อยกว่าเท่ากับ (<=)</option> <option value="4">มากกว่า (>)</option> <option value="5">น้อยกว่า (<)</option> <option value="6">ระหว่าง (Between)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="อายุ" name="filter_age"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="gender_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_gender"> <option value="1">เพศ (is)</option> <option value="2">ไม่เอาเพศ (isnot)</option> </select> </div><div class="col-lg-8"> <select class="form-control" style="margin-top:0px" name="filter_gender"> <option value="m" selected>ชาย (Men)</option> <option value="w">หญิง (Women)</option> </select> </div></div>';
+    append_text += ' <div class="col-lg-7" id="nationality_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px"> <option value="">สัญชาติ (is)</option> <option value="">ไม่เอาสัญชาติ (isnot)</option> <option value="">สัญชาติที่เป็น (contains)</option> <option value="">สัญชาติที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="สัญชาติ" name="filter_nationality"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="status_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_status"> <option value="">สถานภาพ (is)</option> <option value="">ไม่เอาสถานภาพ (isnot)</option> </select> </div><div class="col-lg-8"> <select class="form-control" style="margin-top:0px" name="filter_status"> <option disabled="" selected=""></option> <option value="S">โสด (Single)</option> <option value="M">สมรส (Married)</option> <option value="I">หม้าย (Widowed)</option> <option value="D">หย่า (Divorced)</option> </select> </div></div>';
+    append_text += ' <div class="col-lg-7" id="edu_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_edu"> <option value="">อยู่ระหว่างการศึกษา</option> <option value="">สำเร็จการศึกษาแล้ว</option> </select> </div><div class="col-lg-8"> <p> </p></div></div>';
+    append_text += ' <div class="col-lg-7" id="university_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_university"> <option value="">มหาวิทยาลัย (is)</option> <option value="">ไม่เอามหาวิทยาลัย (isnot)</option> <option value="">มหาวิทยาลัยที่เป็น (contains)</option> <option value="">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="มหาวิทยาลัย" name="filter_university"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="faculty_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_faculty"> <option value="">คณะ (is)</option> <option value="">ไม่เอาคณะ (isnot)</option> <option value="">คณะที่เป็น (contains)</option> <option value="">คณะที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty"> </div></div></div>';
+    // Other Detail here!
+    // End (Delete button)
+    append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="submit" id="'+i+'"class="btn btn-info btn-simple btn-xs btn_remove">Delete</button> </div></div></div></div>';
+
+    $('#filter').append(append_text);
+
+    $('#position_value'+i+'').hide();
+    $('#salary_value'+i+'').hide();
+    $('#age_value'+i+'').hide();
+    $('#gender_value'+i+'').hide();
+    $('#nationality_value'+i+'').hide();
+    $('#status_value'+i+'').hide();
+    $('#edu_value'+i+'').hide();
+    $('#university_value'+i+'').hide();
+    $('#faculty_value'+i+'').hide();
+
+
+  });
+  $(document).on('change', '.filter_list', function(){
+    var button_id = $(this).attr("id");
+    var value = $('#filter_option'+button_id+'').val();
+    alert(button_id+"    |    "+value + "       |      "+i);
+    if(value == "1"){
+      $('#position_value'+button_id+'').show();
+    } else {
+      $('#position_value'+button_id+'').hide();
+    }
+    if(value == "2"){
+      $('#salary_value'+button_id+'').show();
+    } else {
+      $('#salary_value'+button_id+'').hide();
+    }
+    if(value == "3"){
+      $('#age_value'+button_id+'').show();
+    } else {
+      $('#age_value'+button_id+'').hide();
+    }
+    if(value == "4"){
+      $('#gender_value'+button_id+'').show();
+    } else {
+      $('#gender_value'+button_id+'').hide();
+    }
+    if(value == "5"){
+      $('#nationality_value'+button_id+'').show();
+    } else {
+      $('#nationality_value'+button_id+'').hide();
+    }
+    if(value == "6"){
+      $('#status_value'+button_id+'').show();
+    } else {
+      $('#status_value'+button_id+'').hide();
+    }
+    if(value == "7"){
+      $('#edu_value'+button_id+'').show();
+    } else {
+      $('#edu_value'+button_id+'').hide();
+    }
+    if(value == "8"){
+      $('#university_value'+button_id+'').show();
+    } else {
+      $('#university_value'+button_id+'').hide();
+    }
+    if(value == "9"){
+      $('#faculty_value'+button_id+'').show();
+    } else {
+      $('#faculty_value'+button_id+'').hide();
+    }
+  });
+  $(document).on('click', '.btn_remove', function(){
+    alert("เข้าเว้ยยย" + i)
+    var button_id = $(this).attr("id");
+    $('#'+button_id+'').remove();
+    // i=i-1;
+  });
+});

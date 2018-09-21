@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<style media="screen">
+body { padding: 10px;}
+
+.clonedInput { padding: 10px; border-radius: 5px; background-color: #def; margin-bottom: 10px; }
+
+.clonedInput div { margin: 5px; }
+</style>
+<body>
+  <div id="filter">
+    <div id="filter_list" class="clonedInput">
+      <select class="form-control input-sm" style="margin-top:0px;" name="filter_option" id="filter_option">
+        <option disabled="" selected="">Select a filter</option>
+        <option value="1">Position</option>
+        <option value="2">Salary</option>
+      </select>
+
+      <!-- POSITION!! -->
+      <div id="position_value">
+        <select class="form-control input-sm" style="margin-top:0px;" name="operator_position" id="position_option">
+          <option value="1">is</option>
+          <option value="2">isn't</option>
+        </select>
+        <input id="input_position" type="text" placeholder="Position" name="filter_position">
+
+      </div>
+      <!-- SALARY!! -->
+      <div id="salary_value">
+        <select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary">
+          <option value="1">=</option>
+          <option value="2">>=</option>
+          <option value="3"><=</option>
+        </select>
+        <input id="input_position" type="text" placeholder="Salary" name="filter_salary">
+      </div>
+      <button type="button" id="add">Add More</button>
+    </div>
+  </div>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var i=1;
+  $('#add').click(function(){
+    i++;
+    $('#filter').append('<div id="'+i+'" class="clonedInput filter_list"> <select class="form-control input-sm" style="margin-top:0px;" name="filter_option" id="filter_option'+i+'"> <option disabled="" selected="">Select a filter</option> <option value="1">Position</option> <option value="2">Salary</option> </select> <div id="position_value'+i+'"> <select class="form-control input-sm" style="margin-top:0px;" name="operator_position" id="position_option"> <option value="1">is</option> <option value="2">isnot</option> </select> <input id="input_position" type="text" placeholder="Position" name="filter_position"> </div><div id="salary_value'+i+'"> <select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary"> <option value="1">=</option> <option value="2">>=</option> <option value="3"><=</option> </select> <input id="input_position" type="text" placeholder="Salary" name="filter_salary"> </div><button type="button" name="remove" id="'+i+
+    '" class="btn_remove">X</button><button type="button" name="hide" id="'+i+'" class="btn_hide">hide</button> </div> ');
+    $('#position_value'+i+'').hide();
+    $('#salary_value'+i+'').hide();
+  });
+  $(document).on('change', '.filter_list', function(){
+    var button_id = $(this).attr("id");
+    var value = $('#filter_option'+button_id+'').val();
+    alert(button_id+"    |    "+value)
+    if(value == "1"){
+      $('#position_value'+button_id+'').show();
+    } else {
+      $('#position_value'+button_id+'').hide();
+    }
+    if(value == "2"){
+      $('#salary_value'+button_id+'').show();
+    } else {
+      $('#salary_value'+button_id+'').hide();
+    }
+  });
+  $(document).on('click', '.btn_remove', function(){
+    alert("เข้าเว้ยยย")
+    var button_id = $(this).attr("id");
+    $('#'+button_id+'').remove();
+  });
+});
+</script>
+
+<script type="text/javascript">
+$("#filter_option").change(function()
+{
+  if($(this).val() == "1"){
+    $("#position_value").show();
+  } else {
+    $("#position_value").hide();
+  }
+  if($(this).val() == "2"){
+    $("#salary_value").show();
+  } else {
+    $("#salary_value").hide();
+  }
+});
+$("#position_value").hide();
+$("#salary_value").hide();
+</script>
+
+</html>

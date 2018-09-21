@@ -35,7 +35,20 @@
 		color:  #ff9800;
 		font-weight: 100;
 	}
+	.number_circle{
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		margin: 0 20px 0 0;
+		border: 1px solid #68B3C8;
+		border-radius: 100%;
+		text-align: center;
+		margin: 0 0 10px 0;
+		line-height: 40px;
+		color: #ccc;
+	}
 	</style>
+
 
 	<!-- CSS Fresh Table -->
 	<link href="/static/css/filter_fresh-bootstrap-table.css" rel="stylesheet" />
@@ -106,192 +119,196 @@
 									</div>
 
 									<div class="content">
-										<ul class="list-unstyled team-members">
 
-											<div id="multifield-filter">
-												<div class="col-xs-12">
-													<div class="text-right">
-														<button type="submit" id="btnAdd" class="btn btn-info btn-simple btn-xs">Add more</button>
-													</div>
-												</div>
-												<div class="row group">
-													<li>
-														<div class="col-lg-4">
-															<div class="col-lg-10 col-lg-offset-1">
-																<select class="form-control input-sm" style="margin-top:0px;" name="filter_option" id="filter_option">
-																	<option disabled="" selected="">Select a filter</option>
-																	<option value="1">Position</option>
-																	<option value="2">Salary</option>
-																	<option value="3">Age</option>
-																	<option value="4">เพศ</option>
-																	<option value="5">สัญชาติ</option>
-																	<option value="6">สถานภาพ</option>
-																	<option value="7">สถานะการศึกษาปัจจุบัน</option>
-																	<option value="8">มหาวิทยาลัย</option>
-																	<option value="9">คณะ</option>
-																	<option value="10">สาขาวิชา</option>
-																	<option value="11">เกรดเฉลี่ย</option>
-																	<option value="12">ความสามารถด้านคอมพิวเตอร์</option>
-																	<option value="13">ความสามารถด้านภาษา</option>
-																	<option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option>
-																	<option value="15">ประสบการณ์ทำงาน ฝึกงาน</option>
-																</select>
-															</div>
-														</div>
-														<!-- POSITION -->
-														<div class="col-lg-8" id="position_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px;" name="operator_position">
-																	<option value="1">Position</option>
-																	<option value="2">ไม่ใช่ตำแหน่ง (isn't)</option>
-																	<option value="3">ตำแหน่งที่มี (contains)</option>
-																	<option value="4">ตำแหน่งที่ไม่มี (isn't contains)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="Position" name="filter_position">
-																</div>
-															</div>
-														</div>
-														<!-- SALARY -->
-														<div class="col-lg-8" id="salary_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="salary_oprator" name="operator_salary">
-																	<option value="1">=</option>
-																	<option value="2">มากกว่าเท่ากับ (>=)</option>
-																	<option value="3">น้อยกว่าเท่ากับ (<=)</option>
-																	<option value="4">มากกว่า (>)</option>
-																	<option value="5">น้อยกว่า (<)</option>
-																	<option value="6">ระหว่าง (Between)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="Salary" name="filter_salary">
-																</div>
-															</div>
-														</div>
-														<!-- AGE -->
-														<div class="col-lg-8" id="age_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="age_oprator">
-																	<option value="1">=</option>
-																	<option value="2">มากกว่าเท่ากับ (>=)</option>
-																	<option value="3">น้อยกว่าเท่ากับ (<=)</option>
-																	<option value="4">มากกว่า (>)</option>
-																	<option value="5">น้อยกว่า (<)</option>
-																	<option value="6">ระหว่าง (Between)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="อายุ">
-																</div>
-															</div>
-														</div>
-														<!-- GENDER -->
-														<div class="col-lg-8" id="gender_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="gender_oprator" name="operator_gender">
-																	<option value="1">เพศ (is)</option>
-																	<option value="2">ไม่เอาเพศ (isn't)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<select class="form-control input-sm" style="margin-top:0px" id="gender_oprator" name="filter_gender">
-																	<option value='m' selected>ชาย (Men)</option>
-																	<option value='w'>หญิง (Women)</option>
-																</select>
-															</div>
-														</div>
-														<!-- NATIONALITY -->
-														<div class="col-lg-8" id="nationality_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="nationality_oprator">
-																	<option value="">สัญชาติ (is)</option>
-																	<option value="">ไม่เอาสัญชาติ (isn't)</option>
-																	<option value="">สัญชาติที่เป็น (contains)</option>
-																	<option value="">สัญชาติที่ไม่เป็น (isn't contains)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="สัญชาติ">
-																</div>
-															</div>
-														</div>
-														<!-- STATUS -->
-														<div class="col-lg-8" id="status_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="status_oprator">
-																	<option value="">สถานภาพ (is)</option>
-																	<option value="">ไม่เอาสถานภาพ (isn't)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<select class="form-control input-sm" style="margin-top:0px" id="status_oprator">
-																	<option disabled="" selected=""></option>
-																	<option value='S'>โสด (Single)</option>
-																	<option value='M'>สมรส (Married)</option>
-																	<option value='I'>หม้าย (Widowed)</option>
-																	<option value='D'>หย่า (Divorced)</option>
-																</select>
-															</div>
-														</div>
-														<!-- EDU -->
-														<div class="col-lg-8" id="edu_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="edu_oprator">
-																	<option value="">อยู่ระหว่างการศึกษา</option>
-																	<option value="">สำเร็จการศึกษาแล้ว</option>
-																</select>
-															</div>
-														</div>
-														<!-- STATUS -->
-														<div class="col-lg-8" id="university_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="university_oprator">
-																	<option value="">มหาวิทยาลัย (is)</option>
-																	<option value="">ไม่เอามหาวิทยาลัย (isn't)</option>
-																	<option value="">มหาวิทยาลัยที่เป็น (contains)</option>
-																	<option value="">มหาวิทยาลัยที่ไม่เป็น (isn't contains)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="มหาวิทยาลัย">
-																</div>
-															</div>
-														</div>
-														<!-- FACULTY -->
-														<div class="col-lg-8" id="faculty_value">
-															<div class="col-lg-4">
-																<select class="form-control input-sm" style="margin-top:0px" id="faculty_oprator">
-																	<option value="">คณะ (is)</option>
-																	<option value="">ไม่เอาคณะ (isn't)</option>
-																	<option value="">คณะที่เป็น (contains)</option>
-																	<option value="">คณะที่ไม่เป็น (isn't contains)</option>
-																</select>
-															</div>
-															<div class="col-lg-8">
-																<div class="form-group">
-																	<input class="form-control" style="border-radius:5px;height:29px;margin-top:0px;" id="inputdefault" type="text" placeholder="คณะ">
-																</div>
-															</div>
-														</div>
-
-
-														<!-- -------------------------------- Delete Button ----------------------------------- -->
-														<div class="col-xs-12">
-															<div class="text-center">
-																<button type="submit" class="btn btn-info btn-simple btn-xs btnRemove">Delete</button>
-															</div>
-														</div>
-													</li>
+										<div id="filter">
+											<div class="col-xs-12">
+												<div class="text-right">
+													<button type="button" id="add" class="btn btn-info btn-simple btn-xs">Add Filter</button>
 												</div>
 											</div>
-										</ul>
+											<div id="1" class="filter_list">
+												<div class="row">
+													<div class="col-lg-4">
+														<div class="col-lg-2 text-center">
+															<span class="number_circle">1</span>
+														</div>
+														<div class="col-lg-10">
+															<select class="form-control" name="filter_option" id="filter_option1">
+																<option disabled="" selected="">Select a filter</option>
+																<option value="1">Position</option>
+																<option value="2">Salary</option>
+																<option value="3">Age</option>
+																<option value="4">เพศ</option>
+																<option value="5">สัญชาติ</option>
+																<option value="6">สถานภาพ</option>
+																<option value="7">สถานะการศึกษาปัจจุบัน</option>
+																<option value="8">มหาวิทยาลัย</option>
+																<option value="9">คณะ</option>
+																<option value="10">สาขาวิชา</option>
+																<option value="11">เกรดเฉลี่ย</option>
+																<option value="12">ความสามารถด้านคอมพิวเตอร์</option>
+																<option value="13">ความสามารถด้านภาษา</option>
+																<option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option>
+																<option value="15">ประสบการณ์ทำงาน ฝึกงาน</option>
+															</select>
+														</div>
+													</div>
+													<!-- POSITION -->
+													<div class="col-lg-7" id="position_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px;" name="operator_position">
+																<option value="1">Position</option>
+																<option value="2">ไม่ใช่ตำแหน่ง (isnot)</option>
+																<option value="3">ตำแหน่งที่มี (contains)</option>
+																<option value="4">ตำแหน่งที่ไม่มี (isnot contains)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Position" name="filter_position">
+															</div>
+														</div>
+													</div>
+													<!-- SALARY -->
+													<div class="col-lg-7" id="salary_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_salary">
+																<option value="1">=</option>
+																<option value="2">มากกว่าเท่ากับ (>=)</option>
+																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
+																<option value="4">มากกว่า (>)</option>
+																<option value="5">น้อยกว่า (<)</option>
+																<option value="6">ระหว่าง (Between)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Salary" name="filter_salary">
+															</div>
+														</div>
+													</div>
+													<!-- AGE -->
+													<div class="col-lg-7" id="age_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px">
+																<option value="1">=</option>
+																<option value="2">มากกว่าเท่ากับ (>=)</option>
+																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
+																<option value="4">มากกว่า (>)</option>
+																<option value="5">น้อยกว่า (<)</option>
+																<option value="6">ระหว่าง (Between)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="อายุ" name="filter_age">
+															</div>
+														</div>
+													</div>
+													<!-- GENDER -->
+													<div class="col-lg-7" id="gender_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_gender">
+																<option value="1">เพศ (is)</option>
+																<option value="2">ไม่เอาเพศ (isnot)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<select class="form-control" style="margin-top:0px" name="filter_gender">
+																<option value="m" selected>ชาย (Men)</option>
+																<option value="w">หญิง (Women)</option>
+															</select>
+														</div>
+													</div>
+													<!-- NATIONALITY -->
+													<div class="col-lg-7" id="nationality_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px">
+																<option value="">สัญชาติ (is)</option>
+																<option value="">ไม่เอาสัญชาติ (isnot)</option>
+																<option value="">สัญชาติที่เป็น (contains)</option>
+																<option value="">สัญชาติที่ไม่เป็น (isnot contains)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="สัญชาติ" name="filter_nationality">
+															</div>
+														</div>
+													</div>
+													<!-- STATUS -->
+													<div class="col-lg-7" id="status_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_status">
+																<option value="">สถานภาพ (is)</option>
+																<option value="">ไม่เอาสถานภาพ (isnot)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<select class="form-control" style="margin-top:0px" name="filter_status">
+																<option disabled="" selected=""></option>
+																<option value="S">โสด (Single)</option>
+																<option value="M">สมรส (Married)</option>
+																<option value="I">หม้าย (Widowed)</option>
+																<option value="D">หย่า (Divorced)</option>
+															</select>
+														</div>
+													</div>
+													<!-- EDU -->
+													<div class="col-lg-7" id="edu_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_edu">
+																<option value="">อยู่ระหว่างการศึกษา</option>
+																<option value="">สำเร็จการศึกษาแล้ว</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<p> </p>
+														</div>
+													</div>
+													<!-- STATUS -->
+													<div class="col-lg-7" id="university_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_university">
+																<option value="">มหาวิทยาลัย (is)</option>
+																<option value="">ไม่เอามหาวิทยาลัย (isnot)</option>
+																<option value="">มหาวิทยาลัยที่เป็น (contains)</option>
+																<option value="">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="มหาวิทยาลัย" name="filter_university">
+															</div>
+														</div>
+													</div>
+													<!-- FACULTY -->
+													<div class="col-lg-7" id="faculty_value1">
+														<div class="col-lg-4">
+															<select class="form-control" style="margin-top:0px" name="operator_faculty">
+																<option value="">คณะ (is)</option>
+																<option value="">ไม่เอาคณะ (isnot)</option>
+																<option value="">คณะที่เป็น (contains)</option>
+																<option value="">คณะที่ไม่เป็น (isnot contains)</option>
+															</select>
+														</div>
+														<div class="col-lg-8">
+															<div class="form-group">
+																<input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty">
+															</div>
+														</div>
+													</div>
+													<!--  Delete Button  -->
+													<div class="col-lg-1">
+														<div class="text-center" style="margin-top: 8px;">
+															<button type="submit" id="1"class="btn btn-info btn-simple btn-xs btn_remove">Delete</button>
+														</div>
+													</div>
+												</div><!-- End Row -->
+											</div><!-- End filter_list -->
+
+										</div><!-- End Filter -->
+
 									</div>
 								</div>
 							</div>
@@ -792,7 +809,7 @@
 							-->
 
 							<div class="toolbar">
-								<button id="alertBtn" class="btn btn-default">Alert</button>
+								<button id="alertBtn" class="btn btn-info">Interview</button>
 							</div>
 
 							<table id="fresh-table" class="table">
@@ -1108,6 +1125,7 @@ function workChanged(){
 
 
 <script src="/static/js/filter-option.js"></script>
+<script src="/static/js/smart_filter.js"></script>
 
 <!-- Multiple field Add -->
 <script src="/static/js/jquery.multifield.js"></script>
@@ -1127,33 +1145,15 @@ $('#multiplefield-computer').multifield({
 	btnAdd:'#btnAdd',
 	btnRemove:'.btnRemove',
 });
-$('#multifield-filter').multifield({
-	section: '.group',
-	btnAdd:'#btnAdd',
-	btnRemove:'.btnRemove',
-});
 </script>
 
 
 <script type="text/javascript">
-$("#test_option").change(function()
-{
-	if($(this).val() == "1"){
-		$("#test_value").show();
-	} else {
-		$("#test_value").hide();
-	}
-});
-$("#test_value").hide();
 
-</script>
-
-<script type="text/javascript">
 $(document).ready(function() {
 	$('#fresh-table tbody').on( 'click', 'tr', function () {
 		$(this).toggleClass('selected_table');
 		var value=$(this).find('td:nth-child(3)').html();
-		alert(value);
 	});
 });
 

@@ -22,7 +22,7 @@ from django.db.models import Q
 def index(request):
     all_candidate = CandidateBasic.objects.all()
     print("All Can : " + str(all_candidate))
-    return render(request, "dashboard.html", {'Candidate': all_candidate})
+    return render(request, "filter_candidate.html", {'Candidate': all_candidate})
 
 def submit_filter(request):
 
@@ -120,5 +120,5 @@ def submit_filter(request):
     context = {
         'Candidate': all_candidate,
     }
-    template = loader.get_template("dashboard.html")
+    template = loader.get_template("filter_candidate.html")
     return HttpResponse(template.render(context, request))
