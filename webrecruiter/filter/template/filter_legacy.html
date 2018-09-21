@@ -1168,4 +1168,19 @@ $(document).ready(function() {
 
 </script>
 
+<script type="text/javascript">
+(document).on('click', '.btn_remove', function(){
+	var button_id = $(this).attr("id");
+	$.confirm({
+		title: 'Delete Filter!',
+		content: "คุณต้องการลบจริงอ่อ ?",
+		buttons: {
+			Yes: function(){
+				$('#'+button_id+'').remove();
+			}
+		}
+	});
+});
+</script>
+
 </html>

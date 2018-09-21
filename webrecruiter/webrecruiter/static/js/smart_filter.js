@@ -17,7 +17,7 @@ $(document).ready(function(){
     append_text += ' <div class="col-lg-7" id="faculty_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_faculty"> <option value="">คณะ (is)</option> <option value="">ไม่เอาคณะ (isnot)</option> <option value="">คณะที่เป็น (contains)</option> <option value="">คณะที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty"> </div></div></div>';
     // Other Detail here!
     // End (Delete button)
-    append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="submit" id="'+i+'"class="btn btn-info btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete">delete</i></button> </div></div></div></div>';
+    append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="button" id="'+i+'" class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete" >delete</i></button> </div></div></div></div>';
 
     $('#filter').append(append_text);
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
   $(document).on('change', '.filter_list', function(){
     var button_id = $(this).attr("id");
     var value = $('#filter_option'+button_id+'').val();
-    alert(button_id+"    |    "+value + "       |      "+i);
+    // alert(button_id+"    |    "+value + "       |      "+i);
     if(value == "1"){
       $('#position_value'+button_id+'').show();
     } else {
@@ -83,10 +83,27 @@ $(document).ready(function(){
       $('#faculty_value'+button_id+'').hide();
     }
   });
+  // Legacy REMOVE
+  // $(document).on('click', '.btn_remove', function(){
+  //   // alert("เข้าเว้ยยย" + i)
+  //   var button_id = $(this).attr("id");
+  //   $('#'+button_id+'').remove();
+  //   // i=i-1;
+  // });
+
+  // Remove w/ Jquery Style
   $(document).on('click', '.btn_remove', function(){
-    alert("เข้าเว้ยยย" + i)
     var button_id = $(this).attr("id");
-    $('#'+button_id+'').remove();
-    // i=i-1;
+    $.confirm({
+      title: 'Delete this Filter Criteria ?!',
+      content: "คุณต้องการลบคุณสมบัติในการคัดกรองผู้สมัครนี้หรือไม่?",
+      buttons: {
+        ใช่: function(){
+          $('#'+button_id+'').remove();
+        },
+        ไม่ใช่: function(){
+        }
+      }
+    });
   });
 });
