@@ -40,6 +40,14 @@
 	<link rel="stylesheet" href="/static/css/tagify.css">
 	<script src="/static/js/tagify.js"></script>
 
+	<!-- date picker -->
+	<!-- <link href="/static/datepicker/datepicker_bootstrap.css" rel="stylesheet" /> -->
+	<link href="/static/datepicker/datepicker_bootstrap-datepicker.css" rel="stylesheet" />
+
+	<!-- <script src="/static/datepicker/datepicker_jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="/static/datepicker/datepicker_bootstrap.js" type="text/javascript"></script> -->
+	<script src="/static/datepicker/datepicker_bootstrap-datepicker.js"></script>
+
 	<!-- test -->
 	<!-- <script src="/static/js/test.js"></script> -->
 
@@ -91,6 +99,7 @@
 									<!-- Start Basic Information -->
 									<div class="tab-pane" id="basic">
 										<div class="row">
+
 											<h5 class="info-text"> เริ่มต้นกรอกข้อมูล บอกข้อมูลของคุณกับเรา <br> เพื่อประหยัดเวลา กรุณากรอกข้อมูลที่เป็นความจริงและครบถ้วน</h5>
 											<div class="col-sm-6 col-sm-offset-3">
 												<div class="input-group">
@@ -209,7 +218,8 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">วันเกิด (Date of Birth)</label>
-														<input name="bdate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+														<!-- <input name="bdate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')"> -->
+														<input class="datepicker form-control" name="bdate" type="text" autocomplete="off">
 													</div>
 												</div>
 											</div>
@@ -2630,7 +2640,8 @@
 															</span>
 															<div class="form-group label-floating">
 																<label class="control-label">วันที่เริ่ม (From)</label>
-																<input name="experience_companyStartDate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+																<input class="datepicker form-control" name="experience_companyStartDate" type="text" autocomplete="off">
+																<!-- <input name="experience_companyStartDate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')"> -->
 															</div>
 														</div>
 													</div>
@@ -2641,7 +2652,8 @@
 															</span>
 															<div class="form-group label-floating">
 																<label class="control-label">ถึง (To)</label>
-																<input name="experience_companyEndDate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+																<input class="datepicker form-control" name="experience_companyEndDate" type="text" autocomplete="off">
+																<!-- <input name="experience_companyEndDate" type="text" class="form-control" onfocus="(this.type='date')" onfocusout="(this.type='text')"> -->
 															</div>
 														</div>
 													</div>
@@ -2739,7 +2751,7 @@
 								<div class="wizard-footer">
 									<div class="pull-right">
 										<input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' />
-										<input type="submit" class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+										<!-- <input type="submit" class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' /> -->
 									</div>
 
 									<div class="pull-left">
@@ -2768,11 +2780,11 @@
 
 <script data-name="basic">
 (function(){
-
+	list = ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "Avicsoft", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "Apex (Salesforce.com)", "APL", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "Active Server Pages", "ASP.NET", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blockly", "BlooP", "Blue", "Boo", "Boomerang", "Bourne shell (including bash and ksh)", "BREW", "BPEL", "B", "C--", "C++ – ISO/IEC 14882", "C# – ISO/IEC 23270", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Cayenne", "CDuce", "Cecil", "Cesil", "Céu", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "Citrine (programming language)", "CL (IBM)", "Claire", "Clarion", "Clean", "Clipper", "CLIPS", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL – ISO/IEC 1989", "CobolScript – COBOL Scripting language", "Cobra", "CODE", "CoffeeScript", "ColdFusion", "COMAL", "Combined Programming Language (CPL)", "COMIT", "Common Intermediate Language (CIL)", "Common Lisp (also known as CL)", "COMPASS", "Component Pascal", "Constraint Handling Rules (CHR)", "COMTRAN", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "CPL", "Cryptol", "csh", "Csound", "CSP", "CUDA", "Curl", "Curry", "Cybil", "Cyclone", "Cython", "M2001", "M4", "M#", "Machine code", "MAD (Michigan Algorithm Decoder)", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER now part of BIS", "MARK-IV now VISION:BUILDER", "Mary", "MASM Microsoft Assembly x86", "MATH-MATIC", "Mathematica", "MATLAB", "Maxima (see also Macsyma)", "Max (Max Msp – Graphical Programming Environment)", "MaxScript internal language 3D Studio Max", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metafont", "Microcode", "MicroScript", "MIIS", "Milk (programming language)", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "Mathcad", "MSIL – deprecated name for CIL", "MSL", "MUMPS", "Mystic Programming L"]
 	var input = document.querySelector('input[name=tags]'),
 	// init Tagify script on the above inputs
 	tagify = new Tagify(input, {
-		whitelist : ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "Avicsoft", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "Apex (Salesforce.com)", "APL", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "Active Server Pages", "ASP.NET", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blockly", "BlooP", "Blue", "Boo", "Boomerang", "Bourne shell (including bash and ksh)", "BREW", "BPEL", "B", "C--", "C++ – ISO/IEC 14882", "C# – ISO/IEC 23270", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Cayenne", "CDuce", "Cecil", "Cesil", "Céu", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "Citrine (programming language)", "CL (IBM)", "Claire", "Clarion", "Clean", "Clipper", "CLIPS", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL – ISO/IEC 1989", "CobolScript – COBOL Scripting language", "Cobra", "CODE", "CoffeeScript", "ColdFusion", "COMAL", "Combined Programming Language (CPL)", "COMIT", "Common Intermediate Language (CIL)", "Common Lisp (also known as CL)", "COMPASS", "Component Pascal", "Constraint Handling Rules (CHR)", "COMTRAN", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "CPL", "Cryptol", "csh", "Csound", "CSP", "CUDA", "Curl", "Curry", "Cybil", "Cyclone", "Cython", "M2001", "M4", "M#", "Machine code", "MAD (Michigan Algorithm Decoder)", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER now part of BIS", "MARK-IV now VISION:BUILDER", "Mary", "MASM Microsoft Assembly x86", "MATH-MATIC", "Mathematica", "MATLAB", "Maxima (see also Macsyma)", "Max (Max Msp – Graphical Programming Environment)", "MaxScript internal language 3D Studio Max", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metafont", "Microcode", "MicroScript", "MIIS", "Milk (programming language)", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "Mathcad", "MSIL – deprecated name for CIL", "MSL", "MUMPS", "Mystic Programming L"],
+		whitelist : list,
 		blacklist : ["react", "angular"]
 	});
 
@@ -2852,4 +2864,13 @@ $('#multiplefield-cert_experience').multifield({
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="/static/js/jquery.validate.min.js"></script>
 
+<script type="text/javascript">
+$('.datepicker').datepicker({
+	weekStart:1,
+	color: 'red'
+}).on('changeDate', function(e){
+	// this next line fixed the floating label issue for me
+	$(this).parent('.label-floating').removeClass('is-empty');
+});
+</script>
 </html>

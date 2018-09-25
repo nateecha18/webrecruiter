@@ -13,13 +13,22 @@ from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from addskill.models import Skill
+
+
 
 
 # Create your views here.
 def index(request):
+    all_skill = Skill.objects.all()
+    skill_name = ['fah']
+    for name in all_skill:
+        skill_name.append(name.skill_name)
+    print("Skill Name : "+ str(skill_name))
+
     context = {}
     template = loader.get_template("index.html")
-    return HttpResponse(template.render({}, request))
+    return HttpResponse(template.render(context, request))
     # return render('index.html', context_instance=RequestContext(request))
 
 

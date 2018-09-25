@@ -51,7 +51,7 @@
     line-height: 40px;
     color: #565656;
   }
-  i.icon-delete { color: #ec5454; }
+  i.icon-delete { color: #EB5E28; }
   i.icon-add { color: #565656; }
   i.icon-submit { color: #ffff; }
   .material-icons.md-18 { font-size: 18px; }
@@ -121,7 +121,7 @@
         <div class="container-fluid">
           <div class="row">
 
-            <form>
+            <form action="submit_filter/" method="POST" enctype=multipart/form-data>
               <div class="col-md-12">
                 <div class="card">
                   <div class="header">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-lg-10">
                               <select class="form-control" name="filter_option" id="filter_option1">
-                                <option disabled="" selected="">Select a filter</option>
+                                <option selected value="0">Select a filter</option>
                                 <option value="1">ตำแหน่ง</option>
                                 <option value="2">เงินเดือน</option>
                                 <option value="3">อายุ</option>
@@ -163,6 +163,7 @@
                           <div class="col-lg-7" id="position_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px;" name="operator_position">
+                                <option selected="" value="0">Operator Position</option>
                                 <option value="1">ตำแหน่ง (is)</option>
                                 <option value="2">ไม่ใช่ตำแหน่ง (isnot)</option>
                                 <option value="3">ตำแหน่งที่มี (contains)</option>
@@ -179,7 +180,8 @@
                           <div class="col-lg-7" id="salary_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_salary">
-                                <option value="1">=</option>
+                                <option selected="" value="0">Operator Salary</option>
+                                <option value="1">เท่ากับ (=)</option>
                                 <option value="2">มากกว่าเท่ากับ (>=)</option>
                                 <option value="3">น้อยกว่าเท่ากับ (<=)</option>
                                 <option value="4">มากกว่า (>)</option>
@@ -197,6 +199,7 @@
                           <div class="col-lg-7" id="age_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px">
+                                <option selected="" value="0">Operator Age</option>
                                 <option value="1">เท่ากับ (=)</option>
                                 <option value="2">มากกว่าเท่ากับ (>=)</option>
                                 <option value="3">น้อยกว่าเท่ากับ (<=)</option>
@@ -215,13 +218,15 @@
                           <div class="col-lg-7" id="gender_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_gender">
+                                <option selected="" value="0">Operator Gender</option>
                                 <option value="1">เพศ (is)</option>
                                 <option value="2">ไม่เอาเพศ (isnot)</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
                               <select class="form-control" style="margin-top:0px" name="filter_gender">
-                                <option value="m" selected>ชาย (Men)</option>
+                                <option selected="" value="0">--- เลือกเพศ ---</option>
+                                <option value="m">ชาย (Men)</option>
                                 <option value="w">หญิง (Women)</option>
                               </select>
                             </div>
@@ -230,10 +235,11 @@
                           <div class="col-lg-7" id="nationality_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px">
-                                <option value="">สัญชาติ (is)</option>
-                                <option value="">ไม่เอาสัญชาติ (isnot)</option>
-                                <option value="">สัญชาติที่เป็น (contains)</option>
-                                <option value="">สัญชาติที่ไม่เป็น (isnot contains)</option>
+                                <option selected="" value="0">Operator Nationality</option>
+                                <option value="1">สัญชาติ (is)</option>
+                                <option value="2">ไม่เอาสัญชาติ (isnot)</option>
+                                <option value="3">สัญชาติที่เป็น (contains)</option>
+                                <option value="4">สัญชาติที่ไม่เป็น (isnot contains)</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
@@ -246,17 +252,18 @@
                           <div class="col-lg-7" id="status_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_status">
-                                <option value="">สถานภาพ (is)</option>
-                                <option value="">ไม่เอาสถานภาพ (isnot)</option>
+                                <option selected="" value="0">Operator Status</option>
+                                <option value="1">สถานภาพ (is)</option>
+                                <option value="2">ไม่เอาสถานภาพ (isnot)</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
                               <select class="form-control" style="margin-top:0px" name="filter_status">
-                                <option disabled="" selected=""></option>
-                                <option value="S">โสด (Single)</option>
-                                <option value="M">สมรส (Married)</option>
-                                <option value="I">หม้าย (Widowed)</option>
-                                <option value="D">หย่า (Divorced)</option>
+                                <option selected="" value="0">--- เลือกสถานภาพ ---</option>
+                                <option value="โสด">โสด (Single)</option>
+                                <option value="สมรส">สมรส (Married)</option>
+                                <option value="หม้าย">หม้าย (Widowed)</option>
+                                <option value="หย่า">หย่า (Divorced)</option>
                               </select>
                             </div>
                           </div>
@@ -264,22 +271,24 @@
                           <div class="col-lg-7" id="edu_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_edu">
-                                <option value="">อยู่ระหว่างการศึกษา</option>
-                                <option value="">สำเร็จการศึกษาแล้ว</option>
+                                <option selected="" value="0">--- เลือกสถานะการศึกษา ---</option>
+                                <option value="1">อยู่ระหว่างการศึกษา</option>
+                                <option value="2">สำเร็จการศึกษาแล้ว</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
                               <p> </p>
                             </div>
                           </div>
-                          <!-- STATUS -->
+                          <!-- university -->
                           <div class="col-lg-7" id="university_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_university">
-                                <option value="">มหาวิทยาลัย (is)</option>
-                                <option value="">ไม่เอามหาวิทยาลัย (isnot)</option>
-                                <option value="">มหาวิทยาลัยที่เป็น (contains)</option>
-                                <option value="">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option>
+                                <option selected="" value="0">Operator University</option>
+                                <option value="1">มหาวิทยาลัย (is)</option>
+                                <option value="2">ไม่เอามหาวิทยาลัย (isnot)</option>
+                                <option value="3">มหาวิทยาลัยที่เป็น (contains)</option>
+                                <option value="4">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
@@ -292,15 +301,34 @@
                           <div class="col-lg-7" id="faculty_value1">
                             <div class="col-lg-4">
                               <select class="form-control" style="margin-top:0px" name="operator_faculty">
-                                <option value="">คณะ (is)</option>
-                                <option value="">ไม่เอาคณะ (isnot)</option>
-                                <option value="">คณะที่เป็น (contains)</option>
-                                <option value="">คณะที่ไม่เป็น (isnot contains)</option>
+                                <option selected="" value="0">Operator Faculty</option>
+                                <option value="1">คณะ (is)</option>
+                                <option value="2">ไม่เอาคณะ (isnot)</option>
+                                <option value="3">คณะที่เป็น (contains)</option>
+                                <option value="4">คณะที่ไม่เป็น (isnot contains)</option>
                               </select>
                             </div>
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty">
+                              </div>
+                            </div>
+                          </div>
+                          <!-- GPA -->
+                          <div class="col-lg-7" id="gpa_value1">
+                            <div class="col-lg-4">
+                              <select class="form-control" style="margin-top:0px" name="operator_gpa">
+                                <option selected="" value="0">Operator GPA</option>
+																<option value="1">เท่ากับ (=)</option>
+																<option value="2">มากกว่าเท่ากับ (>=)</option>
+																<option value="3">น้อยกว่าเท่ากับ (<=)</option>
+																<option value="4">มากกว่า (>)</option>
+																<option value="5">น้อยกว่า (<)</option>
+															</select>
+                            </div>
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="เกรดเฉลี่ย" name="filter_gpa">
                               </div>
                             </div>
                           </div>
@@ -341,7 +369,7 @@
 
               <table id="fresh-table" class="table">
                 <thead>
-                  <th data-field="check_candidate"></th>
+                  <th data-field="check_candidate">checked</th>
                   <th data-field="id" data-sortable="true">ID</th>
                   <th data-field="name" data-sortable="true">Name</th>
                   <th data-field="salary" data-sortable="true">Expected Salary</th>

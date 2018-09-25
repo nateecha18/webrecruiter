@@ -46,6 +46,11 @@ $("#filter_option1").change(function()
 	} else {
 		$("#faculty_value1").hide();
 	}
+	if($(this).val() == "11"){
+		$("#gpa_value1").show();
+	} else {
+		$("#gpa_value1").hide();
+	}
 
 
 });
@@ -58,3 +63,4 @@ $("#status_value1").hide();
 $("#edu_value1").hide();
 $("#university_value1").hide();
 $("#faculty_value1").hide();
+$("#gpa_value1").hide();
