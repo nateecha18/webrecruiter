@@ -30,7 +30,7 @@ $(document).ready(function(){
     append_text += ' <div class="col-lg-7" id="gpa_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_gpa"> <option selected="" value="0">Operator GPA</option><option value="1">เท่ากับ (=)</option><option value="2">มากกว่าเท่ากับ (>=)</option><option value="3">น้อยกว่าเท่ากับ (<=)</option><option value="4">มากกว่า (>)</option><option value="5">น้อยกว่า (<)</option></select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="เกรดเฉลี่ย" name="filter_gpa"> </div></div></div>';
     // Other Detail here!
     // End (Delete button)
-    append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="button" id="1" class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete">delete</i></button> </div></div></div></div>';
+    append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="button" id="'+i+'" class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete">delete</i></button> </div></div></div></div>';
 
 
 

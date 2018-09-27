@@ -32,7 +32,8 @@ i.icon-submit { color: #ffff; }
 <div class="container-fluid">
   <div class="row">
 
-    <form action="submit_filter/" method="POST" enctype=multipart/form-data>
+    <form method="POST" enctype=multipart/form-data>
+      {% csrf_token %}
       <div class="col-md-12">
         <div class="card">
           <div class="header">
@@ -267,48 +268,48 @@ i.icon-submit { color: #ffff; }
       </div>
     </form>
 
+    <form method="post">
+      {% csrf_token %}
+      <div class="col-md-12">
+        <div class="fresh-table">
+          <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+          Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+        -->
 
-    <div class="col-md-12">
-      <div class="fresh-table">
-        <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
-      -->
+        <div class="toolbar">
+          <button type="button" id="alertBtn" class="btn btn-info">Interview</button>
+        </div>
 
-      <div class="toolbar">
-        <button id="alertBtn" class="btn btn-info">Interview</button>
+        <table id="fresh-table" class="table">
+          <thead>
+            <th data-field="state" data-checkbox="true"></th>
+            <th data-field="id" data-sortable="true">ID</th>
+            <th data-field="name" data-sortable="true">Name</th>
+            <th data-field="salary" data-sortable="true">Expected Salary</th>
+            <th data-field="gpa" data-sortable="true">GPA</th>
+            <th data-field="position">Position</th>
+            <th data-field="actions" class="td-actions text-right" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+          </thead>
+          <tbody>
+            {% for candidate in Candidate %}
+            <tr data-val="{{candidate.id_number}}">
+              <td></td>
+              <td>{{candidate.id_number}}</td>
+              <td>{{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
+              <td>{{candidate.salary}}</td>
+              <td>{{candidate.nowEdu_gpa}}</td>
+              <td>{{candidate.position}}</td>
+              <td></td>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+
       </div>
-
-      <table id="fresh-table" class="table">
-        <thead>
-          <th data-field="check_candidate">checked</th>
-          <th data-field="id" data-sortable="true">ID</th>
-          <th data-field="name" data-sortable="true">Name</th>
-          <th data-field="salary" data-sortable="true">Expected Salary</th>
-          <th data-field="gpa" data-sortable="true">GPA</th>
-          <th data-field="position">Position</th>
-          <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
-        </thead>
-        <tbody>
-          {% for candidate in Candidate %}
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" data-toggle="checkbox">
-              </label>
-            </td>
-            <td>{{candidate.id_number}}</td>
-            <td>{{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
-            <td>{{candidate.salary}}</td>
-            <td>{{candidate.nowEdu_gpa}}</td>
-            <td>{{candidate.position}}</td>
-            <td></td>
-          </tr>
-          {% endfor%}
-        </tbody>
-      </table>
-
     </div>
-  </div>
+  </form>
+  <br>
+
 
 </div>
 </div>
@@ -318,22 +319,30 @@ i.icon-submit { color: #ffff; }
 <script src="{% static 'js/filter-option.js' %}"></script>
 <script src="{% static 'js/smart_filter.js' %}"></script>
 <script type="text/javascript">
-
-$(document).ready(function() {
-  $('#fresh-table tbody').on( 'click', 'tr', function () {
-    $(this).toggleClass('selected_table');
-    var value=$(this).find('td:nth-child(3)').html();
+$alertBtn.click(function () {
+  $("tbody input:checked").each(function() {
+    value = $(this).parents("tr:first").data("val")
+    console.log(value);
   });
 });
-
-// $(document).ready(function() {
-// 	$('#fresh-table tbody .checkbox').on( 'click', function () {
-// 		$('#fresh-table tbody').toggleClass('selected_table');
-// 		var value=$('#fresh-table tbody').find('td:nth-child(3)').html();
-// 		alert(value);
-// 	});
-// });
-
-
 </script>
+
+<!-- <script type="text/javascript">
+$(document).on('submit','#new_user_form',function(e){
+e.preventDefault();
+
+$.ajax({
+type : 'POST',
+url : 'skill/create/', // hardcoding urls? not a good idea, use
+data : {
+name : $('#name').val(),
+type : $('#type').val(),
+csrfmiddlewaretoken:"{{ csrf_token }}"
+},
+sucess:function(){}
+});
+});
+
+</script> -->
+
 {% endblock %}
