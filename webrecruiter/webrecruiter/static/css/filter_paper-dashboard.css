@@ -1317,7 +1317,7 @@ textarea.form-control {
 .nav > li > a:focus {
   background-color: transparent; }
 
-.navbar {
+/* .navbar {
   border: 0;
   border-radius: 0;
   font-size: 16px;
@@ -1499,7 +1499,7 @@ textarea.form-control {
 [class*="navbar-ct"] .open .dropdown-toggle.btn-fill.btn-default {
   border-color: #FFFFFF;
   opacity: 1;
-  filter: alpha(opacity=100); }
+  filter: alpha(opacity=100); } */
 
 .footer {
   background-attachment: fixed;
