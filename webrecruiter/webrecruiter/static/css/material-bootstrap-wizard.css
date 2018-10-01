@@ -2041,3 +2041,61 @@ div.radio_test div {
 .immybox_results ul li.immybox_choice .highlight{
   text-decoration:underline
 } */
+
+
+.login-page > .content,
+.lock-page > .content {
+    padding-top: 20vh;
+}
+
+.lock-page .card-lock {
+    text-align: center;
+    width: 300px;
+    margin: 30px auto 0;
+    padding: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    display: block;
+}
+
+.register-page .header-text {
+    text-align: center;
+    padding: 60px 0 40px;
+}
+
+.register-page .header-text h4 {
+    margin-top: 10px;
+}
+
+.register-page .header-text hr {
+    opacity: .3;
+    margin-top: 30px;
+}
+
+.register-page .media {
+    /*         color: $white-color; */
+    margin-bottom: 45px;
+}
+
+.register-page .media .icon {
+    float: left;
+    margin-right: 5px;
+}
+
+.register-page .media i {
+    font-size: 2.6em;
+}
+
+.register-page .media h4 {
+    margin: 0 0 5px 0;
+}
+
+.register-page .form-group {
+    margin-bottom: 25px;
+}
+
+.register-page .card .content {
+    padding-top: 0;
+    padding-bottom: 0;
+}

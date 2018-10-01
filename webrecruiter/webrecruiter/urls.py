@@ -23,5 +23,6 @@ urlpatterns = [
     path('jobapply/', include('jobapply.urls')),
     path('filter/', include('filter.urls')),
     path('addskill/', include('addskill.urls')),
+    path('register/', include('register.urls')),
     # path('pdf/', GeneratePdf.as_view())
 ]

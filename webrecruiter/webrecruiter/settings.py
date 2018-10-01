@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'register.apps.RegisterConfig',
     'jobapply.apps.JobapplyConfig',
     'filter.apps.FilterConfig',
     'addskill.apps.AddskillConfig',
