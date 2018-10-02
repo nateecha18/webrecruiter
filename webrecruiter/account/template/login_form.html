@@ -55,6 +55,25 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+.form-control {
+  background-color: #fff;
+  border: 1px solid #828282;
+  border-radius: 4px;
+  color: #66615b;
+  font-size: 14px;
+  transition: background-color 0.3s ease 0s;
+  padding: 7px 18px;
+  height: 40px;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+  .form-control:focus {
+    background-color: #fff;
+    border: 2px solid #ff9800;
+    transition: border 0.3s ease 0s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: 0 !important; }
+
 </style>
 {% endblock %}
 
@@ -68,46 +87,11 @@
                     	<div class="col-md-8 col-md-offset-2" style="text-align: center;">
                         	<div class="header-text">
                             	<h2>Web Recruiter | AIT</h2>
-                            	<h4>Register for free and experience the dashboard today.</h4>
+                            	<h4>เว็บไซต์คัดกรองผู้สมัคร และจัดการการนัดสัมภาษณ์</h4>
                             	<hr>
                         	</div>
                     	</div>
-                    	<div class="col-md-4 col-md-offset-2">
-                        	<div class="media">
-                            	<div class="media-left">
-                                	<div class="icon icon-danger">
-                                    	<i class="ti ti-user"></i>
-                                	</div>
-                            	</div>
-                            	<div class="media-body">
-                                	<h5>Filter Candidate</h5>
-                                	Here you can write a feature description for your dashboard, let the users know what is the value that you give them.
-                            	</div>
-                        	</div>
-                        	<div class="media">
-                            	<div class="media-left">
-                                	<div class="icon icon-warning">
-                                    	<i class="ti-calendar"></i>
-                                	</div>
-                            	</div>
-                            	<div class="media-body">
-                                	<h5>Schedule Job Interview</h5>
-                                	Here you can write a feature description for your dashboard, let the users know what is the value that you give them.
-                            	</div>
-                        	</div>
-                        	<div class="media">
-                            	<div class="media-left">
-                                	<div class="icon icon-info">
-                                    	<i class="ti-bar-chart-alt"></i>
-                                	</div>
-                            	</div>
-                            	<div class="media-body">
-                                	<h5>Generate the Report</h5>
-                                	Here you can write a feature description for your dashboard, let the users know what is the value that you give them.
-                            	</div>
-                        	</div>
-                    	</div>
-                    	<div class="col-md-4">
+                    	<div class="col-md-4 col-md-offset-4">
                         <!-- <form method="post">
                           {% csrf_token %}
                           {{ form.as_p }}
@@ -122,9 +106,9 @@
                                 	</div>
                                 	<div class="footer text-center">
                                       <br>
-                                    	<button type="submit" class="btn btn-info" style="margin-bottom:10px;">Create Account</button>
+                                      <button type="submit" class="btn btn-info" style="margin-bottom:15px; font-size: 1.2em;">เข้าสู่ระบบ</button>
                                       <br>
-                                      <a href="" style="color:#777777;">Looking to login?</a>
+                                      <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม <a href="{% url 'register' %}" style="color:#ff9800;">ลงทะเบียน</a></p>
                                 	</div>
                             	</div>
                         	</form>
@@ -133,7 +117,7 @@
             	</div>
         	</div>
 
-    		<footer class="footer footer-transparent">
+    		<footer class="footer">
             	<div class="container">
                 	<div class="copyright text-center">
                     	&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="">Nateecha</a>

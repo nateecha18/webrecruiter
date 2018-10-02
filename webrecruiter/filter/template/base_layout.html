@@ -107,14 +107,14 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="pe-7s-user"></i>
-                  <p style="font-weight: 100;">Account <span class="ti-angle-down"></span></p>
+                  <p style="font-weight: 100;">Hi {{user}} <span class="ti-angle-down"></span></p>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Log Out</a></li>
+                  <li><a href="{% url 'logout' %}">Log Out</a></li>
                 </ul>
               </li>
             </ul>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'register.apps.RegisterConfig',
     'jobapply.apps.JobapplyConfig',
     'filter.apps.FilterConfig',
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'webrecruiter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['jobapply/template','filter/template','addskill/template'],
+        'DIRS': ['jobapply/template','filter/template','addskill/template','register/template','account/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

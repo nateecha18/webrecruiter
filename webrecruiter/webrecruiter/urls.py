@@ -24,5 +24,7 @@ urlpatterns = [
     path('filter/', include('filter.urls')),
     path('addskill/', include('addskill.urls')),
     path('register/', include('register.urls')),
+    path('account/', include('account.urls')),
+
     # path('pdf/', GeneratePdf.as_view())
 ]

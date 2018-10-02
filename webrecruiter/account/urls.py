@@ -3,8 +3,10 @@ from . import views
 from django.contrib.auth.views import login
 
 urlpatterns = [
-    url(r'^$', views.index, name='filter'),
-    url(r'^login/$', login, {'template_name' : 'login.html'}),
+    url(r'^$', views.login_view, name='account'),
+    url(r'^login/$', views.login_view, name='login'),
+    url(r'^logout/$', views.logout_view, name='logout'),
+
     # url(r'^submit_filter/$', views.submit_filter),
 
 ]
