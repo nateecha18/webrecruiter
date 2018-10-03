@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
@@ -184,4 +185,21 @@ def index(request):
     user = User.objects.filter(username=request.user.username)
     print("All Can : " + str(all_candidate))
     print("User : " + str(user))
-    return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
+    # return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
+
+    if request.user.is_authenticated:
+        return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user,'Candidate_cart_amount':3})
+    else:
+        return redirect('login')
+
+def add_to_cart(request):
+    candidate_list = []
+    if request.method == 'POST':
+        value_list = request.POST.getlist('value_list[]')
+        for i in range(len(value_list)):
+            if value_list[i] in candidate_list:
+                pass
+            else:
+                candidate_list.append(value_list[i])
+        print("!! ---- CANDIDATE LIST ----- !!",candidate_list,type(candidate_list))
+    return redirect('filter')

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Filter Candidate</title>
+  <title>{% block title %}{% endblock %}</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -91,7 +91,9 @@
               <li>
                 <a href="#">
                   <i class="pe-7s-cart">
-                    <span class="label"> 10 </span>
+                    {% if Candidate_amount != 0 %}
+                      <span class="label">{{ Candidate_cart_amount }}</span>
+                    {% endif %}
                   </i>
                   <p style="font-weight: 100;">Candidate Cart</p>
                 </a>

@@ -28,6 +28,7 @@ $(document).ready(function(){
     append_text += ' <div class="col-lg-7" id="university_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_university"> <option selected="" value="0">Operator University</option> <option value="1">มหาวิทยาลัย (is)</option> <option value="2">ไม่เอามหาวิทยาลัย (isnot)</option> <option value="3">มหาวิทยาลัยที่เป็น (contains)</option> <option value="4">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="มหาวิทยาลัย" name="filter_university"> </div></div></div>';
     append_text += ' <div class="col-lg-7" id="faculty_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_faculty"> <option selected="" value="0">Operator Faculty</option> <option value="1">คณะ (is)</option> <option value="2">ไม่เอาคณะ (isnot)</option> <option value="3">คณะที่เป็น (contains)</option> <option value="4">คณะที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty"> </div></div></div>';
     append_text += ' <div class="col-lg-7" id="gpa_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_gpa"> <option selected="" value="0">Operator GPA</option><option value="1">เท่ากับ (=)</option><option value="2">มากกว่าเท่ากับ (>=)</option><option value="3">น้อยกว่าเท่ากับ (<=)</option><option value="4">มากกว่า (>)</option><option value="5">น้อยกว่า (<)</option></select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="เกรดเฉลี่ย" name="filter_gpa"> </div></div></div>';
+    append_text += ' <div class="col-lg-7" id="comskill_value'+i+'"><div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_comskill"><option selected="" value="0">Operator Computer Skill</option><option value="1">ทักษะ (is)</option><option value="2">ไม่เอาทักษะ (isnot)</option><option value="3">ทักษะที่มี (contains)</option><option value="4">ทักษะที่ไม่มี (isnot contains)</option> </select></div><div class="col-lg-8"><div class="form-group"><div rel="tooltip" title="กรอกเฉพาะ keyword สำคัญ เช่น python , css , troupleshoot"> <input name="tags'+i+'" class="" id="section-basic" placeholder="กรอกความสามารถด้านคอมพิวเตอร์ที่ต้องการ" value="" autofocus></div></div></div></div>';
     // Other Detail here!
     // End (Delete button)
     append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="button" id="'+i+'" class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete">delete</i></button> </div></div></div></div>';
@@ -46,6 +47,8 @@ $(document).ready(function(){
     $('#university_value'+i+'').hide();
     $('#faculty_value'+i+'').hide();
     $('#gpa_value'+i+'').hide();
+    $('#comskill_value'+i+'').hide();
+
 
 
 
@@ -104,8 +107,14 @@ $(document).ready(function(){
     } else {
       $('#gpa_value'+button_id+'').hide();
     }
+    if(value == "12"){
+      $('#comskill_value'+button_id+'').show();
+    } else {
+      $('#comskill_value'+button_id+'').hide();
+    }
 
   });
+
   // Legacy REMOVE
   // $(document).on('click', '.btn_remove', function(){
   //   // alert("เข้าเว้ยยย" + i)
