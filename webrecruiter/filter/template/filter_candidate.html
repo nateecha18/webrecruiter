@@ -330,7 +330,7 @@ i.icon-submit { color: #ffff; }
           {% for candidate in Candidate %}
           <tr data-val="{{candidate.id_number}}">
             <td></td>
-            <td>{{candidate.id_number}}</td>
+            <td><a href="/filter/{{candidate.id_number}}/" style="color: #ff9800; font-weight: 400;">{{candidate.id_number}}</a></td>
             <td>{{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
             <td>{{candidate.salary}}</td>
             <td>{{candidate.nowEdu_gpa}}</td>

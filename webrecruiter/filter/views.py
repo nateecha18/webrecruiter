@@ -185,36 +185,32 @@ def index(request):
         template = loader.get_template("filter_candidate.html")
         return HttpResponse(template.render(context, request))
 
-    all_candidate = CandidateBasic.objects.all()
-    user = User.objects.filter(username=request.user.username)
-    print("All Can : " + str(all_candidate))
-    print("User : " + str(user))
-    # return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
-    # user_profile = get_object_or_404(Profile, user=request.user)
-
-    filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
-    cart_amount = 0
-    current_order_products = []
-    if filtered_orders.exists():
-        user_order = filtered_orders[0]
-        user_order_items = user_order.items.all()
-        cart_amount = user_order_items.count()
-        print("----------------------- !!!!! Cart Item : ",cart_amount,"::",user_order_items)
-
-
     if request.user.is_authenticated:
+        all_candidate = CandidateBasic.objects.all()
+        user = User.objects.filter(username=request.user.username)
+        print("All Can : " + str(all_candidate))
+        print("User : " + str(user))
+        # return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
+        # user_profile = get_object_or_404(Profile, user=request.user)
+
+        filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+        cart_amount = 0
+        current_order_products = []
+        if filtered_orders.exists():
+            user_order = filtered_orders[0]
+            user_order_items = user_order.items.all()
+            cart_amount = user_order_items.count()
+            print("----------------------- !!!!! Cart Item : ",cart_amount,"::",user_order_items)
+
         return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user,'Cart_amount':cart_amount})
     else:
         return redirect('login')
 
-def add_to_cart(request):
-    candidate_list = []
-    if request.method == 'POST':
-        value_list = request.POST.getlist('value_list[]')
-        for i in range(len(value_list)):
-            if value_list[i] in candidate_list:
-                pass
-            else:
-                candidate_list.append(value_list[i])
-        print("!! ---- CANDIDATE LIST ----- !!",candidate_list,type(candidate_list))
-    return redirect('filter')
+
+def candidate_detail(request,candidate_id):
+    selected_candidate = get_object_or_404(CandidateBasic, id_number=candidate_id)
+    print("Image URL : ",selected_candidate.profile_pic.url,"--------------------------")
+    return render(request,
+                  'candidate_detail.html',
+                  {'Candidate_id': candidate_id,
+                   'Selected_candidate' : selected_candidate})
