@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse,HttpResponseRedirect
@@ -21,6 +21,10 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+from candidate_cart.models import OrderItem, Order
+from account.models import Profile
+
 
 
 
@@ -186,9 +190,20 @@ def index(request):
     print("All Can : " + str(all_candidate))
     print("User : " + str(user))
     # return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
+    # user_profile = get_object_or_404(Profile, user=request.user)
+
+    filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+    cart_amount = 0
+    current_order_products = []
+    if filtered_orders.exists():
+        user_order = filtered_orders[0]
+        user_order_items = user_order.items.all()
+        cart_amount = user_order_items.count()
+        print("----------------------- !!!!! Cart Item : ",cart_amount,"::",user_order_items)
+
 
     if request.user.is_authenticated:
-        return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user,'Candidate_cart_amount':3})
+        return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user,'Cart_amount':cart_amount})
     else:
         return redirect('login')
 

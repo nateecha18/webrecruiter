@@ -61,7 +61,7 @@
             </button>
             <a class="navbar-brand navbar-brand-logo" href="http://www.creative-tim.com">
               <div class="logo">
-                <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                <img src="{% static 'img/new_logo.png' %}">
               </div>
               <div class="brand" style="font-weight: 300;">WR AIT WebRecruiter </div>
 
@@ -91,8 +91,8 @@
               <li>
                 <a href="#">
                   <i class="pe-7s-cart">
-                    {% if Candidate_amount != 0 %}
-                      <span class="label">{{ Candidate_cart_amount }}</span>
+                    {% if Cart_amount != 0 %}
+                      <span class="label">{{ Cart_amount }}</span>
                     {% endif %}
                   </i>
                   <p style="font-weight: 100;">Candidate Cart</p>

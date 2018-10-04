@@ -25,6 +25,8 @@ urlpatterns = [
     path('addskill/', include('addskill.urls')),
     path('register/', include('register.urls')),
     path('account/', include('account.urls')),
+    path('cart/', include('candidate_cart.urls')),
+
 
     # path('pdf/', GeneratePdf.as_view())
 ]

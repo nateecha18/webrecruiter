@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
@@ -18,7 +18,16 @@ from django.contrib.auth import (
 
         )
 from .forms import UserLoginForm
-# from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
+
+def my_profile(request):
+	my_user_profile = Profile.objects.filter(user=request.user).first()
+	my_orders = Order.objects.filter(is_ordered=True, owner=my_user_profile)
+	context = {
+		'my_orders': my_orders
+	}
+
+	return render(request, "profile.html", context)
 
 
 def login_view(request):
