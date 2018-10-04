@@ -78,7 +78,7 @@ class CandidateWorkExperience(models.Model):
 
 def user_picture_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/picture/<FILENAME>
-    return 'webrecruiter/static/uploads/candidate_{0}/picture/{1}'.format(instance.id_number, filename)
+    return 'uploads/candidate_{0}/picture/{1}'.format(instance.id_number, filename)
 
 
 class CandidateBasic(models.Model):
@@ -86,12 +86,12 @@ class CandidateBasic(models.Model):
     id_number = models.CharField(primary_key=True, max_length=13)
     position = models.CharField(max_length=250, blank=True)
     salary = models.IntegerField(blank=True)
-    profile_pic = models.ImageField(upload_to=user_picture_directory_path, blank=True)
+    profile_pic = models.ImageField(upload_to=user_picture_directory_path, blank=True,max_length=500)
     nickname = models.CharField(max_length=100, blank=True)
     name_title = models.CharField(max_length=50, blank=True)
     firstname = models.CharField(max_length=250, blank=True)
     lastname = models.CharField(max_length=250, blank=True)
-    bdate = models.DateField(blank=True)
+    bdate = models.CharField(max_length=250, blank=True)
     blood = models.CharField(max_length=5, blank=True)
     nationality = models.CharField(max_length=100, blank=True)
     race = models.CharField(max_length=100, blank=True)
@@ -125,7 +125,7 @@ class CandidateBasic(models.Model):
 
 def user_attachment_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>
-    return 'webrecruiter/static/uploads/candidate_{0}/attachment/{1}'.format(instance.candidate_basic.id_number, filename)
+    return 'uploads/candidate_{0}/attachment/{1}'.format(instance.candidate_basic.id_number, filename)
 
 class CandidateAttachment(models.Model):
     """docstring forAttachment."""

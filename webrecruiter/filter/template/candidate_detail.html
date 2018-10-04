@@ -12,6 +12,7 @@ Filter Candidate | WebRecruiter
 {% block content %}
 <div class="container-fluid">
   {{ Candidate_id }}
+  {{ Selected_candidate.profile_pic.url }}
   <div class="row">
     <div class="col-lg-4 col-md-5">
       <div class="card card-user">
@@ -21,7 +22,7 @@ Filter Candidate | WebRecruiter
         </div>
         <div class="content">
           <div class="author">
-            <img class="avatar border-white" src="{% if Selected_candidate.profile_pic %}{% static '{{ Selected_candidate.profile_pic.url }}' %}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."/>
+            <img class="avatar border-white" src="{% if Selected_candidate.profile_pic %}{{ Selected_candidate.profile_pic.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."/>
             <h4 class="title">Chet Faker<br />
               <a href="#"><small>@chetfaker</small></a>
             </h4>
