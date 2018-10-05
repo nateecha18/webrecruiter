@@ -208,9 +208,22 @@ def index(request):
 
 
 def candidate_detail(request,candidate_id):
-    selected_candidate = get_object_or_404(CandidateBasic, id_number=candidate_id)
-    print("Image URL : ",selected_candidate.profile_pic.url,"--------------------------")
-    return render(request,
-                  'candidate_detail.html',
-                  {'Candidate_id': candidate_id,
-                   'Selected_candidate' : selected_candidate})
+    if request.user.is_authenticated:
+
+        filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+        cart_amount = 0
+        current_order_products = []
+        if filtered_orders.exists():
+            user_order = filtered_orders[0]
+            user_order_items = user_order.items.all()
+            cart_amount = user_order_items.count()
+
+        selected_candidate = get_object_or_404(CandidateBasic, id_number=candidate_id)
+        print(type(list))
+        return render(request,
+                      'candidate_detail.html',
+                      {'Candidate_id': candidate_id,
+                       'Selected_candidate' : selected_candidate,
+                       'Cart_amount' : cart_amount})
+    else:
+        return redirect('login')

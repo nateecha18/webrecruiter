@@ -1,88 +1,132 @@
 {% extends 'base_layout.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}
 Filter Candidate | WebRecruiter
 {% endblock %}
 
 {% block stylesheet %}
-
+<style media="screen">
+input[type="text"]:disabled {
+    background: #fff;
+    color : #66615b;
+}
+.form-group label {
+  color : #66615b;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-  {{ Candidate_id }}
-  {{ Selected_candidate.profile_pic.url }}
   <div class="row">
     <div class="col-lg-4 col-md-5">
       <div class="card card-user">
         <div class="image">
-          <img src="{% if Selected_candidate.profile_pic %}{{ Selected_candidate.profile_pic.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+          <img src="{% if Selected_candidate.profile_pic %}{{ Selected_candidate.profile_pic.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" style="-webkit-filter: blur(8px); filter: blur(8px);">
           <!-- <img src="assets/img/background.jpg" alt="..."/> -->
         </div>
         <div class="content">
           <div class="author">
             <img class="avatar border-white" src="{% if Selected_candidate.profile_pic %}{{ Selected_candidate.profile_pic.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."/>
-            <h4 class="title">Chet Faker<br />
-              <a href="#"><small>@chetfaker</small></a>
+            <h4 class="title">{{ Selected_candidate.name_title }} {{ Selected_candidate.firstname }}     {{ Selected_candidate.lastname }}<br />
+              <a href="/filter/{{Selected_candidate.id_number}}/"><small>@{{ Selected_candidate.id_number }} </small></a>
             </h4>
           </div>
-          <p class="description text-center">
+          <br/>
+          <!-- <hr> -->
+          <div class="text-center">
+            <div class="row">
+              <div class="col-md-12">
+                <h5>{{ Selected_candidate.position|title }}<br /><small>ตำแหน่งที่สมัคร</small></h5>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <h5>{{ Selected_candidate.salary|intcomma }}<br /><small>เงินเดือนที่ต้องการ</small></h5>
+              </div>
+            </div>
+          </div>
+          <!-- <p class="description text-center">
             "I like the way you work it <br>
             No diggity <br>
             I wanna bag it up"
-          </p>
-        </div>
-        <hr>
-        <div class="text-center">
-          <div class="row">
-            <div class="col-md-3 col-md-offset-1">
-              <h5>12<br /><small>Files</small></h5>
-            </div>
-            <div class="col-md-4">
-              <h5>2GB<br /><small>Used</small></h5>
-            </div>
-            <div class="col-md-3">
-              <h5>24,6$<br /><small>Spent</small></h5>
-            </div>
-          </div>
+          </p> -->
         </div>
       </div>
       <div class="card">
         <div class="header">
-          <h4 class="title">Team Members</h4>
+          <h4 class="title">Contacts</h4>
         </div>
         <div class="content">
           <ul class="list-unstyled team-members">
             <li>
               <div class="row">
-                <div class="col-xs-3">
+                <!-- <div class="col-xs-3">
                   <div class="avatar">
                     <img src="assets/img/faces/face-0.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                   </div>
-                </div>
-                <div class="col-xs-6">
-                  DJ Khaled
-                  <br />
-                  <span class="text-muted"><small>Offline</small></span>
+                </div> -->
+                <div class="col-xs-9">
+                  <div class="from-group">
+                    เบอร์มือถือ (Mobile No.)
+                    <br />
+                    {% if Selected_candidate.mobile_no %}
+                      <span class="text-success"><small>{{ Selected_candidate.mobile_no }}</small></span>
+                    {% else %}
+                      <span class="text-muted"><small>ไม่ระบุ</small></span>
+                    {% endif %}
+                  </div>
                 </div>
 
                 <div class="col-xs-3 text-right">
-                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-phone"></i></btn>
                 </div>
               </div>
             </li>
             <li>
               <div class="row">
-                <div class="col-xs-3">
+                <!-- <div class="col-xs-3">
                   <div class="avatar">
                     <img src="assets/img/faces/face-1.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                   </div>
+                </div> -->
+                <div class="col-xs-9">
+                  <div class="from-group">
+                    เบอร์โทรศัพท์บ้าน (Home No.)
+                    <br />
+                    {% if Selected_candidate.home_no %}
+                      <span class="text-success"><small>{{ Selected_candidate.home_no }}</small></span>
+                    {% else %}
+                      <span class="text-muted"><small>ไม่ระบุ</small></span>
+                    {% endif %}
+                  </div>
                 </div>
-                <div class="col-xs-6">
-                  Creative Tim
-                  <br />
-                  <span class="text-success"><small>Available</small></span>
+
+                <div class="col-xs-3 text-right">
+                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-phone"></i></btn>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <!-- <div class="col-xs-3">
+                  <div class="avatar">
+                    <img src="assets/img/faces/face-1.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div> -->
+                <div class="col-xs-9">
+                  <div class="from-group">
+                    อีเมลล์ (Email)
+                    <br />
+                    {% if Selected_candidate.email %}
+                      <span class="text-success"><small>{{ Selected_candidate.email }}</small></span>
+                    {% else %}
+                      <span class="text-muted"><small>ไม่ระบุ</small></span>
+                    {% endif %}
+                  </div>
                 </div>
 
                 <div class="col-xs-3 text-right">
@@ -92,19 +136,50 @@ Filter Candidate | WebRecruiter
             </li>
             <li>
               <div class="row">
-                <div class="col-xs-3">
+                <!-- <div class="col-xs-3">
                   <div class="avatar">
                     <img src="assets/img/faces/face-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                   </div>
-                </div>
-                <div class="col-xs-6">
-                  Flume
-                  <br />
-                  <span class="text-danger"><small>Busy</small></span>
+                </div> -->
+                <div class="col-xs-9">
+                  <div class="from-group">
+                    Facebook
+                    <br />
+                    {% if Selected_candidate.facebook %}
+                      <span class="text-success"><small>{{ Selected_candidate.facebook }}</small></span>
+                    {% else %}
+                      <span class="text-muted"><small>ไม่ระบุ</small></span>
+                    {% endif %}
+                  </div>
                 </div>
 
                 <div class="col-xs-3 text-right">
-                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+                  <a href="https://www.facebook.com/{{ Selected_candidate.facebook }}"><btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-facebook-f"></i></btn></a>
+
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <!-- <div class="col-xs-3">
+                  <div class="avatar">
+                    <img src="assets/img/faces/face-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div> -->
+                <div class="col-xs-9">
+                  <div class="from-group">
+                    Line
+                    <br />
+                    {% if Selected_candidate.line %}
+                      <span class="text-success"><small>{{ Selected_candidate.line }}</small></span>
+                    {% else %}
+                      <span class="text-muted"><small>ไม่ระบุ</small></span>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-xs-3 text-right">
+                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-globe"></i></btn>
                 </div>
               </div>
             </li>
@@ -115,51 +190,54 @@ Filter Candidate | WebRecruiter
     <div class="col-lg-8 col-md-7">
       <div class="card">
         <div class="header">
-          <h4 class="title">Edit Profile</h4>
+          <h4 class="title">Basic Information</h4>
         </div>
         <div class="content">
-          <form>
+          <form action="/cart/add-to-cart/{{ Candidate_id }}">
             <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>คำนำหน้าชื่อ (Name Title)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.name_title }}">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>ชื่อจริง (First Name)</label>
+                  <input type="text" class="form-control border-input" disabled style="background-color:#fff;" placeholder="Firstname" value="{{ Selected_candidate.firstname }}">
+                </div>
+              </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <label>Company</label>
-                  <input type="text" class="form-control border-input" disabled placeholder="Company" value="Creative Code Inc.">
+                  <label>นามสกุล (Last Name)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="นามสกุล" value="{{ Selected_candidate.lastname }}">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>วันเกิด (Date of Birth)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.bdate }}">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
+                  <label>อายุ (Age)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="Username" value="19 ปี">
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control border-input" placeholder="Email">
+                  <label>กรุ๊ปเลือด (Blood)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="blood" value="{{ Selected_candidate.blood }}">
                 </div>
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <label>First Name</label>
-                  <input type="text" class="form-control border-input" placeholder="Company" value="Chet">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Last Name</label>
-                  <input type="text" class="form-control border-input" placeholder="Last Name" value="Faker">
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Address</label>
-                  <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                  <label>สถานภาพ (Status)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="blood" value="{{ Selected_candidate.status }}">
                 </div>
               </div>
             </div>
@@ -167,37 +245,60 @@ Filter Candidate | WebRecruiter
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>City</label>
-                  <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
+                  <label>สัญชาติ (Nationality)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="Nationality" value="{{ Selected_candidate.nationality }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Country</label>
-                  <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
+                  <label>เชื้อชาติ (Race)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="Race" value="{{ Selected_candidate.race }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Postal Code</label>
-                  <input type="number" class="form-control border-input" placeholder="ZIP Code">
+                  <label>ศาสนา (Religion)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="Religion" value="{{ Selected_candidate.religion }}">
                 </div>
               </div>
             </div>
+            {% if Selected_candidate.military_status %}
+              <div class="row">
+                {% if Selected_candidate.military_status == 'militaryPass' %}
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>สถานะทหาร (Military Status)</label>
+                      <input type="text" class="form-control border-input" disabled placeholder="Nationality" value="{% if  Selected_candidate.military_status == "militaryPass" %} ผ่านการเกณฑ์ทหาร {% elif Selected_candidate.military_status == "militaryGrace" %} ผ่อนผัน {% elif Selected_candidate.military_status == "militaryExempt" %} ได้รับการยกเว้น {% endif %}">
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <label>สถานะทหาร (Military Status)</label>
+                      <input type="text" class="form-control border-input" disabled placeholder="Nationality" value="{% if  Selected_candidate.military_status == "militaryPass" %} ผ่านการเกณฑ์ทหาร {% elif Selected_candidate.military_status == "militaryGrace" %} ผ่อนผัน {% elif Selected_candidate.military_status == "militaryExempt" %} ได้รับการยกเว้น {% endif %}">
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="form-group">
+                      <label>เหตุผล (Reason)</label>
+                      <input type="text" class="form-control border-input" disabled placeholder="Race" value="{{ Selected_candidate.military_reason }}">
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   <label>About Me</label>
-                  <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
-                    You doubt I'll bother, reading into it
-                    I'll probably won't, left to my own devices
-                    But that's the difference in our opinions.</textarea>
+                  <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">
+                  </textarea>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="text-center">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                <button type="submit" class="btn btn-info btn-fill btn-wd">Add to Cart</button>
               </div>
               <div class="clearfix"></div>
             </form>
