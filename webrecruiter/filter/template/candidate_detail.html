@@ -193,7 +193,7 @@ input[type="text"]:disabled {
           <h4 class="title">Basic Information</h4>
         </div>
         <div class="content">
-          <form action="/cart/add-to-cart/{{ Candidate_id }}">
+          <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">

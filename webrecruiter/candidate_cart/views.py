@@ -12,72 +12,66 @@ from candidate_cart.models import OrderItem, Order
 
 import datetime
 
-# def get_user_pending_order(request):
-#     # get order for the correct user
-#     user_profile = get_object_or_404(Profile, user=request.user)
-#     order = Order.objects.filter(owner=user_profile, is_ordered=False)
-#     if order.exists():
-#         # get the only order in the list of filtered orders
-#         return order[0]
-#     return 0
+def get_user_pending_order(request):
+    # get order for the correct user
+    user_profile = get_object_or_404(Profile, user=request.user)
+    order = Order.objects.filter(owner=user_profile, is_ordered=False)
+    if order.exists():
+        # get the only order in the list of filtered orders
+        return order[0]
+    return 0
 
 
 @login_required()
 def add_to_cart(request, **kwargs):
     # get the user profile
-    print("Entry1")
-    print("Entry2")
     print(request.user)
     user_profile = get_object_or_404(Profile, user=request.user)
-    print("Entry2")
     # filter products by id
     candidate = CandidateBasic.objects.filter(id_number=kwargs.get('item_id', "")).first()
-    print("Entry3")
-    print("candidate:",candidate,"All :", request.user.profile.candidate.all())
     # check if the user already owns this product
     if candidate in request.user.profile.candidate.all():
-        print("Entry4")
         messages.info(request, 'You already own this candidate')
         return redirect(reverse('filter'))
-    print("Entry5")
     # create orderItem of the selected product
     order_item, status = OrderItem.objects.get_or_create(candidate=candidate)
-    print("Entry6")
     # create order associated with the user
     user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
-    print("Entry7")
     user_order.items.add(order_item)
-    print("Entry8")
     if status:
         # generate a reference code
         user_order.ref_code = generate_order_id()
         user_order.save()
-        print("Entry9")
-    print("Entry10")
-
     # show confirmation message and redirect back to the same page
     messages.info(request, "item added to cart")
-    print("Entry11")
     return redirect(reverse('filter'))
 
-#
-# @login_required()
-# def delete_from_cart(request, item_id):
-#     item_to_delete = OrderItem.objects.filter(pk=item_id)
-#     if item_to_delete.exists():
-#         item_to_delete[0].delete()
-#         messages.info(request, "Item has been deleted")
-#     return redirect(reverse('shopping_cart:order_summary'))
-#
-#
-# @login_required()
-# def order_details(request, **kwargs):
-#     existing_order = get_user_pending_order(request)
-#     context = {
-#         'order': existing_order
-#     }
-#     return render(request, 'shopping_cart/order_summary.html', context)
-#
+
+@login_required()
+def delete_from_cart(request, item_id):
+    user_profile = get_object_or_404(Profile, user=request.user)
+    user_order = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
+    item = OrderItem.objects.filter(candidate=item_id)
+    print("Before delete : ",user_order[0].items.all())
+    if item.exists():
+        item_to_delete = item[0]
+        user_order[0].items.remove(item_to_delete)
+        print("Deleted! : ",user_order[0].items.all())
+    return redirect(reverse('candidate_cart:order_summary'))
+
+
+@login_required()
+def order_details(request, **kwargs):
+    existing_order = get_user_pending_order(request)
+    cart_amount = ''
+    if existing_order!=0:
+        cart_amount = existing_order.items.all().count()
+    context = {
+        'order': existing_order,
+        'Cart_amount': cart_amount,
+    }
+    return render(request, 'order_summary.html', context)
+
 #
 # @login_required()
 # def checkout(request):

@@ -26,7 +26,17 @@ from candidate_cart.models import OrderItem, Order
 from account.models import Profile
 
 
+def get_cart_amount(request):
+    user = User.objects.filter(username=request.user.username)
 
+    filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+    cart_amount = 0
+    current_order_products = []
+    if filtered_orders.exists():
+        user_order = filtered_orders[0]
+        user_order_items = user_order.items.all()
+        cart_amount = user_order_items.count()
+    return cart_amount
 
 # Create your views here.
 def index(request):
@@ -179,44 +189,27 @@ def index(request):
 
         # if (checkbox_position!='1' and checkbox_salary!='1' and checkbox_blood!='1' and checkbox_gpa!='1' and checkbox_gender!='1') :
         #     all_candidate = CandidateBasic.objects.all()
+        cart_amount = get_cart_amount(request)
         context = {
             'Candidate': all_candidate,
+            'Cart_amount':cart_amount,
         }
         template = loader.get_template("filter_candidate.html")
         return HttpResponse(template.render(context, request))
 
     if request.user.is_authenticated:
         all_candidate = CandidateBasic.objects.all()
-        user = User.objects.filter(username=request.user.username)
-        print("All Can : " + str(all_candidate))
-        print("User : " + str(user))
-        # return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user})
-        # user_profile = get_object_or_404(Profile, user=request.user)
+        cart_amount = get_cart_amount(request)
 
-        filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
-        cart_amount = 0
-        current_order_products = []
-        if filtered_orders.exists():
-            user_order = filtered_orders[0]
-            user_order_items = user_order.items.all()
-            cart_amount = user_order_items.count()
-            print("----------------------- !!!!! Cart Item : ",cart_amount,"::",user_order_items)
-
-        return render(request, "filter_candidate.html", {'Candidate': all_candidate, 'User': user,'Cart_amount':cart_amount})
+        return render(request, "filter_candidate.html", {'Candidate': all_candidate,'Cart_amount':cart_amount})
     else:
         return redirect('login')
 
 
 def candidate_detail(request,candidate_id):
     if request.user.is_authenticated:
-
         filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
-        cart_amount = 0
-        current_order_products = []
-        if filtered_orders.exists():
-            user_order = filtered_orders[0]
-            user_order_items = user_order.items.all()
-            cart_amount = user_order_items.count()
+        cart_amount = get_cart_amount(request)
 
         selected_candidate = get_object_or_404(CandidateBasic, id_number=candidate_id)
         print(type(list))

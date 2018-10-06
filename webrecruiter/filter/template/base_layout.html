@@ -89,7 +89,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="#">
+                <a href="{% url 'candidate_cart:order_summary' %}">
                   <i class="pe-7s-cart">
                     {% if Cart_amount != 0 %}
                       <span class="label">{{ Cart_amount }}</span>
@@ -109,7 +109,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="pe-7s-user"></i>
-                  <p style="font-weight: 100;">Hi {{user}} <span class="ti-angle-down"></span></p>
+                  <p style="font-weight: 100;">Hi {{request.user|title}} <span class="ti-angle-down"></span></p>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Profile</a></li>
