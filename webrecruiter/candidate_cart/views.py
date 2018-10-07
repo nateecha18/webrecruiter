@@ -72,15 +72,20 @@ def order_details(request, **kwargs):
     }
     return render(request, 'order_summary.html', context)
 
-#
-# @login_required()
-# def checkout(request):
-#     existing_order = get_user_pending_order(request)
-#     context = {
-#         'order': existing_order,
-#     }
-#
-#     return render(request, 'shopping_cart/checkout.html', context)
+
+@login_required()
+def create_interview(request):
+    existing_order = get_user_pending_order(request)
+    cart_amount = ''
+    if existing_order!=0:
+        cart_amount = existing_order.items.all().count()
+    context = {
+        'order': existing_order,
+        'Cart_amount': cart_amount,
+    }
+
+    return render(request, 'create-interview.html', context)
+
 #
 # @login_required()
 # def process_payment(request, order_id):

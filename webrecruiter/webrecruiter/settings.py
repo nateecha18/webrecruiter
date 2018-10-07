@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'webrecruiter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['jobapply/template','filter/template','addskill/template','register/template','account/template'],
+        'DIRS': ['jobapply/template','filter/template','addskill/template','register/template','account/template','candidate_cart/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -3,7 +3,7 @@
 {% load humanize %}
 
 {% block title %}
-Filter Candidate | WebRecruiter
+Candidate Cart | WebRecruiter
 {% endblock %}
 
 {% block stylesheet %}
@@ -142,7 +142,7 @@ i.icon-delete { color: #EB5E28; }
               </td>
               <td colspan=3>
                 {% if order.get_cart_items %}
-                <a href="#" class="pull-right btn btn-primary">Proceed To Checkout</a>
+                <a href="{% url 'candidate_cart:create_interview' %}" class="pull-right btn btn-primary">Proceed To Interview</a>
                 {% endif %}
               </td>
             </tr>
