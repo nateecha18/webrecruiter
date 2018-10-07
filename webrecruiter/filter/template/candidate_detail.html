@@ -195,12 +195,6 @@ input[type="text"]:disabled {
         <div class="content">
           <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
             <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label>คำนำหน้าชื่อ (Name Title)</label>
-                  <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.name_title }}">
-                </div>
-              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>ชื่อจริง (First Name)</label>
@@ -211,6 +205,12 @@ input[type="text"]:disabled {
                 <div class="form-group">
                   <label>นามสกุล (Last Name)</label>
                   <input type="text" class="form-control border-input" disabled placeholder="นามสกุล" value="{{ Selected_candidate.lastname }}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>ชื่อเล่น (Nickname)</label>
+                  <input type="text" class="form-control border-input" disabled placeholder="nickname" value="{{ Selected_candidate.nickname }}">
                 </div>
               </div>
             </div>

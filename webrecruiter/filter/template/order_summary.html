@@ -86,7 +86,7 @@ i.icon-delete { color: #EB5E28; }
     <div class="col-md-12">
       <div class="card">
         <div class="header">
-          <h2 class="title" style="margin-top:25px; margin-bottom:5px;">{% if order.get_cart_items.count >= 1 %}YOUR CART {% else %} EMPTY CART{% endif %}&nbsp;&nbsp;<i class="material-icons icon_title" style="font-size: 1.8em; position:relative; top:12px; color:#ff9800;">shopping_cart</i></h2>
+          <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">shopping_cart</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %}YOUR&nbsp;&nbsp;CART {% else %} EMPTY CART{% endif %}</h2>
           <h4 class="title text-right">You Have &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %} In Cart</h4>
           {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>This is your selected candidate, They're waiting you to check them out!</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
           <br />
@@ -115,7 +115,7 @@ i.icon-delete { color: #EB5E28; }
                 </td>
                 <td class="td-product">
                   <a href="{% url 'candidate_detail' item.candidate.id_number %}"><strong>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</strong></a>
-                  <p>Most beautiful agenda for the office.</p>
+                  <p>{{ item.candidate.nickname }}&nbsp;&nbsp;{{ item.candidate.id_number }}</p>
                 </td>
                 <td class="td-price">
                   {{ item.candidate.position }}
