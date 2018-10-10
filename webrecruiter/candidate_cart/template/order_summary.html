@@ -86,8 +86,8 @@ i.icon-delete { color: #EB5E28; }
     <div class="col-md-12">
       <div class="card">
         <div class="header">
-          <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">shopping_cart</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %}YOUR&nbsp;&nbsp;CART {% else %} EMPTY CART{% endif %}</h2>
-          <h4 class="title text-right">You Have &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %} In Cart</h4>
+          <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">favorite_border</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %} WISHLIST {% else %} EMPTY WISHLIST{% endif %}</h2>
+          <h4 class="title text-right">You Have &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %} In Wishlist</h4>
           {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>This is your selected candidate, They're waiting you to check them out!</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
           <br />
         </div>
@@ -136,15 +136,15 @@ i.icon-delete { color: #EB5E28; }
             {% endif %}
             <tr>
               <td colspan=2 >
-                <a href="{% url 'filter' %}" class="btn btn-warning pull-left">
-                  {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
+                <a href="{% url 'filter' %}" class="btn btn-warning pull-left" style="margin-left:40px;">
+                  {% if order %}Continue Recruit{% else %}Add Items to Wishlist {% endif %}
                 </a>
               </td>
-              <td colspan=3>
+              <!-- <td colspan=3>
                 {% if order.get_cart_items %}
-                <a href="{% url 'candidate_cart:create_interview' %}" class="pull-right btn btn-primary">Proceed To Interview</a>
+                <a href="{% url 'candidate_cart:create_interview' %}" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Interview</a>
                 {% endif %}
-              </td>
+              </td> -->
             </tr>
           </table>
         </div>
@@ -158,8 +158,8 @@ i.icon-delete { color: #EB5E28; }
 {% block javascript %}
 <script type="text/javascript">
 $('a.delete_candidate').confirm({
-  title: 'Delete Candidate Out Of Cart ?!',
-  content: "คุณต้องการลบผู้สมัครออกจาก Candidate Cart หรือไม่?",
+  title: 'Delete Wishlist <i class="material-icons">favorite</i>',
+  content: "คุณต้องการลบผู้สมัครออกจาก Wishlist หรือไม่?",
   buttons: {
     ใช่: function(){
       location.href = this.$target.attr('href');

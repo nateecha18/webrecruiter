@@ -83,6 +83,14 @@
                       <p style="font-weight: 200;">&nbsp;&nbsp;&nbsp;Interview&nbsp;&nbsp;&nbsp;</p>
                     </a>
                   </li>
+                  <li>
+                    <a href="#">
+                      <i class="pe-7s-glasses">
+                        <span class="label"></span>
+                      </i>
+                      <p style="font-weight: 200;">&nbsp;&nbsp;&nbsp;Rank&nbsp;&nbsp;&nbsp;</p>
+                    </a>
+                  </li>
                 </ul>
           </div>
 
@@ -90,12 +98,12 @@
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <a href="{% url 'candidate_cart:order_summary' %}">
-                  <i class="pe-7s-cart">
+                  <i class="pe-7s-like">
                     {% if Cart_amount != 0 %}
                       <span class="label">{{ Cart_amount }}</span>
                     {% endif %}
                   </i>
-                  <p style="font-weight: 100;">Candidate Cart</p>
+                  <p style="font-weight: 100;">Wishlist</p>
                 </a>
               </li>
               <li>
@@ -109,7 +117,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="pe-7s-user"></i>
-                  <p style="font-weight: 100;">Hi {{request.user|title}} &nbsp;&nbsp;&nbsp;<i class="material-icons">arrow_drop_down</i></p>
+                  <p style="font-weight: 100;">Hi {{request.user|title}}</p>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Profile</a></li>
@@ -293,6 +301,18 @@ $('.example2').on('click', function () {
       }
     }
   });
+});
+</script>
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="/static/js/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+$('.datepicker').datepicker({
+	weekStart:1,
+	color: 'red'
+}).on('changeDate', function(e){
+	// this next line fixed the floating label issue for me
+	$(this).parent('.label-floating').removeClass('is-empty');
 });
 </script>
 

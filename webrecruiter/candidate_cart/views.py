@@ -8,7 +8,7 @@ from account.models import Profile
 from jobapply.models import CandidateBasic
 
 from candidate_cart.extras import generate_order_id
-from candidate_cart.models import OrderItem, Order
+from candidate_cart.models import OrderItem, Order, Interview
 
 import datetime
 
@@ -66,6 +66,7 @@ def order_details(request, **kwargs):
     cart_amount = ''
     if existing_order!=0:
         cart_amount = existing_order.items.all().count()
+
     context = {
         'order': existing_order,
         'Cart_amount': cart_amount,
@@ -79,6 +80,26 @@ def create_interview(request):
     cart_amount = ''
     if existing_order!=0:
         cart_amount = existing_order.items.all().count()
+    if request.method == 'POST':
+        date_interview = request.POST.get('date_interview')
+        user_profile = get_object_or_404(Profile, user=request.user)
+        user_order = Order.objects.get(owner=user_profile, is_ordered=False)
+        print(user_order,type(user_order))
+        existing_order = get_user_pending_order(request)
+        if existing_order!=0:
+            interview_detail = Interview.objects.create(profile=user_profile, order_id=existing_order, date_interview=date_interview)
+            context = {
+                'order': existing_order,
+                'Cart_amount': cart_amount,
+            }
+
+            return render(request, 'create-interview.html', context)
+            # return redirect(reverse('candidate_cart:update_records',
+            #             kwargs={
+            #                 'order_id': user_order
+            #             })
+            #         )
+
     context = {
         'order': existing_order,
         'Cart_amount': cart_amount,
@@ -96,7 +117,7 @@ def create_interview(request):
 #                     })
 #             )
 #
-#
+
 # @login_required()
 # def update_transaction_records(request, order_id):
 #     # get the order being processed

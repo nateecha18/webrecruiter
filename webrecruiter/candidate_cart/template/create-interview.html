@@ -7,75 +7,31 @@ Interview Details | WebRecruiter
 {% endblock %}
 
 {% block stylesheet %}
+<link href="{% static 'datepicker/datepicker_bootstrap-datepicker.css' %}" rel="stylesheet" />
+
 <style media="screen">
 i.icon-delete { color: #EB5E28; }
-.table-shopping > thead > tr > th {
-  color: #a49e93;
-  font-size: 1.1em;
-  font-weight: 300;
-}
-
-.table-shopping > tbody > tr > td {
-  font-size: 16px;
-  padding: 30px 5px;
-}
-
-.table-shopping > tbody > tr > td b {
+.img-container {
+  border-radius: 10px;
   display: block;
-  margin-bottom: 5px;
-}
-
-.table-shopping .td-number,
-.table-shopping .td-price,
-.table-shopping .td-total {
-  font-size: 1.2em;
-  min-width: 130px;
-  text-align: center;
-  padding-right: 20px;
-}
-
-.table-shopping .td-number small,
-.table-shopping .td-price small,
-.table-shopping .td-total small {
-  margin-right: 3px;
-}
-
-.table-shopping .td-product {
-  min-width: 170px;
-  padding-left: 30px;
-}
-
-.table-shopping .td-product strong {
-  color: #484541;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-.table-shopping .td-number,
-.table-shopping .td-total {
-  color: #484541;
-  font-weight: 600;
-}
-
-.table-shopping .td-quantity .btn-group {
-  margin-left: 10px;
-}
-
-.table-shopping .img-container {
-  border-radius: 6px;
-  display: block;
-  height: 100px;
+  height: 200px;
   overflow: hidden;
-  width: 100px;
+  width: 200px;
   margin-left: 10px;
 }
 
-.table-shopping .img-container img {
+.img-container img {
   width: 100%;
 }
-
-.table-shopping .tr-actions > td {
-  border-top: 0;
+input[type="text"]:disabled {
+  background: #fff;
+  color : #66615b;
+}
+.form-group label {
+  color : #66615b;
+}
+.form-group label{
+  font-weight: 400;
 }
 
 </style>
@@ -87,28 +43,86 @@ i.icon-delete { color: #EB5E28; }
       <div class="card">
         <div class="header">
           <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">perm_contact_calendar</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %}CREATE&nbsp;&nbsp;INTERVIEW {% else %} EMPTY CART{% endif %}</h2>
-          <h4 class="title text-right">You Have &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %} In Cart</h4>
-          {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>This is your selected candidate, They're waiting you to check them out!</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
+          <h4 class="title text-right">You Selected &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %}</h4>
+          {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>Fill the form for create interview</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
           <br />
         </div>
 
-        
-        <div class="table-responsive">
-          <table class="table table-shopping">
-            <tr>
-              <td colspan=2 >
-                <a href="{% url 'candidate_cart:order_summary' %}" class="btn btn-warning pull-left">
-                  {% if order %}Bact to Cart{% else %}Add Items to Cart {% endif %}
-                </a>
-              </td>
-              <td colspan=3>
-                {% if order.get_cart_items %}
-                <a href="#" class="pull-right btn btn-primary">Proceed To Checkout</a>
-                {% endif %}
-              </td>
-            </tr>
-          </table>
-        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="col-md-5 col-md-offset-1">
+            <div class="form-group">
+              <label for="name_interviewer">ชื่อผู้สัมภาษณ์ (Interviewer)</label>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <input type="text" class="form-control border-input" id="name_interviewer" disabled placeholder="ชื่อผู้สัมภาษณ์" value="{{request.user.first_name|title}}&nbsp;&nbsp;&nbsp;{{request.user.last_name|title}}">
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="form-group">
+              <label for="date_interview">วันที่สัมภาษณ์ (Date of Interview)</label>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <input type="text" class="form-control border-input" id="date_interview" name="date_interview" placeholder="วันที่สัมภาษณ์">
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="form-group">
+              <label for="add_date" style="position:relative; bottom: 20px;"></label>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group text-center">
+              <p><button type="button" id="btnAdd" class="btn btn-simple" style="color:#ff9800; position:relative; bottom: 20px;">เพิ่มวันที่สัมภาษณ์</button></p>
+            </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1">
+            <div class="card" style="background-color:#f9f9f9">
+
+              <div class="content">
+                <div class="container-fluid">
+                  <div class="header">
+                    <h4 style="font-weight: 200;">ผู้สมัครที่คุณเลือก</h4>
+                  </div>
+                  {% for item in order.get_cart_items %}
+                  <div class="big_container col-md-4" style="text-align: center;">
+                    <div class="img-container">
+                      <a style="text-align: center;" href="{% url 'candidate_detail' item.candidate.id_number %}"><img src="{% if item.candidate.profile_pic %}{{ item.candidate.profile_pic.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Agenda"></a>
+                    </div>
+                    <a href="{% url 'candidate_detail' item.candidate.id_number %}"><strong>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</strong></a>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-shopping">
+              <tr>
+                <td colspan=2 >
+                  <a href="{% url 'candidate_cart:order_summary' %}" class="btn btn-warning pull-left" style="margin-left:40px;">
+                    {% if order %}Bact to Cart{% else %}Add Items to Cart {% endif %}
+                  </a>
+                </td>
+                <td colspan=3>
+                  {% if order.get_cart_items %}
+                  <button type="submit" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Checkout</button>
+                  <!-- <a href="#" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Checkout</a> -->
+                  {% endif %}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+
+
 
 
       </div><!--  end card  -->
@@ -128,6 +142,18 @@ $('a.delete_candidate').confirm({
     ไม่ใช่: function(){
     }
   }
+});
+</script>
+
+<script src="{% static 'datepicker/datepicker_bootstrap-datepicker.js' %}"></script>
+
+<script type="text/javascript">
+$('.datepicker').datepicker({
+	weekStart:1,
+	color: 'red'
+}).on('changeDate', function(e){
+	// this next line fixed the floating label issue for me
+	$(this).parent('.label-floating').removeClass('is-empty');
 });
 </script>
 {% endblock %}

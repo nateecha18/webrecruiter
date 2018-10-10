@@ -27,3 +27,15 @@ class Order(models.Model):
 
     def __str__(self):
         return '{0} - {1}'.format(self.owner, self.ref_code)
+
+
+class Interview(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    order_id = models.CharField(max_length=120)
+    date_interview = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.order_id
+    #
+    # class Meta:
+    #     ordering = ['-timestamp']

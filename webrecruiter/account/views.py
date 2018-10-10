@@ -19,6 +19,8 @@ from django.contrib.auth import (
         )
 from .forms import UserLoginForm
 from .models import Profile
+from candidate_cart.models import Order
+
 
 def my_profile(request):
 	my_user_profile = Profile.objects.filter(user=request.user).first()
