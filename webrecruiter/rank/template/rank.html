@@ -1,0 +1,112 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Candidate Cart | WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+<style media="screen">
+i.icon-delete { color: #EB5E28; }
+.table-shopping > thead > tr > th {
+  color: #a49e93;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+
+.table-shopping > tbody > tr > td {
+  font-size: 16px;
+  padding: 30px 5px;
+}
+
+.table-shopping > tbody > tr > td b {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.table-shopping .td-number,
+.table-shopping .td-price,
+.table-shopping .td-total {
+  font-size: 1.2em;
+  min-width: 130px;
+  text-align: center;
+  padding-right: 20px;
+}
+
+.table-shopping .td-number small,
+.table-shopping .td-price small,
+.table-shopping .td-total small {
+  margin-right: 3px;
+}
+
+.table-shopping .td-product {
+  min-width: 170px;
+  padding-left: 30px;
+}
+
+.table-shopping .td-product strong {
+  color: #484541;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.table-shopping .td-number,
+.table-shopping .td-total {
+  color: #484541;
+  font-weight: 600;
+}
+
+.table-shopping .td-quantity .btn-group {
+  margin-left: 10px;
+}
+
+.table-shopping .img-container {
+  border-radius: 6px;
+  display: block;
+  height: 100px;
+  overflow: hidden;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.table-shopping .img-container img {
+  width: 100%;
+}
+
+.table-shopping .tr-actions > td {
+  border-top: 0;
+}
+
+</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <h1>Rank</h1>
+          <br />
+        </div>
+
+      </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+  </div> <!-- end row -->
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$('a.delete_candidate').confirm({
+  title: 'Delete Wishlist <i class="material-icons">favorite</i>',
+  content: "คุณต้องการลบผู้สมัครออกจาก Wishlist หรือไม่?",
+  buttons: {
+    ใช่: function(){
+      location.href = this.$target.attr('href');
+    },
+    ไม่ใช่: function(){
+    }
+  }
+});
+</script>
+{% endblock %}

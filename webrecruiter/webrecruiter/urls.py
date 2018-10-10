@@ -29,6 +29,7 @@ urlpatterns = [
     path('register/', include('register.urls')),
     path('account/', include('account.urls')),
     path('cart/', include('candidate_cart.urls')),
+    path('rank/', include('rank.urls')),
 
 
     # path('pdf/', GeneratePdf.as_view())
