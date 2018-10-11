@@ -9,90 +9,60 @@ Candidate Cart | WebRecruiter
 {% block stylesheet %}
 <style media="screen">
 i.icon-delete { color: #EB5E28; }
-.table-shopping > thead > tr > th {
-  color: #a49e93;
-  font-size: 1.1em;
-  font-weight: 300;
-}
-
-.table-shopping > tbody > tr > td {
-  font-size: 16px;
-  padding: 30px 5px;
-}
-
-.table-shopping > tbody > tr > td b {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.table-shopping .td-number,
-.table-shopping .td-price,
-.table-shopping .td-total {
-  font-size: 1.2em;
-  min-width: 130px;
-  text-align: center;
-  padding-right: 20px;
-}
-
-.table-shopping .td-number small,
-.table-shopping .td-price small,
-.table-shopping .td-total small {
-  margin-right: 3px;
-}
-
-.table-shopping .td-product {
-  min-width: 170px;
-  padding-left: 30px;
-}
-
-.table-shopping .td-product strong {
-  color: #484541;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-.table-shopping .td-number,
-.table-shopping .td-total {
-  color: #484541;
-  font-weight: 600;
-}
-
-.table-shopping .td-quantity .btn-group {
-  margin-left: 10px;
-}
-
-.table-shopping .img-container {
-  border-radius: 6px;
-  display: block;
-  height: 100px;
-  overflow: hidden;
-  width: 100px;
-  margin-left: 10px;
-}
-
-.table-shopping .img-container img {
-  width: 100%;
-}
-
-.table-shopping .tr-actions > td {
-  border-top: 0;
-}
-
 </style>
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="header">
-          <h1>Rank</h1>
-          <br />
+    <form>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Candidate Rank {{ranks.count}}</h4>
+          </div>
+          <div class="content">
+          </div>
         </div>
+      </div>
+    </form>
+    <form >
+      <div class="col-md-12">
+        <div class="fresh-table">
+          <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+          Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+        -->
+        <table id="fresh-table" class="table">
+          <thead>
+            <th data-field="id" data-sortable="true" class="text-center">อันดับ</th>
+            <th data-field="id_number" data-sortable="true">หมายเลขบัตรประชาชน</th>
+            <th data-field="name" data-sortable="true">ชื่อผู้สมัคร</th>
+            <th data-field="count" data-sortable="true" class="text-center">จำนวนความต้องการ</th>
+            <th data-field="owner">Engineer ที่ต้องการ</th>
+          </thead>
+          <tbody>
+            {% for rank in ranks%}
+            <tr>
+              <td>{{ forloop.counter }}&nbsp;&nbsp;&nbsp;{% if forloop.counter == 1 or forloop.counter == 2 or forloop.counter == 3%}<i class="fas fa-award" style=" font-size: 18px;{% if forloop.counter == 1%}color:#D9A441;
+                                                                                                                                                                                     {% elif forloop.counter == 2%}color:#CCC2C2
+                                                                                                                                                                                     {% elif forloop.counter == 3%}color:#965A38
+                                                                                                                                                                                     {% endif %}"></i>{% endif %}</td>
+              <td><a href="/filter/{{rank.candidate.id_number}}/" style="color: #ff9800; font-weight: 400;">{{ rank.candidate.id_number }}</a></td>
+              <td>{{ rank.candidate.name_title }} {{ rank.candidate.firstname }}&nbsp;&nbsp;&nbsp;&nbsp; {{ rank.candidate.lastname }}</td>
+              <td>{{rank.count}}</td>
+              <td>
+                {% for owner in rank.get_candidate_owner %}
+                  {{ owner }}
+                {% endfor%}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
 
-      </div><!--  end card  -->
-    </div> <!-- end col-md-12 -->
-  </div> <!-- end row -->
+      </div>
+    </div>
+  </form>
+</div>
 </div>
 {% endblock %}
 {% block javascript %}
