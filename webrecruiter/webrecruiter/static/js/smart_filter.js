@@ -3,17 +3,6 @@ $(document).ready(function(){
   $('#add').click(function(){
     i++;
     var append_text = '';
-    // append_text = '<div id="'+i+'" class="filter_list"> <div class="row"> <div class="col-lg-4"> <div class="col-lg-2 text-center"> <span class="number_circle">'+i+'</span> </div><div class="col-lg-10"> <select class="form-control" name="filter_option" id="filter_option'+i+'"> <option disabled="" selected="">Select a filter</option> <option value="1">ตำแหน่ง</option> <option value="2">เงินเดือน</option> <option value="3">อายุ</option> <option value="4">เพศ</option> <option value="5">สัญชาติ</option> <option value="6">สถานภาพ</option> <option value="7">สถานะการศึกษาปัจจุบัน</option> <option value="8">มหาวิทยาลัย</option> <option value="9">คณะ</option> <option value="10">สาขาวิชา</option> <option value="11">เกรดเฉลี่ย</option> <option value="12">ความสามารถด้านคอมพิวเตอร์</option> <option value="13">ความสามารถด้านภาษา</option> <option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option> <option value="15">ประสบการณ์ทำงาน ฝึกงาน</option> </select> </div></div>';
-    // append_text += ' <div class="col-lg-7" id="position_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px;" name="operator_position"> <option value="1">ตำแหน่ง (is)</option> <option value="2">ไม่ใช่ตำแหน่ง (isnot)</option> <option value="3">ตำแหน่งที่มี (contains)</option> <option value="4">ตำแหน่งที่ไม่มี (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Position" name="filter_position"> </div></div></div>';
-    // append_text += ' <div class="col-lg-7" id="salary_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_salary"> <option value="1">เท่ากับ (=)</option> <option value="2">มากกว่าเท่ากับ (>=)</option> <option value="3">น้อยกว่าเท่ากับ (<=)</option> <option value="4">มากกว่า (>)</option> <option value="5">น้อยกว่า (<)</option> <option value="6">ระหว่าง (Between)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="Salary" name="filter_salary"> </div></div></div>';
-    // append_text += ' <div class="col-lg-7" id="age_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px"> <option value="1">=</option> <option value="2">มากกว่าเท่ากับ (>=)</option> <option value="3">น้อยกว่าเท่ากับ (<=)</option> <option value="4">มากกว่า (>)</option> <option value="5">น้อยกว่า (<)</option> <option value="6">ระหว่าง (Between)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="อายุ" name="filter_age"> </div></div></div>';
-    // append_text += ' <div class="col-lg-7" id="gender_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_gender"> <option value="1">เพศ (is)</option> <option value="2">ไม่เอาเพศ (isnot)</option> </select> </div><div class="col-lg-8"> <select class="form-control" style="margin-top:0px" name="filter_gender"> <option value="m" selected>ชาย (Men)</option> <option value="w">หญิง (Women)</option> </select> </div></div>';
-    // append_text += ' <div class="col-lg-7" id="nationality_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px"> <option value="">สัญชาติ (is)</option> <option value="">ไม่เอาสัญชาติ (isnot)</option> <option value="">สัญชาติที่เป็น (contains)</option> <option value="">สัญชาติที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="สัญชาติ" name="filter_nationality"> </div></div></div>';
-    // append_text += ' <div class="col-lg-7" id="status_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_status"> <option value="">สถานภาพ (is)</option> <option value="">ไม่เอาสถานภาพ (isnot)</option> </select> </div><div class="col-lg-8"> <select class="form-control" style="margin-top:0px" name="filter_status"> <option disabled="" selected=""></option> <option value="S">โสด (Single)</option> <option value="M">สมรส (Married)</option> <option value="I">หม้าย (Widowed)</option> <option value="D">หย่า (Divorced)</option> </select> </div></div>';
-    // append_text += ' <div class="col-lg-7" id="edu_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_edu"> <option value="">อยู่ระหว่างการศึกษา</option> <option value="">สำเร็จการศึกษาแล้ว</option> </select> </div><div class="col-lg-8"> <p> </p></div></div>';
-    // append_text += ' <div class="col-lg-7" id="university_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_university"> <option value="">มหาวิทยาลัย (is)</option> <option value="">ไม่เอามหาวิทยาลัย (isnot)</option> <option value="">มหาวิทยาลัยที่เป็น (contains)</option> <option value="">มหาวิทยาลัยที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="มหาวิทยาลัย" name="filter_university"> </div></div></div>';
-    // append_text += ' <div class="col-lg-7" id="faculty_value'+i+'"> <div class="col-lg-4"> <select class="form-control" style="margin-top:0px" name="operator_faculty"> <option value="">คณะ (is)</option> <option value="">ไม่เอาคณะ (isnot)</option> <option value="">คณะที่เป็น (contains)</option> <option value="">คณะที่ไม่เป็น (isnot contains)</option> </select> </div><div class="col-lg-8"> <div class="form-group"> <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="คณะ" name="filter_faculty"> </div></div></div>';
-    // append_text += ' <div class="col-lg-1"> <div class="text-center" style="margin-top: 8px;"> <button type="button" id="'+i+'" class="btn btn-simple btn-xs btn_remove"><i class="material-icons md-18 icon-delete" >delete</i></button> </div></div></div></div>';
 
     // Head (Filter Select + Add More button)
     append_text = '<div id="'+i+'" class="filter_list"> <div class="row"> <div class="col-lg-4"> <div class="col-lg-2 text-center"> <span class="number_circle">'+i+'</span> </div><div class="col-lg-10"> <select class="form-control" name="filter_option" id="filter_option'+i+'"> <option selected value="0">Select a filter</option> <option value="1">ตำแหน่ง</option> <option value="2">เงินเดือน</option> <option value="3">อายุ</option> <option value="4">เพศ</option> <option value="5">สัญชาติ</option> <option value="6">สถานภาพ</option> <option value="7">สถานะการศึกษาปัจจุบัน</option> <option value="8">มหาวิทยาลัย</option> <option value="9">คณะ</option> <option value="10">สาขาวิชา</option> <option value="11">เกรดเฉลี่ย</option> <option value="12">ความสามารถด้านคอมพิวเตอร์</option> <option value="13">ความสามารถด้านภาษา</option> <option value="14">การอบรม ประกาศนียบัตร และ รางวัล</option> <option value="15">ประสบการณ์ทำงาน ฝึกงาน</option> </select> </div></div>';
@@ -51,8 +40,42 @@ $(document).ready(function(){
     $('#comskill_value'+i+'').hide();
     $('#major_value'+i+'').hide();
 
+    $('#tags').each(function(){
+      list = ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "Avicsoft", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "Apex (Salesforce.com)", "APL", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "Active Server Pages", "ASP.NET", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blockly", "BlooP", "Blue", "Boo", "Boomerang", "Bourne shell (including bash and ksh)", "BREW", "BPEL", "B", "C--", "C++ – ISO/IEC 14882", "C# – ISO/IEC 23270", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Cayenne", "CDuce", "Cecil", "Cesil", "Céu", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "Citrine (programming language)", "CL (IBM)", "Claire", "Clarion", "Clean", "Clipper", "CLIPS", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL – ISO/IEC 1989", "CobolScript – COBOL Scripting language", "Cobra", "CODE", "CoffeeScript", "ColdFusion", "COMAL", "Combined Programming Language (CPL)", "COMIT", "Common Intermediate Language (CIL)", "Common Lisp (also known as CL)", "COMPASS", "Component Pascal", "Constraint Handling Rules (CHR)", "COMTRAN", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "CPL", "Cryptol", "csh", "Csound", "CSP", "CUDA", "Curl", "Curry", "Cybil", "Cyclone", "Cython", "M2001", "M4", "M#", "Machine code", "MAD (Michigan Algorithm Decoder)", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER now part of BIS", "MARK-IV now VISION:BUILDER", "Mary", "MASM Microsoft Assembly x86", "MATH-MATIC", "Mathematica", "MATLAB", "Maxima (see also Macsyma)", "Max (Max Msp – Graphical Programming Environment)", "MaxScript internal language 3D Studio Max", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metafont", "Microcode", "MicroScript", "MIIS", "Milk (programming language)", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "Mathcad", "MSIL – deprecated name for CIL", "MSL", "MUMPS", "Mystic Programming L"]
+      var input = document.querySelector("input[name=tags"+i+"]"),
+      // init Tagify script on the above inputs
+      tagify = new Tagify(input, {
+        whitelist : list,
+        blacklist : ["react", "angular"]
+      });
 
+      // "remove all tags" button event listener
+      document.querySelector(".tags--removeAllBtn")
+      .addEventListener("click", tagify.removeAllTags.bind(tagify))
 
+      // Chainable event listeners
+      tagify.on("add", onAddTag)
+      .on("remove", onRemoveTag)
+      .on("invalid", onInvalidTag);
+
+      // tag added callback
+      function onAddTag(e){
+        console.log(e, e.detail);
+        console.log( tagify.DOM.originalInput.value )
+        tagify.off("add", onAddTag) // exmaple of removing a custom Tagify event
+      }
+
+      // tag remvoed callback
+      function onRemoveTag(e){
+        console.log(e, e.detail);
+      }
+
+      // invalid tag added callback
+      function onInvalidTag(e){
+        console.log(e, e.detail);
+      }
+      console.log(  tagify.value )
+    });
 
   });
   $(document).on('change', '.filter_list', function(){

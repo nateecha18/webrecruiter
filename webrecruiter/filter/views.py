@@ -66,6 +66,25 @@ def index(request):
         operator_major = request.POST.getlist('operator_major')
         filter_major = request.POST.getlist('filter_major')
 
+        operator_comskill = request.POST.getlist('operator_comskill')
+        filter_comskill = []
+
+        print("COMSKILL")
+        print("OPERATOR : ",operator_comskill,len(operator_comskill))
+        list = []
+        for i in range(1,len(operator_comskill)+1):
+            txt = request.POST['tags'+str(i)].replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
+            list = txt.split("NaTeChA")
+            filter_comskill.append(list)
+            # for j in range(0,len(list)):
+            #     filter_comskill.append(list[j])
+        print("TAG : ",filter_comskill,len(filter_comskill))
+        print("CHECK SUB LIST :",filter_comskill[1][0],len(filter_comskill[1][0]))
+
+        # list = array(request.POST['tags1'])
+        # print(list)
+
+
 
         print("Filter List : " + str(filter_option) + "Operator Position : "+ str(operator_position) + " Position : " + str(filter_position))
         position = FilterPosition(operator_position=operator_position,filter_position=filter_position)
