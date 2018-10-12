@@ -60,6 +60,12 @@ def index(request):
 
         operator_edu = request.POST.getlist('operator_edu')
 
+        operator_nationality = request.POST.getlist('operator_nationality')
+        filter_nationality = request.POST.getlist('filter_nationality')
+
+        operator_major = request.POST.getlist('operator_major')
+        filter_major = request.POST.getlist('filter_major')
+
 
         print("Filter List : " + str(filter_option) + "Operator Position : "+ str(operator_position) + " Position : " + str(filter_position))
         position = FilterPosition(operator_position=operator_position,filter_position=filter_position)
@@ -184,6 +190,45 @@ def index(request):
                         print("Check Study : "+str((CandidateBasic.objects.filter(check_study="isStudy_no"))))
                 all_candidate = all_candidate.intersection(checkbox_edu_set)
 
+            # Filter Nationality  { Active When OPERATOR Nationality is not emply }
+            if operator_nationality:
+                print("Entry Nationality")
+                print("Operator : " + str(operator_nationality) + "filter_nationality : " + str(filter_nationality))
+                checkbox_nationality_set=CandidateBasic.objects.all()
+                for i in range(0,len(operator_nationality)):
+                    print("I : "+str(i) + "   Len : " + str(len(operator_gpa)))
+                    if filter_nationality[i]=='':
+                        pass
+                    else :
+                        if (operator_nationality[i]=='1'):
+                            checkbox_nationality_set = checkbox_nationality_set.intersection(CandidateBasic.objects.filter(nationality__iexact=filter_nationality[i]))
+                        elif (operator_nationality[i]=='2'):
+                            checkbox_nationality_set = checkbox_nationality_set.intersection(CandidateBasic.objects.filter(~Q(nationality__iexact=filter_nationality[i])))
+                        elif (operator_nationality[i]=='3'):
+                            checkbox_nationality_set = checkbox_nationality_set.intersection(CandidateBasic.objects.filter(nationality__icontains=filter_nationality[i]))
+                        elif (operator_nationality[i]=='4'):
+                            checkbox_nationality_set = checkbox_nationality_set.intersection(CandidateBasic.objects.filter(~Q(nationality__icontains=filter_nationality[i])))
+                all_candidate = all_candidate.intersection(checkbox_nationality_set)
+
+            # Filter Major  { Active When OPERATOR Major is not emply }
+            if operator_major:
+                print("Entry Major")
+                print("Operator : " + str(operator_major) + "filter_major : " + str(filter_major))
+                checkbox_major_set=CandidateBasic.objects.all()
+                for i in range(0,len(operator_major)):
+                    print("I : "+str(i) + "   Len : " + str(len(operator_major)))
+                    if filter_major[i]=='':
+                        pass
+                    else :
+                        if (operator_major[i]=='1'):
+                            checkbox_major_set = checkbox_major_set.intersection(CandidateBasic.objects.filter(nowEdu_major__iexact=filter_major[i]))
+                        elif (operator_major[i]=='2'):
+                            checkbox_major_set = checkbox_major_set.intersection(CandidateBasic.objects.filter(~Q(nowEdu_major__iexact=filter_major[i])))
+                        elif (operator_major[i]=='3'):
+                            checkbox_major_set = checkbox_major_set.intersection(CandidateBasic.objects.filter(nowEdu_major__icontains=filter_major[i]))
+                        elif (operator_major[i]=='4'):
+                            checkbox_major_set = checkbox_major_set.intersection(CandidateBasic.objects.filter(~Q(nowEdu_major__icontains=filter_major[i])))
+                all_candidate = all_candidate.intersection(checkbox_major_set)
 
 
 

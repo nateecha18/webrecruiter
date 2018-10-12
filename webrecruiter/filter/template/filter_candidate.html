@@ -162,7 +162,7 @@ i.icon-submit { color: #ffff; }
                 <!-- NATIONALITY -->
                 <div class="col-lg-7" id="nationality_value1">
                   <div class="col-lg-4">
-                    <select class="form-control" style="margin-top:0px">
+                    <select class="form-control" style="margin-top:0px" name="operator_nationality">
                       <option selected="" value="0">Operator Nationality</option>
                       <option value="1">สัญชาติ (is)</option>
                       <option value="2">ไม่เอาสัญชาติ (isnot)</option>
@@ -276,6 +276,24 @@ i.icon-submit { color: #ffff; }
                       <div rel="tooltip" title="กรอกเฉพาะ keyword สำคัญ เช่น python , css , troupleshoot">
                         <input name="tags" class="" id="tags" placeholder="กรอกความสามารถด้านคอมพิวเตอร์ที่ต้องการ" value="" autofocus>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- MAJOR -->
+                <div class="col-lg-7" id="major_value1">
+                  <div class="col-lg-4">
+                    <select class="form-control" style="margin-top:0px" name="operator_major">
+                      <option selected="" value="0">Operator Major</option>
+                      <option value="1">สาขา (is)</option>
+                      <option value="2">ไม่เอาสาขา (isnot)</option>
+                      <option value="3">สาขาที่เป็น (contains)</option>
+                      <option value="4">สาขาที่ไม่เป็น (isnot contains)</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <input class="form-control" style="border-radius:5px;height:40px;margin-top:0px;" type="text" placeholder="สาขาวิชา" name="filter_major">
                     </div>
                   </div>
                 </div>
