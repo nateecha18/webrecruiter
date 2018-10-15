@@ -14,7 +14,7 @@ from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from jobapply.models import CandidateBasic
+from jobapply.models import CandidateBasic,ConvertDatabase
 from django.db.models import Q
 
 # Import For Authenticate Account
@@ -71,15 +71,27 @@ def index(request):
 
         print("COMSKILL")
         print("OPERATOR : ",operator_comskill,len(operator_comskill))
+        # วน loop เก็บ filter skill
         list = []
         for i in range(1,len(operator_comskill)+1):
             txt = request.POST['tags'+str(i)].replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
             list = txt.split("NaTeChA")
-            filter_comskill.append(list)
-            # for j in range(0,len(list)):
-            #     filter_comskill.append(list[j])
+            # print(len(list),"+++++++++++++++")
+
+            check_filter = []
+            for j in range(0,len(list)):
+                # print(j,"This is JJJ!!!")
+                if not list[j]=='':
+                    # print(list,"___________________________")
+                    check_filter.append(list[j])
+            if check_filter:
+                filter_comskill.append(check_filter)
+            else:
+                filter_comskill.append('')
         print("TAG : ",filter_comskill,len(filter_comskill))
-        print("CHECK SUB LIST :",filter_comskill[1][0],len(filter_comskill[1][0]))
+        print(operator_comskill,"++++++++++++")
+
+
 
         # list = array(request.POST['tags1'])
         # print(list)
@@ -249,6 +261,35 @@ def index(request):
                             checkbox_major_set = checkbox_major_set.intersection(CandidateBasic.objects.filter(~Q(nowEdu_major__icontains=filter_major[i])))
                 all_candidate = all_candidate.intersection(checkbox_major_set)
 
+            # Filter COMSKILL  { Active When OPERATOR COMSKILL is not emply }
+            print("All Candidate ก่อนเข้า Filter Comskill : ", all_candidate)
+            if filter_comskill:
+                print("Entry Comskill")
+                for i in range(0,len(operator_comskill)):
+                    if filter_comskill[i]:
+                        print(operator_comskill[i])
+                        if operator_comskill[i]=='1' or operator_comskill[i]=='2':
+                            checkbox_comskill_set=CandidateBasic.objects.all()
+                            print("Entry condition 1")
+                        elif operator_comskill[i]=='3' or operator_comskill[i]=='4':
+                            checkbox_comskill_set=CandidateBasic.objects.none()
+                            print("Entry condition 2")
+                        print("NONE :",CandidateBasic.objects.none())
+                        print("start! ",checkbox_comskill_set,operator_comskill[i])
+                        for j in range(0,len(filter_comskill[i])):
+                            print(operator_comskill[i],filter_comskill[i][j])
+                            if (operator_comskill[i]=='1'):
+                                checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
+                            if (operator_comskill[i]=='2'):
+                                checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
+                            if (operator_comskill[i]=='3'):
+                                checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
+                            if (operator_comskill[i]=='4'):
+                                checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
+                            print(j,checkbox_comskill_set)
+                        all_candidate = checkbox_comskill_set.intersection(all_candidate)
+                        print("All Candidate หลังเข้า Filter Comskill : ",i, all_candidate)
+
 
 
         # if (checkbox_position!='1' and checkbox_salary!='1' and checkbox_blood!='1' and checkbox_gpa!='1' and checkbox_gender!='1') :
@@ -276,11 +317,17 @@ def candidate_detail(request,candidate_id):
         cart_amount = get_cart_amount(request)
 
         selected_candidate = get_object_or_404(CandidateBasic, id_number=candidate_id)
-        print(type(list))
+
+        txt_skill = selected_candidate.candidate_computer_skill.tags.replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
+        list_skill = txt_skill.split("NaTeChA")
+        print(list_skill)
+        convert_database = ConvertDatabase.objects.filter(database=selected_candidate.nowEdu_level)[0].converted
         return render(request,
                       'candidate_detail.html',
                       {'Candidate_id': candidate_id,
                        'Selected_candidate' : selected_candidate,
-                       'Cart_amount' : cart_amount})
+                       'Cart_amount' : cart_amount,
+                       'Skills' : list_skill,
+                       'ConvertDatabase' : convert_database})
     else:
         return redirect('login')

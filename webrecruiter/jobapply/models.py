@@ -136,3 +136,11 @@ class CandidateAttachment(models.Model):
 
     def __int__(self):
         return self.id
+
+class ConvertDatabase(models.Model):
+    database = models.CharField(max_length=100, blank=True, null=True)
+    converted = models.CharField(max_length=100, blank=True, null=True)
+
+
+    def __str__(self):
+        return self.database

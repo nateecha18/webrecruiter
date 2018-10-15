@@ -187,10 +187,11 @@ input[type="text"]:disabled {
         </div>
       </div>
     </div>
+
     <div class="col-lg-8 col-md-7">
       <div class="card">
         <div class="header">
-          <h4 class="title">Basic Information</h4>
+          <h4 class="title">ข้อมูลพื้นฐาน</h4>
         </div>
         <div class="content">
           <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
@@ -288,6 +289,10 @@ input[type="text"]:disabled {
               </div>
             {% endif %}
 
+            {% for skill in Skills %}
+              {{ skill }},
+            {% endfor %}
+
             <!-- <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -305,6 +310,50 @@ input[type="text"]:disabled {
           </div>
         </div>
       </div>
+
+      {% if Selected_candidate.check_study == 'isStudy_yes' %}
+      <div class="col-lg-8 col-md-7">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">ข้อมูลการศึกษาปัจจุบัน</h4>
+          </div>
+          <div class="content">
+            <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ประเภทการศึกษา (Education Level)</label>
+                    <input type="text" class="form-control border-input" disabled style="background-color:#fff;" placeholder="Education Level" value="{{ Selected_candidate.nowEdu_level }}">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>ชื่อสถานศึกษา (Institute Name)</label>
+                    <input type="text" class="form-control border-input" disabled placeholder="institute" value="{{ Selected_candidate.nowEdu_instituteName }}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>สาขาวิชา (Major)</label>
+                    <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.nowEdu_major }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>เกรดเฉลี่ย (GPA)</label>
+                    <input type="text" class="form-control border-input" disabled placeholder="gpa" value="{{ Selected_candidate.nowEdu_gpa }}">
+                  </div>
+                </div>
+              </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endif %}
 
 
     </div>
