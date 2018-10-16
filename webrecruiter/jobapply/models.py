@@ -16,42 +16,6 @@ class CandidateComputerSkill(models.Model):
         return self.id + '-' + self.tags
 
 
-class CandidateLanguageSkill(models.Model):
-    """docstring forCandidate_Language_Skill."""
-    skill_language = models.CharField(max_length=100, blank=True)
-    skill_language_typing = models.CharField(max_length=10,blank=True)
-    skill_language_listen = models.CharField(max_length=100, blank=True)
-    skill_language_speak = models.CharField(max_length=100, blank=True)
-    skill_language_read = models.CharField(max_length=100, blank=True)
-    skill_language_write = models.CharField(max_length=100, blank=True)
-
-    def __int__(self):
-        return self.id + '-' + self.skill_language
-
-
-class CandidateCertExperience(models.Model):
-    """docstring forCandidate_experience."""
-    experience_name = models.CharField(max_length=250, blank=True)
-    experience_institute = models.CharField(max_length=250, blank=True)
-    experience_cert = models.CharField(max_length=250, blank=True)
-
-    def __int__(self):
-        return self.id + '-' + self.experience_name
-
-
-class CandidateWorkExperience(models.Model):
-    """docstring forCandidate_Work_Experience."""
-    experience_companyName = models.CharField(max_length=250, blank=True)
-    experience_companyType = models.CharField(max_length=250, blank=True)
-    experience_companyStartDate = models.CharField(max_length=20, blank=True)
-    experience_companyEndDate = models.CharField(max_length=20, blank=True)
-    experience_companyPosition = models.CharField(max_length=250, blank=True)
-    experience_companySalary = models.CharField(max_length=15,blank=True)
-    experience_companyReason = models.CharField(max_length=300, blank=True)
-
-    def __int__(self):
-        return self.id + '-' + self.experience_companyName
-
 # def user_attachment_directory_path(instance, filename):
 #     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>
 #     return 'webrecruiter/static/uploads/candidate_{0}/attachment/{1}'.format(instance.candidate_basic.id_number, filename)
@@ -107,9 +71,6 @@ class CandidateBasic(models.Model):
 
     # candidate_history_education = models.ManyToManyField(CandidateHistoryEducation)
     candidate_computer_skill = models.ForeignKey(CandidateComputerSkill, on_delete=models.CASCADE, blank=True)
-    candidate_language_skill = models.ForeignKey(CandidateLanguageSkill, on_delete=models.CASCADE,blank=True,null=True)
-    candidate_cert_experience = models.ForeignKey(CandidateCertExperience, on_delete=models.CASCADE,blank=True,null=True)
-    candidate_work_experience = models.ForeignKey(CandidateWorkExperience, on_delete=models.CASCADE,blank=True,null=True)
 
     def __int__(self):
         return self.id_number
@@ -139,5 +100,43 @@ class CandidateHistoryEducation(models.Model):
     edu_major = models.CharField(max_length=250, blank=True, null=True)
     edu_gpa = models.CharField(max_length=10, blank=True, null=True)
 
+    def __str__(self):
+        return '{0} ( {1} - {2} {3} )'.format(self.id, self.owner.firstname,self.edu_level.education_level,self.edu_fromYear)
+
+
+class CandidateLanguageSkill(models.Model):
+    """docstring forCandidate_Language_Skill."""
+    owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
+    skill_language = models.CharField(max_length=100, blank=True)
+    skill_language_typing = models.CharField(max_length=10,blank=True)
+    skill_language_listen = models.CharField(max_length=100, blank=True)
+    skill_language_speak = models.CharField(max_length=100, blank=True)
+    skill_language_read = models.CharField(max_length=100, blank=True)
+    skill_language_write = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return '{0} ( {1} - {2} )'.format(self.id, self.owner.firstname,self.skill_language)
+
+class CandidateCertExperience(models.Model):
+    """docstring forCandidate_experience."""
+    owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
+    experience_name = models.CharField(max_length=250, blank=True)
+    experience_institute = models.CharField(max_length=250, blank=True)
+    experience_cert = models.CharField(max_length=250, blank=True)
+
+    def __str__(self):
+        return '{0} ( {1} - {2} )'.format(self.id, self.owner.firstname,self.experience_name)
+
+class CandidateWorkExperience(models.Model):
+    """docstring forCandidate_Work_Experience."""
+    owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
+    experience_companyName = models.CharField(max_length=250, blank=True)
+    experience_companyType = models.CharField(max_length=250, blank=True)
+    experience_companyStartDate = models.CharField(max_length=20, blank=True)
+    experience_companyEndDate = models.CharField(max_length=20, blank=True)
+    experience_companyPosition = models.CharField(max_length=250, blank=True)
+    experience_companySalary = models.CharField(max_length=15,blank=True)
+    experience_companyReason = models.CharField(max_length=300, blank=True)
+
     def __int__(self):
-        return self.id + '-' + self.edu_level
+        return '{0} ( {1} - {2} )'.format(self.id, self.owner.firstname,self.experience_companyName)

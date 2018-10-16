@@ -20,6 +20,7 @@ from addskill.models import Skill
 
 # Create your views here.
 def index(request):
+
         if request.method == 'POST':
             print("ohh! It's sumbitted!")
 
@@ -27,50 +28,6 @@ def index(request):
             tags = request.POST.get('tags')
             candidate_computer_skill = CandidateComputerSkill(tags=tags)
             candidate_computer_skill.save()
-
-
-            # CandidateLanguageSkill________________________________________________________________________________________
-            skill_language = request.POST.getlist('skill_language')
-            skill_language_typing = request.POST.getlist('skill_language_typing')
-            skill_language_listen = request.POST.getlist('skill_language_listen')
-            skill_language_speak = request.POST.getlist('skill_language_speak')
-            skill_language_read = request.POST.getlist('skill_language_read')
-            skill_language_write = request.POST.getlist('skill_language_write')
-            candidate_language_skill = CandidateLanguageSkill(skill_language=skill_language,
-                                                              skill_language_typing=skill_language_typing,
-                                                              skill_language_listen=skill_language_listen,
-                                                              skill_language_speak=skill_language_speak,
-                                                              skill_language_read=skill_language_read,
-                                                              skill_language_write=skill_language_write)
-            candidate_language_skill.save()
-
-
-            # CandidateCertExperience_______________________________________________________________________________________
-            experience_name = request.POST.getlist('experience_name')
-            experience_institute = request.POST.getlist('experience_institute')
-            experience_cert = request.POST.getlist('experience_cert')
-            candidate_cert_experience = CandidateCertExperience(experience_name=experience_name,
-                                                                experience_institute=experience_institute,
-                                                                experience_cert=experience_cert)
-            candidate_cert_experience.save()
-
-
-            # CandidateWorkExperience_______________________________________________________________________________________
-            experience_companyName = request.POST.getlist('experience_companyName')
-            experience_companyType = request.POST.getlist('experience_companyType')
-            experience_companyStartDate = request.POST.getlist('experience_companyStartDate')
-            experience_companyEndDate = request.POST.getlist('experience_companyEndDate')
-            experience_companyPosition = request.POST.getlist('experience_companyPosition')
-            experience_companySalary = request.POST.getlist('experience_companySalary')
-            experience_companyReason = request.POST.getlist('experience_companyReason')
-            candidate_work_experience = CandidateWorkExperience(experience_companyName=experience_companyName,
-                                                                experience_companyType=experience_companyType,
-                                                                experience_companyStartDate=experience_companyStartDate,
-                                                                experience_companyEndDate=experience_companyEndDate,
-                                                                experience_companyPosition=experience_companyPosition,
-                                                                experience_companySalary=experience_companySalary,
-                                                                experience_companyReason=experience_companyReason)
-            candidate_work_experience.save()
 
 
             # CandidateBasic Table__________________________________________________________________________________________
@@ -115,9 +72,7 @@ def index(request):
                                              military_status=military_status, military_reason=military_reason,
                                              check_study=check_study, nowEdu_level=nowEdu_level,
                                              nowEdu_instituteName=nowEdu_instituteName, nowEdu_major=nowEdu_major,
-                                             nowEdu_gpa=nowEdu_gpa,candidate_computer_skill=candidate_computer_skill,
-                                             candidate_language_skill=candidate_language_skill,
-                                             candidate_cert_experience=candidate_cert_experience,candidate_work_experience=candidate_work_experience)
+                                             nowEdu_gpa=nowEdu_gpa,candidate_computer_skill=candidate_computer_skill)
             candidate_basic.save()
 
             # CandidateAttachment___________________________________________________________________________________________
@@ -150,10 +105,64 @@ def index(request):
                                                                         edu_major=edu_major[i], edu_gpa=edu_gpa[i])
                 candidate_history_education.save()
 
+            # CandidateLanguageSkill________________________________________________________________________________________
+            skill_language = request.POST.getlist('skill_language')
+            skill_language_typing = request.POST.getlist('skill_language_typing')
+            skill_language_listen = request.POST.getlist('skill_language_listen')
+            skill_language_speak = request.POST.getlist('skill_language_speak')
+            skill_language_read = request.POST.getlist('skill_language_read')
+            skill_language_write = request.POST.getlist('skill_language_write')
+            for i in range(0,len(skill_language)):
+                candidate = CandidateBasic.objects.filter(id_number=id_number).first()
+                candidate_language_skill = CandidateLanguageSkill(skill_language=skill_language[i],
+                                                                  owner=candidate,
+                                                                  skill_language_typing=skill_language_typing[i],
+                                                                  skill_language_listen=skill_language_listen[i],
+                                                                  skill_language_speak=skill_language_speak[i],
+                                                                  skill_language_read=skill_language_read[i],
+                                                                  skill_language_write=skill_language_write[i])
+                candidate_language_skill.save()
+
+            # CandidateCertExperience_______________________________________________________________________________________
+            experience_name = request.POST.getlist('experience_name')
+            experience_institute = request.POST.getlist('experience_institute')
+            experience_cert = request.POST.getlist('experience_cert')
+            for i in range(0,len(experience_name)):
+                candidate = CandidateBasic.objects.filter(id_number=id_number).first()
+                candidate_cert_experience = CandidateCertExperience(experience_name=experience_name[i],
+                                                                    owner=candidate,
+                                                                    experience_institute=experience_institute[i],
+                                                                    experience_cert=experience_cert[i])
+                candidate_cert_experience.save()
+
+            # CandidateWorkExperience_______________________________________________________________________________________
+            experience_companyName = request.POST.getlist('experience_companyName')
+            experience_companyType = request.POST.getlist('experience_companyType')
+            experience_companyStartDate = request.POST.getlist('experience_companyStartDate')
+            experience_companyEndDate = request.POST.getlist('experience_companyEndDate')
+            experience_companyPosition = request.POST.getlist('experience_companyPosition')
+            experience_companySalary = request.POST.getlist('experience_companySalary')
+            experience_companyReason = request.POST.getlist('experience_companyReason')
+            for i in range(0,len(experience_companyName)):
+                candidate = CandidateBasic.objects.filter(id_number=id_number).first()
+                candidate_work_experience = CandidateWorkExperience(experience_companyName=experience_companyName[i],
+                                                                    owner=candidate,
+                                                                    experience_companyType=experience_companyType[i],
+                                                                    experience_companyStartDate=experience_companyStartDate[i],
+                                                                    experience_companyEndDate=experience_companyEndDate[i],
+                                                                    experience_companyPosition=experience_companyPosition[i],
+                                                                    experience_companySalary=experience_companySalary[i],
+                                                                    experience_companyReason=experience_companyReason[i])
+                candidate_work_experience.save()
+
 
             context = {}
             template = loader.get_template("index.html")
             return HttpResponse(template.render({}, request))
+
+        CandidateLanguageSkill.objects.all().delete()
+        CandidateCertExperience.objects.all().delete()
+        CandidateWorkExperience.objects.all().delete()
 
         all_skill = Skill.objects.all()
         skill_name = ['fah']
