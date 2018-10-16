@@ -636,10 +636,13 @@
 															<div class="form-group label-floating">
 																<label class="control-label">ประเภทการศึกษา (Education Level)</label>
 																<select name="nowEdu_level" class="form-control">
-																	<option disabled="" selected="" value="0"></option>
-																	<option value="level_bacDe">ปริญญาตรี (Bachelor Degree)</option>
-																	<option value="level_masDe">ปริญญาโท (Master Degree)</option>
-																	<option value="level_other">อื่นๆ (Other Graduate)</option>
+																	{% for level in Levels %}
+																		{% if level.value == 'level_bacDe' %}
+																			<option value="{{ level.value }}" selected>{{ level.education_level }}</option>
+																		{% else %}
+																			<option value="{{ level.value }}">{{ level.education_level }}</option>
+																		{% endif %}
+																	{% endfor %}
 																</select>
 															</div>
 														</div>
@@ -1485,15 +1488,13 @@
 															<div class="form-group label-floating">
 																<label class="control-label">ประเภทการศึกษา (Education Level)</label>
 																<select name="edu_level" class="form-control">
-																	<!-- <option disabled="" selected=""></option> -->
-																	<option value="level_priSch">ประถมศึกษา(Primary School)</option>
-																	<option value="level_secSch">มัธยมศึกษาตอนต้น (Secondary School)</option>
-																	<option value="level_hiSch">มัธยมศึกษาตอนปลาย (High School)</option>
-																	<option value="level_voca">อาชีวะศึกษา (ปวช.) (Vocational)</option>
-																	<option value="level_hiVoca">วิทยาลัย (ปวท./ปวส.) (High Vocational)</option>
-																	<option value="level_bacDe" selected="">ปริญญาตรี (Bachelor Degree)</option>
-																	<option value="level_masDe">ปริญญาโท (Master Degree)</option>
-																	<option value="level_other">อื่นๆ (Other Graduate)</option>
+																	{% for level in Levels %}
+																		{% if level.value == 'level_bacDe' %}
+																			<option value="{{ level.value }}" selected>{{ level.education_level }}</option>
+																		{% else %}
+																			<option value="{{ level.value }}">{{ level.education_level }}</option>
+																		{% endif %}
+																	{% endfor %}
 																</select>
 															</div>
 														</div>

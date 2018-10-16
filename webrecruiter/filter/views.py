@@ -14,7 +14,7 @@ from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from jobapply.models import CandidateBasic,ConvertDatabase
+from jobapply.models import CandidateBasic
 from django.db.models import Q
 
 # Import For Authenticate Account
@@ -321,13 +321,13 @@ def candidate_detail(request,candidate_id):
         txt_skill = selected_candidate.candidate_computer_skill.tags.replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
         list_skill = txt_skill.split("NaTeChA")
         print(list_skill)
-        convert_database = ConvertDatabase.objects.filter(database=selected_candidate.nowEdu_level)[0].converted
         return render(request,
                       'candidate_detail.html',
                       {'Candidate_id': candidate_id,
                        'Selected_candidate' : selected_candidate,
                        'Cart_amount' : cart_amount,
                        'Skills' : list_skill,
-                       'ConvertDatabase' : convert_database})
+
+                       })
     else:
         return redirect('login')

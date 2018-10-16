@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience
+from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
@@ -25,8 +25,10 @@ def index(request):
     for name in all_skill:
         skill_name.append(name.skill_name)
     print("Skill Name : "+ str(skill_name))
-
-    context = {}
+    education_level = EducationLevel.objects.all()
+    context = {
+        'Levels' : education_level,
+    }
     template = loader.get_template("index.html")
     return HttpResponse(template.render(context, request))
     # return render('index.html', context_instance=RequestContext(request))
@@ -34,23 +36,6 @@ def index(request):
 
 def submit_applyjob(request):
     print("ohh! It's sumbitted!")
-
-    # CandidateHistoryEducation Table_______________________________________________________________________________
-    edu_level = request.POST.getlist('edu_level')
-    print(edu_level,"____________________-",len(edu_level))
-    edu_country = request.POST.getlist('edu_country')
-    edu_instituteName = request.POST.getlist('edu_instituteName')
-    edu_fromYear = request.POST.getlist('edu_fromYear')
-    edu_toYear = request.POST.getlist('edu_toYear')
-    edu_major = request.POST.getlist('edu_major')
-    edu_gpa = request.POST.getlist('edu_gpa')
-    candidate_history_education = CandidateHistoryEducation(edu_level=edu_level,
-                                                            edu_country=edu_country,
-                                                            edu_instituteName=edu_instituteName,
-                                                            edu_fromYear=edu_fromYear, edu_toYear=edu_toYear,
-                                                            edu_major=edu_major, edu_gpa=edu_gpa)
-    candidate_history_education.save()
-
 
     # CandidateComputerSkill Table__________________________________________________________________________________
     tags = request.POST.get('tags')
@@ -129,7 +114,8 @@ def submit_applyjob(request):
 
     check_study = request.POST.get('check_study')
     print("checked!!!!!!!!!!!!!!!!!!" + str(check_study))
-    nowEdu_level = request.POST.get('nowEdu_level')
+    nowEdu_level_value = request.POST.get('nowEdu_level')
+    nowEdu_level = EducationLevel.objects.filter(value=nowEdu_level_value).first()
     nowEdu_instituteName = request.POST.get('nowEdu_instituteName')
     nowEdu_major = request.POST.get('nowEdu_major')
     nowEdu_gpa = request.POST.get('nowEdu_gpa')
@@ -143,13 +129,10 @@ def submit_applyjob(request):
                                      military_status=military_status, military_reason=military_reason,
                                      check_study=check_study, nowEdu_level=nowEdu_level,
                                      nowEdu_instituteName=nowEdu_instituteName, nowEdu_major=nowEdu_major,
-                                     nowEdu_gpa=nowEdu_gpa,
-                                     candidate_computer_skill=candidate_computer_skill,
-                                     candidate_history_education=candidate_history_education,
+                                     nowEdu_gpa=nowEdu_gpa,candidate_computer_skill=candidate_computer_skill,
                                      candidate_language_skill=candidate_language_skill,
                                      candidate_cert_experience=candidate_cert_experience,candidate_work_experience=candidate_work_experience)
     candidate_basic.save()
-    # candidate_attachment=candidate_attachment
 
     # CandidateAttachment___________________________________________________________________________________________
     attach_resume = request.FILES['attach_resume']
@@ -158,6 +141,35 @@ def submit_applyjob(request):
                                                attach_transcript=attach_transcript,
                                                candidate_basic=candidate_basic)
     candidate_attachment.save()
+
+
+    # CandidateHistoryEducation Table_______________________________________________________________________________
+    edu_level_value = request.POST.getlist('edu_level')
+    edu_country = request.POST.getlist('edu_country')
+    edu_instituteName = request.POST.getlist('edu_instituteName')
+    edu_fromYear = request.POST.getlist('edu_fromYear')
+    edu_toYear = request.POST.getlist('edu_toYear')
+    edu_major = request.POST.getlist('edu_major')
+    edu_gpa = request.POST.getlist('edu_gpa')
+    for i in range(0,len(edu_level_value)):
+        print("เข้ามาเก็บ Histort Education","| รอบที่ : ",i)
+        edu_level_value_i = edu_level_value[i]
+        edu_level = EducationLevel.objects.filter(value=edu_level_value_i).first()
+        candidate = CandidateBasic.objects.filter(id_number=id_number).first()
+        candidate_history_education = CandidateHistoryEducation(edu_level=edu_level,
+                                                                # owner=candidate,
+                                                                edu_country=edu_country[i],
+                                                                edu_instituteName=edu_instituteName[i],
+                                                                edu_fromYear=edu_fromYear[i], edu_toYear=edu_toYear[i],
+                                                                edu_major=edu_major[i], edu_gpa=edu_gpa[i])
+        candidate_history_education.save()
+
+        history_education = CandidateHistoryEducation.objects.filter(edu_level=edu_level_value_i,edu_country=edu_country[i],
+                                                                     edu_instituteName=edu_instituteName[i],
+                                                                     edu_fromYear=edu_fromYear[i], edu_toYear=edu_toYear[i],
+                                                                     edu_major=edu_major[i], edu_gpa=edu_gpa[i]).first()
+        print(history_education)
+        candidate.candidate_history_education.add(history_education)
 
 
     context = {}
