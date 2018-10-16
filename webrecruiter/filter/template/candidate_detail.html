@@ -293,6 +293,14 @@ input[type="text"]:disabled {
               {{ skill }},
             {% endfor %}
 
+            {{ HistoryEducation|length }}
+            {% if not HistoryEducation %} 
+              ไม่มีโว้ยยย
+            {% endif %}
+            {% for history_education in HistoryEducation %}
+              {{ history_education.edu_level.education_level }}
+            {% endfor %}
+
             <!-- <div class="row">
               <div class="col-md-12">
                 <div class="form-group">

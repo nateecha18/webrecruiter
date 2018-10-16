@@ -14,7 +14,8 @@ from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from jobapply.models import CandidateBasic
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel
+
 from django.db.models import Q
 
 # Import For Authenticate Account
@@ -320,6 +321,12 @@ def candidate_detail(request,candidate_id):
 
         txt_skill = selected_candidate.candidate_computer_skill.tags.replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
         list_skill = txt_skill.split("NaTeChA")
+
+        history_education = CandidateHistoryEducation.objects.filter(owner=selected_candidate)
+        if not history_education.exists():
+            history_education = CandidateHistoryEducation.objects.none()
+        print("History Amount : ",history_education)
+
         print(list_skill)
         return render(request,
                       'candidate_detail.html',
@@ -327,7 +334,7 @@ def candidate_detail(request,candidate_id):
                        'Selected_candidate' : selected_candidate,
                        'Cart_amount' : cart_amount,
                        'Skills' : list_skill,
-
+                       'HistoryEducation' : history_education
                        })
     else:
         return redirect('login')

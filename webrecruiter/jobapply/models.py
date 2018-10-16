@@ -8,21 +8,6 @@ class EducationLevel(models.Model):
     def __str__(self):
         return self.value
 
-class CandidateHistoryEducation(models.Model):
-    """docstring forCandidate_History_Education."""
-    # owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
-    edu_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
-    edu_country = models.CharField(max_length=250, blank=True, null=True)
-    edu_instituteName = models.CharField(max_length=250, blank=True, null=True)
-    edu_fromYear = models.CharField(max_length=10, blank=True, null=True)
-    edu_toYear = models.CharField(max_length=10, blank=True, null=True)
-    edu_major = models.CharField(max_length=250, blank=True, null=True)
-    edu_gpa = models.CharField(max_length=10, blank=True, null=True)
-
-    def __int__(self):
-        return self.id + '-' + self.edu_level
-
-
 class CandidateComputerSkill(models.Model):
     """docstring forCandidate_Computer_Skill."""
     tags = models.CharField(max_length=300, blank=True)
@@ -116,15 +101,13 @@ class CandidateBasic(models.Model):
 
     check_study = models.CharField(max_length=20, blank=True, null=True)
     nowEdu_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
-    # nowEdu_level = models.CharField(max_length=250, blank=True, null=True)
     nowEdu_instituteName = models.CharField(max_length=300, blank=True, null=True)
     nowEdu_major = models.CharField(max_length=250, blank=True, null=True)
     nowEdu_gpa = models.CharField(max_length=10, blank=True, null=True)
 
-    candidate_history_education = models.ManyToManyField(CandidateHistoryEducation)
+    # candidate_history_education = models.ManyToManyField(CandidateHistoryEducation)
     candidate_computer_skill = models.ForeignKey(CandidateComputerSkill, on_delete=models.CASCADE, blank=True)
     candidate_language_skill = models.ForeignKey(CandidateLanguageSkill, on_delete=models.CASCADE,blank=True,null=True)
-    # candidate_attachment = models.ForeignKey(CandidateAttachment, on_delete=models.CASCADE,blank=True,null=True)
     candidate_cert_experience = models.ForeignKey(CandidateCertExperience, on_delete=models.CASCADE,blank=True,null=True)
     candidate_work_experience = models.ForeignKey(CandidateWorkExperience, on_delete=models.CASCADE,blank=True,null=True)
 
@@ -144,3 +127,17 @@ class CandidateAttachment(models.Model):
 
     def __int__(self):
         return self.id
+
+class CandidateHistoryEducation(models.Model):
+    """docstring forCandidate_History_Education."""
+    owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
+    edu_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
+    edu_country = models.CharField(max_length=250, blank=True, null=True)
+    edu_instituteName = models.CharField(max_length=250, blank=True, null=True)
+    edu_fromYear = models.CharField(max_length=10, blank=True, null=True)
+    edu_toYear = models.CharField(max_length=10, blank=True, null=True)
+    edu_major = models.CharField(max_length=250, blank=True, null=True)
+    edu_gpa = models.CharField(max_length=10, blank=True, null=True)
+
+    def __int__(self):
+        return self.id + '-' + self.edu_level
