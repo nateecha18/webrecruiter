@@ -8,6 +8,12 @@ class EducationLevel(models.Model):
     def __str__(self):
         return self.value
 
+class Institute(models.Model):
+    name = models.CharField(primary_key=True,max_length=500)
+
+    def __str__(self):
+        return self.name
+
 class CandidateComputerSkill(models.Model):
     """docstring forCandidate_Computer_Skill."""
     tags = models.CharField(max_length=300, blank=True, null=True)

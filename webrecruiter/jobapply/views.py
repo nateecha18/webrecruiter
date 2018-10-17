@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel
+from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
@@ -17,7 +17,7 @@ from addskill.models import Skill
 
 from django.db.models import Q
 
-
+import json
 
 
 # Create your views here.
@@ -171,7 +171,7 @@ def index(request):
         CandidateCertExperience.objects.all().delete()
         CandidateAttachment.objects.all().delete()
         CandidateWorkExperience.objects.all().delete()
-        
+
         education_level = EducationLevel.objects.all()
         context = {
             'Levels' : education_level,
@@ -211,3 +211,15 @@ class GeneratePdf(View):
 def show_list(request):
     all_candidate = CandidateBasic.objects.all()
     return render(request, "show.html", {'Candidate': all_candidate})
+
+def get_institute(request):
+    if request.is_ajax():
+        query = request.GET.get('term', '')
+        institutes = Institute.objects.filter(name__icontains = query )
+        results = []
+        for institute in institutes:
+            institute_json = institute.name
+            results.append(institute_json)
+        data = json.dumps(results)
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^pdf/$', views.GeneratePdf.as_view()),
     url(r'^show/$', views.show_list),
+    url(r'^api/get_institute/', views.get_institute, name='get_institute'),
 
 ]
