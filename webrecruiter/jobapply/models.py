@@ -10,7 +10,7 @@ class EducationLevel(models.Model):
 
 class CandidateComputerSkill(models.Model):
     """docstring forCandidate_Computer_Skill."""
-    tags = models.CharField(max_length=300, blank=True)
+    tags = models.CharField(max_length=300, blank=True, null=True)
 
     def __int__(self):
         return self.id + '-' + self.tags
@@ -72,8 +72,8 @@ class CandidateBasic(models.Model):
     # candidate_history_education = models.ManyToManyField(CandidateHistoryEducation)
     candidate_computer_skill = models.ForeignKey(CandidateComputerSkill, on_delete=models.CASCADE, blank=True)
 
-    def __int__(self):
-        return self.id_number
+    def __str__(self):
+        return 'CandidateBasic : {1}'.format(self.id_number)
 
 def user_attachment_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>
@@ -86,8 +86,8 @@ class CandidateAttachment(models.Model):
     attach_transcript = models.FileField(upload_to=user_attachment_directory_path,blank=True)
 
 
-    def __int__(self):
-        return self.id
+    def __str__(self):
+        return 'Attachment : {1}'.format(self.candidate_basic.id_number)
 
 class CandidateHistoryEducation(models.Model):
     """docstring forCandidate_History_Education."""
@@ -138,5 +138,5 @@ class CandidateWorkExperience(models.Model):
     experience_companySalary = models.CharField(max_length=15,blank=True)
     experience_companyReason = models.CharField(max_length=300, blank=True)
 
-    def __int__(self):
+    def __str__(self):
         return '{0} ( {1} - {2} )'.format(self.id, self.owner.firstname,self.experience_companyName)

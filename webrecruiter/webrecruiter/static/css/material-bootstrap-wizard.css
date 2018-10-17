@@ -1016,6 +1016,9 @@ output {
 .form-group select ~ .material-input:after {
   display: none;
 }
+/* .form-group.picture.has-error input{
+  border: #f44336;
+} */
 
 .form-control {
   margin-bottom: 7px;

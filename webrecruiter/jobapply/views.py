@@ -15,6 +15,8 @@ from django.template import RequestContext
 
 from addskill.models import Skill
 
+from django.db.models import Q
+
 
 
 
@@ -116,7 +118,7 @@ def index(request):
                 candidate = CandidateBasic.objects.filter(id_number=id_number).first()
                 candidate_language_skill = CandidateLanguageSkill(skill_language=skill_language[i],
                                                                   owner=candidate,
-                                                                  skill_language_typing=skill_language_typing[i],
+                                                                  skill_language_typing=skill_language_typing[i+1],
                                                                   skill_language_listen=skill_language_listen[i],
                                                                   skill_language_speak=skill_language_speak[i],
                                                                   skill_language_read=skill_language_read[i],
@@ -127,7 +129,7 @@ def index(request):
             experience_name = request.POST.getlist('experience_name')
             experience_institute = request.POST.getlist('experience_institute')
             experience_cert = request.POST.getlist('experience_cert')
-            for i in range(0,len(experience_name)):
+            for i in range(1,len(experience_name)):
                 candidate = CandidateBasic.objects.filter(id_number=id_number).first()
                 candidate_cert_experience = CandidateCertExperience(experience_name=experience_name[i],
                                                                     owner=candidate,
@@ -143,7 +145,7 @@ def index(request):
             experience_companyPosition = request.POST.getlist('experience_companyPosition')
             experience_companySalary = request.POST.getlist('experience_companySalary')
             experience_companyReason = request.POST.getlist('experience_companyReason')
-            for i in range(0,len(experience_companyName)):
+            for i in range(1,len(experience_companyName)):
                 candidate = CandidateBasic.objects.filter(id_number=id_number).first()
                 candidate_work_experience = CandidateWorkExperience(experience_companyName=experience_companyName[i],
                                                                     owner=candidate,
@@ -155,20 +157,21 @@ def index(request):
                                                                     experience_companyReason=experience_companyReason[i])
                 candidate_work_experience.save()
 
-
-            context = {}
+            education_level = EducationLevel.objects.all()
+            context = {
+                'Levels' : education_level,
+            }
             template = loader.get_template("index.html")
-            return HttpResponse(template.render({}, request))
+            return HttpResponse(template.render(context, request))
 
+        CandidateBasic.objects.all().delete()
+        CandidateHistoryEducation.objects.all().delete()
+        CandidateComputerSkill.objects.all().delete()
         CandidateLanguageSkill.objects.all().delete()
         CandidateCertExperience.objects.all().delete()
+        CandidateAttachment.objects.all().delete()
         CandidateWorkExperience.objects.all().delete()
-
-        all_skill = Skill.objects.all()
-        skill_name = ['fah']
-        for name in all_skill:
-            skill_name.append(name.skill_name)
-        print("Skill Name : "+ str(skill_name))
+        
         education_level = EducationLevel.objects.all()
         context = {
             'Levels' : education_level,

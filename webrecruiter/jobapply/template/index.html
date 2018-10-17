@@ -145,7 +145,7 @@
 											</div>
 											<div class="col-sm-4 col-sm-offset-1">
 												<div class="picture-container">
-													<div class="picture">
+													<div class="form-group picture">
 														<img src="/static/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
 														<input type="file" id="wizard-picture" name="profile_pic">
 													</div>
@@ -2355,6 +2355,7 @@
 															</div>
 														</div>
 													</div>
+
 												</div>
 												<div class="col-md-12 text-center">
 													<div class="form-group">
@@ -2380,7 +2381,7 @@
 										<div class="row">
 											<h3 class="info-text">ความสามารถด้านคอมพิวเตอร์</h3>
 											<div class="col-sm-10 col-sm-offset-1" rel="tooltip" title="ตัวอย่างการกรอก เช่น python , css , troupleshoot">
-												<input name='tags' class=" " id='section-basic' placeholder='กรอกความสามารถด้านคอมพิวเตอร์ของคุณ' value='' autofocus>
+												<input type="text" name='tags' class=" " id='section-basic' placeholder='กรอกความสามารถด้านคอมพิวเตอร์ของคุณ' value='' autofocus>
 											</div>
 											<div class="col-sm-10 col-sm-offset-1 text-center">
 												<button class="btn btn-simple tags--removeAllBtn text-center " type='button'>ลบทั้งหมด</button>
@@ -2402,7 +2403,7 @@
 												</div>
 											</div>
 
-											<div class="row group">
+											<div class="row group" hidden>
 												<div class="col-md-12">
 													<div class="col-sm-5 col-sm-offset-1">
 														<div class="input-group">
@@ -2439,7 +2440,7 @@
 															</span>
 															<div class="form-group label-floating">
 																<label class="control-label">พิมพ์ดีด (คำ/นาที)</label>
-																<input name="skill_language_typing" type="number" class="form-control">
+																<input name="skill_language_typing" type="text" class="form-control">
 															</div>
 														</div>
 													</div>
@@ -2455,10 +2456,10 @@
 																<label class="control-label">ฟัง</label>
 																<select name="skill_language_listen" class="form-control">
 																	<option disabled="" selected=""></option>
-																	<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
-																	<option value="cch_Good" Title="ดี">ดี</option>
-																	<option value="cch_Fair" Title="พอใช้">พอใช้</option>
-																	<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	<option value="ดีมาก" Title="ดีมาก">ดีมาก</option>
+																	<option value="ดี" Title="ดี">ดี</option>
+																	<option value="พอใช้" Title="พอใช้">พอใช้</option>
+																	<option value="ใช้ได้น้อย" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
 																</select>
 															</div>
 														</div>
@@ -2473,10 +2474,10 @@
 																<label class="control-label">พูด</label>
 																<select name="skill_language_speak" class="form-control">
 																	<option disabled="" selected=""></option>
-																	<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
-																	<option value="cch_Good" Title="ดี">ดี</option>
-																	<option value="cch_Fair" Title="พอใช้">พอใช้</option>
-																	<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	<option value="ดีมาก" Title="ดีมาก">ดีมาก</option>
+																	<option value="ดี" Title="ดี">ดี</option>
+																	<option value="พอใช้" Title="พอใช้">พอใช้</option>
+																	<option value="ใช้ได้น้อย" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
 																</select>
 															</div>
 														</div>
@@ -2491,10 +2492,10 @@
 																<label class="control-label">อ่าน</label>
 																<select name="skill_language_read" class="form-control">
 																	<option disabled="" selected=""></option>
-																	<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
-																	<option value="cch_Good" Title="ดี">ดี</option>
-																	<option value="cch_Fair" Title="พอใช้">พอใช้</option>
-																	<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	<option value="ดีมาก" Title="ดีมาก">ดีมาก</option>
+																	<option value="ดี" Title="ดี">ดี</option>
+																	<option value="พอใช้" Title="พอใช้">พอใช้</option>
+																	<option value="ใช้ได้น้อย" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
 																</select>
 															</div>
 														</div>
@@ -2509,10 +2510,10 @@
 																<label class="control-label">เขียน</label>
 																<select name="skill_language_write" class="form-control">
 																	<option disabled="" selected=""></option>
-																	<option value="cch_Excellent" Title="ดีมาก">ดีมาก</option>
-																	<option value="cch_Good" Title="ดี">ดี</option>
-																	<option value="cch_Fair" Title="พอใช้">พอใช้</option>
-																	<option value="cch_Poor" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
+																	<option value="ดีมาก" Title="ดีมาก">ดีมาก</option>
+																	<option value="ดี" Title="ดี">ดี</option>
+																	<option value="พอใช้" Title="พอใช้">พอใช้</option>
+																	<option value="ใช้ได้น้อย" Title="ใช้ได้น้อย">ใช้ได้น้อย</option>
 																</select>
 															</div>
 														</div>
@@ -2545,7 +2546,7 @@
 												</div>
 											</div>
 
-											<div class="row group">
+											<div class="row group" hidden>
 												<div class="col-md-12">
 													<div class="col-sm-10 col-sm-offset-1">
 														<div class="input-group">
@@ -2608,7 +2609,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="row group">
+											<div class="row group" hidden>
 												<div class="col-md-12">
 
 													<div class="col-sm-5 col-sm-offset-1">
