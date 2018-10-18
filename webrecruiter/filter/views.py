@@ -92,13 +92,6 @@ def index(request):
         print("TAG : ",filter_comskill,len(filter_comskill))
         print(operator_comskill,"++++++++++++")
 
-
-
-        # list = array(request.POST['tags1'])
-        # print(list)
-
-
-
         print("Filter List : " + str(filter_option) + "Operator Position : "+ str(operator_position) + " Position : " + str(filter_position))
         position = FilterPosition(operator_position=operator_position,filter_position=filter_position)
         position.save()
