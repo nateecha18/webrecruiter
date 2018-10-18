@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute
+from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
@@ -157,24 +157,20 @@ def index(request):
                                                                     experience_companyReason=experience_companyReason[i])
                 candidate_work_experience.save()
 
+            country = Country.objects.all()
             education_level = EducationLevel.objects.all()
             context = {
                 'Levels' : education_level,
+                'Country': country
             }
             template = loader.get_template("index.html")
             return HttpResponse(template.render(context, request))
 
-        CandidateBasic.objects.all().delete()
-        CandidateHistoryEducation.objects.all().delete()
-        CandidateComputerSkill.objects.all().delete()
-        CandidateLanguageSkill.objects.all().delete()
-        CandidateCertExperience.objects.all().delete()
-        CandidateAttachment.objects.all().delete()
-        CandidateWorkExperience.objects.all().delete()
-
+        country = Country.objects.all()
         education_level = EducationLevel.objects.all()
         context = {
             'Levels' : education_level,
+            'Country': country
         }
         template = loader.get_template("index.html")
         return HttpResponse(template.render(context, request))
@@ -225,8 +221,15 @@ def get_institute(request):
     return HttpResponse(data, mimetype)
 
 def load_institute(file_path):
-    "this loads institute from pipe delimited file with headers"
+    "this loads institute from CSV file with headers"
     reader = csv.DictReader(open(file_path))
     for row in reader:
         institute = Institute(name=row['name'])
         institute.save()
+
+def load_country(file_path):
+    "this loads country from CSV file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        country = Country(countryCode=row['countryCode'],countryName=row['countryName'],currencyCode=row['currencyCode'])
+        country.save()
