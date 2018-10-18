@@ -18,7 +18,7 @@ from addskill.models import Skill
 from django.db.models import Q
 
 import json
-
+import csv
 
 # Create your views here.
 def index(request):
@@ -164,13 +164,13 @@ def index(request):
             template = loader.get_template("index.html")
             return HttpResponse(template.render(context, request))
 
-        CandidateBasic.objects.all().delete()
-        CandidateHistoryEducation.objects.all().delete()
-        CandidateComputerSkill.objects.all().delete()
-        CandidateLanguageSkill.objects.all().delete()
-        CandidateCertExperience.objects.all().delete()
-        CandidateAttachment.objects.all().delete()
-        CandidateWorkExperience.objects.all().delete()
+        # CandidateBasic.objects.all().delete()
+        # CandidateHistoryEducation.objects.all().delete()
+        # CandidateComputerSkill.objects.all().delete()
+        # CandidateLanguageSkill.objects.all().delete()
+        # CandidateCertExperience.objects.all().delete()
+        # CandidateAttachment.objects.all().delete()
+        # CandidateWorkExperience.objects.all().delete()
 
         education_level = EducationLevel.objects.all()
         context = {
@@ -211,6 +211,13 @@ class GeneratePdf(View):
 def show_list(request):
     all_candidate = CandidateBasic.objects.all()
     return render(request, "show.html", {'Candidate': all_candidate})
+
+def load_institute(file_path):
+    "this loads institute from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        institute = Institute(name=row['name'])
+        institute.save()
 
 def get_institute(request):
     if request.is_ajax():

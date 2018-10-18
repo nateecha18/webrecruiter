@@ -15,7 +15,6 @@ from rolepermissions.decorators import has_role_decorator
 
 @has_role_decorator('hr')
 def index(request):
-    CandidateRank.objects.all().delete()
     orders = Order.objects.all()
     for order in orders:
         items = order.items.all()
