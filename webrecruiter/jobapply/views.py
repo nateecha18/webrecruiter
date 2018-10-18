@@ -18,7 +18,7 @@ from addskill.models import Skill
 from django.db.models import Q
 
 import json
-import csv
+
 
 # Create your views here.
 def index(request):
@@ -223,10 +223,3 @@ def get_institute(request):
         data = json.dumps(results)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
-
-def load_institute(file_path):
-    "this loads institute from pipe delimited file with headers"
-    reader = csv.DictReader(open(file_path))
-    for row in reader:
-        institute = Institute(name=row['name'])
-        institute.save()
