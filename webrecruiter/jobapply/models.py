@@ -14,14 +14,6 @@ class Institute(models.Model):
     def __str__(self):
         return self.name
 
-class Country(models.Model):
-    countryCode = models.CharField(primary_key=True,max_length=2)
-    countryName = models.CharField(max_length=45)
-    currencyCode = models.CharField(max_length=3)
-
-    def __str__(self):
-        return self.countryName
-
 class CandidateComputerSkill(models.Model):
     """docstring forCandidate_Computer_Skill."""
     tags = models.CharField(max_length=300, blank=True, null=True)
