@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from .models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response

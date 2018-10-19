@@ -46,6 +46,7 @@ def user_picture_directory_path(instance, filename):
 class CandidateBasic(models.Model):
     """docstring for Candidate_basic."""
     id_number = models.CharField(primary_key=True, max_length=13)
+    date_apply = models.DateTimeField(auto_now=True)
     position = models.CharField(max_length=250, blank=True)
     salary = models.IntegerField(blank=True)
     profile_pic = models.ImageField(upload_to=user_picture_directory_path, blank=True,max_length=500)
@@ -79,7 +80,7 @@ class CandidateBasic(models.Model):
     candidate_computer_skill = models.ForeignKey(CandidateComputerSkill, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
-        return 'CandidateBasic : {1}'.format(self.id_number)
+        return 'CandidateBasic : {0}'.format(self.id_number)
 
 def user_attachment_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>
@@ -93,7 +94,7 @@ class CandidateAttachment(models.Model):
 
 
     def __str__(self):
-        return 'Attachment : {1}'.format(self.candidate_basic.id_number)
+        return 'Attachment : {0}'.format(self.candidate_basic.id_number)
 
 class CandidateHistoryEducation(models.Model):
     """docstring forCandidate_History_Education."""
