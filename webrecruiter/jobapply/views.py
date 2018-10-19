@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
@@ -157,9 +157,11 @@ def index(request):
                                                                     experience_companyReason=experience_companyReason[i])
                 candidate_work_experience.save()
 
+            country = Country.objects.all()
             education_level = EducationLevel.objects.all()
             context = {
                 'Levels' : education_level,
+                'Country': country,
             }
             template = loader.get_template("index.html")
             return HttpResponse(template.render(context, request))
@@ -171,10 +173,11 @@ def index(request):
         # CandidateCertExperience.objects.all().delete()
         # CandidateAttachment.objects.all().delete()
         # CandidateWorkExperience.objects.all().delete()
-
+        country = Country.objects.all()
         education_level = EducationLevel.objects.all()
         context = {
             'Levels' : education_level,
+            'Country': country,
         }
         template = loader.get_template("index.html")
         return HttpResponse(template.render(context, request))
@@ -211,6 +214,13 @@ class GeneratePdf(View):
 def show_list(request):
     all_candidate = CandidateBasic.objects.all()
     return render(request, "show.html", {'Candidate': all_candidate})
+
+def load_country(file_path):
+    "this loads country from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        country = Country(countryCode=row['countryCode'],currencyCode=row['currencyCode'],countryNameENG=row['countryNameENG'],countryNameTH=row['countryNameTH'])
+        country.save()
 
 def load_institute(file_path):
     "this loads institute from pipe delimited file with headers"

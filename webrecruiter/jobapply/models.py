@@ -8,6 +8,15 @@ class EducationLevel(models.Model):
     def __str__(self):
         return self.value
 
+class Country(models.Model):
+    countryCode = models.CharField(primary_key=True,max_length=3)
+    currencyCode = models.CharField(max_length=3, blank=True, null=True)
+    countryNameENG = models.CharField(max_length=200, blank=True, null=True)
+    countryNameTH = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.countryNameTH
+
 class Institute(models.Model):
     name = models.CharField(primary_key=True,max_length=500)
 
