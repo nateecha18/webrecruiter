@@ -16,6 +16,39 @@ input[type="text"]:disabled {
   color : #66615b;
 }
 </style>
+
+<style media="screen">
+.tag-wrapper{
+margin: 0 auto;
+margin-top: 10px;
+padding: 10px;
+text-align: center;
+border-radius: 5px;
+}
+
+.tag{
+display: inline-block;
+position: relative;
+margin: 0px 5px 5px 0px;
+}
+
+.tag label{
+padding: 7px 16px 6px 16px;
+position: relative;
+z-index: 0;
+color: #444444;
+display: block;
+border-radius: 16px;
+background: #fff2e5;
+
+transition: all 0.08s ease-in;
+}
+.tag label:hover{
+background: #ffe6ce;
+transition: all 0.08s ease-in;
+}
+</style>
+
 {% endblock %}
 
 {% block content %}
@@ -33,9 +66,16 @@ input[type="text"]:disabled {
             <h4 class="title">{{ Selected_candidate.name_title }} {{ Selected_candidate.firstname }}     {{ Selected_candidate.lastname }}<br />
               <a href="/filter/{{Selected_candidate.id_number}}/"><small>@{{ Selected_candidate.id_number }} </small></a>
             </h4>
+            <div class="tag-wrapper">
+              {% for skill in Skills %}
+                <div class="tag">
+                  <label for="">{{ skill }}</label>
+                </div>
+              {% endfor %}
+
+            </div><!-- End Wrapper -->
           </div>
-          <br/>
-          <!-- <hr> -->
+          <hr>
           <div class="text-center">
             <div class="row">
               <div class="col-md-12">
@@ -54,6 +94,10 @@ input[type="text"]:disabled {
             No diggity <br>
             I wanna bag it up"
           </p> -->
+          <br>
+          <div class="text-center">
+            <a href="{% url 'candidate_cart:add_to_cart' Candidate_id %}"><button type="submit" class="btn btn-info btn-fill btn-wd">Add to Wishlist</button></a>
+          </div>
         </div>
       </div>
       <div class="card">
@@ -194,7 +238,7 @@ input[type="text"]:disabled {
           <h4 class="title">ข้อมูลพื้นฐาน</h4>
         </div>
         <div class="content">
-          <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
+          <form>
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
@@ -289,12 +333,8 @@ input[type="text"]:disabled {
               </div>
             {% endif %}
 
-            {% for skill in Skills %}
-              {{ skill }},
-            {% endfor %}
-
             {{ HistoryEducation|length }}
-            {% if not HistoryEducation %} 
+            {% if not HistoryEducation %}
               ไม่มีโว้ยยย
             {% endif %}
             {% for history_education in HistoryEducation %}
@@ -310,9 +350,6 @@ input[type="text"]:disabled {
                   </div>
                 </div>
               </div> -->
-              <div class="text-center">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">Add to Wishlist</button>
-              </div>
               <div class="clearfix"></div>
             </form>
           </div>
@@ -326,7 +363,7 @@ input[type="text"]:disabled {
             <h4 class="title">ข้อมูลการศึกษาปัจจุบัน</h4>
           </div>
           <div class="content">
-            <form action="{% url 'candidate_cart:add_to_cart' Candidate_id %}">
+            <form>
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
