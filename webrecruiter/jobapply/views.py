@@ -7,18 +7,20 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country,Skill,SkillType
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from addskill.models import Skill
+# from addskill.models import Skill
 
 from django.db.models import Q
 
 import json
 import csv
+
+from django.core import serializers
 
 # Create your views here.
 def index(request):
@@ -173,11 +175,13 @@ def index(request):
         # CandidateCertExperience.objects.all().delete()
         # CandidateAttachment.objects.all().delete()
         # CandidateWorkExperience.objects.all().delete()
+        skill_name = list(Skill.objects.all().values_list('skill_name',flat=True))
         country = Country.objects.all()
         education_level = EducationLevel.objects.all()
         context = {
             'Levels' : education_level,
             'Country': country,
+            'Skill' : skill_name,
         }
         template = loader.get_template("index.html")
         return HttpResponse(template.render(context, request))

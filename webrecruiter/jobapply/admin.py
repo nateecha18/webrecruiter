@@ -1,5 +1,5 @@
 from django.contrib import admin
-from jobapply.models import CandidateHistoryEducation, CandidateComputerSkill, CandidateLanguageSkill, CandidateCertExperience, CandidateWorkExperience, CandidateAttachment, CandidateBasic, EducationLevel,Institute,Country
+from jobapply.models import CandidateHistoryEducation, CandidateComputerSkill, CandidateLanguageSkill, CandidateCertExperience, CandidateWorkExperience, CandidateAttachment, CandidateBasic, EducationLevel,Institute,Country,Skill,SkillType
 
 admin.site.register(CandidateHistoryEducation)
 admin.site.register(CandidateComputerSkill)
@@ -11,3 +11,5 @@ admin.site.register(CandidateBasic)
 admin.site.register(EducationLevel)
 admin.site.register(Institute)
 admin.site.register(Country)
+admin.site.register(Skill)
+admin.site.register(SkillType)

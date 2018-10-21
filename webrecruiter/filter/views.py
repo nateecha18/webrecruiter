@@ -14,7 +14,7 @@ from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country,Skill,SkillType
 
 from django.db.models import Q
 
@@ -25,6 +25,9 @@ from django.contrib.auth.models import User
 
 from candidate_cart.models import OrderItem, Order
 from account.models import Profile
+from django.core import serializers
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def get_cart_amount(request):
@@ -73,18 +76,18 @@ def index(request):
         print("COMSKILL")
         print("OPERATOR : ",operator_comskill,len(operator_comskill))
         # วน loop เก็บ filter skill
-        list = []
+        skill_list = []
         for i in range(1,len(operator_comskill)+1):
             txt = request.POST['tags'+str(i)].replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
-            list = txt.split("NaTeChA")
-            # print(len(list),"+++++++++++++++")
+            skill_list = txt.split("NaTeChA")
+            # print(len(skill_list),"+++++++++++++++")
 
             check_filter = []
-            for j in range(0,len(list)):
+            for j in range(0,len(skill_list)):
                 # print(j,"This is JJJ!!!")
-                if not list[j]=='':
-                    # print(list,"___________________________")
-                    check_filter.append(list[j])
+                if not skill_list[j]=='':
+                    # print(skill_list,"___________________________")
+                    check_filter.append(skill_list[j])
             if check_filter:
                 filter_comskill.append(check_filter)
             else:
@@ -285,22 +288,35 @@ def index(request):
                         print("All Candidate หลังเข้า Filter Comskill : ",i, all_candidate)
 
 
+        list_skill_name =	[]
+        skill_name = Skill.objects.all().values_list('skill_name',flat=True)
+        for skill in skill_name:
+            list_skill_name.append(skill)
+        print("SKILL NAME 2! ______",list_skill_name)
 
-        # if (checkbox_position!='1' and checkbox_salary!='1' and checkbox_blood!='1' and checkbox_gpa!='1' and checkbox_gender!='1') :
-        #     all_candidate = CandidateBasic.objects.all()
         cart_amount = get_cart_amount(request)
         context = {
             'Candidate': all_candidate,
             'Cart_amount':cart_amount,
+            'Skill' : list_skill_name,
         }
         template = loader.get_template("filter_candidate.html")
         return HttpResponse(template.render(context, request))
 
     if request.user.is_authenticated:
+        skill = Skill.objects.all().values_list('skill_name',flat=True)
+        skill_json = json.dumps(list(skill), cls=DjangoJSONEncoder)
+        print(skill_json)
+
+        # list_skill_name =	[]
+        # skill_name = Skill.objects.all().values_list('skill_name',flat=True)
+        # for skill in skill_name:
+        #     list_skill_name.append(skill)
+        # print("SKILL NAME! ______",list_skill_name)
         all_candidate = CandidateBasic.objects.all()
         cart_amount = get_cart_amount(request)
 
-        return render(request, "filter_candidate.html", {'Candidate': all_candidate,'Cart_amount':cart_amount})
+        return render(request, "filter_candidate.html", {'Candidate': all_candidate,'Cart_amount':cart_amount,"Skill_json":skill_json})
     else:
         return redirect('login')
 

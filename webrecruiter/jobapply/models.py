@@ -1,6 +1,21 @@
 
 from django.db import models
 
+
+class SkillType(models.Model):
+    type_id = models.AutoField(primary_key=True)
+    type_name = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.type_name
+
+class Skill(models.Model):
+    skill_name = models.CharField(primary_key=True,max_length=200)
+    skill_type = models.ForeignKey(SkillType, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.skill_name
+
 class EducationLevel(models.Model):
     value = models.CharField(primary_key=True,max_length=200)
     education_level = models.CharField(max_length=200, blank=True, null=True)
@@ -29,23 +44,6 @@ class CandidateComputerSkill(models.Model):
 
     def __int__(self):
         return self.id + '-' + self.tags
-
-
-# def user_attachment_directory_path(instance, filename):
-#     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>
-#     return 'webrecruiter/static/uploads/candidate_{0}/attachment/{1}'.format(instance.candidate_basic.id_number, filename)
-
-
-# class CandidateAttachment(models.Model):
-#     """docstring forAttachment."""
-#     candidate_basic = models.ForeignKey(CandidateBasic, on_delete=models.CASCADE, blank=True)
-#     attach_resume = models.FileField(upload_to=user_attachment_directory_path,blank=True)
-#     attach_transcript = models.FileField(upload_to=user_attachment_directory_path,blank=True)
-#
-#
-#     def __int__(self):
-#         return self.id
-
 
 def user_picture_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/picture/<FILENAME>
