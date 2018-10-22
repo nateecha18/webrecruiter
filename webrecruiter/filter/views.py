@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.template import loader
 from django.contrib import admin
 from django.urls import path
@@ -28,6 +28,9 @@ from account.models import Profile
 from django.core import serializers
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+
+import os
+from django.conf import settings
 
 
 def get_cart_amount(request):
@@ -331,7 +334,13 @@ def candidate_detail(request,candidate_id):
         txt_skill = selected_candidate.candidate_computer_skill.tags.replace("\",\"","NaTeChA").replace("[\"","").replace("\"]","")
         list_skill = txt_skill.split("NaTeChA")
 
+        work_experience = CandidateWorkExperience.objects.filter(owner=selected_candidate)
+        cert_experience = CandidateCertExperience.objects.filter(owner=selected_candidate)
+        skill_language = CandidateLanguageSkill.objects.filter(owner=selected_candidate)
+        attachment = CandidateAttachment.objects.filter(candidate_basic=selected_candidate).first()
+        print("ATTACHMENT !!! : " , attachment)
         history_education = CandidateHistoryEducation.objects.filter(owner=selected_candidate)
+
         if not history_education.exists():
             history_education = CandidateHistoryEducation.objects.none()
         print("History Amount : ",history_education)
@@ -343,7 +352,39 @@ def candidate_detail(request,candidate_id):
                        'Selected_candidate' : selected_candidate,
                        'Cart_amount' : cart_amount,
                        'Skills' : list_skill,
-                       'HistoryEducation' : history_education
+                       'HistoryEducation' : history_education,
+                       'SkillLanguage' : skill_language,
+                       'Attachment' : attachment,
+                       'CertExperience' : cert_experience,
+                       'WorkExperience' : work_experience,
                        })
     else:
         return redirect('login')
+
+def download_resume(request,selected_candidate):
+    candidate = CandidateBasic.objects.filter(id_number=selected_candidate).first()
+    path = str(CandidateAttachment.objects.filter(candidate_basic=candidate).first().attach_resume)
+    print("เข้าโว้ยยยยย")
+    print(path)
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    print(path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as pdf:
+            response = HttpResponse(pdf.read(), content_type="application/pdf")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+def download_transcript(request,selected_candidate):
+    candidate = CandidateBasic.objects.filter(id_number=selected_candidate).first()
+    path = str(CandidateAttachment.objects.filter(candidate_basic=candidate).first().attach_transcript)
+    print("เข้าโว้ยยยยย")
+    print(path)
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    print(path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as pdf:
+            response = HttpResponse(pdf.read(), content_type="application/pdf")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404

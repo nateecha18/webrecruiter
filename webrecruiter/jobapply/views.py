@@ -101,9 +101,10 @@ def index(request):
                 edu_level_value_i = edu_level_value[i]
                 edu_level = EducationLevel.objects.filter(value=edu_level_value_i).first()
                 candidate = CandidateBasic.objects.filter(id_number=id_number).first()
+                country = Country.objects.filter(countryCode=edu_country).first()
                 candidate_history_education = CandidateHistoryEducation(edu_level=edu_level,
                                                                         owner=candidate,
-                                                                        edu_country=edu_country[i],
+                                                                        edu_country=country,
                                                                         edu_instituteName=edu_instituteName[i],
                                                                         edu_fromYear=edu_fromYear[i], edu_toYear=edu_toYear[i],
                                                                         edu_major=edu_major[i], edu_gpa=edu_gpa[i])

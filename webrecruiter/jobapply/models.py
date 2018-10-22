@@ -107,7 +107,7 @@ class CandidateHistoryEducation(models.Model):
     """docstring forCandidate_History_Education."""
     owner = models.ForeignKey(CandidateBasic, on_delete=models.SET_NULL, null=True)
     edu_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
-    edu_country = models.CharField(max_length=250, blank=True, null=True)
+    edu_country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
     edu_instituteName = models.CharField(max_length=250, blank=True, null=True)
     edu_fromYear = models.CharField(max_length=10, blank=True, null=True)
     edu_toYear = models.CharField(max_length=10, blank=True, null=True)
