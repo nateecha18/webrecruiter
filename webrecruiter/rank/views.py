@@ -30,8 +30,10 @@ def index(request):
             CandidateRank.objects.filter(candidate=candidate).update(count=count)
             print("ALL OWNER",candidate_rank.owner.all())
     ranks = CandidateRank.objects.all().order_by('-count')
+    topthree = ranks[:3]
     context = {
         'ranks' : ranks,
+        'topthree' : topthree,
     }
     template = loader.get_template("rank.html")
     return HttpResponse(template.render(context, request))

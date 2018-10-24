@@ -783,7 +783,7 @@ p.small {
       {% for cert_experience in CertExperience %}
       <div class="row">
         <div class="col-lg-1 text-center">
-          <span class="number_circle">1</span>
+          <span class="number_circle">{{ forloop.counter }}</span>
         </div>
         <div class="col-lg-11">
           <div class="form-group">
