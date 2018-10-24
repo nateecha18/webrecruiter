@@ -7,6 +7,12 @@ from django.urls import path, reverse
 from . import views
 from .models import Skill
 
+import json
+from django.shortcuts import HttpResponse
+from django.template import loader, RequestContext
+from django.template import Context, Template
+from django.template.loader import render_to_string
+
 # Create your views here.
 
 def index(request):
@@ -57,14 +63,29 @@ def submit_skill(request):
     return HttpResponse(template.render(context, request))
 
 
-
-
 def create_skill(request):
     if request.method == 'POST':
+        print("Entryy")
         name = request.POST['name']
         type = request.POST['type']  # name for select in your html is 'skill_type' so use that
 
         skill = Skill(skill_name=name,skill_type=type)
         skill.save()
+        all_skill = Skill.objects.all()
 
     return HttpResponse('success') # Empty HttpResponse doesn't makes much sense, also for ajax I would recommend JsonResponse
+
+def show_skill(request):
+    all_skill = Skill.objects.all().values_list('skill_name','skill_type')
+
+    response_data = {}
+    try:
+        response_data['result'] = "Success"
+        response_data['message'] = list(all_skill)
+        print(response_data)
+
+    except Exception as e:
+        response_data['result'] = "Fail"
+        response_data['message'] = "Fail!"
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

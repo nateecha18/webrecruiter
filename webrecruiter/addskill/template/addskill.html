@@ -17,6 +17,7 @@
   {% endif %}
   <form method="POST" enctype=multipart/form-data>
     {% csrf_token %}
+    NORMAL |
     Add Skill : <input type="text" name="skill_name" placeholder="Skill">
     Select Skill Type :
     <select class="" name="skill_type">
@@ -27,6 +28,21 @@
     </select>
     <button type="submit" name="button" id="btnAdd" >Add</button>
     <button type="button" name="button" id="btnTest" onclick="myFunction({{Skill_name}})">Test</button>
+  </form>
+  <br>
+  <form id="new_user_form">
+    {% csrf_token %}
+    AJAX |
+    Add Skill : <input type="text" id="name" placeholder="Name" name="name" value="">
+    Select Skill Type :
+    <select class="" name="type" id="type">
+      <option value="1">Developer</option>
+      <option value="2">Network</option>
+      <option value="3">System</option>
+      <option value="4">Database Analysis</option>
+    </select>
+    <input type="submit" value="submit">
+    <a href="javascript:ShowSkillList()"><input type="button" value="show"></a>
   </form>
   <br>
   <table border="3">
@@ -43,76 +59,23 @@
       {% endfor%}
     </tbody>
   </table>
-  <form id="new_user_form">
-    {% csrf_token %}
-    <input type="text" id="name" placeholder="Name" name="name" value="">
-    <select class="" name="type" id="type">
-      <option value="1">Developer</option>
-      <option value="2">Network</option>
-      <option value="3">System</option>
-      <option value="4">Database Analysis</option>
-    </select>
-    <input type="submit" value="submit">
-  </form>
+  <div id="output">
+    <h1>kkk</h1>
+    <table border="3">
+      <thead>
+        <th>Skill Name</th>
+        <th>Skill Type</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  H:{{ response_data.message }}
 
-  <h1>Test LIST!!</h1>
-  {{ Skill_name }}
-  {% for skill_name in Skill_name %}
-    <h1>4</h1>
-    <h1>{{skill_name}}</h1>
-  {% endfor%}
-
-  <h2>Bootstrap Table Checkbox Select All and Cancel</h2>
-  <table class="table table-striped">
-    <tr>
-      <th class="active">
-        <input type="checkbox" class="select-all checkbox" name="select-all" />
-      </th>
-      <th class="success">Name</th>
-      <th class="warning">Gender</th>
-      <th class="danger">Age</th>
-      <th class="info">Birth</th>
-    </tr>
-    <tr>
-      <td class="active">
-        <input type="checkbox" class="select-item checkbox" name="select-item" value="1000" />
-      </td>
-      <td class="success">Tom</td>
-      <td class="warning">boy</td>
-      <td class="danger">20</td>
-      <td class="info">09-20</td>
-    </tr>
-    <tr>
-      <td class="active">
-        <input type="checkbox" class="select-item checkbox" name="select-item" value="1001" />
-      </td>
-      <td class="success">andy</td>
-      <td class="warning">girl</td>
-      <td class="danger">21</td>
-      <td class="info">09-21</td>
-    </tr>
-    <tr>
-      <td class="active">
-        <input type="checkbox" class="select-item checkbox" name="select-item" value="1002" />
-      </td>
-      <td class="success">Alina</td>
-      <td class="warning">girl</td>
-      <td class="danger">22</td>
-      <td class="info">09-22</td>
-    </tr>
-    <tr>
-      <td class="active">
-        <input type="checkbox" class="select-item checkbox" name="select-item" value="1003" />
-      </td>
-      <td class="success">Aaron </td>
-      <td class="warning">boy</td>
-      <td class="danger">23</td>
-      <td class="info">09-23</td>
-    </tr>
-  </table>
-  <button id="select-all" class="btn button-default">SelectAll/Cancel</button>
-  <button id="select-invert" class="btn button-default">Invert</button>
-  <button id="selected" class="btn button-default">GetSelected</button>
 </body>
 <script src="/static/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
@@ -133,6 +96,23 @@ $(document).on('submit','#new_user_form',function(e){
   });
 });
 
+function ShowSkillList() {
+  $.ajax({
+    type : 'GET',
+    url : 'skill/show/',
+    dataType : "json",
+    async : true,
+    data : {
+      csrfmiddlewaretoken:"{{ csrf_token }}"
+    },
+    success: function(json){
+      $('#output').html(json.message);
+      console.log(json.message)
+      // $('.ajaxProgress').hide();
+
+    }
+  })
+}
 </script>
 
 <script>
