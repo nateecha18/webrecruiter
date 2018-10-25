@@ -1,0 +1,204 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Request | WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+<style media="screen">
+i.icon-delete { color: #EB5E28; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <form method="POST" enctype=multipart/form-data class="form-horizontal">
+        <h2 class="text-center">Create New Request</h2>
+        <br>
+
+      {% csrf_token %}
+      <div class="col-lg-5 col-md-7">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">User Information</h4>
+          </div>
+
+          <div class="content">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Full Name</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="user_name" required="required" value="{{request.user.first_name|title}}   {{request.user.last_name|title}}" disabled />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="user_email" email="true" value="{{request.user.email}}" disabled />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Project Information</h4>
+          </div>
+
+          <div class="content">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Project Name</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="project_name" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Project Type</label>
+                <div class="col-sm-9">
+                  <select class="form-control" name="project_type" required="required">
+                      <option selected value="0" disabled>Project Type</option>
+                    {% for project_type in ProjectTypes %}
+                      <option value="{{ project_type.project_type_id }}">{{ project_type.project_type_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Site</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="project_site" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 col-md-5">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Request Details</h4>
+          </div>
+
+          <div class="content">
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Title</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="request_title" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">จำนวนตาม TOR</label>
+                <div class="col-sm-3">
+                  <input class="form-control" type="number" name="tor_employee_amount" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">จำนวนตามจริง</label>
+                <div class="col-sm-3">
+                  <input class="form-control" type="number" name="now_employee_amount" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">จำนวนที่ขาด</label>
+                <div class="col-sm-3">
+                  <input class="form-control" type="number" name="vacancy_employee_amount" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">ความเร่งด่วน</label>
+                <div class="col-sm-9">
+                  <select class="form-control" name="level" required="required">
+                      <option selected value="0" disabled>ความเร่งด่วน</option>
+                    {% for level in Levels %}
+                      <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Requirement</label>
+                <div class="col-sm-9">
+                  <textarea name="requirement" rows="5" class="form-control" placeholder="Here can be your Requirement"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Certification</label>
+                <div class="col-sm-9">
+                  <textarea name="certification" rows="3" class="form-control" placeholder="Here can be your Certification"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">หมายเหตุ</label>
+                <div class="col-sm-9">
+                  <textarea name="note" rows="3" class="form-control" placeholder="Here can be your Note"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-info btn-fill">Creat Request</button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-46172202-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+{% endblock %}

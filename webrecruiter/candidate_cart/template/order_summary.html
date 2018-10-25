@@ -83,7 +83,7 @@ i.icon-delete { color: #EB5E28; }
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <div class="card">
         <div class="header">
           <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">favorite_border</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %} WISHLIST {% else %} EMPTY WISHLIST{% endif %}</h2>

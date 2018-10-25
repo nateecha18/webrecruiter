@@ -1,0 +1,72 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Request | WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+<style media="screen">
+i.icon-delete { color: #EB5E28; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <form >
+      <div class="col-md-12">
+        <div class="fresh-table">
+          <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+          Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+        -->
+        <div class="toolbar">
+          <div class="row">
+
+          </div>
+          <button type="button" id="alertBtn" class="btn btn-info">Open (1)</button>
+          <button type="button" id="alertBtn" class="btn btn-info">Closed (0)</button>
+          <a href="{% url 'new_request_candidate' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Interview</button></a>
+          <a href="{% url 'new_request_candidate' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Candidate</button></a>
+        </div>
+        <table id="fresh-table" class="table">
+          <thead>
+            <th data-field="request_id" data-sortable="true" class="text-center">หมายเลขคำร้อง</th>
+            <th data-field="update_time" data-sortable="true">อัพเดตล่าสุด</th>
+            <th data-field="request_name" data-sortable="true">ชื่อคำร้อง</th>
+            <th data-field="engineer_name" data-sortable="true" class="text-center">Engineer</th>
+            <th data-field="status">สถานะ</th>
+            <th data-field="hr_owner">HR ที่ตอบกลับล่าสุด</th>
+          </thead>
+          <tbody>
+            {% for request_candidate in RequestCandidates %}
+            <tr>
+              <td>{{ request_candidate.request_id}}</td>
+              <td>1 นาที 54 วินาที</td>
+              <td>{{ request_candidate.request_title}}</td>
+              <td>{{ request_candidate.owner.user.first_name}}  {{ request_candidate.owner.user.last_name}}</td>
+              <td>อยู่ระหว่างดำเนินการ</td>
+              <td>ไจ๋</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-46172202-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+{% endblock %}
