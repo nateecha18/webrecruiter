@@ -15,7 +15,22 @@ i.icon-delete { color: #EB5E28; }
 <div class="container-fluid">
   <div class="row">
     <form method="POST" enctype=multipart/form-data class="form-horizontal">
-        <h2 class="text-center">Create New Request</h2>
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="col-lg-1">
+
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'request_candidate' %}">
+              <button type="button" class="btn btn-info btn-fill"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back Request</button>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8 text-center">
+          <h2>Create New Request</h2>
+          <h4><small>สร้างคำร้องเพื่อระบุความต้องการคุณ สำหรับการจัดหาทรรพยากรที่มีคุณภาพและตรงตามคามต้องการ <br/>เพื่อความรวดเร็วในการดำเนินการ กรุณากรอกข้อมูลอย่างถูกต้องและครบถ้วน </small> </h4>
+        </div>
+      </div>
         <br>
 
       {% csrf_token %}
@@ -58,6 +73,7 @@ i.icon-delete { color: #EB5E28; }
                 <label class="col-sm-3 control-label">Project Name</label>
                 <div class="col-sm-9">
                   <input class="form-control" type="text" name="project_name" required="required" />
+
                 </div>
               </div>
             </fieldset>

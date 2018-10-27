@@ -14,6 +14,12 @@ from candidate_cart.models import OrderItem,Order
 from rolepermissions.decorators import has_role_decorator
 from request.models import Status,ProjectType,LevelRequest,Comment,RequestCandidate
 from request.generate_id import generate_request_id
+from request.generate_id import generate_comment_id
+from request.compare_time import compare_request_now_time
+import datetime
+from datetime import datetime,date,time,timedelta, timezone
+import pytz
+import math
 
 # @has_role_decorator('hr')
 def index(request):
@@ -59,4 +65,46 @@ def new_request(request):
 
     }
     template = loader.get_template("request_candidate.html")
+    return HttpResponse(template.render(context, request))
+
+
+def request_detail(request,request_id):
+    selected_request = RequestCandidate.objects.filter(request_id=request_id).first()
+
+    add_request_datetime = selected_request.datetime_add_request
+    day_rq,hour_rq,min_rq = compare_request_now_time(add_request_datetime)
+    comment_all = selected_request.comment.all()
+    print(comment_all)
+    status_all = Status.objects.all()
+
+    if request.method == 'POST':
+        comment_id = generate_comment_id(request_id)
+        comment_title = request.POST.get('comment_title')
+        comment_detail = request.POST.get('comment_detail')
+        status_id = request.POST.get('status')
+        owner = get_object_or_404(Profile, user=request.user)
+        if status_id:
+            print("Entry1")
+            status = Status.objects.filter(status_id=status_id).first()
+            selected_request.status=status
+            comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner,status=status)
+            comment.save()
+        else:
+            print("Entry2")
+            comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner)
+            comment.save()
+        selected_request.last_comment_owner = owner
+        selected_request.comment.add(comment)
+        selected_request.save()
+
+
+    context = {
+        'Selected_request' : selected_request,
+        'Day' : day_rq,
+        'Hour' : hour_rq,
+        'Min' : min_rq,
+        'Comments' : comment_all,
+        'Status' : status_all,
+    }
+    template = loader.get_template("request_detail.html")
     return HttpResponse(template.render(context, request))

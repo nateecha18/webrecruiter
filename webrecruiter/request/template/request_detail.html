@@ -1,0 +1,322 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Candidate Details | WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+<style media="screen">
+.form-group label{
+  color: #ff9800;
+  font-weight: 400;
+}
+.header{
+  background-color: #FEDEBE;
+  border-radius: 5px 5px 0px 0px;
+}
+.header .header-title .title{
+  position: relative;
+  margin-bottom: 7px;
+  margin-top: -10px
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-1">
+        <a href="{% url 'request_candidate' %}">
+          <button type="button" class="btn btn-info btn-fill"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back Request</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="card card-user">
+        <div class="content">
+          <div class="col-lg-12">
+            <h3>
+              <div class="col-lg-8">
+                {{ Selected_request.request_id }}
+              </div>
+              <div class="col-lg-4 text-right">
+                <small>{{ Selected_request.datetime_add_request }}</small>
+              </div>
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-6" style="margin-top: 30px;"><!-- begin block0.1 -->
+              <div class="text-center">
+                <div class="row">
+
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Title :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.request_title }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Last Update :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.datetime_update_request }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Time :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{% if Day %}
+                          {{ Day }} วัน
+                          {% endif %}
+                          {% if Hour %}
+                          {{ Hour }} ชั่วโมง
+                          {% endif %}
+                          {% if Min %}
+                          {{ Min }} นาที
+                          {% endif %}
+                        </p>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6" style="margin-top: 30px;"><!-- begin block0.2 -->
+              <div class="text-center">
+                <div class="row">
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">User :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.owner.user.first_name }} {{ Selected_request.owner.user.last_name }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Email :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.owner.user.email }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12" style="margin-top: 30px;margin-bottom: 30px;">
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6"><!-- begin block1 -->
+              <div class="text-center">
+                <div class="row">
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Project Name :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.project_name }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Project Type :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.project_type.project_type_name }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label text-right">Site :</label>
+                      <div class="col-sm-8 text-left">
+                        <p>{{ Selected_request.project_site }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div><!-- End block1 -->
+            <div class="col-lg-6"> <!-- Begin block2 -->
+              <div class="text-center">
+                <div class="row">
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label text-right">จำนวนตาม TOR :</label>
+                      <div class="col-sm-7 text-left">
+                        <p>{{ Selected_request.tor_employee_amount }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label text-right">จำนวนตามจริง :</label>
+                      <div class="col-sm-7 text-left">
+                        <p>{{ Selected_request.now_employee_amount }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label text-right">จำนวนที่ขาด :</label>
+                      <div class="col-sm-7 text-left">
+                        <p>{{ Selected_request.vacancy_employee_amount }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label text-right">ความเร่งด่วน :</label>
+                      <div class="col-sm-7 text-left">
+                        <p>{{ Selected_request.level.level_name }}</p>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div> <!-- End block2 -->
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-sm-12 control-label text-left">Requirement :</label>
+                  <div class="col-sm-10 col-lg-offset-1 text-left">
+                    <p>{{ Selected_request.requirement }}</p>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-lg-12">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-sm-12 control-label text-left">Certification :</label>
+                  <div class="col-sm-10 col-lg-offset-1 text-left">
+                    <p>{{ Selected_request.certification }}</p>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-lg-12">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-sm-12 control-label text-left">หมายเหตุ :</label>
+                  <div class="col-sm-10 col-lg-offset-1 text-left">
+                    <p>{{ Selected_request.note }}</p>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Request Information -->
+    <div class="col-lg-8 col-lg-offset-2 text-left">
+      <h3>Comment<br/><small>Update Status or Information</small> </h3>
+    </div>
+    {% for comment in Comments %}
+    <div class="col-lg-8 col-lg-offset-2 text-left">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="header">
+            <div class="header-title">
+              <div class="row">
+                <div class="col-lg-3 text-left">
+                  <h6 class="title" style="font-weight: 500;">{{ comment.datetime_comment }}</h6>
+                </div>
+                <div class="col-lg-5 text-left">
+                  <h6 class="title" style="font-weight: 400; color:#e09b67;">{{ comment.comment_title }}</h6>
+                </div>
+                <div class="col-lg-4 text-right">
+                  <h6 class="title">{{ comment.owner }}</h6>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-lg-12">
+                <p>{{ comment.comment_detail }}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="col-lg-8 col-lg-offset-2 text-left">
+      <h3>Leave a Comment</h3>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2 text-left">
+      <div class="card">
+        <div class="content">
+          <form method="post">
+            {% csrf_token %}
+            <fieldset style="margin-bottom:20px;">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Comment Title</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" name="comment_title" required="required" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-bottom:20px;">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Comment</label>
+                <div class="col-sm-9">
+                  <textarea name="comment_detail" rows="7" class="form-control" placeholder="Here can be your Comment !"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-bottom:20px;">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Request Status</label>
+                <div class="col-sm-5">
+                  <select class="form-control" name="status" required="required">
+                      <option selected value="0" disabled>สถานะ</option>
+                    {% for status in Status %}
+                      <option value="{{ status.status_id }}">{{ status.status_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-info btn-fill">submit comment</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

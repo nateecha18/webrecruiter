@@ -39,13 +39,11 @@ input[type="text"]:disabled {
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <div class="card">
         <div class="header">
-          <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">perm_contact_calendar</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %}CREATE&nbsp;&nbsp;INTERVIEW {% else %} EMPTY CART{% endif %}</h2>
-          <h4 class="title text-right">You Selected &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %}</h4>
-          {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>Fill the form for create interview</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
-          <br />
+          <h2 class="title" style="color: #595959;margin-top:25px; margin-bottom:5px;"><i class="material-icons icon_title" style="font-size: 1.5em; position:relative; top:12px; color:#ff9800;">how_to_reg</i>&nbsp;&nbsp;{% if order.get_cart_items.count >= 1 %}CREATE&nbsp;&nbsp;INTERVIEW {% else %} EMPTY CART{% endif %}</h2>
+          <br><br>
         </div>
 
         <form method="post">
@@ -57,12 +55,12 @@ input[type="text"]:disabled {
           </div>
           <div class="col-md-5">
             <div class="form-group">
-              <input type="text" class="form-control border-input" id="name_interviewer" disabled placeholder="ชื่อผู้สัมภาษณ์" value="{{request.user.first_name|title}}&nbsp;&nbsp;&nbsp;{{request.user.last_name|title}}">
+              <input type="text" class="form-control border-input" id="user_interviewer" disabled placeholder="ชื่อผู้สัมภาษณ์" value="{{request.user.first_name|title}}&nbsp;&nbsp;&nbsp;{{request.user.last_name|title}}">
             </div>
           </div>
           <div class="col-md-5 col-md-offset-1">
             <div class="form-group">
-              <label for="date_interview">วันที่สัมภาษณ์ (Date of Interview)</label>
+              <label for="date_interview">รายละเอียดวันนัดสัมภาษณ์ (Detail Date of Interview)</label>
             </div>
           </div>
           <div class="col-md-5">
@@ -72,34 +70,35 @@ input[type="text"]:disabled {
           </div>
           <div class="col-md-5 col-md-offset-1">
             <div class="form-group">
-              <label for="add_date" style="position:relative; bottom: 20px;"></label>
+              <label for="date_interview">หมายเหตุ (Note)</label>
             </div>
           </div>
           <div class="col-md-5">
-            <div class="form-group text-center">
-              <p><button type="button" id="btnAdd" class="btn btn-simple" style="color:#ff9800; position:relative; bottom: 20px;">เพิ่มวันที่สัมภาษณ์</button></p>
+            <div class="form-group">
+              <textarea name="note_interview" rows="5" class="form-control" placeholder="Here can be your note"></textarea>
             </div>
           </div>
+
           <div class="col-md-10 col-md-offset-1">
             <div class="card" style="background-color:#f9f9f9">
+              <div class="header">
+                <h4 class="title text-right">You Selected &nbsp;<span style="font-size: 1.8em;color:#ff9800;">{% if order.get_cart_items.count %}{{ order.get_cart_items.count }}{% else %}0{% endif %}</span>&nbsp; Candidate{% if order.get_cart_items.count > 1 %}s{% endif %}</h4>
+                {% if order.get_cart_items.count >= 1 %}<p class="category text-right"><small>Fill the form for create interview</small></p>{% else %}<p class="category text-right"><small>Find your candidate!</small></p>{% endif %}
+                <br />
+              </div>
 
               <div class="content">
                 <div class="container-fluid">
-                  <div class="header">
-                    <h4 style="font-weight: 200;">ผู้สมัครที่คุณเลือก</h4>
-                  </div>
                   {% for item in order.get_cart_items %}
                   <div class="big_container col-md-4" style="text-align: center;">
-                    <div class="img-container">
-                      <a style="text-align: center;" href="{% url 'candidate_detail' item.candidate.id_number %}"><img src="{% if item.candidate.profile_pic %}{{ item.candidate.profile_pic.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Agenda"></a>
+                    <div class="img-container" style="margin-left:22px;">
+                      <a href="{% url 'candidate_detail' item.candidate.id_number %}"><img src="{% if item.candidate.profile_pic %}{{ item.candidate.profile_pic.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Agenda"></a>
                     </div>
-                    <a href="{% url 'candidate_detail' item.candidate.id_number %}"><strong>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</strong></a>
+                    <a href="{% url 'candidate_detail' item.candidate.id_number %}"><p><strong>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</strong></p></a>
                   </div>
                   {% endfor %}
                 </div>
               </div>
-
-
             </div>
           </div>
 
@@ -107,13 +106,13 @@ input[type="text"]:disabled {
             <table class="table table-shopping">
               <tr>
                 <td colspan=2 >
-                  <a href="{% url 'candidate_cart:order_summary' %}" class="btn btn-warning pull-left" style="margin-left:40px;">
+                  <a href="{% url 'candidate_cart:order_summary' %}" class="btn btn-info pull-left" style="margin-left:40px;">
                     {% if order %}Bact to Cart{% else %}Add Items to Cart {% endif %}
                   </a>
                 </td>
                 <td colspan=3>
                   {% if order.get_cart_items %}
-                  <button type="submit" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Checkout</button>
+                  <button type="submit" class="pull-right btn btn-info btn-fill" style="margin-right:40px;">Proceed To Checkout</button>
                   <!-- <a href="#" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Checkout</a> -->
                   {% endif %}
                 </td>
@@ -149,11 +148,11 @@ $('a.delete_candidate').confirm({
 
 <script type="text/javascript">
 $('.datepicker').datepicker({
-	weekStart:1,
-	color: 'red'
+  weekStart:1,
+  color: 'red'
 }).on('changeDate', function(e){
-	// this next line fixed the floating label issue for me
-	$(this).parent('.label-floating').removeClass('is-empty');
+  // this next line fixed the floating label issue for me
+  $(this).parent('.label-floating').removeClass('is-empty');
 });
 </script>
 {% endblock %}

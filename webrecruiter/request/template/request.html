@@ -31,7 +31,7 @@ i.icon-delete { color: #EB5E28; }
         </div>
         <table id="fresh-table" class="table">
           <thead>
-            <th data-field="request_id" data-sortable="true" class="text-center">หมายเลขคำร้อง</th>
+            <th data-field="request_id" data-sortable="true" class="text-left">หมายเลขคำร้อง</th>
             <th data-field="update_time" data-sortable="true">อัพเดตล่าสุด</th>
             <th data-field="request_name" data-sortable="true">ชื่อคำร้อง</th>
             <th data-field="engineer_name" data-sortable="true" class="text-center">Engineer</th>
@@ -41,12 +41,12 @@ i.icon-delete { color: #EB5E28; }
           <tbody>
             {% for request_candidate in RequestCandidates %}
             <tr>
-              <td>{{ request_candidate.request_id}}</td>
-              <td>1 นาที 54 วินาที</td>
+              <td><a href="{% url 'request_detail' request_candidate.request_id %}" style="color: #ff9800; font-weight: 400;">{{ request_candidate.request_id}}</a></td>
+              <td>{{ request_candidate.datetime_update_request }}</td>
               <td>{{ request_candidate.request_title}}</td>
               <td>{{ request_candidate.owner.user.first_name}}  {{ request_candidate.owner.user.last_name}}</td>
-              <td>อยู่ระหว่างดำเนินการ</td>
-              <td>ไจ๋</td>
+              <td>{{ request_candidate.status }}</td>
+              <td>{{ request_candidate.last_comment_owner.user.first_name }}</td>
             </tr>
             {% endfor %}
           </tbody>

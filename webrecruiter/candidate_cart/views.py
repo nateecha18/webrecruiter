@@ -107,48 +107,48 @@ def create_interview(request):
 
     return render(request, 'create-interview.html', context)
 
-#
-# @login_required()
-# def process_payment(request, order_id):
-#     # process the payment
-#     return redirect(reverse('shopping_cart:update_records',
-#                     kwargs={
-#                         'order_id' : order_id,
-#                     })
-#             )
-#
 
-# @login_required()
-# def update_transaction_records(request, order_id):
-#     # get the order being processed
-#     order_to_purchase = Order.objects.filter(pk=order_id).first()
-#
-#     # update the placed order
-#     order_to_purchase.is_ordered=True
-#     order_to_purchase.date_ordered=datetime.datetime.now()
-#     order_to_purchase.save()
-#
-#     # get all items in the order - generates a queryset
-#     order_items = order_to_purchase.items.all()
-#
-#     # update order items
-#     order_items.update(is_ordered=True, date_ordered=datetime.datetime.now())
-#
-#     # Add products to user profile
-#     user_profile = get_object_or_404(Profile, user=request.user)
-#     # get the products from the items
-#     order_products = [item.product for item in order_items]
-#     user_profile.ebooks.add(*order_products)
-#     user_profile.save()
-#
-#
-#     # =========== create a transaction =========
-#
-#     # send an email to the customer
-#     # look at tutorial on how to send emails with sendgrid
-#     messages.info(request, "Thank you! Your purchase was successful!")
-#     return redirect(reverse('accounts:my_profile'))
-#
+@login_required()
+def process_payment(request, order_id):
+    # process the payment
+    return redirect(reverse('shopping_cart:update_records',
+                    kwargs={
+                        'order_id' : order_id,
+                    })
+            )
+
+
+@login_required()
+def update_interview_records(request, order_id):
+    # get the order being processed
+    order_to_purchase = Order.objects.filter(pk=order_id).first()
+
+    # update the placed order
+    order_to_purchase.is_ordered=True
+    order_to_purchase.date_ordered=datetime.datetime.now()
+    order_to_purchase.save()
+
+    # get all items in the order - generates a queryset
+    order_items = order_to_purchase.items.all()
+
+    # update order items
+    order_items.update(is_ordered=True, date_ordered=datetime.datetime.now())
+
+    # Add products to user profile
+    user_profile = get_object_or_404(Profile, user=request.user)
+    # get the products from the items
+    order_products = [item.product for item in order_items]
+    user_profile.ebooks.add(*order_products)
+    user_profile.save()
+
+
+    # =========== create a transaction =========
+
+    # send an email to the customer
+    # look at tutorial on how to send emails with sendgrid
+    messages.info(request, "Thank you! Your purchase was successful!")
+    return redirect(reverse('accounts:my_profile'))
+
 #
 # def success(request, **kwargs):
 #     # a view signifying the transcation was successful
