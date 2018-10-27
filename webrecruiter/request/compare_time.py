@@ -5,7 +5,7 @@ import pytz
 import math
 
 def compare_request_now_time(datetime_action):
-    
+
     tz = pytz.timezone('Asia/Bangkok')
     delta = datetime.now(tz=tz) - datetime_action
     sec = timedelta(seconds=delta.seconds)

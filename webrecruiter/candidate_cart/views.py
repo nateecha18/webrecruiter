@@ -8,7 +8,9 @@ from account.models import Profile
 from jobapply.models import CandidateBasic
 
 from candidate_cart.extras import generate_order_id
-from candidate_cart.models import OrderItem, Order, Interview
+from candidate_cart.models import OrderItem, Order
+from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request
+from request.generate_id import generate_request_id
 
 import datetime
 
@@ -81,24 +83,37 @@ def create_interview(request):
     if existing_order!=0:
         cart_amount = existing_order.items.all().count()
     if request.method == 'POST':
+        request_id = generate_request_id()
+        request_title = request.POST.get('request_title')
+
         date_interview = request.POST.get('date_interview')
+        note_interview = request.POST.get('note_interview')
+
         user_profile = get_object_or_404(Profile, user=request.user)
         user_order = Order.objects.get(owner=user_profile, is_ordered=False)
-        print(user_order,type(user_order))
+
+        status = get_object_or_404(Status, status_id='1')
+        request_type = get_object_or_404(RequestType, request_type_id='2')
+
         existing_order = get_user_pending_order(request)
         if existing_order!=0:
-            interview_detail = Interview.objects.create(profile=user_profile, order_id=existing_order, date_interview=date_interview)
-            context = {
-                'order': existing_order,
-                'Cart_amount': cart_amount,
-            }
+            request_interview = RequestInterview(order = user_order,date_interview = date_interview,note_interview =note_interview)
+            request_interview.save()
 
-            return render(request, 'create-interview.html', context)
-            # return redirect(reverse('candidate_cart:update_records',
-            #             kwargs={
-            #                 'order_id': user_order
-            #             })
-            #         )
+            request_detail = Request(request_id=request_id,request_type=request_type,request_interview=request_interview,request_title=request_title,owner=user_profile,status=status)
+            request_detail.save()
+
+            # context = {
+            #     'order': existing_order,
+            #     'Cart_amount': cart_amount,
+            # }
+            #
+            # return render(request, 'create-interview.html', context)
+            return redirect(reverse('candidate_cart:update_interview',
+                        kwargs={
+                            'order_id': user_order.ref_code
+                        })
+                    )
 
     context = {
         'order': existing_order,
@@ -108,37 +123,37 @@ def create_interview(request):
     return render(request, 'create-interview.html', context)
 
 
-@login_required()
-def process_payment(request, order_id):
-    # process the payment
-    return redirect(reverse('shopping_cart:update_records',
-                    kwargs={
-                        'order_id' : order_id,
-                    })
-            )
+# @login_required()
+# def process_payment(request, order_id):
+#     # process the payment
+#     return redirect(reverse('shopping_cart:update_records',
+#                     kwargs={
+#                         'order_id' : order_id,
+#                     })
+#             )
 
 
 @login_required()
 def update_interview_records(request, order_id):
     # get the order being processed
-    order_to_purchase = Order.objects.filter(pk=order_id).first()
+    order_to_interview = Order.objects.filter(ref_code=order_id).first()
 
     # update the placed order
-    order_to_purchase.is_ordered=True
-    order_to_purchase.date_ordered=datetime.datetime.now()
-    order_to_purchase.save()
+    order_to_interview.is_ordered=True
+    order_to_interview.date_ordered=datetime.datetime.now()
+    order_to_interview.save()
 
     # get all items in the order - generates a queryset
-    order_items = order_to_purchase.items.all()
+    order_items = order_to_interview.items.all()
 
     # update order items
-    order_items.update(is_ordered=True, date_ordered=datetime.datetime.now())
+    # order_items.update(is_ordered=True, date_ordered=datetime.datetime.now())
 
     # Add products to user profile
     user_profile = get_object_or_404(Profile, user=request.user)
     # get the products from the items
-    order_products = [item.product for item in order_items]
-    user_profile.ebooks.add(*order_products)
+    order_products = [item.candidate for item in order_items]
+    user_profile.candidate.add(*order_products)
     user_profile.save()
 
 
@@ -147,7 +162,7 @@ def update_interview_records(request, order_id):
     # send an email to the customer
     # look at tutorial on how to send emails with sendgrid
     messages.info(request, "Thank you! Your purchase was successful!")
-    return redirect(reverse('accounts:my_profile'))
+    return redirect(reverse('filter'))
 
 #
 # def success(request, **kwargs):

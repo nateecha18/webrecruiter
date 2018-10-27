@@ -1,7 +1,7 @@
 from django.db import models
 from jobapply.models import CandidateBasic
 from account.models import Profile
-from candidate_cart.models import OrderItem,Order,Interview
+from candidate_cart.models import OrderItem,Order
 
 # Create your models here.
 class Status(models.Model):
@@ -38,30 +38,14 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment_id
 
-# class RequestType(models.Model):
-#     request_type_id = models.CharField(max_length=5)
-#     request_type_name = models.CharField(max_length=20)
-#
-#     def __str__(self):
-#         return self.request_type_id
-#
-# class Request(models.Model):
-#     request_id = models.CharField(max_length=15)
-#     request_type = models.ForeignKey(RequestType, on_delete=models.SET_NULL, null=True)
-#     request_interview = OneToOneField(RequestInterview, on_delete=models.SET_NULL, null=True)
-#     request_candidate = OneToOneField(RequestCandidate, on_delete=models.SET_NULL, null=True)
-#     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='creator') # คน Request
-#     datetime_add_request = models.DateTimeField(auto_now_add=True)
-#     datetime_update_request = models.DateTimeField(auto_now=True)
-#     comment = models.ManyToManyField(Comment) # Comment
-#     last_comment_owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='last_updater') # เจ้าของ comment ล่าสุด
-#
-#     def __str__(self):
-#         return self.request_id
+class RequestType(models.Model):
+    request_type_id = models.CharField(max_length=5)
+    request_type_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.request_type_id
 
 class RequestCandidate(models.Model):
-    request_id = models.CharField(max_length=15)
-    request_title = models.CharField(max_length=200, blank=True, null=True)
     project_name = models.CharField(max_length=100, blank=True, null=True)
     project_type = models.ForeignKey(ProjectType, on_delete=models.SET_NULL, null=True)
     project_site = models.CharField(max_length=100, blank=True, null=True)
@@ -72,28 +56,33 @@ class RequestCandidate(models.Model):
     requirement = models.CharField(max_length=300, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
     note = models.CharField(max_length=300, blank=True, null=True)
+
+    def __int__(self):
+        return self.id
+
+class RequestInterview(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    date_interview = models.CharField(max_length=100)
+    note_interview = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.order.ref_code
+
+class Request(models.Model):
+    request_id = models.CharField(max_length=15)
+    request_type = models.ForeignKey(RequestType, on_delete=models.SET_NULL, null=True)
+    request_interview = models.OneToOneField(RequestInterview, on_delete=models.SET_NULL, null=True,blank=True)
+    request_candidate = models.OneToOneField(RequestCandidate, on_delete=models.SET_NULL, null=True,blank=True)
+    request_title = models.CharField(max_length=200, blank=True, null=True)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='creator') # คน Request
-    datetime_add_request = models.DateTimeField(auto_now_add=True)
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    datetime_add_request = models.DateTimeField(auto_now_add=True)
     datetime_update_request = models.DateTimeField(auto_now=True)
-    comment = models.ManyToManyField(Comment) # Comment
-    last_comment_owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='last_updater') # เจ้าของ comment ล่าสุด
+    comment = models.ManyToManyField(Comment,blank=True) # Comment
+    last_comment_owner = models.ForeignKey(Profile, on_delete=models.SET_NULL,blank=True, null=True, related_name='last_updater') # เจ้าของ comment ล่าสุด
+
+    class Meta:
+        ordering = ['datetime_add_request']
 
     def __str__(self):
         return self.request_id
-
-    # def get_candidate_owner(self):
-    #     print("_____________________",self.owner.all())
-    #     return self.owner.all()
-
-# class RequestInterview(models.Model):
-#     request_id = models.CharField(max_length=15)
-#     interview = OneToOneField(Interview, on_delete=models.SET_NULL, null=True)
-#     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='creator') # คน Request
-#     datetime_add_request = models.DateTimeField(auto_now_add=True)
-#     datetime_update_request = models.DateTimeField(auto_now=True)
-#     comment = models.ManyToManyField(Comment) # Comment
-#     last_comment_owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='last_updater') # เจ้าของ comment ล่าสุด
-#
-#     def __str__(self):
-#         return self.request_id

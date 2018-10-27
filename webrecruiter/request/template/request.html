@@ -39,14 +39,14 @@ i.icon-delete { color: #EB5E28; }
             <th data-field="hr_owner">HR ที่ตอบกลับล่าสุด</th>
           </thead>
           <tbody>
-            {% for request_candidate in RequestCandidates %}
+            {% for request in Requests %}
             <tr>
-              <td><a href="{% url 'request_detail' request_candidate.request_id %}" style="color: #ff9800; font-weight: 400;">{{ request_candidate.request_id}}</a></td>
-              <td>{{ request_candidate.datetime_update_request }}</td>
-              <td>{{ request_candidate.request_title}}</td>
-              <td>{{ request_candidate.owner.user.first_name}}  {{ request_candidate.owner.user.last_name}}</td>
-              <td>{{ request_candidate.status }}</td>
-              <td>{{ request_candidate.last_comment_owner.user.first_name }}</td>
+              <td><a href="{% url 'request_detail' request.request_id %}" style="color: #ff9800; font-weight: 400;">{{ request.request_id}}</a></td>
+              <td>{{ request.datetime_update_request }}</td>
+              <td>{{ request.request_title}}</td>
+              <td>{{ request.owner.user.first_name}}  {{ request.owner.user.last_name}}</td>
+              <td>{{ request.status }}</td>
+              <td>{{ request.last_comment_owner.user.first_name }}</td>
             </tr>
             {% endfor %}
           </tbody>
