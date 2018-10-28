@@ -82,6 +82,8 @@ def create_interview(request):
     cart_amount = ''
     if existing_order!=0:
         cart_amount = existing_order.items.all().count()
+    else:
+        return redirect(reverse('candidate_cart:order_summary'))
     if request.method == 'POST':
         request_id = generate_request_id()
         request_title = request.POST.get('request_title')

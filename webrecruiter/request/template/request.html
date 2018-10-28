@@ -1,6 +1,8 @@
 {% extends 'base_layout.html' %}
 {% load static %}
 {% load humanize %}
+{% load permission_tags %}
+
 
 {% block title %}
 Request | WebRecruiter
@@ -24,9 +26,9 @@ i.icon-delete { color: #EB5E28; }
           <div class="row">
 
           </div>
-          <button type="button" id="alertBtn" class="btn btn-info">Open (1)</button>
-          <button type="button" id="alertBtn" class="btn btn-info">Closed (0)</button>
-          <a href="{% url 'new_request_candidate' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Interview</button></a>
+          <button type="submit" id="alertBtn" class="btn btn-info">Open ({{ Open_amout }})</button>
+          <button type="button" id="alertBtn" class="btn btn-info">Closed ({{ Close_amout }})</button>
+          <a href="{% url 'candidate_cart:create_interview' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Interview</button></a>
           <a href="{% url 'new_request_candidate' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Candidate</button></a>
         </div>
         <table id="fresh-table" class="table">
@@ -34,7 +36,9 @@ i.icon-delete { color: #EB5E28; }
             <th data-field="request_id" data-sortable="true" class="text-left">หมายเลขคำร้อง</th>
             <th data-field="update_time" data-sortable="true">อัพเดตล่าสุด</th>
             <th data-field="request_name" data-sortable="true">ชื่อคำร้อง</th>
-            <th data-field="engineer_name" data-sortable="true" class="text-center">Engineer</th>
+            {% if user|has_role:'hr' %}
+              <th data-field="owner_request" data-sortable="true" class="text-center">เจ้าของคำร้อง</th>
+            {% endif %}
             <th data-field="status">สถานะ</th>
             <th data-field="hr_owner">HR ที่ตอบกลับล่าสุด</th>
           </thead>
@@ -44,7 +48,9 @@ i.icon-delete { color: #EB5E28; }
               <td><a href="{% url 'request_detail' request.request_id %}" style="color: #ff9800; font-weight: 400;">{{ request.request_id}}</a></td>
               <td>{{ request.datetime_update_request }}</td>
               <td>{{ request.request_title}}</td>
-              <td>{{ request.owner.user.first_name}}  {{ request.owner.user.last_name}}</td>
+              {% if user|has_role:'hr' %}
+                <td>{{ request.owner.user.first_name}}  {{ request.owner.user.last_name}}</td>
+              {% endif %}
               <td>{{ request.status }}</td>
               <td>{{ request.last_comment_owner.user.first_name }}</td>
             </tr>

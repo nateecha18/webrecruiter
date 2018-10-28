@@ -12,6 +12,7 @@ from rank.models import CandidateRank
 from jobapply.models import CandidateBasic
 from candidate_cart.models import OrderItem,Order
 from rolepermissions.decorators import has_role_decorator
+from rolepermissions.checkers import has_role
 from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from request.generate_id import generate_request_id
 from request.generate_id import generate_comment_id
@@ -23,11 +24,25 @@ import math
 
 # @has_role_decorator('hr')
 def index(request):
-    # request_candidates = RequestCandidate.objects.all()
-    request_all = Request.objects.all()
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+    status_open = Status.objects.filter(status_id='1').first()
+    status_close = Status.objects.filter(status_id='3').first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.all()
+        open_request_amout = Request.objects.filter(status=status_open).count()
+        close_request_amout = Request.objects.filter(status=status_close).count()
+
+    else:
+        request_all = Request.objects.filter(owner=user_profile)
+        open_request_amout = Request.objects.filter(owner=user_profile,status=status_open).count()
+        close_request_amout = Request.objects.filter(owner=user_profile,status=status_close).count()
     print("____________",request)
     context = {
         'Requests' : request_all,
+        'Open_amout' : open_request_amout,
+        'Close_amout' : close_request_amout,
     }
     template = loader.get_template("request.html")
     return HttpResponse(template.render(context, request))

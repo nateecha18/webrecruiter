@@ -121,108 +121,209 @@ Candidate Details | WebRecruiter
             <hr>
           </div>
 
-          <div class="row">
-            <div class="col-lg-6"><!-- begin block1 -->
-              <div class="text-center">
-                <div class="row">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label text-right">Project Name :</label>
-                      <div class="col-sm-8 text-left">
-                        <p>{{ Selected_request.request_candidate.project_name }}</p>
+          {% if Selected_request.request_type.request_type_id == '1' %}
+          <div class="request_candidate">
+            <div class="row">
+              <div class="col-lg-6"><!-- begin block1 -->
+                <div class="text-center">
+                  <div class="row">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label text-right">Project Name :</label>
+                        <div class="col-sm-8 text-left">
+                          <p>{{ Selected_request.request_candidate.project_name }}</p>
+                        </div>
                       </div>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label text-right">Project Type :</label>
-                      <div class="col-sm-8 text-left">
-                        <p>{{ Selected_request.request_candidate.project_type.project_type_name }}</p>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label text-right">Project Type :</label>
+                        <div class="col-sm-8 text-left">
+                          <p>{{ Selected_request.request_candidate.project_type.project_type_name }}</p>
+                        </div>
                       </div>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label text-right">Site :</label>
-                      <div class="col-sm-8 text-left">
-                        <p>{{ Selected_request.request_candidate.project_site }}</p>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label text-right">Site :</label>
+                        <div class="col-sm-8 text-left">
+                          <p>{{ Selected_request.request_candidate.project_site }}</p>
+                        </div>
                       </div>
-                    </div>
-                  </fieldset>
+                    </fieldset>
+                  </div>
                 </div>
+              </div><!-- End block1 -->
+              <div class="col-lg-6"> <!-- Begin block2 -->
+                <div class="text-center">
+                  <div class="row">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-5 control-label text-right">จำนวนตาม TOR :</label>
+                        <div class="col-sm-7 text-left">
+                          <p>{{ Selected_request.request_candidate.tor_employee_amount }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-5 control-label text-right">จำนวนตามจริง :</label>
+                        <div class="col-sm-7 text-left">
+                          <p>{{ Selected_request.request_candidate.now_employee_amount }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-5 control-label text-right">จำนวนที่ขาด :</label>
+                        <div class="col-sm-7 text-left">
+                          <p>{{ Selected_request.request_candidate.vacancy_employee_amount }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-5 control-label text-right">ความเร่งด่วน :</label>
+                        <div class="col-sm-7 text-left">
+                          <p>{{ Selected_request.request_candidate.level.level_name }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div> <!-- End block2 -->
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-12 control-label text-left">Requirement :</label>
+                    <div class="col-sm-10 col-lg-offset-1 text-left">
+                      <p>{{ Selected_request.request_candidate.requirement }}</p>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
-            </div><!-- End block1 -->
-            <div class="col-lg-6"> <!-- Begin block2 -->
-              <div class="text-center">
-                <div class="row">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-5 control-label text-right">จำนวนตาม TOR :</label>
-                      <div class="col-sm-7 text-left">
-                        <p>{{ Selected_request.request_candidate.tor_employee_amount }}</p>
-                      </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-12 control-label text-left">Certification :</label>
+                    <div class="col-sm-10 col-lg-offset-1 text-left">
+                      <p>{{ Selected_request.request_candidate.certification }}</p>
                     </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-5 control-label text-right">จำนวนตามจริง :</label>
-                      <div class="col-sm-7 text-left">
-                        <p>{{ Selected_request.request_candidate.now_employee_amount }}</p>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-5 control-label text-right">จำนวนที่ขาด :</label>
-                      <div class="col-sm-7 text-left">
-                        <p>{{ Selected_request.request_candidate.vacancy_employee_amount }}</p>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-5 control-label text-right">ความเร่งด่วน :</label>
-                      <div class="col-sm-7 text-left">
-                        <p>{{ Selected_request.request_candidate.level.level_name }}</p>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
+                  </div>
+                </fieldset>
               </div>
-            </div> <!-- End block2 -->
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <fieldset>
-                <div class="form-group">
-                  <label class="col-sm-12 control-label text-left">Requirement :</label>
-                  <div class="col-sm-10 col-lg-offset-1 text-left">
-                    <p>{{ Selected_request.request_candidate.requirement }}</p>
+              <div class="col-lg-12">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-12 control-label text-left">หมายเหตุ :</label>
+                    <div class="col-sm-10 col-lg-offset-1 text-left">
+                      <p>{{ Selected_request.request_candidate.note }}</p>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-lg-12">
-              <fieldset>
-                <div class="form-group">
-                  <label class="col-sm-12 control-label text-left">Certification :</label>
-                  <div class="col-sm-10 col-lg-offset-1 text-left">
-                    <p>{{ Selected_request.request_candidate.certification }}</p>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-lg-12">
-              <fieldset>
-                <div class="form-group">
-                  <label class="col-sm-12 control-label text-left">หมายเหตุ :</label>
-                  <div class="col-sm-10 col-lg-offset-1 text-left">
-                    <p>{{ Selected_request.request_candidate.note }}</p>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
             </div>
           </div>
+          {% else %}
+          <div class="request_interview">
+            <div class="row">
+              <div class="col-lg-6"><!-- begin block1 -->
+                <div class="text-center">
+                  <div class="row">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label text-right">Order Number :</label>
+                        <div class="col-sm-6 text-left">
+                          <p>{{ Selected_request.request_interview.order.ref_code }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label text-right">Detail Date of Interview :</label>
+                        <div class="col-sm-6 text-left">
+                          <p>{{ Selected_request.request_interview.date_interview }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div><!-- End block1 -->
+            </div>
+            <div class="row">
+              <div class="col-lg-6"><!-- begin block1 -->
+                <div class="text-center">
+                  <div class="row">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label text-right">หมายเหตุ :</label>
+                        <div class="col-sm-6 text-left">
+                          <p>{{ Selected_request.request_interview.note_interview }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div><!-- End block1 -->
+            </div>
+            <div class="row">
+              <div class="col-lg-6"><!-- begin block1 -->
+                <div class="text-center">
+                  <div class="row">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label text-right">Selected Candidate :</label>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div><!-- End block1 -->
+            </div>
+            <div class="row">
+              <!-- <div class="col-lg-12"> -->
+              <style media="screen">
+                .table-hover > thead > tr > th {
+                  color: #a49e93;
+                  font-size: 0.9em;
+                  font-weight: 300;
+                }
+              </style>
+                <fieldset>
+                  <div class="form-group">
+                    <div class="col-sm-10 col-md-offset-1 text-left">
+                      <div class="content table-responsive table-full-width">
+                                <table class="table table-hover" style="background-color:#fcfaf9; border-radius:5px;">
+                                    <thead>
+                                      <th class="text-center"></th>
+                                      <th class="text-center">เลขประจำตัวประชาชน</th>
+                                    	<th class="text-center">ชื่อ</th>
+                                      <th class="text-center">เบอร์มือถือ</th>
+                                      <th class="text-center">Email</th>
+                                    </thead>
+                                    <tbody>
+                                      {% for item in Selected_request.request_interview.order.get_cart_items %}
+                                        <tr>
+                                        	<td class="text-center">{{ forloop.counter }}</td>
+                                          <td class="text-center"><a href="{% url 'candidate_detail' item.candidate.id_number %}" style="color: #ff9800; font-weight: 400;">{{ item.candidate.id_number }}</a></td>
+                                        	<td>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</td>
+                                          <td class="text-center">{{ item.candidate.mobile_no }}</td>
+                                          <td>{{ item.candidate.email }}</td>
+                                        </tr>
+                                      {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                    </div>
+                  </div>
+                </fieldset>
+              <!-- </div> -->
+            </div>
+          </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
