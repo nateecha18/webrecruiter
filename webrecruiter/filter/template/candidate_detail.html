@@ -376,7 +376,8 @@ p.small {
             </div>
           </div>
           <div class="text-center">
-            <a href="{% url 'candidate_cart:add_to_cart' Candidate_id %}"><button type="submit" class="btn btn-info btn-fill btn-wd">Add to Wishlist</button></a>
+            <a href="{% url 'candidate_cart:add_to_cart' Candidate_id %}"><button type="submit" class="btn btn-info btn-fill btn-wd">Add to Cart</button></a><br>
+            <a class="add_candidate_to_wishlist" href="{% url 'add_to_wishlist' Selected_candidate.id_number %}"><button type="button" id="1" class="btn btn-simple btn-xs btn_add"><div style="color: #ff8000;margin-top:5px;">Add to Wishlist</div></button></a>
           </div>
         </div>
       </div>
@@ -921,4 +922,17 @@ p.small {
 </div>
 {% endblock %}
 {% block javascript %}
+<script type="text/javascript">
+$('a.add_candidate_to_wishlist').confirm({
+  title: 'Add to Wishlist <i class="material-icons">favorite</i>',
+  content: "คุณต้องการเพิ่มผู้สมัครลง Wishlist หรือไม่?",
+  buttons: {
+    ใช่: function(){
+      location.href = this.$target.attr('href');
+    },
+    ไม่ใช่: function(){
+    }
+  }
+});
+</script>
 {% endblock %}

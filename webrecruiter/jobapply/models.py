@@ -53,7 +53,7 @@ def user_picture_directory_path(instance, filename):
 class CandidateBasic(models.Model):
     """docstring for Candidate_basic."""
     id_number = models.CharField(primary_key=True, max_length=13)
-    date_apply = models.DateTimeField(auto_now=True)
+    date_apply = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=250, blank=True)
     salary = models.IntegerField(blank=True)
     profile_pic = models.ImageField(upload_to=user_picture_directory_path, blank=True,max_length=500)

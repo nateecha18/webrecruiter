@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='rank'),
+    url(r'^(?P<ranks_day>[-\w]+)/$', views.rank_filter_day, name='rank_filter_day'),
 
 ]

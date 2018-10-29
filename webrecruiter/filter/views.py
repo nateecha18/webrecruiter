@@ -266,29 +266,29 @@ def index(request):
             if filter_comskill:
                 print("Entry Comskill")
                 for i in range(0,len(operator_comskill)):
-                    if filter_comskill[i]:
-                        print(operator_comskill[i])
-                        if operator_comskill[i]=='1' or operator_comskill[i]=='2':
-                            checkbox_comskill_set=CandidateBasic.objects.all()
-                            print("Entry condition 1")
-                        elif operator_comskill[i]=='3' or operator_comskill[i]=='4':
-                            checkbox_comskill_set=CandidateBasic.objects.none()
-                            print("Entry condition 2")
-                        print("NONE :",CandidateBasic.objects.none())
-                        print("start! ",checkbox_comskill_set,operator_comskill[i])
-                        for j in range(0,len(filter_comskill[i])):
-                            print(operator_comskill[i],filter_comskill[i][j])
-                            if (operator_comskill[i]=='1'):
-                                checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
-                            if (operator_comskill[i]=='2'):
-                                checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
-                            if (operator_comskill[i]=='3'):
-                                checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
-                            if (operator_comskill[i]=='4'):
-                                checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
-                            print(j,checkbox_comskill_set)
-                        all_candidate = checkbox_comskill_set.intersection(all_candidate)
-                        print("All Candidate หลังเข้า Filter Comskill : ",i, all_candidate)
+                    if operator_comskill[i] != '0':
+                        if filter_comskill[i]:
+                            print(operator_comskill[i])
+                            if operator_comskill[i]=='1' or operator_comskill[i]=='2':
+                                checkbox_comskill_set=CandidateBasic.objects.all()
+                                print("Entry condition 1")
+                            elif operator_comskill[i]=='3' or operator_comskill[i]=='4':
+                                checkbox_comskill_set=CandidateBasic.objects.none()
+                                print("Entry condition 2")
+                            print("start! ",checkbox_comskill_set,operator_comskill[i])
+                            for j in range(0,len(filter_comskill[i])):
+                                print(operator_comskill[i],filter_comskill[i][j])
+                                if (operator_comskill[i]=='1'):
+                                    checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
+                                if (operator_comskill[i]=='2'):
+                                    checkbox_comskill_set = checkbox_comskill_set.intersection(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
+                                if (operator_comskill[i]=='3'):
+                                    checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(candidate_computer_skill__tags__icontains=filter_comskill[i][j]))
+                                if (operator_comskill[i]=='4'):
+                                    checkbox_comskill_set = checkbox_comskill_set.union(CandidateBasic.objects.filter(~Q(candidate_computer_skill__tags__icontains=filter_comskill[i][j])))
+                                print(j,checkbox_comskill_set)
+                            all_candidate = checkbox_comskill_set.intersection(all_candidate)
+                            print("All Candidate หลังเข้า Filter Comskill : ",i, all_candidate)
 
 
         list_skill_name =	[]
