@@ -16,6 +16,12 @@ class Skill(models.Model):
     def __str__(self):
         return self.skill_name
 
+class ExtraSkill(models.Model):
+    extra_skill_name = models.CharField(primary_key=True,max_length=200)
+
+    def __str__(self):
+        return self.extra_skill_name
+
 class EducationLevel(models.Model):
     value = models.CharField(primary_key=True,max_length=200)
     education_level = models.CharField(max_length=200, blank=True, null=True)
@@ -85,6 +91,8 @@ class CandidateBasic(models.Model):
 
     # candidate_history_education = models.ManyToManyField(CandidateHistoryEducation)
     candidate_computer_skill = models.ForeignKey(CandidateComputerSkill, on_delete=models.CASCADE, blank=True)
+    com_skill = models.ManyToManyField(Skill, blank=True)
+    extra_com_skill = models.ManyToManyField(ExtraSkill, blank=True)
 
     def __str__(self):
         return 'CandidateBasic : {0}'.format(self.id_number)

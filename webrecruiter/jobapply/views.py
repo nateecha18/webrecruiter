@@ -7,7 +7,7 @@ from django.urls import path
 from . import views
 
 from django.views.generic import View
-from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country,Skill,SkillType
+from jobapply.models import CandidateBasic,CandidateHistoryEducation,CandidateComputerSkill,CandidateLanguageSkill,CandidateCertExperience,CandidateAttachment,CandidateWorkExperience,EducationLevel,Institute,Country,Skill,SkillType,ExtraSkill
 
 from jobapply.utils import render_to_pdf  # created in step 4
 from django.shortcuts import render_to_response
@@ -77,6 +77,24 @@ def index(request):
                                              check_study=check_study, nowEdu_level=nowEdu_level,
                                              nowEdu_instituteName=nowEdu_instituteName, nowEdu_major=nowEdu_major,
                                              nowEdu_gpa=nowEdu_gpa,candidate_computer_skill=candidate_computer_skill)
+            candidate_basic.save()
+            skill_list = []
+            txt = tags.replace("\",\"","NaTeeChABaLaBooDiDo").replace("[\"","").replace("\"]","")
+            skill_list = txt.split("NaTeeChABaLaBooDiDo")
+            print("_______________",skill_list)
+            for i in range(0,len(skill_list)):
+                print("______skillList______",skill_list[i])
+                if skill_list[i]:
+                    print(Skill.objects.filter(skill_name__iexact=skill_list[i]))
+                    selected_skill = Skill.objects.filter(skill_name__iexact=skill_list[i]).first()
+                    print(selected_skill)
+                    if selected_skill:
+                        candidate_basic.com_skill.add(selected_skill)
+                    else:
+                        selected_extra_skill,status = ExtraSkill.objects.get_or_create(extra_skill_name = skill_list[i])
+                        if selected_extra_skill:
+                            print(selected_extra_skill)
+                            candidate_basic.extra_com_skill.add(selected_extra_skill)
             candidate_basic.save()
 
             # CandidateAttachment___________________________________________________________________________________________
