@@ -361,6 +361,30 @@ def candidate_detail(request,candidate_id):
     else:
         return redirect('login')
 
+def test_ajax(request):
+    if request.method == 'POST':
+        print("Entryy")
+        filter_option = json.loads(request.POST.get('filter_option'))
+
+        operator_position = json.loads(request.POST.get('operator_position'))
+        filter_position = json.loads(request.POST.get('filter_position'))
+        print("filter_option",filter_option)
+        print("operator_position",operator_position)
+        print("filter_position",filter_position)
+
+        all_candidate = CandidateBasic.objects.all().values_list('id_number')
+        response_data = {}
+        try:
+            response_data['result'] = "Success"
+            response_data['message'] = list(all_candidate)
+            print(response_data)
+
+        except Exception as e:
+            response_data['result'] = "Fail"
+            response_data['message'] = "Fail!"
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
 def download_resume(request,selected_candidate):
     candidate = CandidateBasic.objects.filter(id_number=selected_candidate).first()
     path = str(CandidateAttachment.objects.filter(candidate_basic=candidate).first().attach_resume)

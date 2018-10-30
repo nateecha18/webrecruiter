@@ -314,6 +314,7 @@ i.icon-submit { color: #ffff; }
               <div class="row">
                 <button type="button" id="add" class="btn btn-icon" style="margin-left: 32px;"><i class="material-icons md-18 icon-add">add</i></button>
                 <button type="submit" id="submit" class="btn btn-submit " style="margin-left: 10px;"><i class="material-icons md-18 icon-submit">filter_list</i></button>
+                <a href="javascript:FilterCandidate()"><button type="button" class="btn btn-submit " style="margin-left: 10px;"><i class="material-icons md-18 icon-submit">filter_list</i></button></a>
               </div>
             </div>
           </div>
@@ -325,40 +326,45 @@ i.icon-submit { color: #ffff; }
   <form method="post">
     {% csrf_token %}
     <div class="col-md-12">
-      <div class="fresh-table">
+      <div id="o">
+      <div class='fresh-table' id="output">
         <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
         Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
       -->
 
-      <div class="toolbar">
-        <button type="button" id="alertBtn" class="btn btn-info">Add To Cart</button>
+      <div class='toolbar'>
+        <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button>
       </div>
 
-      <table id="fresh-table" class="table">
-        <thead>
-          <th data-field="state" data-checkbox="true"></th>
-          <th data-field="id" data-sortable="true">เลขประจำตัวประชาชน</th>
-          <th data-field="name" data-sortable="true">ชื่อผู้สมัคร</th>
-          <th data-field="salary" data-sortable="true">เงินเดือนที่คาดหวัง</th>
-          <th data-field="gpa" data-sortable="true">เกรดเฉลี่ยสะสม</th>
-          <th data-field="position">ตำแหน่งที่สมัคร</th>
-          <th data-field="actions" class="td-actions text-right" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
-        </thead>
-        <tbody>
-          {% for candidate in Candidate %}
-          <tr data-val="{{candidate.id_number}}">
-            <td></td>
-            <td><a href="/filter/{{candidate.id_number}}/" style="color: #ff9800; font-weight: 400;">{{candidate.id_number}}</a></td>
-            <td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
-            <td>{{candidate.salary}}</td>
-            <td>{{candidate.nowEdu_gpa}}</td>
-            <td>{{candidate.position}}</td>
-            <td></td>
-          </tr>
-          {% endfor%}
-        </tbody>
-      </table>
+        <table id='fresh-table' class='table'>
+          <thead>
+            <th data-field='state' data-checkbox='true'></th>
+            <th data-field='id' data-sortable='true'>เลขประจำตัวประชาชน</th>
+            <th data-field='name' data-sortable='true'>ชื่อผู้สมัคร</th>
+            <th data-field='salary' data-sortable='true'>เงินเดือนที่คาดหวัง</th>
+            <th data-field='gpa' data-sortable='true'>เกรดเฉลี่ยสะสม</th>
+            <th data-field='position'>ตำแหน่งที่สมัคร</th>
+            <th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th>
+          </thead>
+          <div id="old">
+            <tbody id="oldbody">
+                {% for candidate in Candidate %}
+                <tr data-val='{{candidate.id_number}}'>
+                  <td></td>
+                  <td><a href='/filter/{{candidate.id_number}}/' style='color: #ff9800; font-weight: 400;'>{{candidate.id_number}}</a></td>
+                  <td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
+                  <td>{{candidate.salary}}</td>
+                  <td>{{candidate.nowEdu_gpa}}</td>
+                  <td>{{candidate.position}}</td>
+                  <td></td>
+                </tr>
+                {% endfor%}
+            </tbody>
+          </div>
+        </table>
 
+
+    </div>
     </div>
   </div>
 </form>
@@ -434,6 +440,58 @@ $('#tags').each(function(){
   }
   console.log(  tagify.value )
 })
+</script>
+
+<script type="text/javascript">
+function FilterCandidate() {
+  var filter_option = [];
+  var operator_position = [];
+  var filter_position = [];
+
+
+  $("select[name='filter_option']").each(function() {
+      filter_option.push($(this).val());
+  });
+
+  $("select[name='operator_position']").each(function() {
+      operator_position.push($(this).val());
+  });
+  $("input[name='filter_position']").each(function() {
+      filter_position.push($(this).val());
+  });
+
+  var json_filter_option = JSON.stringify(filter_option);
+
+  var json_operator_position = JSON.stringify(operator_position);
+  var json_filter_position = JSON.stringify(filter_position);
+
+  $.ajax({
+    type : 'POST',
+    url : 'testajax/',
+    dataType : "json",
+    async : true,
+    data : {
+      filter_option : json_filter_option,
+      operator_position : json_operator_position,
+      filter_position : json_filter_position,
+      csrfmiddlewaretoken:"{{ csrf_token }}"
+    },
+    success: function(json){
+      // $('#output').html(json.message);
+      console.log(json.message)
+      // html = "<div class='toolbar'> <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button></div><table id='fresh-table' class='table'><thead><th data-field='state' data-checkbox='true'></th><th data-field='id' data-sortable='true'>เลขประจำตัวประชาชน</th><th data-field='name' data-sortable='true'>ชื่อผู้สมัคร</th><th data-field='salary' data-sortable='true'>เงินเดือนที่คาดหวัง</th><th data-field='gpa' data-sortable='true'>เกรดเฉลี่ยสะสม</th><th data-field='position'>ตำแหน่งที่สมัคร</th><th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th></thead><tbody>";
+      html = "<tbody id='oldbody'>";
+      $.each(json.message, function( index, candidate ) {
+        html += "<tr data-val='"+ candidate[0] +"'><td></td><td><a href='/filter/"+ candidate[0] +"/' style='color: #ff9800; font-weight: 400;'>"+ candidate[0] +"</a></td><td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td><td>{{candidate.salary}}</td><td>{{candidate.nowEdu_gpa}}</td><td>{{candidate.position}}</td><td></td></tr>";
+      });
+      // html += "</tbody></table>";
+      html += "</tbody>";
+      $("#oldbody").empty();
+      $('#fresh-table').append(html);
+      // $('.ajaxProgress').hide();
+    }
+  })
+}
 </script>
 
 

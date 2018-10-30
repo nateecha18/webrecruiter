@@ -1,0 +1,53 @@
+<script type="text/javascript">
+filter_option : $('select[name="filter_option"]').val(),
+operator_position : $('select[name="operator_position"]').val(),
+filter_position : $('input[name="filter_position"]').val(),
+name : $('input[name="why"]').val(,
+type : $('#type').val(),
+
+</script>
+
+html += "<tr data-val=\""+ candidate[0] +"\"><td></td>"
+html += "<td><a href=\"/filter/"+ candidate[0] +"/\" style=\"color: #ff9800; font-weight: 400;\">"+ candidate[0] +"</a></td>";
+html += "<td></td><td></td><td></td><td></td><td></td></tr>"
+
+html = "<div class='fresh-table'><div class='toolbar'> <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button></div><table id='fresh-table' class='table'><thead><th data-field='state' data-checkbox='true'></th><th data-field='id' data-sortable='true'>เลขประจำตัวประชาชน</th><th data-field='name' data-sortable='true'>ชื่อผู้สมัคร</th><th data-field='salary' data-sortable='true'>เงินเดือนที่คาดหวัง</th><th data-field='gpa' data-sortable='true'>เกรดเฉลี่ยสะสม</th><th data-field='position'>ตำแหน่งที่สมัคร</th><th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th></thead><tbody>";
+$.each(json.message, function( index, candidate ) {
+  html += "<tr data-val='"+ candidate[0] +"'><td></td><td><a href='/filter/"+ candidate[0] +"/' style='color: #ff9800; font-weight: 400;'>"+ candidate[0] +"</a></td><td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td><td>{{candidate.salary}}</td><td>{{candidate.nowEdu_gpa}}</td><td>{{candidate.position}}</td><td></td></tr>";
+});
+html += "</tbody></table></div>";
+
+
+<div class='fresh-table' id="output">
+
+<div class='toolbar'>
+  <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button>
+</div>
+
+  <table id='fresh-table' class='table'>
+    <thead>
+      <th data-field='state' data-checkbox='true'></th>
+      <th data-field='id' data-sortable='true'>id</th>
+      <th data-field='name' data-sortable='true'>candidate</th>
+      <th data-field='salary' data-sortable='true'>salary</th>
+      <th data-field='gpa' data-sortable='true'>gpa</th>
+      <th data-field='position'>position</th>
+      <th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th>
+    </thead>
+    <tbody>
+        {% for candidate in Candidate %}
+        <tr data-val='{{candidate.id_number}}'>
+          <td></td>
+          <td><a href='/filter/{{candidate.id_number}}/' style='color: #ff9800; font-weight: 400;'>{{candidate.id_number}}</a></td>
+          <td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
+          <td>{{candidate.salary}}</td>
+          <td>{{candidate.nowEdu_gpa}}</td>
+          <td>{{candidate.position}}</td>
+          <td></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+  </table>
+
+
+</div>
