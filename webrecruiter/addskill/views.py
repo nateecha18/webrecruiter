@@ -1,5 +1,11 @@
 from django.shortcuts import render
-
+from django.views.generic import View
+from django.http import JsonResponse
+# REST FRAMWORK IMPORT
+from rest_framework.views import APIView
+from rest_framework.response import Response
+# END REST FRAMWORK IMPORT
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib import admin, messages
@@ -12,8 +18,12 @@ from django.shortcuts import HttpResponse
 from django.template import loader, RequestContext
 from django.template import Context, Template
 from django.template.loader import render_to_string
+import csv
+from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
+
 
 # Create your views here.
+User = get_user_model()
 
 def index(request):
     all_skill = Skill.objects.all()
@@ -89,3 +99,10 @@ def show_skill(request):
         response_data['message'] = "Fail!"
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+def load_position(file_path):
+    "this loads position from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        position = Position(position_id=row['position_id'],position_name=row['position_name'])
+        position.save()

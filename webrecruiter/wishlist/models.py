@@ -11,7 +11,7 @@ class WishlistItem(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return '{0} - {1}'.format(self.owner, self.candidate.id_number)
+        return '{0} - {1} - {2}'.format(self.owner, self.candidate.id_number,self.date_wishlist_added)
 
 
 class Wishlist(models.Model):

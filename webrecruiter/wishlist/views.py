@@ -21,16 +21,30 @@ from rolepermissions.decorators import has_role_decorator
 
 from wishlist.models import WishlistItem,Wishlist
 from wishlist.extras import generate_wishlist_item_id
+from django.contrib.auth.models import User
 
 
+def get_cart_amount(request):
+    user = User.objects.filter(username=request.user.username)
+
+    filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+    cart_amount = 0
+    current_order_products = []
+    if filtered_orders.exists():
+        user_order = filtered_orders[0]
+        user_order_items = user_order.items.all()
+        cart_amount = user_order_items.count()
+    return cart_amount
 
 @login_required()
 def index(request):
     user_profile = get_object_or_404(Profile, user=request.user)
     wishlist = Wishlist.objects.filter(owner=user_profile).first()
+    cart_amount = get_cart_amount(request)
 
     context = {
         'WishlistDetail' : wishlist,
+        'Cart_amount':cart_amount,
     }
     template = loader.get_template("wishlist.html")
     return HttpResponse(template.render(context, request))
@@ -44,24 +58,26 @@ def add_to_wishlist(request, **kwargs):
     # filter products by id
     candidate = CandidateBasic.objects.filter(id_number=kwargs.get('item_id', "")).first()
     # check if the user already owns this product
+    # เช็คว่าเคยเลือกผู้สมัครนัดสัมภาษณ์แล้วหรือยัง
     print("Check1",request.user.profile.candidate.all())
-    # Check if in ORDER
     # if candidate in request.user.profile.candidate.all():
     #     messages.info(request, 'You already own this candidate')
     #     return redirect(reverse('filter'))
 
-    # create orderItem of the selected product
-    wishlist_item = WishlistItem.objects.create(candidate=candidate,owner=user_profile)
     # create order associated with the user
     wishlist, status = Wishlist.objects.get_or_create(owner=user_profile)
     print("!!!",wishlist,status)
+
+    # เช็คว่ามีผู้สมัครอยู่ใน wishlist แล้วหรือยัง
     print("Check2",wishlist.wishlist_items.filter(candidate=candidate))
     if wishlist.wishlist_items.filter(candidate=candidate):
         # Candidate in WishlistItem already
         messages.info(request, 'You already add this candidate to wishlist')
         return redirect(reverse('filter'))
-
+    # create New WishlistItem
+    wishlist_item = WishlistItem.objects.create(candidate=candidate,owner=user_profile)
     wishlist.wishlist_items.add(wishlist_item)
+    # ถ้ายังไม่เคยสร้าง Wishlist มาก่อน
     if status:
         # generate a reference code
         wishlist.ref_code = generate_wishlist_item_id()

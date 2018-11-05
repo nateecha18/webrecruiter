@@ -41,12 +41,12 @@ i.icon-submit { color: #ffff; }
     {% if messages %}
     <ul class="messages">
       {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-      {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-      {{ message }}
-    </li>
-    {% endfor %}
-  </ul>
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+          {{ message }}
+        </li>
+      {% endfor %}
+    </ul>
   {% endif %}
   <form method="POST" enctype=multipart/form-data>
     {% csrf_token %}
@@ -67,8 +67,8 @@ i.icon-submit { color: #ffff; }
                     <span class="number_circle">1</span>
                   </div>
                   <div class="col-lg-10">
-                    <select class="form-control" name="filter_option" id="filter_option1">
-                      <option selected value="0">Select a filter</option>
+                    <select class="form-control"  name="filter_option" id="filter_option1">
+                      <option selected disabled value="0">Select a filter</option>
                       <option value="1">ตำแหน่ง</option>
                       <option value="2">เงินเดือน</option>
                       <option value="3">อายุ</option>
@@ -91,7 +91,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="position_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px;" name="operator_position">
-                      <option selected="" value="0">Operator Position</option>
+                      <option selected="" disabled value="0">Operator Position</option>
                       <option value="1">ตำแหน่ง (is)</option>
                       <option value="2">ไม่ใช่ตำแหน่ง (isnot)</option>
                       <option value="3">ตำแหน่งที่มี (contains)</option>
@@ -108,7 +108,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="salary_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_salary">
-                      <option selected="" value="0">Operator Salary</option>
+                      <option selected="" disabled value="0">Operator Salary</option>
                       <option value="1">เท่ากับ (=)</option>
                       <option value="2">มากกว่าเท่ากับ (>=)</option>
                       <option value="3">น้อยกว่าเท่ากับ (<=)</option>
@@ -127,7 +127,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="age_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px">
-                      <option selected="" value="0">Operator Age</option>
+                      <option selected="" disabled value="0">Operator Age</option>
                       <option value="1">เท่ากับ (=)</option>
                       <option value="2">มากกว่าเท่ากับ (>=)</option>
                       <option value="3">น้อยกว่าเท่ากับ (<=)</option>
@@ -146,14 +146,14 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="gender_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_gender">
-                      <option selected="" value="0">Operator Gender</option>
+                      <option selected="" disabled value="0">Operator Gender</option>
                       <option value="1">เพศ (is)</option>
                       <option value="2">ไม่เอาเพศ (isnot)</option>
                     </select>
                   </div>
                   <div class="col-lg-8">
                     <select class="form-control" style="margin-top:0px" name="filter_gender">
-                      <option selected="" value="0">--- เลือกเพศ ---</option>
+                      <option selected="" hidden value="0">--- เลือกเพศ ---</option>
                       <option value="m">ชาย (Men)</option>
                       <option value="w">หญิง (Women)</option>
                     </select>
@@ -163,7 +163,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="nationality_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_nationality">
-                      <option selected="" value="0">Operator Nationality</option>
+                      <option selected="" disabled value="0">Operator Nationality</option>
                       <option value="1">สัญชาติ (is)</option>
                       <option value="2">ไม่เอาสัญชาติ (isnot)</option>
                       <option value="3">สัญชาติที่เป็น (contains)</option>
@@ -180,14 +180,14 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="status_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_status">
-                      <option selected="" value="0">Operator Status</option>
+                      <option selected="" disabled value="0">Operator Status</option>
                       <option value="1">สถานภาพ (is)</option>
                       <option value="2">ไม่เอาสถานภาพ (isnot)</option>
                     </select>
                   </div>
                   <div class="col-lg-8">
                     <select class="form-control" style="margin-top:0px" name="filter_status">
-                      <option selected="" value="0">--- เลือกสถานภาพ ---</option>
+                      <option selected="" hidden value="0">--- เลือกสถานภาพ ---</option>
                       <option value="โสด">โสด (Single)</option>
                       <option value="สมรส">สมรส (Married)</option>
                       <option value="หม้าย">หม้าย (Widowed)</option>
@@ -199,7 +199,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="edu_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_edu">
-                      <option selected="" value="0">--- เลือกสถานะการศึกษา ---</option>
+                      <option selected="" disabled value="0">--- เลือกสถานะการศึกษา ---</option>
                       <option value="1">อยู่ระหว่างการศึกษา</option>
                       <option value="2">สำเร็จการศึกษาแล้ว</option>
                     </select>
@@ -212,7 +212,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="university_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_university">
-                      <option selected="" value="0">Operator University</option>
+                      <option selected="" disabled value="0">Operator University</option>
                       <option value="1">มหาวิทยาลัย (is)</option>
                       <option value="2">ไม่เอามหาวิทยาลัย (isnot)</option>
                       <option value="3">มหาวิทยาลัยที่เป็น (contains)</option>
@@ -229,7 +229,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="faculty_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_faculty">
-                      <option selected="" value="0">Operator Faculty</option>
+                      <option selected="" disabled value="0">Operator Faculty</option>
                       <option value="1">คณะ (is)</option>
                       <option value="2">ไม่เอาคณะ (isnot)</option>
                       <option value="3">คณะที่เป็น (contains)</option>
@@ -246,7 +246,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="gpa_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_gpa">
-                      <option selected="" value="0">Operator GPA</option>
+                      <option selected="" disabled value="0">Operator GPA</option>
                       <option value="1">เท่ากับ (=)</option>
                       <option value="2">มากกว่าเท่ากับ (>=)</option>
                       <option value="3">น้อยกว่าเท่ากับ (<=)</option>
@@ -264,7 +264,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="comskill_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_comskill">
-                      <option selected="" value="0">Operator Computer Skill</option>
+                      <option selected="" disabled value="0">Operator Computer Skill</option>
                       <option value="1">ทักษะ (is)</option>
                       <option value="2">ไม่เอาทักษะ (isnot)</option>
                       <option value="3">ทักษะที่มี (contains)</option>
@@ -284,7 +284,7 @@ i.icon-submit { color: #ffff; }
                 <div class="col-lg-7" id="major_value1">
                   <div class="col-lg-4">
                     <select class="form-control" style="margin-top:0px" name="operator_major">
-                      <option selected="" value="0">Operator Major</option>
+                      <option selected="" disabled value="0">Operator Major</option>
                       <option value="1">สาขา (is)</option>
                       <option value="2">ไม่เอาสาขา (isnot)</option>
                       <option value="3">สาขาที่เป็น (contains)</option>
@@ -322,52 +322,9 @@ i.icon-submit { color: #ffff; }
       </div>
     </div>
   </form>
-
-  <form method="post">
-    {% csrf_token %}
-    <div class="col-md-12">
-      <div id="o">
-      <div class='fresh-table' id="output">
-        <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
-      -->
-
-      <div class='toolbar'>
-        <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button>
-      </div>
-
-        <table id='fresh-table' class='table'>
-          <thead>
-            <th data-field='state' data-checkbox='true'></th>
-            <th data-field='id' data-sortable='true'>เลขประจำตัวประชาชน</th>
-            <th data-field='name' data-sortable='true'>ชื่อผู้สมัคร</th>
-            <th data-field='salary' data-sortable='true'>เงินเดือนที่คาดหวัง</th>
-            <th data-field='gpa' data-sortable='true'>เกรดเฉลี่ยสะสม</th>
-            <th data-field='position'>ตำแหน่งที่สมัคร</th>
-            <th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th>
-          </thead>
-          <div id="old">
-            <tbody id="oldbody">
-                {% for candidate in Candidate %}
-                <tr data-val='{{candidate.id_number}}'>
-                  <td></td>
-                  <td><a href='/filter/{{candidate.id_number}}/' style='color: #ff9800; font-weight: 400;'>{{candidate.id_number}}</a></td>
-                  <td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td>
-                  <td>{{candidate.salary}}</td>
-                  <td>{{candidate.nowEdu_gpa}}</td>
-                  <td>{{candidate.position}}</td>
-                  <td></td>
-                </tr>
-                {% endfor%}
-            </tbody>
-          </div>
-        </table>
-
-
-    </div>
-    </div>
+  <div id="result">
+    {% include 'filtered_candidate.html' %}
   </div>
-</form>
 <br>
 
 
@@ -445,25 +402,125 @@ $('#tags').each(function(){
 <script type="text/javascript">
 function FilterCandidate() {
   var filter_option = [];
+
   var operator_position = [];
   var filter_position = [];
 
+  var operator_salary = [];
+  var filter_salary = [];
+
+  var operator_gender = [];
+  var filter_gender = [];
+
+  var operator_gpa = [];
+  var filter_gpa = [];
+
+  var operator_status = [];
+  var filter_status = [];
+
+  var operator_edu = [];
+
+  var operator_nationality = [];
+  var filter_nationality = [];
+
+  var operator_major = [];
+  var filter_major = [];
+
+  var operator_comskill = [];
+  var filter_comskill = [];
 
   $("select[name='filter_option']").each(function() {
       filter_option.push($(this).val());
   });
-
+  // POSITION FILTER
   $("select[name='operator_position']").each(function() {
       operator_position.push($(this).val());
   });
   $("input[name='filter_position']").each(function() {
       filter_position.push($(this).val());
   });
+  // SALARY FILTER
+  $("select[name='operator_salary']").each(function() {
+      operator_salary.push($(this).val());
+  });
+  $("input[name='filter_salary']").each(function() {
+      filter_salary.push($(this).val());
+  });
+  // GENDER FILTER
+  $("select[name='operator_gender']").each(function() {
+      operator_gender.push($(this).val());
+  });
+  $("select[name='filter_gender']").each(function() {
+      filter_gender.push($(this).val());
+  });
+  // GPA FILTER
+  $("select[name='operator_gpa']").each(function() {
+      operator_gpa.push($(this).val());
+  });
+  $("input[name='filter_gpa']").each(function() {
+      filter_gpa.push($(this).val());
+  });
+  // STATUS FILTER
+  $("select[name='operator_status']").each(function() {
+      operator_status.push($(this).val());
+  });
+  $("select[name='filter_status']").each(function() {
+      filter_status.push($(this).val());
+  });
+  // EDU FILTER
+  $("select[name='operator_edu']").each(function() {
+      operator_edu.push($(this).val());
+  });
+  // NATIONALITY FILTER
+  $("select[name='operator_nationality']").each(function() {
+      operator_nationality.push($(this).val());
+  });
+  $("input[name='filter_nationality']").each(function() {
+      filter_nationality.push($(this).val());
+  });
+  // MAJOR FILTER
+  $("select[name='operator_major']").each(function() {
+      operator_major.push($(this).val());
+  });
+  $("input[name='filter_major']").each(function() {
+      filter_major.push($(this).val());
+  });
+  // COMSKILL FILTER
+  $("select[name='operator_comskill']").each(function() {
+      operator_comskill.push($(this).val());
+  });
+  $("input[id='tags']").each(function() {
+      filter_comskill.push($(this).val());
+  });
+
 
   var json_filter_option = JSON.stringify(filter_option);
 
   var json_operator_position = JSON.stringify(operator_position);
   var json_filter_position = JSON.stringify(filter_position);
+
+  var json_operator_salary = JSON.stringify(operator_salary);
+  var json_filter_salary = JSON.stringify(filter_salary);
+
+  var json_operator_gender = JSON.stringify(operator_gender);
+  var json_filter_gender = JSON.stringify(filter_gender);
+
+  var json_operator_gpa = JSON.stringify(operator_gpa);
+  var json_filter_gpa = JSON.stringify(filter_gpa);
+
+  var json_operator_status = JSON.stringify(operator_status);
+  var json_filter_status = JSON.stringify(filter_status);
+
+  var json_operator_edu = JSON.stringify(operator_edu);
+
+  var json_operator_nationality = JSON.stringify(operator_nationality);
+  var json_filter_nationality = JSON.stringify(filter_nationality);
+
+  var json_operator_major = JSON.stringify(operator_major);
+  var json_filter_major = JSON.stringify(filter_major);
+
+  var json_operator_comskill = JSON.stringify(operator_comskill);
+  var json_filter_comskill = JSON.stringify(filter_comskill);
 
   $.ajax({
     type : 'POST',
@@ -474,21 +531,26 @@ function FilterCandidate() {
       filter_option : json_filter_option,
       operator_position : json_operator_position,
       filter_position : json_filter_position,
+      operator_salary : json_operator_salary,
+      filter_salary : json_filter_salary,
+      operator_gender : json_operator_gender,
+      filter_gender : json_filter_gender,
+      operator_gpa : json_operator_gpa,
+      filter_gpa : json_filter_gpa,
+      operator_status : json_operator_status,
+      filter_status : json_filter_status,
+      operator_edu : json_operator_edu,
+      operator_nationality : json_operator_nationality,
+      filter_nationality : json_filter_nationality,
+      operator_major : json_operator_major,
+      filter_major : json_filter_major,
+      operator_comskill : json_operator_comskill,
+      filter_comskill : json_filter_comskill,
+
       csrfmiddlewaretoken:"{{ csrf_token }}"
     },
-    success: function(json){
-      // $('#output').html(json.message);
-      console.log(json.message)
-      // html = "<div class='toolbar'> <button type='button' id='alertBtn' class='btn btn-info'>Add To Cart</button></div><table id='fresh-table' class='table'><thead><th data-field='state' data-checkbox='true'></th><th data-field='id' data-sortable='true'>เลขประจำตัวประชาชน</th><th data-field='name' data-sortable='true'>ชื่อผู้สมัคร</th><th data-field='salary' data-sortable='true'>เงินเดือนที่คาดหวัง</th><th data-field='gpa' data-sortable='true'>เกรดเฉลี่ยสะสม</th><th data-field='position'>ตำแหน่งที่สมัคร</th><th data-field='actions' class='td-actions text-right' data-formatter='operateFormatter' data-events='operateEvents'>Actions</th></thead><tbody>";
-      html = "<tbody id='oldbody'>";
-      $.each(json.message, function( index, candidate ) {
-        html += "<tr data-val='"+ candidate[0] +"'><td></td><td><a href='/filter/"+ candidate[0] +"/' style='color: #ff9800; font-weight: 400;'>"+ candidate[0] +"</a></td><td>{{ candidate.name_title }} {{candidate.firstname}} &nbsp&nbsp {{candidate.lastname}}</td><td>{{candidate.salary}}</td><td>{{candidate.nowEdu_gpa}}</td><td>{{candidate.position}}</td><td></td></tr>";
-      });
-      // html += "</tbody></table>";
-      html += "</tbody>";
-      $("#oldbody").empty();
-      $('#fresh-table').append(html);
-      // $('.ajaxProgress').hide();
+    success: function(response){
+      $('#result').html(response['html'])
     }
   })
 }

@@ -46,7 +46,7 @@ input[type="text"]:disabled {
           <br><br>
         </div>
 
-        <form method="post">
+        <form id="interview_detail" method="post">
           {% csrf_token %}
           <div class="col-md-5 col-md-offset-1">
             <div class="form-group">
@@ -122,7 +122,8 @@ input[type="text"]:disabled {
                 </td>
                 <td colspan=3>
                   {% if order.get_cart_items %}
-                  <button type="submit" class="pull-right btn btn-info btn-fill" style="margin-right:40px;">Proceed To Checkout</button>
+                  <button type="button" class="create-interview pull-right btn btn-info btn-fill" style="margin-right:40px;">Proceed To Checkout</button>
+                  <!-- <a href="#"><button type="button" class="create-interview pull-right btn btn-info btn-fill" style="margin-right:40px;">test</button></a> -->
                   <!-- <a href="#" class="pull-right btn btn-primary" style="margin-right:40px;">Proceed To Checkout</a> -->
                   {% endif %}
                 </td>
@@ -141,12 +142,12 @@ input[type="text"]:disabled {
 {% endblock %}
 {% block javascript %}
 <script type="text/javascript">
-$('a.delete_candidate').confirm({
-  title: 'Delete Candidate Out Of Cart ?!',
-  content: "คุณต้องการลบผู้สมัครออกจาก Candidate Cart หรือไม่?",
+$('button.create-interview').confirm({
+  title: 'Request this Interview ?',
+  content: "คุณส่งคำร้องขอการนัดสัมภาษณ์นี้หรือไม่?",
   buttons: {
     ใช่: function(){
-      location.href = this.$target.attr('href');
+      $( "#interview_detail" ).submit();
     },
     ไม่ใช่: function(){
     }

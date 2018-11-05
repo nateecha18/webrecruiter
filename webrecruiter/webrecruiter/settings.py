@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dashboard.apps.DashboardConfig',
     'wishlist.apps.WishlistConfig',
     'request.apps.RequestConfig',
     'rank.apps.RankConfig',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'rolepermissions', # django-role-permissions
+    'rest_framework',
 
 ]
 
@@ -66,7 +68,17 @@ ROOT_URLCONF = 'webrecruiter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['jobapply/template','filter/template','addskill/template','register/template','account/template','candidate_cart/template','rank/template','request/template','wishlist/template'],
+        'DIRS': ['jobapply/template',
+                 'filter/template',
+                 'addskill/template',
+                 'register/template',
+                 'account/template',
+                 'candidate_cart/template',
+                 'rank/template',
+                 'request/template',
+                 'wishlist/template',
+                 'dashboard/template',
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

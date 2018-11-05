@@ -43,7 +43,6 @@ def get_rank(request):
 @has_role_decorator('hr')
 def get_rank_filter(request,day):
     # get order for the correct user
-    day = 10
     date_from = datetime.now() - timedelta(days=day)
     wishlists = Wishlist.objects.all()
     print(wishlists)

@@ -1,6 +1,8 @@
 {% extends 'base_layout.html' %}
 {% load static %}
 {% load humanize %}
+{% load permission_tags %}
+
 
 {% block title %}
 Request | WebRecruiter
@@ -14,199 +16,23 @@ i.icon-delete { color: #EB5E28; }
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <form method="POST" enctype=multipart/form-data class="form-horizontal">
+    <form >
       <div class="row">
-        <div class="col-lg-2">
-          <div class="col-lg-1">
-
-          </div>
-          <div class="col-lg-1">
-            <!-- <div class="path" >
-              <p style="font-weight: 400; color:#919191">Request.<a href="" style=" font-size: 20px; color:#ff8000">RequestCandidate</a></p>
-            </div> -->
-            <a href="{% url 'request_candidate' %}">
-              <button type="button" class="btn btn-info btn-fill"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back Request</button>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-8 text-center">
-          <h2>Create New Request</h2>
-          <h4><small>สร้างคำร้องเพื่อระบุความต้องการคุณ สำหรับการจัดหาทรรพยากรที่มีคุณภาพและตรงตามคามต้องการ <br/>เพื่อความรวดเร็วในการดำเนินการ กรุณากรอกข้อมูลอย่างถูกต้องและครบถ้วน </small> </h4>
-        </div>
-      </div>
-        <br>
-
-      {% csrf_token %}
-      <div class="col-lg-5 col-md-7">
-        <div class="card">
-          <div class="header">
-            <h4 class="title">User Information</h4>
-          </div>
-
-          <div class="content">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Full Name</label>
-                <div class="col-sm-9">
-                  <input class="form-control" type="text" name="user_name" required="required" value="{{request.user.first_name|title}}   {{request.user.last_name|title}}" disabled />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Email</label>
-                <div class="col-sm-9">
-                  <input class="form-control" type="text" name="user_email" email="true" value="{{request.user.email}}" disabled />
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-
-        <div class="card">
-          <div class="header">
-            <h4 class="title">Project Information</h4>
-          </div>
-
-          <div class="content">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Project Name</label>
-                <div class="col-sm-9">
-                  <input class="form-control" type="text" name="project_name" required="required" />
-
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Project Type</label>
-                <div class="col-sm-9">
-                  <select class="form-control" name="project_type" required="required">
-                      <option selected value="0" disabled>Project Type</option>
-                    {% for project_type in ProjectTypes %}
-                      <option value="{{ project_type.project_type_id }}">{{ project_type.project_type_name }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Site</label>
-                <div class="col-sm-9">
-                  <input class="form-control" type="text" name="project_site" required="required" />
-                </div>
-              </div>
-            </fieldset>
-
+        <div class="title-page">
+          <div class="col-lg-10 col-sm-offset-1 text-center">
+            <h2>REQUEST CANDIDATE</h2>
+            <div class="col-lg-10 col-sm-offset-1 text-center">
+              <h4><small>คำร้องขอจำนวนและคุณสมบัติของผู้สมัคร<br/>เพื่อจัดหาทรัพยากรบุคคลตามความต้องการ ในกรณีที่ผู้สมัครในระบบไม่ตรงตามความต้องการ</small></h4>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-7 col-md-5">
-        <div class="card">
-          <div class="header">
-            <h4 class="title">Request Details</h4>
-          </div>
-
-          <div class="content">
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Title</label>
-                <div class="col-sm-9">
-                  <input class="form-control" type="text" name="request_title" required="required" />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">จำนวนตาม TOR</label>
-                <div class="col-sm-3">
-                  <input class="form-control" type="number" name="tor_employee_amount" required="required" />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">จำนวนตามจริง</label>
-                <div class="col-sm-3">
-                  <input class="form-control" type="number" name="now_employee_amount" required="required" />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">จำนวนที่ขาด</label>
-                <div class="col-sm-3">
-                  <input class="form-control" type="number" name="vacancy_employee_amount" required="required" />
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">ความเร่งด่วน</label>
-                <div class="col-sm-9">
-                  <select class="form-control" name="level" required="required">
-                      <option selected value="0" disabled>ความเร่งด่วน</option>
-                    {% for level in Levels %}
-                      <option value="{{ level.level_id }}">{{ level.level_name }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Requirement</label>
-                <div class="col-sm-9">
-                  <textarea name="requirement" rows="5" class="form-control" placeholder="Here can be your Requirement"></textarea>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Certification</label>
-                <div class="col-sm-9">
-                  <textarea name="certification" rows="3" class="form-control" placeholder="Here can be your Certification"></textarea>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">หมายเหตุ</label>
-                <div class="col-sm-9">
-                  <textarea name="note" rows="3" class="form-control" placeholder="Here can be your Note"></textarea>
-                </div>
-              </div>
-            </fieldset>
-
-          </div>
-        </div>
+      <br>
+      <div id="show_table">
+        {% include 'request_candidate_table.html' %}
       </div>
-
-
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-info btn-fill">Creat Request</button>
-        </div>
-      </div>
-    </form>
-
-
-  </div>
+  </form>
+</div>
 </div>
 {% endblock %}
 {% block javascript %}
@@ -219,5 +45,37 @@ i.icon-delete { color: #EB5E28; }
 ga('create', 'UA-46172202-4', 'auto');
 ga('send', 'pageview');
 
+</script>
+<script type="text/javascript">
+function ShowCloseRequestCandidate() {
+  $.ajax({
+    type : 'GET',
+    url : '{% url 'show_close_request_candidate' %}',
+    dataType : "json",
+    async : true,
+    data : {
+      csrfmiddlewaretoken:"{{ csrf_token }}"
+    },
+    success: function(response){
+      $('#show_table').html(response['html'])
+    }
+  })
+}
+</script>
+<script type="text/javascript">
+function ShowOpenRequestCandidate() {
+  $.ajax({
+    type : 'GET',
+    url : '{% url 'show_open_request_candidate' %}',
+    dataType : "json",
+    async : true,
+    data : {
+      csrfmiddlewaretoken:"{{ csrf_token }}"
+    },
+    success: function(response){
+      $('#show_table').html(response['html'])
+    }
+  })
+}
 </script>
 {% endblock %}

@@ -1,0 +1,152 @@
+{% load static %}
+{% load permission_tags %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>{% block title %}{% endblock %}</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+
+  <!--  Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,400,500,600|Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+
+</head>
+<body>
+  <div class="col-md-12">
+    <div class="fresh-table">
+      <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+      Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+    -->
+    <div class="toolbar">
+      <div class="row">
+
+      </div>
+      <a href="javascript:ShowOpenRequest()"><button type="button" id="button_request" class="btn btn-info">Open ({{ Open_request_amount }})</button></a>
+      <!-- <button type="submit" id="alertBtn" class="btn btn-info">All ({{ All_requests.count }})</button> -->
+      <a href="javascript:ShowCloseRequest()"><button type="button" id="button_request" class="btn btn-info">Closed ({{ Close_request_amount }})</button></a>
+      <a href="{% url 'candidate_cart:create_interview' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Interview</button></a>
+      <a href="{% url 'new_request_candidate' %}"><button type="button" id="alertBtn" class="btn btn-info btn-fill"><i class="fa fa-plus" aria-hidden="true"></i>Request Candidate</button></a>
+    </div>
+    <table id="fresh-table" class="table">
+      <thead>
+        <th data-field="request_id" data-sortable="true" class="text-left">หมายเลขคำร้อง</th>
+        <th data-field="request_type" data-sortable="true" class="text-left">ประเภทคำร้อง</th>
+        <th data-field="update_time" data-sortable="true">อัพเดตล่าสุด</th>
+        <th data-field="request_name" data-sortable="true">ชื่อคำร้อง</th>
+        {% if user|has_role:'hr' %}
+          <th data-field="owner_request" data-sortable="true" class="text-center">เจ้าของคำร้อง</th>
+        {% endif %}
+        <th data-field="status" data-sortable="true" class="text-center">สถานะ</th>
+        <th data-field="hr_owner">HR ที่ตอบกลับล่าสุด</th>
+      </thead>
+      <tbody>
+        {% for request in All_requests %}
+        <tr>
+          <td><a href="{% url 'request_detail' request.request_id %}" style="color: #ff9800; font-weight: 400;">{{ request.request_id}}</a></td>
+          <td>{{ request.request_type.request_type_name }}</td>
+          <td>{{ request.datetime_update_request|date:"d/M/Y | H:i" }}</td>
+          <td>{{ request.request_title}}</td>
+          {% if user|has_role:'hr' %}
+            <td>{{ request.owner.user.first_name}}  {{ request.owner.user.last_name}}</td>
+          {% endif %}
+          <td class="text-center"><div style="border-radius: 8px;color: white;background-color:{% if request.status.status_id == '1' %}#e03b24
+                                                                                               {% elif request.status.status_id == '2' %}#ffcc00
+                                                                                               {% elif request.status.status_id == '3' %}#64a338
+                                                                                               {% endif %} ;padding: 1px 8px 1px 8px;">{{ request.status }}</div></td>
+          <td>{{ request.last_comment_owner.user.first_name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</body>
+<!-- JS Fresh Table -->
+<script type="text/javascript" src="{% static 'js/bootstrap-table.js' %}"></script>
+<script type="text/javascript">
+var $table = $('#fresh-table'),
+$alertBtn = $('#alertBtn'),
+full_screen = false;
+
+$().ready(function(){
+  $table.bootstrapTable({
+    toolbar: ".toolbar",
+
+    showRefresh: true,
+    search: true,
+    showToggle: true,
+    showColumns: true,
+    pagination: true,
+    striped: true,
+    pageSize: 8,
+    pageList: [8,10,25,50,100],
+
+    formatShowingRows: function(pageFrom, pageTo, totalRows){
+      //do nothing here, we don't want to show the text "showing x of y from..."
+    },
+    formatRecordsPerPage: function(pageNumber){
+      return pageNumber + " rows visible";
+    },
+    icons: {
+      refresh: 'fa fa-refresh',
+      toggle: 'fa fa-th-list',
+      columns: 'fa fa-columns',
+      detailOpen: 'fa fa-plus-circle',
+      detailClose: 'fa fa-minus-circle'
+    }
+  });
+
+  $(window).resize(function () {
+    $table.bootstrapTable('resetView');
+  });
+
+
+  window.operateEvents = {
+    'click .like': function (e, value, row, index) {
+      alert('You click like icon, row: ' + JSON.stringify(row));
+      console.log(value, row, index);
+    },
+    'click .edit': function (e, value, row, index) {
+      alert('You click edit icon, row: ' + JSON.stringify(row));
+      console.log(value, row, index);
+    },
+    'click .remove': function (e, value, row, index) {
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: [row.id]
+      });
+
+    }
+  };
+
+});
+
+
+function operateFormatter(value, row, index) {
+  return [
+    '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
+    '<i class="fa fa-heart"></i>',
+    '</a>',
+    '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
+    '<i class="fa fa-edit"></i>',
+    '</a>',
+    '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
+    '<i class="fa fa-remove"></i>',
+    '</a>'
+  ].join('');
+}
+
+</script>
+</html>

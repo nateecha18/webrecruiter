@@ -45,6 +45,14 @@ class RequestType(models.Model):
     def __str__(self):
         return self.request_type_id
 
+class Position(models.Model):
+    position_id = models.CharField(max_length=5)
+    position_name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.position_name
+
+
 class RequestCandidate(models.Model):
     project_name = models.CharField(max_length=100, blank=True, null=True)
     project_type = models.ForeignKey(ProjectType, on_delete=models.SET_NULL, null=True)
@@ -66,7 +74,7 @@ class RequestInterview(models.Model):
     note_interview = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.order.ref_code
+        return '{0} - {1}'.format(self.order.owner, self.order.ref_code)
 
 class Request(models.Model):
     request_id = models.CharField(max_length=15)
@@ -74,6 +82,8 @@ class Request(models.Model):
     request_interview = models.OneToOneField(RequestInterview, on_delete=models.SET_NULL, null=True,blank=True)
     request_candidate = models.OneToOneField(RequestCandidate, on_delete=models.SET_NULL, null=True,blank=True)
     request_title = models.CharField(max_length=200, blank=True, null=True)
+    request_position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, blank=True)
+    request_position_other = models.CharField(max_length=100, blank=True, null=True)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='creator') # คน Request
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
     datetime_add_request = models.DateTimeField(auto_now_add=True)

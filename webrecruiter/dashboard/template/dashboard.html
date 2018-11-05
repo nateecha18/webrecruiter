@@ -1,0 +1,281 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+{% endblock %}
+<script>
+{% block jquery %}
+var endpoint = "{% url 'api-chart-data' %}"
+var labels = []
+var defaultData = []
+$.ajax({
+  method : "GET",
+  url : endpoint,
+  success:function(data){
+    labels = data.labels
+    defaultData = data.default
+    console.log(data)
+    setChart()
+  },
+  error:function(error){
+    console.log("error")
+    console.log(error_data)
+  }
+})
+function setChart(){
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var ctx2 = document.getElementById("myChart2").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '# of Votes',
+        data: defaultData,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+
+  var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'AA',
+        data: defaultData,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+}
+{% endblock %}
+</script>
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card">
+        <div class="content">
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="icon-big icon-warning text-center">
+                <i class="ti-server"></i>
+              </div>
+            </div>
+            <div class="col-xs-7">
+              <div class="numbers">
+                <p>ผู้สมัครในระบบ</p>
+                {{ candidates.count }} คน
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <hr />
+            <div class="stats">
+              <i class="ti-reload"></i> Updated now
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card">
+        <div class="content">
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="icon-big icon-success text-center">
+                <i class="ti-package"></i>
+              </div>
+            </div>
+            <div class="col-xs-7">
+              <div class="numbers">
+                <p>Request Candidate</p>
+                {{ request_candidate.count }} รายการ
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <hr />
+            <div class="stats">
+              <i class="ti-calendar"></i> Last day
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card">
+        <div class="content">
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="icon-big icon-danger text-center">
+                <i class="ti-calendar"></i>
+              </div>
+            </div>
+            <div class="col-xs-7">
+              <div class="numbers">
+                <p>Request Interview</p>
+                {{ request_interview.count }} รายการ
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <hr />
+            <div class="stats">
+              <i class="ti-timer"></i> In the last hour
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card">
+        <div class="content">
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="icon-big icon-info text-center">
+                <i class="ti-twitter-alt"></i>
+              </div>
+            </div>
+            <div class="col-xs-7">
+              <div class="numbers">
+                <p>Followers</p>
+                +45
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <hr />
+            <div class="stats">
+              <i class="ti-reload"></i> Updated now
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6" url-endpoint='{% url "api-chart-data" %}'>
+    <!-- <div class="row"> -->
+      <!-- <div class="col-sm-12"> -->
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Users Behavior</h4>
+            <p class="category">24 Hours performance</p>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-lg-10 col-lg-offset-1 text-center">
+                <canvas id="myChart" width="400" height="400"></canvas>
+              </div>
+            </div>
+            <div class="footer">
+              <div class="chart-legend">
+                <i class="fa fa-circle text-info"></i> Open
+                <i class="fa fa-circle text-danger"></i> Click
+                <i class="fa fa-circle text-warning"></i> Click Second Time
+              </div>
+              <hr>
+              <div class="stats">
+                <i class="ti-reload"></i> Updated 3 minutes ago
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+    <!-- </div> -->
+
+  </div>
+
+  <div class="col-md-6" url-endpoint='{% url "api-chart-data" %}'>
+    <div class="card">
+      <div class="header">
+        <h4 class="title">Users Behavior</h4>
+        <p class="category">24 Hours performance</p>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <canvas id="myChart2" width="400" height="400"></canvas>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="chart-legend">
+            <i class="fa fa-circle text-info"></i> Open
+            <i class="fa fa-circle text-danger"></i> Click
+            <i class="fa fa-circle text-warning"></i> Click Second Time
+          </div>
+          <hr>
+          <div class="stats">
+            <i class="ti-reload"></i> Updated 3 minutes ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{% endblock %}

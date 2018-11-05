@@ -339,7 +339,7 @@ Candidate Details | WebRecruiter
             <div class="header-title">
               <div class="row">
                 <div class="col-lg-3 text-left">
-                  <h6 class="title" style="font-weight: 500;">{{ comment.datetime_comment }}</h6>
+                  <h6 class="title" style="font-weight: 500;">{{ comment.datetime_comment|date:"d/M/Y | H:i" }}</h6>
                 </div>
                 <div class="col-lg-5 text-left">
                   <h6 class="title" style="font-weight: 400; color:#e09b67;">{{ comment.comment_title }}</h6>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from django.template import loader
 from django.contrib import admin
 from django.urls import path
@@ -13,7 +13,7 @@ from jobapply.models import CandidateBasic
 from candidate_cart.models import OrderItem,Order
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
-from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request
+from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
 from request.generate_id import generate_request_id
 from request.generate_id import generate_comment_id
 from request.compare_time import compare_request_now_time
@@ -21,35 +21,217 @@ import datetime
 from datetime import datetime,date,time,timedelta, timezone
 import pytz
 import math
+from django.db.models import Q
+from django.template.loader import render_to_string
+from django.contrib.auth.models import User
 
-# @has_role_decorator('hr')
-def index(request):
+
+def get_cart_amount(request):
+    user = User.objects.filter(username=request.user.username)
+
+    filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
+    cart_amount = 0
+    current_order_products = []
+    if filtered_orders.exists():
+        user_order = filtered_orders[0]
+        user_order_items = user_order.items.all()
+        cart_amount = user_order_items.count()
+    return cart_amount
+
+def get_open_request(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
-    status_open = Status.objects.filter(status_id='1').first()
-    status_close = Status.objects.filter(status_id='3').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.all()
-        open_request_amout = Request.objects.filter(status=status_open).count()
-        close_request_amout = Request.objects.filter(status=status_close).count()
+        request_all = Request.objects.filter(~Q(status_id='3'))
+        open_request = Request.objects.filter(~Q(status_id='3')).count()
+        close_request = Request.objects.filter(status_id='3').count()
 
     else:
-        request_all = Request.objects.filter(owner=user_profile)
-        open_request_amout = Request.objects.filter(owner=user_profile,status=status_open).count()
-        close_request_amout = Request.objects.filter(owner=user_profile,status=status_close).count()
-    print("____________",request)
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3').count()
+    return request_all,open_request,close_request
+
+def get_close_request(request):
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.filter(status_id='3')
+        open_request = Request.objects.filter(~Q(status_id='3')).count()
+        close_request = Request.objects.filter(status_id='3').count()
+
+    else:
+        request_all = Request.objects.filter(owner=user_profile,status_id='3')
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3').count()
+    return request_all,open_request,close_request
+
+def get_close_request_interview(request):
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.filter(status_id='3',request_type='2')
+        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='2')).count()
+        close_request = Request.objects.filter(status_id='3',request_type='2').count()
+
+    else:
+        request_all = Request.objects.filter(owner=user_profile,status_id='3',request_type='2')
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='2').count()
+    return request_all,open_request,close_request
+
+def get_open_request_interview(request):
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.filter(~Q(status_id='3'),Q(request_type='2'))
+        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='2')).count()
+        close_request = Request.objects.filter(status_id='3',request_type='2').count()
+
+    else:
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2'))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='2').count()
+    return request_all,open_request,close_request
+
+def get_close_request_candidate(request):
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.filter(status_id='3',request_type='1')
+        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='1')).count()
+        close_request = Request.objects.filter(status_id='3',request_type='1').count()
+
+    else:
+        request_all = Request.objects.filter(owner=user_profile,status_id='3',request_type='1')
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='1').count()
+    return request_all,open_request,close_request
+
+def get_open_request_candidate(request):
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        request_all = Request.objects.filter(~Q(status_id='3'),Q(request_type='1'))
+        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='1')).count()
+        close_request = Request.objects.filter(status_id='3',request_type='1').count()
+
+    else:
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1'))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1')).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='1').count()
+    return request_all,open_request,close_request
+
+# ______________________________________________________________________________________________________________________________________________
+
+def index(request):
+    request_all,open_request,close_request = get_open_request(request)
+    cart_amount = get_cart_amount(request)
     context = {
-        'Requests' : request_all,
-        'Open_amout' : open_request_amout,
-        'Close_amout' : close_request_amout,
+        'All_requests' : request_all,
+        'Open_request_amount' : open_request,
+        'Close_request_amount' : close_request,
+        'Cart_amount':cart_amount,
     }
     template = loader.get_template("request.html")
     return HttpResponse(template.render(context, request))
 
-def new_request(request):
+def request_interview(request):
+    request_all,open_request,close_request = get_open_request_interview(request)
+    cart_amount = get_cart_amount(request)
+    context = {
+        'All_requests' : request_all,
+        'Open_request_amount' : open_request,
+        'Close_request_amount' : close_request,
+        'Cart_amount':cart_amount,
+    }
+    template = loader.get_template("request_interview.html")
+    return HttpResponse(template.render(context, request))
+
+def request_candidate(request):
+    request_all,open_request,close_request = get_open_request_candidate(request)
+    cart_amount = get_cart_amount(request)
+    context = {
+        'All_requests' : request_all,
+        'Open_request_amount' : open_request,
+        'Close_request_amount' : close_request,
+        'Cart_amount':cart_amount,
+    }
+    template = loader.get_template("request_candidate.html")
+    return HttpResponse(template.render(context, request))
+
+def show_close_request(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_close_request(request)
+        html = render_to_string('request_table.html' , {
+                                                        'All_requests' : request_all,
+                                                        'Open_request_amount' : open_request,
+                                                        'Close_request_amount' : close_request,
+                                                        },request=request)
+    return JsonResponse({'html' : html})
+
+def show_open_request(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_open_request(request)
+        html = render_to_string('request_table.html' , {
+                                                        'All_requests' : request_all,
+                                                        'Open_request_amount' : open_request,
+                                                        'Close_request_amount' : close_request,
+                                                        },request=request)
+    return JsonResponse({'html' : html})
+
+def show_close_request_interview(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_close_request_interview(request)
+        html = render_to_string('request_interview_table.html' , {
+                                                                  'All_requests' : request_all,
+                                                                  'Open_request_amount' : open_request,
+                                                                  'Close_request_amount' : close_request,
+                                                                  },request=request)
+    return JsonResponse({'html' : html})
+
+def show_open_request_interview(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_open_request_interview(request)
+        html = render_to_string('request_interview_table.html' , {
+                                                                  'All_requests' : request_all,
+                                                                  'Open_request_amount' : open_request,
+                                                                  'Close_request_amount' : close_request,
+                                                                  },request=request)
+    return JsonResponse({'html' : html})
+
+def show_close_request_candidate(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_close_request_candidate(request)
+        html = render_to_string('request_candidate_table.html' , {
+                                                                  'All_requests' : request_all,
+                                                                  'Open_request_amount' : open_request,
+                                                                  'Close_request_amount' : close_request,
+                                                                  },request=request)
+    return JsonResponse({'html' : html})
+
+def show_open_request_candidate(request):
+    if request.method == 'GET':
+        request_all,open_request,close_request = get_open_request_candidate(request)
+        html = render_to_string('request_candidate_table.html' , {
+                                                                  'All_requests' : request_all,
+                                                                  'Open_request_amount' : open_request,
+                                                                  'Close_request_amount' : close_request,
+                                                                  },request=request)
+    return JsonResponse({'html' : html})
+
+# ______________________________________________________________________________________________________________________________________________
+
+def new_request_candidate(request):
     project_types = ProjectType.objects.all()
     levels = LevelRequest.objects.all()
+    positions = Position.objects.all()
 
     if request.method == 'POST':
         request_id = generate_request_id()
@@ -84,9 +266,10 @@ def new_request(request):
     context = {
         'ProjectTypes' : project_types,
         'Levels' : levels,
+        'Positions' : positions,
 
     }
-    template = loader.get_template("request_candidate.html")
+    template = loader.get_template("new_request_candidate.html")
     return HttpResponse(template.render(context, request))
 
 
