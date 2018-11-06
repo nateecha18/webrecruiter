@@ -107,7 +107,7 @@ i.icon-delete { color: #EB5E28; }
               <div class="form-group">
                 <label class="col-sm-3 control-label">ตำแหน่ง</label>
                 <div class="col-sm-9">
-                  <select class="form-control" name="request_position" required="required" id="request_position" >
+                  <select class="form-control" name="request_position" required="required" id="request_position">
                     <option disabled="" selected="">ระบุตำแหน่งคำร้อง</option>
                   {% for position in Positions %}
                     <option value="{{ position.position_id }}">{{ position.position_name }}</option>
@@ -121,7 +121,7 @@ i.icon-delete { color: #EB5E28; }
               <div class="form-group">
                 <label class="col-sm-3 control-label">โปรดระบุ</label>
                 <div class="col-sm-9">
-                  <input class="form-control" type="text" name="request-position-other" required="required" />
+                  <input class="form-control" type="text" name="request_position_other_name"/>
                 </div>
               </div>
             </fieldset>

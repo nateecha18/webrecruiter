@@ -151,6 +151,18 @@ Candidate Details | WebRecruiter
                         </div>
                       </div>
                     </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label text-right">ตำแหน่ง :</label>
+                        <div class="col-sm-8 text-left">
+                          {% if Selected_request.request_position.position_name == 'Other' %}
+                            <p>{{ Selected_request.request_position_other }}</p>
+                          {% else %}
+                            <p>{{ Selected_request.request_position }}</p>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </fieldset>
                   </div>
                 </div>
               </div><!-- End block1 -->

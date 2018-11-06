@@ -253,6 +253,12 @@ def new_request_candidate(request):
         status = get_object_or_404(Status, status_id='1')
         request_type = get_object_or_404(RequestType, request_type_id='1')
 
+        request_position_id = request.POST.get('request_position')
+        request_position_other = request.POST.get('request_position_other_name')
+        print(request_position_id,"||||||||||",request_position_other)
+        request_position = get_object_or_404(Position, position_id=request_position_id)
+
+
         request_candidate = RequestCandidate(project_name=project_name,
                                              project_site=project_site,tor_employee_amount=tor_employee_amount,
                                              now_employee_amount=now_employee_amount,vacancy_employee_amount=vacancy_employee_amount,
@@ -260,7 +266,7 @@ def new_request_candidate(request):
                                              level=level)
         request_candidate.save()
 
-        request_detail = Request(request_id=request_id,request_type=request_type,request_candidate=request_candidate,request_title=request_title,owner=owner,status=status)
+        request_detail = Request(request_id=request_id,request_type=request_type,request_candidate=request_candidate,request_title=request_title,request_position=request_position,request_position_other=request_position_other,owner=owner,status=status)
         request_detail.save()
 
     context = {
