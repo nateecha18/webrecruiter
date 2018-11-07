@@ -10,7 +10,7 @@ from django.views.generic import View
 from account.models import Profile
 from rank.models import CandidateRank
 from jobapply.models import CandidateBasic
-from candidate_cart.models import OrderItem,Order
+from candidate_cart.models import OrderItem, Order, InterviewStatus, InterviewStatusLog
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
 from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
@@ -278,6 +278,12 @@ def new_request_candidate(request):
     template = loader.get_template("new_request_candidate.html")
     return HttpResponse(template.render(context, request))
 
+def update_interview_log(request,user_profile,interview_status,order_items):
+    interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=interview_status)
+    interview_status_log.save()
+    for order_item in order_items:
+        order_item.interview_status_log.add(interview_status_log)
+        order_item.save()
 
 def request_detail(request,request_id):
     selected_request = Request.objects.filter(request_id=request_id).first()
@@ -285,7 +291,8 @@ def request_detail(request,request_id):
     add_request_datetime = selected_request.datetime_add_request
     day_rq,hour_rq,min_rq = compare_request_now_time(add_request_datetime)
     comment_all = selected_request.comment.all()
-    print(comment_all)
+
+    last_status = selected_request.status
     status_all = Status.objects.all()
 
     if request.method == 'POST':
@@ -297,13 +304,39 @@ def request_detail(request,request_id):
         if status_id:
             print("Entry1")
             status = Status.objects.filter(status_id=status_id).first()
-            selected_request.status=status
+            if status != last_status:
+                status_comment = 'Status changed from {0} to {1} by {2}'.format(last_status.status_name,status.status_name,owner.user.first_name)
+                comment_detail = status_comment + comment_detail
+                print(comment_detail)
+                print("Not Same Status")
+                selected_request.status=status
             comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner,status=status)
             comment.save()
-        else:
-            print("Entry2")
-            comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner)
-            comment.save()
+        # อัพเดต Candidate Status
+        if selected_request.request_type.request_type_id == '2':
+            print("REQUEST INTERVIEW")
+            order_items = selected_request.request_interview.order.items.all()
+            print(order_items)
+            if status != last_status:
+                if status.status_id == '2':
+                    interview_status = InterviewStatus.objects.filter(status_name='IN PROGRESS').first()
+                    print(interview_status)
+                    order_items.update(interview_status=interview_status)
+                    update_interview_log(request,owner,interview_status,order_items)
+                if status.status_id == '1':
+                    interview_status = InterviewStatus.objects.filter(status_name='IN REQUEST').first()
+                    print(interview_status)
+                    order_items.update(interview_status=interview_status)
+                    update_interview_log(request,owner,interview_status,order_items)
+                if status.status_id == '3':
+                    interview_status = InterviewStatus.objects.filter(status_name='INTERVIEWED').first()
+                    print(interview_status)
+                    order_items.update(interview_status=interview_status)
+                    update_interview_log(request,owner,interview_status,order_items)
+        # else:
+        #     print("Entry2")
+        #     comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner)
+        #     comment.save()
         selected_request.last_comment_owner = owner
         selected_request.comment.add(comment)
         selected_request.save()
@@ -316,6 +349,7 @@ def request_detail(request,request_id):
         'Min' : min_rq,
         'Comments' : comment_all,
         'Status' : status_all,
+        'LastStatus' : last_status.status_name,
     }
     template = loader.get_template("request_detail.html")
     return HttpResponse(template.render(context, request))

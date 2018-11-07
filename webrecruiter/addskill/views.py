@@ -20,6 +20,7 @@ from django.template import Context, Template
 from django.template.loader import render_to_string
 import csv
 from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
+from candidate_cart.models import OrderItem, Order, InterviewStatus
 
 
 # Create your views here.
@@ -100,9 +101,9 @@ def show_skill(request):
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-def load_position(file_path):
+def load_interview_status(file_path):
     "this loads position from pipe delimited file with headers"
     reader = csv.DictReader(open(file_path))
     for row in reader:
-        position = Position(position_id=row['position_id'],position_name=row['position_name'])
-        position.save()
+        interview_status = InterviewStatus(status_id=row['status_id'],status_name=row['status_name'])
+        interview_status.save()

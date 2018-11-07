@@ -407,9 +407,13 @@ Candidate Details | WebRecruiter
                 <label class="col-sm-3 control-label">Request Status</label>
                 <div class="col-sm-5">
                   <select class="form-control" name="status" required="required">
-                      <option selected value="0" disabled>สถานะ</option>
+                      <!-- <option selected value="0" disabled>สถานะ</option> -->
                     {% for status in Status %}
-                      <option value="{{ status.status_id }}">{{ status.status_name }}</option>
+                      {% if status.status_name == LastStatus %}
+                        <option selected value="{{ status.status_id }}">{{ status.status_name }} (current)</option>
+                      {% else %}
+                        <option value="{{ status.status_id }}">{{ status.status_name }}</option>
+                      {% endif %}
                     {% endfor %}
                   </select>
                 </div>

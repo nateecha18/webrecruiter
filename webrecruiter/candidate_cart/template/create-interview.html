@@ -50,7 +50,7 @@ input[type="text"]:disabled {
           {% csrf_token %}
           <div class="col-md-5 col-md-offset-1">
             <div class="form-group">
-              <label for="name_interviewer">ชื่อผู้สัมภาษณ์ (Interviewer)</label>
+              <label for="user_interviewer">ชื่อผู้สัมภาษณ์ (Interviewer)</label>
             </div>
           </div>
           <div class="col-md-5">
@@ -60,12 +60,37 @@ input[type="text"]:disabled {
           </div>
           <div class="col-md-5 col-md-offset-1">
             <div class="form-group">
-              <label for="date_interview">หัวข้อคำร้อง (Title)</label>
+              <label for="request_title">หัวข้อคำร้อง (Title)</label>
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
               <input type="text" class="form-control border-input" id="request_title" name="request_title" placeholder="หัวข้อคำร้อง">
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="form-group">
+              <label for="request_position">ตำแหน่ง</label>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <select class="form-control" name="request_position" required="required" id="request_position">
+                <option disabled="" selected="">ระบุตำแหน่งในการสัมภาษณ์ของผู้สมัคร</option>
+              {% for position in Positions %}
+                <option value="{{ position.position_id }}">{{ position.position_name }}</option>
+              {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1" id="position_other_1">
+            <div class="form-group">
+              <label for="request_position_other_name">อื่นๆ โปรดระบุ</label>
+            </div>
+          </div>
+          <div class="col-md-5" id="position_other_2">
+            <div class="form-group">
+              <input type="text" class="form-control border-input" id="request_position_other_name" name="request_position_other_name" placeholder="โปรดระบุตำแหน่ง">
             </div>
           </div>
           <div class="col-md-5 col-md-offset-1">
@@ -164,6 +189,20 @@ $('.datepicker').datepicker({
 }).on('changeDate', function(e){
   // this next line fixed the floating label issue for me
   $(this).parent('.label-floating').removeClass('is-empty');
+});
+</script>
+<script>
+$('#position_other_1').hide();
+$('#position_other_2').hide();
+$('#request_position').change(function() {
+  if( $(this).val() == '15' ) {
+      $('#position_other_1').show();
+      $('#position_other_2').show();
+  } else {
+      $('#position_other_1').hide();
+      $('#position_other_2').hide();
+
+  }
 });
 </script>
 {% endblock %}
