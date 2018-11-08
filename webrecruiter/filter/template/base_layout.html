@@ -108,6 +108,14 @@
                       <p style="font-weight: 200;">&nbsp;&nbsp;&nbsp;RANK&nbsp;&nbsp;&nbsp;</p>
                     </a>
                   </li>
+                  <li>
+                    <a href="{% url 'tor_management' %}">
+                      <i class="pe-7s-ribbon">
+                        <span class="label"></span>
+                      </i>
+                      <p style="font-weight: 200;">&nbsp;&nbsp;&nbsp;TOR&nbsp;&nbsp;&nbsp;</p>
+                    </a>
+                  </li>
                   {% endif %}
                 </ul>
           </div>
@@ -188,7 +196,7 @@
     </div>
   </div>
 
-
+{% block beforebody %}{% endblock %}
 </body>
 
 <!--   Core JS Files   -->

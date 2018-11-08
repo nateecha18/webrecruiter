@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tor.apps.TorConfig',
     'dashboard.apps.DashboardConfig',
     'wishlist.apps.WishlistConfig',
     'request.apps.RequestConfig',
@@ -78,6 +79,7 @@ TEMPLATES = [
                  'request/template',
                  'wishlist/template',
                  'dashboard/template',
+                 'tor/template',
                  ],
         'APP_DIRS': True,
         'OPTIONS': {

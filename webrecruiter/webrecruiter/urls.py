@@ -32,7 +32,8 @@ urlpatterns = [
     path('rank/', include('rank.urls')),
     path('request/', include('request.urls')),
     path('mywishlist/', include('wishlist.urls')),
-    path('', include('dashboard.urls'))
+    path('', include('dashboard.urls')),
+    path('tor/', include('tor.urls')),
 
 
     # path('pdf/', GeneratePdf.as_view())

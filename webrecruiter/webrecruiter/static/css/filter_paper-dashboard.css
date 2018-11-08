@@ -2925,3 +2925,48 @@ textarea.form-control {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+
+    .panel {
+      background-color: #fff;
+      border: 0 none;
+      border-radius: 3px;
+      font-size: 18;
+      font-weight: 300;
+      line-height: 1.6em;
+      margin-top: 10px;
+      padding: 7px 10px;
+    }
+
+    .panel-border {
+      border: 1px solid #e8e7e3;
+    }
+
+    .panel-default .panel-heading {
+      background-color: #fff;
+      border: 0 none;
+      border-radius: 3px;
+    }
+
+    .panel-default a {
+      color: #66615b;
+    }
+
+    .panel-default a:hover, .panel-default a:active, .panel-default a:focus {
+      color: #EB5E28;
+    }
+
+    .panel-default a .panel-title > i {
+      float: right;
+    }
+
+    .panel-default a[aria-expanded="true"] .panel-title > i,
+    .panel-default a.expanded .panel-title > i {
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+      border: 0 none;
+    }
