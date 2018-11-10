@@ -1,38 +1,95 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="selected_project_modal" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover" style="background-color:#fcfaf9; border-radius:5px;">
-            <thead>
-              <th class="text-center">ลำดับ</th>
-              <th class="text-center">ตำแหน่ง</th>
-              <th class="text-center">จำนวนตาม TOR</th>
-              <th class="text-center">จำนวนตามจริง</th>
-              <th class="text-center">จำนวนที่ขาด</th>
-            </thead>
-            <tbody>
-                <tr>
-                  <td>{{ instance.id }}</td>
-                  <td>{{ instance.position }}</td>
-                  <td>{{ instance.tor_amount }}</td>
-                  <td>{{ instance.now_amount }}</td>
-                  <td>{{ instance.diff_empty_amount }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <form method="post" action="/tor/update-project/{{ SelectedProject.id }}/">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Project Name : {{ SelectedProject.project_name }}</h5>
+          <h6>Last Update : {{ SelectedProject.datetime_update_project }}</h6>
+          <h6>Date Add : {{ SelectedProject.datetime_add_project }}</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="" action="" method="post">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label>Project Name</label>
+                  <input type="text" name="project_name" class="form-control border-input" placeholder="Project Name" value="{{ SelectedProject.project_name }}">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Site</label>
+                  <input type="text" name="project_site" class="form-control border-input" placeholder="Site" value="{{ SelectedProject.project_site }}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>จำนวนตาม TOR</label>
+                  <input type="number" name="project_tor_amount" class="form-control border-input" placeholder="จำนวนตาม TOR" value="{{ SelectedProject.project_tor_amount }}">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>จำนวนตามจริง</label>
+                  <input type="number" name="project_now_amount" class="form-control border-input" placeholder="จำนวนตามจริง" value="{{ SelectedProject.project_now_amount }}">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>ความเร่งด่วน</label>
+                  <select class="form-control" name="level">
+                    {% for level in Levels %}
+                      {% if level == SelectedProject.level %}
+                        <option selected value="{{ level.level_id }}">{{ level.level_name }} (current)</option>
+                      {% else %}
+                        <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Requirment</label>
+                  <textarea name="requirement" type="text" rows="4" class="form-control" placeholder="Here can be your Requirement">{{ SelectedProject.requirement }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Certification</label>
+                  <textarea name="certification" rows="3" class="form-control" placeholder="Here can be your Certification">{{ SelectedProject.certification }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>หมายเหตุ</label>
+                  <textarea name="note" rows="2" class="form-control" placeholder="Here can be your Note">{{ SelectedProject.note }}</textarea>
+                </div>
+              </div>
+            </div>
 
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-info">Save changes</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+      <!--  -->
+    </form>
   </div>
 </div>

@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='tor_management'),
-    url(r'^update-tor/(?P<tor_id>[-\w]+)/$', views.update_tor, name='update_tor'),
+    url(r'^update-project/(?P<project_id>[-\w]+)/$', views.update_project, name='update_project'),
 
 ]

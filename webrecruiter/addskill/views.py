@@ -21,6 +21,8 @@ from django.template.loader import render_to_string
 import csv
 from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
 from candidate_cart.models import OrderItem, Order, InterviewStatus
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor
+
 
 
 # Create your views here.
@@ -107,3 +109,66 @@ def load_interview_status(file_path):
     for row in reader:
         interview_status = InterviewStatus(status_id=row['status_id'],status_name=row['status_name'])
         interview_status.save()
+
+def load_project_type(file_path):
+    "this loads ProjectType from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        project_type = ProjectType(project_type_id=row['project_type_id'],project_type_name=row['project_type_name'])
+        project_type.save()
+
+def load_project_level(file_path):
+    "this loads ProjectType from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        project_level = ProjectLevel(level_id=row['level_id'],level_name=row['level_name'],level_description=row['level_description'])
+        project_level.save()
+
+def load_position_existing_project(file_path):
+    "this loads existing_project from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    project_type = ProjectType.objects.filter(project_type_name='Existing Project').first()
+    for row in reader:
+        level = ProjectLevel.objects.filter(level_id=row['level']).first()
+        print(row['project_tor_amount'])
+        position_existing_project = PositionProject(project_name=row['project_name'],
+                                                    project_type=project_type,
+                                                    project_site=row['project_site'],
+                                                    project_tor_amount=int(row['project_tor_amount']),
+                                                    project_now_amount=int(row['project_now_amount']),
+                                                    level=level,
+                                                    requirement=row['requirement'],
+                                                    certification=row['certification'],
+                                                    note=row['note'],)
+        position_existing_project.save()
+
+def load_position_forecast_project(file_path):
+    "this loads forecast_project from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    project_type = ProjectType.objects.filter(project_type_name='Forecast Project').first()
+    for row in reader:
+        level = ProjectLevel.objects.filter(level_id=row['level']).first()
+        print(row['project_tor_amount'])
+        position_forecast_project = PositionProject(project_name=row['project_name'],
+                                                    project_type=project_type,
+                                                    project_site=row['project_site'],
+                                                    project_tor_amount=int(row['project_tor_amount']),
+                                                    project_now_amount=int(row['project_now_amount']),
+                                                    level=level,
+                                                    requirement=row['requirement'],
+                                                    certification=row['certification'],
+                                                    note=row['note'],)
+        position_forecast_project.save()
+
+def load_tor(file_path):
+    "this loads tor from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        tor = Tor(position_name=row['position_name'],
+                  position_type=row['position_type'],
+                  position_role_des=row['position_role_des'],
+                  position_edu_des=row['position_edu_des'],
+                  position_exp_des=row['position_exp_des'],
+                  position_tor_amount=row['position_tor_amount'],
+                  position_now_amount=row['position_now_amount'],)
+        tor.save()
