@@ -15,7 +15,8 @@ i.icon-delete { color: #EB5E28; }
 .nav-tabs-navigation {
   text-align: center;
   border-bottom: 1px solid #F1EAE0;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .nav-tabs-navigation .nav > li > a {
@@ -124,87 +125,89 @@ i.icon-delete { color: #EB5E28; }
                 <div id="collapseThreePlain{{ tor.id }}" class="panel-collapse collapse">
                   <div class="panel-body">
                     <div class="row">
-                      <!-- จำนวนตาม TOR -->
-                      <div class="col-lg-4 col-sm-6">
-                        <div class="card" style="background-color:#f9f9f9;">
-                          <div class="content">
-                            <div class="row">
-                              <div class="col-xs-5">
-                                <div class="icon-big icon-success text-center">
-                                  <i class="ti-clipboard"></i>
+                      <div class="col-lg-10 col-lg-offset-1">
+                        <!-- จำนวนตาม TOR -->
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="card" style="background-color:#f9f9f9;">
+                            <div class="content">
+                              <div class="row">
+                                <div class="col-xs-5">
+                                  <div class="icon-big icon-success text-center">
+                                    <i class="ti-clipboard"></i>
+                                  </div>
+                                </div>
+                                <div class="col-xs-7">
+                                  <div class="numbers">
+                                    <p>จำนวนตาม TOR</p>
+                                    {% if tor.tor_amount.project_tor_amount__sum %}
+                                    {{ tor.tor_amount.project_tor_amount__sum }} คน
+                                    {% else %}
+                                    0 คน
+                                    {% endif %}
+                                  </div>
                                 </div>
                               </div>
-                              <div class="col-xs-7">
-                                <div class="numbers">
-                                  <p>จำนวนตาม TOR</p>
-                                  {% if tor.tor_amount.project_tor_amount__sum %}
-                                  {{ tor.tor_amount.project_tor_amount__sum }} คน
-                                  {% else %}
-                                  0 คน
-                                  {% endif %}
+                              <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                  <i class="ti-calendar"></i> Last day
                                 </div>
-                              </div>
-                            </div>
-                            <div class="footer">
-                              <hr />
-                              <div class="stats">
-                                <i class="ti-calendar"></i> Last day
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- จำนวนตามจริง -->
-                      <div class="col-lg-4 col-sm-6">
-                        <div class="card" style="background-color:#f9f9f9;">
-                          <div class="content">
-                            <div class="row">
-                              <div class="col-xs-5">
-                                <div class="icon-big icon-success text-center">
-                                  <i class="ti-package"></i>
+                        <!-- จำนวนตามจริง -->
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="card" style="background-color:#f9f9f9;">
+                            <div class="content">
+                              <div class="row">
+                                <div class="col-xs-5">
+                                  <div class="icon-big icon-success text-center">
+                                    <i class="ti-package"></i>
+                                  </div>
+                                </div>
+                                <div class="col-xs-7">
+                                  <div class="numbers">
+                                    <p>จำนวนตามจริง</p>
+                                    {% if tor.now_amount.project_now_amount__sum %}
+                                    {{ tor.now_amount.project_now_amount__sum }} คน
+                                    {% else %}
+                                    0 คน
+                                    {% endif %}
+                                  </div>
                                 </div>
                               </div>
-                              <div class="col-xs-7">
-                                <div class="numbers">
-                                  <p>จำนวนตามจริง</p>
-                                  {% if tor.now_amount.project_now_amount__sum %}
-                                  {{ tor.now_amount.project_now_amount__sum }} คน
-                                  {% else %}
-                                  0 คน
-                                  {% endif %}
+                              <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                  <i class="ti-calendar"></i> Last day
                                 </div>
-                              </div>
-                            </div>
-                            <div class="footer">
-                              <hr />
-                              <div class="stats">
-                                <i class="ti-calendar"></i> Last day
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- จำนวนที่ขาด -->
-                      <div class="col-lg-4 col-sm-6">
-                        <div class="card" style="background-color:#f9f9f9;">
-                          <div class="content">
-                            <div class="row">
-                              <div class="col-xs-5">
-                                <div class="icon-big icon-success text-center">
-                                  <i class="ti-package"></i>
+                        <!-- จำนวนที่ขาด -->
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="card" style="background-color:#f9f9f9;">
+                            <div class="content">
+                              <div class="row">
+                                <div class="col-xs-5">
+                                  <div class="icon-big icon-success text-center">
+                                    <i class="ti-package"></i>
+                                  </div>
+                                </div>
+                                <div class="col-xs-7">
+                                  <div class="numbers">
+                                    <p>จำนวนที่ขาด</p>
+                                    {{ tor.diff_empty_amount }} คน
+                                  </div>
                                 </div>
                               </div>
-                              <div class="col-xs-7">
-                                <div class="numbers">
-                                  <p>จำนวนที่ขาด</p>
-                                  {{ tor.diff_empty_amount }} คน
+                              <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                  <i class="ti-calendar"></i> Last day
                                 </div>
-                              </div>
-                            </div>
-                            <div class="footer">
-                              <hr />
-                              <div class="stats">
-                                <i class="ti-calendar"></i> Last day
                               </div>
                             </div>
                           </div>
@@ -235,7 +238,8 @@ i.icon-delete { color: #EB5E28; }
                                 <th data-field="requirement" data-sortable="true">Requirment</th>
                                 <th data-field="certification" data-sortable="true">Certification</th>
                                 <th data-field="note" data-sortable="true">หมายเหตุ</th>
-                                <th data-field="update" data-sortable="true">EDIT</th>
+                                <th data-field="action" data-sortable="true" class="text-center">ACTION</th>
+
                               </thead>
                               <tbody>
                                 {% for project in tor.get_existing_project%}
@@ -250,14 +254,17 @@ i.icon-delete { color: #EB5E28; }
                                   <td>{{ project.certification }}</td>
                                   <td>{{ project.note }}</td>
 
-                                  <td><a class="open-modal" rel="tooltip" title="Edit" data-url="{% url 'update_project' project_id=project.id %}"><i class="fa fa-edit"></i></a></td>
+                                  <td>
+                                    <a class="open-modal" rel="tooltip" title="Edit" data-url="{% url 'update_project' project_id=project.id %}"><i class="fa fa-edit"></i></a>
+                                    <a class="delete_project" rel="tooltip" title="Delete" href="{% url 'delete_project' position_id=tor.id project_id=project.id %}"><i class="far fa-trash-alt"></i></a>
+                                  </td>
                                 </tr>
                                 {% endfor %}
                               </tbody>
                             </table>
                           </div>
                           {% else %}
-                            <p>No Existing Project in this Position.</p>
+                          <p>No Existing Project in this Position.</p>
                           {% endif %}
                         </div>
                         <div class="tab-pane" id="forecast">
@@ -274,7 +281,8 @@ i.icon-delete { color: #EB5E28; }
                                 <th data-field="requirement" data-sortable="true">Requirment</th>
                                 <th data-field="certification" data-sortable="true">Certification</th>
                                 <th data-field="note" data-sortable="true">หมายเหตุ</th>
-                                <th data-field="update" data-sortable="true">EDIT</th>
+                                <th data-field="action" data-sortable="true" class="text-center">ACTION</th>
+
                               </thead>
                               <tbody>
                                 {% for project in tor.get_forecast_project%}
@@ -289,19 +297,28 @@ i.icon-delete { color: #EB5E28; }
                                   <td>{{ project.certification }}</td>
                                   <td>{{ project.note }}</td>
 
-                                  <td><a class="open-modal" rel="tooltip" title="Edit" data-url="{% url 'update_project' project_id=project.id %}"><i class="fa fa-edit"></i></a></td>
+                                  <td>
+                                    <a class="open-modal" rel="tooltip" title="Edit" data-url="{% url 'update_project' project_id=project.id %}"><i class="fa fa-edit"></i></a>
+                                    <a class="delete_project" rel="tooltip" title="Delete" href="{% url 'delete_project' position_id=tor.id project_id=project.id %}"><i class="far fa-trash-alt"></i></a>
+                                  </td>
                                 </tr>
                                 {% endfor %}
                               </tbody>
                             </table>
                           </div>
                           {% else %}
-                            <p>No Forecast Project in this Position.</p>
+                          <p>No Forecast Project in this Position.</p>
                           {% endif %}
                         </div>
                       </div>
                     </div>
-
+                    <div class="row text-center">
+                      <a class="open-modal" rel="tooltip" title="Edit" data-url="{% url 'create_project' position_id=tor.id %}">
+                        <button type="button" class="btn btn-info">
+                          <i class="fa fa-plus" aria-hidden="true"></i>Add New Project
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -348,6 +365,19 @@ $("a.open-modal").on("click", function() {
       $("#selected_project_modal").modal();
     }
   });
+});
+</script>
+<script type="text/javascript">
+$('a.delete_project').confirm({
+  title: 'Do You Want To Remove This Project',
+  content: "คุณต้องการลบโครงการนี้หรือไม่?",
+  buttons: {
+    ใช่: function(){
+      location.href = this.$target.attr('href');
+    },
+    ไม่ใช่: function(){
+    }
+  }
 });
 </script>
 

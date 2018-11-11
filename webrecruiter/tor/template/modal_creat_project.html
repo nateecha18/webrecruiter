@@ -1,0 +1,107 @@
+<!-- Modal -->
+<div class="modal fade" id="selected_project_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <form method="post" action="/tor/create-project/{{ SelectedTor.id }}/">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#ff9800">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title" style="color:#fff">Create New Project</h5>
+        </div>
+        <div class="modal-body">
+          <form class="" action="" method="post">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Position Name</label>
+                  <input type="text" name="position_name" class="form-control border-input" disabled placeholder="Project Name" value="{{ SelectedTor.position_name }}">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Project Type</label>
+                  <select class="form-control" name="project_type_id">
+                    {% for type in ProjectTypes %}
+                      <option value="{{ type.project_type_id }}">{{ type.project_type_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label>Project Name</label>
+                  <input type="text" name="project_name" class="form-control border-input" placeholder="Project Name" >
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Site</label>
+                  <input type="text" name="project_site" class="form-control border-input" placeholder="Site" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>จำนวนตาม TOR</label>
+                  <input type="number" name="project_tor_amount" class="form-control border-input" placeholder="จำนวนตาม TOR" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>จำนวนตามจริง</label>
+                  <input type="number" name="project_now_amount" class="form-control border-input" placeholder="จำนวนตามจริง" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>ความเร่งด่วน</label>
+                  <select class="form-control" name="level">
+                    {% for level in Levels %}
+                      <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Requirment</label>
+                  <textarea name="requirement" type="text" rows="4" class="form-control" placeholder="Here can be your Requirement"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Certification</label>
+                  <textarea name="certification" rows="3" class="form-control" placeholder="Here can be your Certification"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>หมายเหตุ</label>
+                  <textarea name="note" rows="2" class="form-control" placeholder="Here can be your Note"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-info">Save changes</button>
+        </div>
+      </div>
+      <!--  -->
+    </form>
+  </div>
+</div>
