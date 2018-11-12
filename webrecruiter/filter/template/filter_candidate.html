@@ -297,7 +297,36 @@ i.icon-submit { color: #ffff; }
                     </div>
                   </div>
                 </div>
-
+                <!-- LANGUAGE -->
+                <div class="col-lg-7" id="language_value1">
+                  <div class="col-lg-6">
+                    <select class="form-control" style="margin-top:0px" name="operator_language">
+                      <option selected="" disabled value="0">Operator Language</option>
+                      <option value="1">มีความสามารถด้านภาษา (is)</option>
+                      <option value="2">ไม่เอาผู้ที่มีความสามารถด้านภาษา (isnot)</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <select class="form-control" style="margin-top:0px" name="filter_language">
+                      <option selected="" hidden value="0">--- เลือกภาษา ---</option>
+                      <option value="ไทย" is-active="1">ไทย</option>
+                      <option value="อังกฤษ" is-active="1">อังกฤษ</option>
+                      <option value="ญี่ปุ่น" is-active="1">ญี่ปุ่น</option>
+                      <option value="จีน" is-active="0">จีน</option>
+                      <option value="มาเลเซีย" is-active="1">มาเลเซีย</option>
+                      <option value="เกาหลี" is-active="1">เกาหลี</option>
+                      <option value="เขมร" is-active="1">เขมร</option>
+                      <option value="เดนมาร์ก" is-active="1">เดนมาร์ก</option>
+                      <option value="เยอรมัน" is-active="1">เยอรมัน</option>
+                      <option value="ฝรั่งเศส" is-active="1">ฝรั่งเศส</option>
+                      <option value="ลาว" is-active="1">ลาว</option>
+                      <option value="สเปน" is-active="1">สเปน</option>
+                      <option value="อิตาลี" is-active="1">อิตาลี</option>
+                      <option value="จีน" is-active="1">จีน</option>
+                      <option value="รัสเซีย" is-active="1">รัสเซีย</option>
+                    </select>
+                  </div>
+                </div>
                 <!--  Delete Button  -->
                 <div class="col-lg-1">
                   <div class="text-center" style="margin-top: 8px;">
@@ -429,6 +458,9 @@ function FilterCandidate() {
   var operator_comskill = [];
   var filter_comskill = [];
 
+  var operator_language = [];
+  var filter_language = [];
+
   $("select[name='filter_option']").each(function() {
       filter_option.push($(this).val());
   });
@@ -492,6 +524,13 @@ function FilterCandidate() {
   $("input[id='tags']").each(function() {
       filter_comskill.push($(this).val());
   });
+  // LANGUAGE FILTER
+  $("select[name='operator_language']").each(function() {
+      operator_language.push($(this).val());
+  });
+  $("select[name='filter_language']").each(function() {
+      filter_language.push($(this).val());
+  });
 
 
   var json_filter_option = JSON.stringify(filter_option);
@@ -522,6 +561,9 @@ function FilterCandidate() {
   var json_operator_comskill = JSON.stringify(operator_comskill);
   var json_filter_comskill = JSON.stringify(filter_comskill);
 
+  var json_operator_language = JSON.stringify(operator_language);
+  var json_filter_language = JSON.stringify(filter_language);
+
   $.ajax({
     type : 'POST',
     url : 'testajax/',
@@ -546,6 +588,8 @@ function FilterCandidate() {
       filter_major : json_filter_major,
       operator_comskill : json_operator_comskill,
       filter_comskill : json_filter_comskill,
+      operator_language : json_operator_language,
+      filter_language : json_filter_language,
 
       csrfmiddlewaretoken:"{{ csrf_token }}"
     },

@@ -1,7 +1,6 @@
 
 from django.db import models
 
-
 class SkillType(models.Model):
     type_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=200, blank=True, null=True)

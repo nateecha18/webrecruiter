@@ -61,6 +61,11 @@ $("#filter_option1").change(function()
 	} else {
 		$("#major_value1").hide();
 	}
+	if($(this).val() == "13"){
+		$("#language_value1").show();
+	} else {
+		$("#language_value1").hide();
+	}
 
 
 });
@@ -76,3 +81,4 @@ $("#faculty_value1").hide();
 $("#gpa_value1").hide();
 $("#comskill_value1").hide();
 $("#major_value1").hide();
+$("#language_value1").hide();

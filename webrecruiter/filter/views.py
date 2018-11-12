@@ -393,6 +393,9 @@ def test_ajax(request):
         operator_comskill = json.loads(request.POST.get('operator_comskill'))
         filter_comskill_txt = json.loads(request.POST.get('filter_comskill'))
 
+        operator_language = json.loads(request.POST.get('operator_language'))
+        filter_language = json.loads(request.POST.get('filter_language'))
+
         # วน loop เก็บ filter skill
         filter_comskill = []
         for comskill_set in filter_comskill_txt:
@@ -432,6 +435,8 @@ def test_ajax(request):
         print("filter_major",filter_major)
         print("operator_comskill",operator_comskill)
         print("filter_comskill",filter_comskill,filter_comskill_txt)
+        print("operator_language",operator_language)
+        print("filter_language",filter_language)
 
         all_candidate = CandidateBasic.objects.all()
         print("Len Filter : " + str(len(filter_option)))
@@ -620,6 +625,32 @@ def test_ajax(request):
                                         print(j,checkbox_comskill_set)
                                 all_candidate = checkbox_comskill_set.intersection(all_candidate)
                                 print("All Candidate หลังเข้า Filter Comskill : ",i, all_candidate)
+
+                # Filter Language  { Active When OPERATOR GENDER is not emply }
+                if operator_language:
+                    print("Entry Language")
+                    print("Operator : " + str(operator_language) + "filter_gpa : " + str(filter_language))
+                    checkbox_language_set=CandidateBasic.objects.all()
+                    for i in range(0,len(operator_language)):
+                        language_set = CandidateLanguageSkill.objects.none()
+                        print("I : "+str(i) + "   Len : " + str(len(operator_language)))
+                        if filter_language[i]=='' or operator_language[i]==None:
+                            pass
+                        else :
+                            print(operator_language[i],"______")
+                            if (operator_language[i]=='1'):
+                                language_set = CandidateLanguageSkill.objects.filter(skill_language=filter_language[i])
+                                candidate_set = CandidateBasic.objects.none()
+                                for candidate in language_set:
+                                    candidate_set = candidate_set.union(CandidateBasic.objects.filter(id_number=candidate.owner.id_number))
+                                checkbox_language_set = checkbox_language_set.intersection(candidate_set)
+                            elif (operator_language[i]=='2'):
+                                block_candidate = CandidateLanguageSkill.objects.filter(Q(skill_language=filter_language[i])).values_list('owner',flat=True)
+                                candidate_set = CandidateBasic.objects.filter(~Q(id_number__in=block_candidate))
+                                checkbox_language_set = checkbox_language_set.intersection(candidate_set)
+                    print(i,"checkbox_language_set",checkbox_language_set)
+                    all_candidate = all_candidate.intersection(checkbox_language_set)
+
 
 
 
