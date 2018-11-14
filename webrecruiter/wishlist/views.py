@@ -15,7 +15,7 @@ from jobapply.models import CandidateBasic
 
 from candidate_cart.extras import generate_order_id
 from candidate_cart.models import OrderItem, Order
-from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from request.generate_id import generate_request_id
 from rolepermissions.decorators import has_role_decorator
 

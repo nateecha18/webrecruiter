@@ -1,0 +1,215 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Request | WebRecruiter
+{% endblock %}
+
+{% block stylesheet %}
+<style media="screen">
+  i.icon-delete { color: #EB5E28; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <form method="POST" enctype=multipart/form-data class="form-horizontal">
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="col-lg-1">
+
+          </div>
+          <div class="col-lg-1">
+            <!-- <div class="path" >
+            <p style="font-weight: 400; color:#919191">Request.<a href="" style=" font-size: 20px; color:#ff8000">RequestCandidate</a></p>
+          </div> -->
+          <a href="{% url 'request_candidate' %}">
+            <button type="button" class="btn btn-info btn-fill"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back Request</button>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-8 text-center">
+        <h2>Create New Request</h2>
+        <h4><small>สร้างคำร้องเพื่อระบุความต้องการคุณ สำหรับการจัดหาทรรพยากรที่มีคุณภาพและตรงตามคามต้องการ <br/>เพื่อความรวดเร็วในการดำเนินการ กรุณากรอกข้อมูลอย่างถูกต้องและครบถ้วน </small> </h4>
+      </div>
+    </div>
+    <br>
+
+    {% csrf_token %}
+    <div class="col-lg-5 col-md-7">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">User Information</h4>
+        </div>
+
+        <div class="content">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Full Name</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" name="user_name" required="required" value="{{request.user.first_name|title}}   {{request.user.last_name|title}}" disabled />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Email</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" name="user_email" email="true" value="{{request.user.email}}" disabled />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Project Information</h4>
+        </div>
+
+        <div class="content">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Project Name</label>
+              <div class="col-sm-9">
+                <select class="form-control" name="project_name" required="required" id="project_name">
+                  <option value="" hidden>------ Select Project ------</option>
+                  {% for project in AllProject %}
+                  <option value="{{ project.id }}">{{ project.project_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <div id="position"></div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-5">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Request Details</h4>
+        </div>
+
+        <div class="content">
+
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Title</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" name="request_title" required="required" />
+              </div>
+            </div>
+          </fieldset>
+
+          <div id="position_detail">
+            {% include 'position_detail.html' %}
+          </div>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Requirement</label>
+              <div class="col-sm-9">
+                <textarea name="requirement" rows="5" class="form-control" placeholder="Here can be your Requirement"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Certification</label>
+              <div class="col-sm-9">
+                <textarea name="certification" rows="3" class="form-control" placeholder="Here can be your Certification"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">หมายเหตุ</label>
+              <div class="col-sm-9">
+                <textarea name="note" rows="3" class="form-control" placeholder="Here can be your Note"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-info btn-fill">Creat Request</button>
+      </div>
+    </div>
+  </form>
+
+
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46172202-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+  $('#project_type').change(function() {
+    if( $(this).val() == 3) {
+      $('#project_name').prop( "disabled", true );
+    } else {
+      $('#project_name').prop( "disabled", false );
+    }
+  });
+
+  $('#request-position-other').hide();
+  $('#request_position').change(function() {
+    if( $(this).val() == '15' ) {
+      $('#request-position-other').show();
+    } else {
+      $('#request-position-other').hide();
+    }
+  });
+</script>
+<script type="text/javascript">
+  var positionDiv = $("#position");
+  var positionDetailDiv = $("#position_detail")
+  $('#project_name').change(function() {
+    var project_id=$(this).val()
+
+    var url_mask = "{% url 'get_position' project_id=12345 %}".replace(/12345/, project_id.toString());
+    $.ajax({
+      type : 'GET',
+      url : url_mask,
+      success: function(data){
+        positionDiv.html(data);
+        $('#position_name').change(function() {
+          var position_id=$(this).val()
+          var url_mask = "{% url 'get_position_detail' position_id=12345 %}".replace(/12345/, position_id.toString());
+          $.ajax({
+            type : 'GET',
+            url : url_mask,
+            success: function(data){
+              positionDetailDiv.html(data);
+
+            }
+          })
+        });
+      }
+    })
+  });
+</script>
+{% endblock %}

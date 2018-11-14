@@ -19,9 +19,9 @@ from django.template import loader, RequestContext
 from django.template import Context, Template
 from django.template.loader import render_to_string
 import csv
-from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
+from request.models import Status,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
 from candidate_cart.models import OrderItem, Order, InterviewStatus
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionAll
 
 
 
@@ -172,3 +172,10 @@ def load_tor(file_path):
                   position_tor_amount=row['position_tor_amount'],
                   position_now_amount=row['position_now_amount'],)
         tor.save()
+
+def load_position(file_path):
+    "this loads Position from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        position = PositionAll(position_id=row['position_id'],position_name=row['position_name'])
+        position.save()

@@ -1,0 +1,31 @@
+<fieldset>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Site</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" name="project_site" required="required" disabled id="project_site" value="{{ SelectedProject.project_site }}" />
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">ความเร่งด่วน</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" name="level" required="required" disabled id="level" value="{{ SelectedProject.level.level_name }}" />
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">ตำแหน่ง</label>
+    <div class="col-sm-9">
+      <select class="form-control" name="position_name" required="required" id="position_name">
+          <option value="" hidden>------ Select Position ------</option>
+        {% for position in AllPosition %}
+          <option value="{{ position.id }}">{{ position.position_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</fieldset>

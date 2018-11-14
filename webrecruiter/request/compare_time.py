@@ -1,4 +1,4 @@
-from request.models import Status,ProjectType,LevelRequest,Comment,RequestCandidate
+from request.models import Status,Comment,RequestCandidate
 import datetime
 from datetime import datetime,date,time,timedelta, timezone
 import pytz

@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div class="modal fade" id="selected_project_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <form method="post" action="{% url 'add_position' SelectedProject.id %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#ff9800">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title" style="color:#fff">Create New Position ({{ SelectedProject.project_name }})</h5>
+        </div>
+        <div class="modal-body">
+          <form class="" action="" method="post">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Position</label>
+                  <select class="form-control" name="position_id" required>
+                    {% for position in AllPosition %}
+                      <option value="{{ position.position_id }}">{{ position.position_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Project Type</label>
+                  <select class="form-control" name="position_type" required>
+                      <option value="พนักงานสัญญาจ้าง">พนักงานสัญญาจ้าง</option>
+                      <option value="พนักงานประจำ">พนักงานประจำ</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>จำนวนตาม TOR</label>
+                  <input type="number" name="position_tor_amount" class="form-control border-input" required placeholder="จำนวนตาม TOR" >
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-info">Save changes</button>
+        </div>
+      </div>
+      <!--  -->
+    </form>
+  </div>
+</div>

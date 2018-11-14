@@ -1,5 +1,8 @@
 from django.db import models
 from django.db.models import Avg, Count, Min, Sum
+from account.models import Profile
+from jobapply.models import CandidateBasic
+
 # Create your models here.
 
 class ProjectType(models.Model):
@@ -87,4 +90,67 @@ class Tor(models.Model):
             now_amount = 0;
         diff = tor_amount - now_amount
         print(diff)
+        return diff
+
+# _________________________EDITED_______________________
+
+class PositionAll(models.Model):
+    position_id = models.CharField(max_length=5)
+    position_name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.position_name
+
+
+class PositionField(models.Model):
+    position_name = models.ForeignKey(PositionAll, on_delete=models.SET_NULL, null=True, related_name='Position_In_Project')
+    position_type = models.CharField(max_length=50, blank=True, null=True)
+    position_tor_amount = models.IntegerField(blank=True, null=True)
+    position_now_amount = models.IntegerField(blank=True, null=True)
+    datetime_add_position = models.DateTimeField(auto_now_add=True)
+    datetime_update_position = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.position_name.position_name
+
+    def diff_position_empty_amount(self):
+        return self.position_tor_amount - self.position_now_amount
+
+class Project(models.Model):
+    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='Owner_Project')
+    project_name = models.CharField(max_length=100, blank=True, null=True)
+    project_type = models.ForeignKey(ProjectType, on_delete=models.SET_NULL, null=True)
+    project_site = models.CharField(max_length=100, blank=True, null=True)
+    level = models.ForeignKey(ProjectLevel, on_delete=models.SET_NULL, null=True)
+    positions = models.ManyToManyField(PositionField,blank=True)
+    datetime_add_project = models.DateTimeField(auto_now_add=True)
+    datetime_update_project = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.project_name
+
+    def get_position(self):
+        position = self.positions.all()
+        return position
+
+    def tor_amount(self):
+        print("_________________________________")
+        sum_result = self.positions.all().aggregate(Sum('position_tor_amount'))
+        print(sum_result)
+        return sum_result
+
+    def now_amount(self):
+        sum_result = self.positions.all().aggregate(Sum('position_now_amount'))
+        return sum_result
+
+    def diff_empty_amount(self):
+        # existing = ProjectType.objects.filter(project_type_name='Existing Project').first()
+        tor_amount = self.positions.all().aggregate(Sum('position_tor_amount'))['position_tor_amount__sum']
+        if not tor_amount:
+            tor_amount = 0;
+        now_amount = self.positions.all().aggregate(Sum('position_now_amount'))['position_now_amount__sum']
+        if not now_amount:
+            now_amount = 0;
+        diff = tor_amount - now_amount
+        print("DIFFFFF",diff)
         return diff

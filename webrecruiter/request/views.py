@@ -13,7 +13,7 @@ from jobapply.models import CandidateBasic
 from candidate_cart.models import OrderItem, Order, InterviewStatus, InterviewStatusLog
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
-from request.models import Status,ProjectType,LevelRequest,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
 from request.generate_id import generate_request_id
 from request.generate_id import generate_comment_id
 from request.compare_time import compare_request_now_time
@@ -24,6 +24,7 @@ import math
 from django.db.models import Q
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project
 
 
 def get_cart_amount(request):
@@ -229,9 +230,16 @@ def show_open_request_candidate(request):
 # ______________________________________________________________________________________________________________________________________________
 
 def new_request_candidate(request):
-    project_types = ProjectType.objects.all()
-    levels = LevelRequest.objects.all()
+    # project_types = ProjectType.objects.all()
+    # levels = LevelRequest.objects.all()
     positions = Position.objects.all()
+    user = request.user
+    user_profile = Profile.objects.filter(user=user).first()
+
+    if has_role(user, 'hr'):
+        all_project = Project.objects.all()
+    else:
+        all_project = Project.objects.filter(owner=user_profile)
 
     if request.method == 'POST':
         request_id = generate_request_id()
@@ -246,9 +254,9 @@ def new_request_candidate(request):
         note = request.POST.get('note')
 
         project_type_id = request.POST.get('project_type')
-        project_type = get_object_or_404(ProjectType, project_type_id=project_type_id)
+        # project_type = get_object_or_404(ProjectType, project_type_id=project_type_id)
         level_id = request.POST.get('level')
-        level = get_object_or_404(LevelRequest, level_id=level_id)
+        # level = get_object_or_404(LevelRequest, level_id=level_id)
         owner = get_object_or_404(Profile, user=request.user)
         status = get_object_or_404(Status, status_id='1')
         request_type = get_object_or_404(RequestType, request_type_id='1')
@@ -257,7 +265,6 @@ def new_request_candidate(request):
         request_position_other = request.POST.get('request_position_other_name')
         print(request_position_id,"||||||||||",request_position_other)
         request_position = get_object_or_404(Position, position_id=request_position_id)
-
 
         request_candidate = RequestCandidate(project_name=project_name,
                                              project_site=project_site,tor_employee_amount=tor_employee_amount,
@@ -270,13 +277,28 @@ def new_request_candidate(request):
         request_detail.save()
 
     context = {
-        'ProjectTypes' : project_types,
-        'Levels' : levels,
+        'AllProject' : all_project,
         'Positions' : positions,
 
     }
-    template = loader.get_template("new_request_candidate.html")
+    template = loader.get_template("create_new_request_candidate.html")
     return HttpResponse(template.render(context, request))
+
+def get_position(request,project_id=None):
+    selected_project = Project.objects.filter(id=project_id).first()
+    all_position = selected_project.positions.all()
+    context={
+        'AllPosition' : all_position,
+        'SelectedProject' : selected_project,
+    }
+    return render(request, 'select_option_position.html', context)
+
+def get_position_detail(request,position_id=None):
+    selected_position = PositionField.objects.filter(id=position_id).first()
+    context={
+        'PositionDetail' : selected_position,
+    }
+    return render(request, 'position_detail.html', context)
 
 def update_interview_log(request,user_profile,interview_status,order_items):
     interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=interview_status)

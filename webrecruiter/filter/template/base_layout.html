@@ -146,7 +146,7 @@
                   <p style="font-weight: 100;">Hi {{request.user|title}}</p>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
+                  <li><a href="{% url 'project'%}">Profile</a></li>
                   <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li class="divider"></li>

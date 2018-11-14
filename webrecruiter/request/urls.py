@@ -13,6 +13,10 @@ urlpatterns = [
     url(r'^candidate/$', views.request_candidate, name='request_candidate'),
     url(r'^show_close_request_candidate/$', views.show_close_request_candidate, name='show_close_request_candidate'),
     url(r'^show_open_request_candidate/$', views.show_open_request_candidate, name='show_open_request_candidate'),
+    url(r'^get_position/(?P<project_id>[-\w]+)/$', views.get_position, name='get_position'),
+    url(r'^get_position_detail/(?P<position_id>[-\w]+)/$', views.get_position_detail, name='get_position_detail'),
+
+
 
 
 ]

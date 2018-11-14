@@ -1,0 +1,71 @@
+<!-- Modal -->
+<div class="modal fade" id="selected_project_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <form method="post" action="{% url 'add_project' %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#ff9800">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title" style="color:#fff">Create New Project</h5>
+        </div>
+        <div class="modal-body">
+          <form class="" action="" method="post">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Position Owner</label>
+                  <input type="text" name="position_owner" class="form-control border-input" disabled placeholder="Project Owner" value="{{ ProjectOwner.user.username }}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label>Project Name</label>
+                  <input type="text" name="project_name" class="form-control border-input" required placeholder="Project Name" >
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Site</label>
+                  <input type="text" name="project_site" class="form-control border-input" required placeholder="Site" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Project Type</label>
+                  <select class="form-control" name="project_type_id" required>
+                    {% for type in ProjectTypes %}
+                      <option value="{{ type.project_type_id }}">{{ type.project_type_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>ความเร่งด่วน</label>
+                  <select class="form-control" name="level" required>
+                    {% for level in Levels %}
+                      <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-info">Save changes</button>
+        </div>
+      </div>
+      <!--  -->
+    </form>
+  </div>
+</div>
