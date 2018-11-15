@@ -13,7 +13,7 @@ from jobapply.models import CandidateBasic
 from candidate_cart.models import OrderItem, Order, InterviewStatus, InterviewStatusLog
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
-from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from request.generate_id import generate_request_id
 from request.generate_id import generate_comment_id
 from request.compare_time import compare_request_now_time
@@ -24,7 +24,7 @@ import math
 from django.db.models import Q
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
 
 
 def get_cart_amount(request):
@@ -232,7 +232,7 @@ def show_open_request_candidate(request):
 def new_request_candidate(request):
     # project_types = ProjectType.objects.all()
     # levels = LevelRequest.objects.all()
-    positions = Position.objects.all()
+    positions = PositionAll.objects.all()
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
 
@@ -243,37 +243,46 @@ def new_request_candidate(request):
 
     if request.method == 'POST':
         request_id = generate_request_id()
+        print("request_id",request_id)
         request_title = request.POST.get('request_title')
-        project_name = request.POST.get('project_name')
-        project_site = request.POST.get('project_site')
-        tor_employee_amount = request.POST.get('tor_employee_amount')
+        project_id = request.POST.get('project_name')
+        project = Project.objects.filter(id=project_id).first()
+        print(project_id,"project",project)
+        position_id = request.POST.get('position_name')
+        position = PositionField.objects.filter(id=position_id)
+        print(position_id,"position",position)
+        tor_employee_amount = position.first().position_tor_amount
         now_employee_amount = request.POST.get('now_employee_amount')
-        vacancy_employee_amount = request.POST.get('vacancy_employee_amount')
         requirement = request.POST.get('requirement')
         certification = request.POST.get('certification')
         note = request.POST.get('note')
 
-        project_type_id = request.POST.get('project_type')
-        # project_type = get_object_or_404(ProjectType, project_type_id=project_type_id)
-        level_id = request.POST.get('level')
-        # level = get_object_or_404(LevelRequest, level_id=level_id)
         owner = get_object_or_404(Profile, user=request.user)
         status = get_object_or_404(Status, status_id='1')
         request_type = get_object_or_404(RequestType, request_type_id='1')
 
-        request_position_id = request.POST.get('request_position')
-        request_position_other = request.POST.get('request_position_other_name')
-        print(request_position_id,"||||||||||",request_position_other)
-        request_position = get_object_or_404(Position, position_id=request_position_id)
-
-        request_candidate = RequestCandidate(project_name=project_name,
-                                             project_site=project_site,tor_employee_amount=tor_employee_amount,
-                                             now_employee_amount=now_employee_amount,vacancy_employee_amount=vacancy_employee_amount,
-                                             requirement=requirement,certification=certification,note=note,project_type=project_type,
-                                             level=level)
+        print(request_title,tor_employee_amount,now_employee_amount,requirement,certification,note)
+        print(owner,status,request_type)
+        request_candidate = RequestCandidate(project=project,
+                                             position=position.first(),
+                                             tor_employee_amount=tor_employee_amount,
+                                             now_employee_amount=now_employee_amount,
+                                             requirement=requirement,
+                                             certification=certification,
+                                             note=note,)
         request_candidate.save()
 
-        request_detail = Request(request_id=request_id,request_type=request_type,request_candidate=request_candidate,request_title=request_title,request_position=request_position,request_position_other=request_position_other,owner=owner,status=status)
+        position.update(position_now_amount=int(now_employee_amount),
+                        requirement=requirement,
+                        certification=certification,
+                        note=note,)
+
+        request_detail = Request(request_id=request_id,
+                                 request_type=request_type,
+                                 request_candidate=request_candidate,
+                                 request_title=request_title,
+                                 request_position=position.first().position_name,
+                                 owner=owner,status=status)
         request_detail.save()
 
     context = {

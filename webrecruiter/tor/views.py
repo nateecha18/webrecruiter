@@ -21,7 +21,7 @@ import csv
 
 from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,Project,PositionField,PositionAll
 from account.models import Profile
-from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from django.db.models import Q
 from django.db.models import Avg, Count, Min, Sum
 

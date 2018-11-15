@@ -19,7 +19,7 @@ from django.template import loader, RequestContext
 from django.template import Context, Template
 from django.template.loader import render_to_string
 import csv
-from request.models import Status,Comment,RequestType,Position,RequestCandidate,RequestInterview,Request
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from candidate_cart.models import OrderItem, Order, InterviewStatus
 from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionAll
 

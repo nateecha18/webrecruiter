@@ -2,7 +2,7 @@ from django.db import models
 from jobapply.models import CandidateBasic
 from account.models import Profile
 from candidate_cart.models import OrderItem,Order
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
 
 # Create your models here.
 class Status(models.Model):
@@ -31,26 +31,20 @@ class RequestType(models.Model):
     def __str__(self):
         return self.request_type_id
 
-class Position(models.Model):
-    position_id = models.CharField(max_length=5)
-    position_name = models.CharField(max_length=150)
-
-    def __str__(self):
-        return self.position_name
-
 
 class RequestCandidate(models.Model):
-    project_name = models.CharField(max_length=100, blank=True, null=True)
-    project_site = models.CharField(max_length=100, blank=True, null=True)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
+    position = models.ForeignKey(PositionField, on_delete=models.SET_NULL, null=True)
     tor_employee_amount = models.IntegerField(blank=True, null=True)
     now_employee_amount = models.IntegerField(blank=True, null=True)
-    vacancy_employee_amount = models.IntegerField(blank=True, null=True)
     requirement = models.CharField(max_length=300, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
     note = models.CharField(max_length=300, blank=True, null=True)
 
     def __int__(self):
         return self.id
+    def diff_empty_amount(self):
+        return self.tor_employee_amount - self.now_employee_amount
 
 class RequestInterview(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
@@ -66,7 +60,7 @@ class Request(models.Model):
     request_interview = models.OneToOneField(RequestInterview, on_delete=models.SET_NULL, null=True,blank=True)
     request_candidate = models.OneToOneField(RequestCandidate, on_delete=models.SET_NULL, null=True,blank=True)
     request_title = models.CharField(max_length=200, blank=True, null=True)
-    request_position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, blank=True)
+    request_position = models.ForeignKey(PositionAll, on_delete=models.SET_NULL, null=True, blank=True)
     request_position_other = models.CharField(max_length=100, blank=True, null=True)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='creator') # คน Request
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)

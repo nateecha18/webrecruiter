@@ -131,7 +131,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-4 control-label text-right">Project Name :</label>
                         <div class="col-sm-8 text-left">
-                          <p>{{ Selected_request.request_candidate.project_name }}</p>
+                          <p>{{ Selected_request.request_candidate.project.project_name }}</p>
                         </div>
                       </div>
                     </fieldset>
@@ -139,7 +139,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-4 control-label text-right">Project Type :</label>
                         <div class="col-sm-8 text-left">
-                          <p>{{ Selected_request.request_candidate.project_type.project_type_name }}</p>
+                          <p>{{ Selected_request.request_candidate.project.project_type.project_type_name }}</p>
                         </div>
                       </div>
                     </fieldset>
@@ -147,7 +147,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-4 control-label text-right">Site :</label>
                         <div class="col-sm-8 text-left">
-                          <p>{{ Selected_request.request_candidate.project_site }}</p>
+                          <p>{{ Selected_request.request_candidate.project.project_site }}</p>
                         </div>
                       </div>
                     </fieldset>
@@ -189,7 +189,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-5 control-label text-right">จำนวนที่ขาด :</label>
                         <div class="col-sm-7 text-left">
-                          <p>{{ Selected_request.request_candidate.vacancy_employee_amount }}</p>
+                          <p>{{ Selected_request.request_candidate.diff_empty_amount }}</p>
                         </div>
                       </div>
                     </fieldset>
@@ -197,7 +197,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-5 control-label text-right">ความเร่งด่วน :</label>
                         <div class="col-sm-7 text-left">
-                          <p>{{ Selected_request.request_candidate.level.level_name }}</p>
+                          <p>{{ Selected_request.request_candidate.project.level.level_name }}</p>
                         </div>
                       </div>
                     </fieldset>

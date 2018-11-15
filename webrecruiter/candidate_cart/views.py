@@ -9,11 +9,12 @@ from jobapply.models import CandidateBasic
 
 from candidate_cart.extras import generate_order_id
 from candidate_cart.models import OrderItem, Order, InterviewStatus,InterviewStatusLog
-from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request,Position
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from request.generate_id import generate_request_id
 # import datetime
 # from datetime import datetime,date,time,timedelta, timezone
 from datetime import datetime
+from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
 
 
 import datetime
@@ -100,7 +101,7 @@ def order_details(request, **kwargs):
 
 @login_required()
 def create_interview(request):
-    positions = Position.objects.all()
+    positions = PositionAll.objects.all()
     existing_order = get_user_pending_order(request)
     cart_amount = ''
     if existing_order!=0:
@@ -117,7 +118,7 @@ def create_interview(request):
         request_position_id = request.POST.get('request_position')
         request_position_other = request.POST.get('request_position_other_name')
         print(request_position_id,"||||||||||",request_position_other)
-        request_position = get_object_or_404(Position, position_id=request_position_id)
+        request_position = get_object_or_404(PositionAll, position_id=request_position_id)
 
         user_profile = get_object_or_404(Profile, user=request.user)
         user_order = Order.objects.get(owner=user_profile, is_ordered=False)

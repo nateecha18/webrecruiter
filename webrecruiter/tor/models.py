@@ -109,6 +109,9 @@ class PositionField(models.Model):
     position_now_amount = models.IntegerField(blank=True, null=True)
     datetime_add_position = models.DateTimeField(auto_now_add=True)
     datetime_update_position = models.DateTimeField(auto_now=True)
+    requirement = models.CharField(max_length=300, blank=True, null=True)
+    certification = models.CharField(max_length=200, blank=True, null=True)
+    note = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return self.position_name.position_name
