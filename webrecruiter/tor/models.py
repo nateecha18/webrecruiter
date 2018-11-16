@@ -27,9 +27,9 @@ class PositionProject(models.Model):
     project_tor_amount = models.IntegerField(blank=True, null=True)
     project_now_amount = models.IntegerField(blank=True, null=True)
     level = models.ForeignKey(ProjectLevel, on_delete=models.SET_NULL, null=True)
-    requirement = models.CharField(max_length=300, blank=True, null=True)
+    requirement = models.CharField(max_length=250, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
-    note = models.CharField(max_length=300, blank=True, null=True)
+    note = models.CharField(max_length=250, blank=True, null=True)
     datetime_add_project = models.DateTimeField(auto_now_add=True)
     datetime_update_project = models.DateTimeField(auto_now=True)
 
@@ -44,9 +44,9 @@ class PositionProject(models.Model):
 class Tor(models.Model):
     position_name = models.CharField(max_length=150, blank=True, null=True)
     position_type = models.CharField(max_length=50, blank=True, null=True)
-    position_role_des = models.CharField(max_length=500, blank=True, null=True)
-    position_edu_des = models.CharField(max_length=500, blank=True, null=True)
-    position_exp_des = models.CharField(max_length=500, blank=True, null=True)
+    position_role_des = models.CharField(max_length=250, blank=True, null=True)
+    position_edu_des = models.CharField(max_length=250, blank=True, null=True)
+    position_exp_des = models.CharField(max_length=250, blank=True, null=True)
     position_tor_amount = models.IntegerField(blank=True, null=True)
     position_now_amount = models.IntegerField(blank=True, null=True)
     position_project = models.ManyToManyField(PositionProject,blank=True)
@@ -109,9 +109,9 @@ class PositionField(models.Model):
     position_now_amount = models.IntegerField(blank=True, null=True)
     datetime_add_position = models.DateTimeField(auto_now_add=True)
     datetime_update_position = models.DateTimeField(auto_now=True)
-    requirement = models.CharField(max_length=300, blank=True, null=True)
+    requirement = models.CharField(max_length=250, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
-    note = models.CharField(max_length=300, blank=True, null=True)
+    note = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
         return self.position_name.position_name

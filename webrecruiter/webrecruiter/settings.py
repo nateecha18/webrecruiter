@@ -103,8 +103,12 @@ WSGI_APPLICATION = 'webrecruiter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'webrecruiter',
+        'USER': 'root',
+        'PASSWORD': '18072539',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 

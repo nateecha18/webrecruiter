@@ -38,14 +38,14 @@ class Country(models.Model):
         return self.countryNameTH
 
 class Institute(models.Model):
-    name = models.CharField(primary_key=True,max_length=500)
+    name = models.CharField(primary_key=True,max_length=250)
 
     def __str__(self):
         return self.name
 
 class CandidateComputerSkill(models.Model):
     """docstring forCandidate_Computer_Skill."""
-    tags = models.CharField(max_length=300, blank=True, null=True)
+    tags = models.CharField(max_length=250, blank=True, null=True)
 
     def __int__(self):
         return self.id + '-' + self.tags
@@ -84,7 +84,7 @@ class CandidateBasic(models.Model):
 
     check_study = models.CharField(max_length=20, blank=True, null=True)
     nowEdu_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
-    nowEdu_instituteName = models.CharField(max_length=300, blank=True, null=True)
+    nowEdu_instituteName = models.CharField(max_length=250, blank=True, null=True)
     nowEdu_major = models.CharField(max_length=250, blank=True, null=True)
     nowEdu_gpa = models.CharField(max_length=10, blank=True, null=True)
 
@@ -157,7 +157,7 @@ class CandidateWorkExperience(models.Model):
     experience_companyEndDate = models.CharField(max_length=20, blank=True)
     experience_companyPosition = models.CharField(max_length=250, blank=True)
     experience_companySalary = models.CharField(max_length=15,blank=True)
-    experience_companyReason = models.CharField(max_length=300, blank=True)
+    experience_companyReason = models.CharField(max_length=250, blank=True)
 
     def __str__(self):
         return '{0} ( {1} - {2} )'.format(self.id, self.owner.firstname,self.experience_companyName)

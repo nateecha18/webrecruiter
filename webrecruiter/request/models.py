@@ -15,7 +15,7 @@ class Status(models.Model):
 class Comment(models.Model):
     comment_id = models.CharField(max_length=15)
     comment_title = models.CharField(max_length=100)
-    comment_detail = models.CharField(max_length=500)
+    comment_detail = models.CharField(max_length=250)
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True) # hr ที่สร้าง comment
     datetime_comment = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -37,9 +37,9 @@ class RequestCandidate(models.Model):
     position = models.ForeignKey(PositionField, on_delete=models.SET_NULL, null=True)
     tor_employee_amount = models.IntegerField(blank=True, null=True)
     now_employee_amount = models.IntegerField(blank=True, null=True)
-    requirement = models.CharField(max_length=300, blank=True, null=True)
+    requirement = models.CharField(max_length=250, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
-    note = models.CharField(max_length=300, blank=True, null=True)
+    note = models.CharField(max_length=250, blank=True, null=True)
 
     def __int__(self):
         return self.id
