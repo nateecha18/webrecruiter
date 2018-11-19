@@ -21,6 +21,8 @@ import json
 import csv
 
 from django.core import serializers
+from datetime import datetime
+from dateutil.parser import parse
 
 # Create your views here.
 def index(request):
@@ -69,7 +71,7 @@ def index(request):
 
             candidate_basic = CandidateBasic(id_number=id_number, position=position, salary=salary,
                                              profile_pic=profile_pic, nickname=nickname, name_title=name_title,
-                                             firstname=firstname,lastname=lastname, bdate=bdate, blood=blood,
+                                             firstname=firstname,lastname=lastname, bdate=datetime.strptime(bdate, '%m/%d/%Y'), blood=blood,
                                              nationality=nationality, race=race,
                                              religion=religion, status=status, email=email, mobile_no=mobile_no,
                                              home_no=home_no, facebook=facebook, line=line,

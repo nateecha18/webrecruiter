@@ -16,4 +16,5 @@ def generate_comment_id(request_id):
     print(selected_request)
     amount_comment = (selected_request.comment.count())+1
     rand_str = "".join([random.choice(string.digits) for count in range(3)])
+    print('{0}CM{1}-{2}'.format(request_id, rand_str,amount_comment))
     return '{0}CM{1}-{2}'.format(request_id, rand_str,amount_comment)

@@ -6,8 +6,9 @@ import math
 
 def compare_request_now_time(datetime_action):
 
-    tz = pytz.timezone('Asia/Bangkok')
-    delta = datetime.now(tz=tz) - datetime_action
+    # tz = pytz.timezone('Asia/Bangkok')
+    # delta = datetime.now(tz=tz) - datetime_action
+    delta = datetime.now() - datetime_action
     sec = timedelta(seconds=delta.seconds)
     time = datetime(1,1,1) + sec
     if (time.day-1) == 0:

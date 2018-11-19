@@ -29,102 +29,102 @@ $(document).ready(function(){
     // Code for the Validator
     var $validator = $('.wizard-card form').validate({
 		  rules: {
-		    // firstname: {
-		    //   required: true,
-		    //   minlength: 3
-		    // },
-		    // lastname: {
-		    //   required: true,
-		    //   minlength: 3
-		    // },
-		    // email: {
-		    //   required: true,
-		    //   minlength: 3,
-		    // },
-        // position: {
-		    //   required: true,
-		    // },
-        // salary: {
-		    //   required: true,
-		    // },
-        // profile_pic: {
-		    //   required: true,
-		    // },
-        // id_number: {
-		    //   required: true,
-		    //   minlength: 13,
-		    // },
-        // nickname: {
-		    //   required: true,
-		    //   minlength: 3,
-		    // },
-        // name_title: {
-		    //   required: true,
-		    // },
-        // bdate: {
-		    //   required: true,
-		    // },
-        // blood: {
-		    //   required: true,
-		    // },
-        // nationality: {
-		    //   required: true,
-		    // },
-        // race: {
-		    //   required: true,
-		    // },
-        // religion: {
-		    //   required: true,
-		    // },
-        // status: {
-		    //   required: true,
-		    // },
-        // mobile_no: {
-		    //   required: true,
-		    //   minlength: 10,
-		    // },
-        // check_study: {
-		    //   required: true,
-		    // },
-        // nowEdu_level: {
-		    //   required: true,
-		    // },
-        // nowEdu_instituteName: {
-		    //   required: true,
-		    // },
-        // nowEdu_major: {
-		    //   required: true,
-		    // },
-        // nowEdu_gpa: {
-		    //   required: true,
-		    // },
-        // edu_level: {
-		    //   required: true,
-		    // },
-        // edu_country: {
-		    //   required: true,
-		    // },
-        // edu_instituteName: {
-		    //   required: true,
-		    // },
-        // edu_fromYear: {
-		    //   required: true,
-		    // },
-        // edu_toYear: {
-        //   required: true,
-        // },
-        // edu_major: {
-        //   required: true,
-        // },
-        // edu_gpa: {
-        //   required: true,
-        // },
-        // attach_resume: {
-        //   required: true,
-        // },
-        // attach_transcript: {
-        //   required: true,
-        // },
+		    firstname: {
+		      required: true,
+		      minlength: 3
+		    },
+		    lastname: {
+		      required: true,
+		      minlength: 3
+		    },
+		    email: {
+		      required: true,
+		      minlength: 3,
+		    },
+        position: {
+		      required: true,
+		    },
+        salary: {
+		      required: true,
+		    },
+        profile_pic: {
+		      required: true,
+		    },
+        id_number: {
+		      required: true,
+		      minlength: 13,
+		    },
+        nickname: {
+		      required: true,
+		      minlength: 3,
+		    },
+        name_title: {
+		      required: true,
+		    },
+        bdate: {
+		      required: true,
+		    },
+        blood: {
+		      required: true,
+		    },
+        nationality: {
+		      required: true,
+		    },
+        race: {
+		      required: true,
+		    },
+        religion: {
+		      required: true,
+		    },
+        status: {
+		      required: true,
+		    },
+        mobile_no: {
+		      required: true,
+		      minlength: 10,
+		    },
+        check_study: {
+		      required: true,
+		    },
+        nowEdu_level: {
+		      required: true,
+		    },
+        nowEdu_instituteName: {
+		      required: true,
+		    },
+        nowEdu_major: {
+		      required: true,
+		    },
+        nowEdu_gpa: {
+		      required: true,
+		    },
+        edu_level: {
+		      required: true,
+		    },
+        edu_country: {
+		      required: true,
+		    },
+        edu_instituteName: {
+		      required: true,
+		    },
+        edu_fromYear: {
+		      required: true,
+		    },
+        edu_toYear: {
+          required: true,
+        },
+        edu_major: {
+          required: true,
+        },
+        edu_gpa: {
+          required: true,
+        },
+        attach_resume: {
+          required: true,
+        },
+        attach_transcript: {
+          required: true,
+        },
         },
 
         errorPlacement: function(error, element) {

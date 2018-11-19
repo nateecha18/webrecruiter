@@ -66,6 +66,16 @@ $("#filter_option1").change(function()
 	} else {
 		$("#language_value1").hide();
 	}
+	if($(this).val() == "14"){
+		$("#experience_value1").show();
+	} else {
+		$("#experience_value1").hide();
+	}
+	if($(this).val() == "15"){
+		$("#workexp_value1").show();
+	} else {
+		$("#workexp_value1").hide();
+	}
 
 
 });
@@ -82,3 +92,5 @@ $("#gpa_value1").hide();
 $("#comskill_value1").hide();
 $("#major_value1").hide();
 $("#language_value1").hide();
+$("#experience_value1").hide();
+$("#workexp_value1").hide();

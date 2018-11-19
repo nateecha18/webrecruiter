@@ -353,10 +353,10 @@ Candidate Details | WebRecruiter
                 <div class="col-lg-3 text-left">
                   <h6 class="title" style="font-weight: 500;">{{ comment.datetime_comment|date:"d/M/Y | H:i" }}</h6>
                 </div>
-                <div class="col-lg-5 text-left">
+                <div class="col-lg-7 text-left">
                   <h6 class="title" style="font-weight: 400; color:#e09b67;">{{ comment.comment_title }}</h6>
                 </div>
-                <div class="col-lg-4 text-right">
+                <div class="col-lg-2 text-right">
                   <h6 class="title">{{ comment.owner }}</h6>
                 </div>
               </div>
@@ -384,14 +384,14 @@ Candidate Details | WebRecruiter
         <div class="content">
           <form method="post">
             {% csrf_token %}
-            <fieldset style="margin-bottom:20px;">
+            <!-- <fieldset style="margin-bottom:20px;">
               <div class="form-group">
                 <label class="col-sm-3 control-label">Comment Title</label>
                 <div class="col-sm-9">
                   <input class="form-control" type="text" name="comment_title" required="required" />
                 </div>
               </div>
-            </fieldset>
+            </fieldset> -->
 
             <fieldset style="margin-bottom:20px;">
               <div class="form-group">

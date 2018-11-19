@@ -554,13 +554,13 @@ p.small {
               <div class="col-md-3">
                 <div class="form-group">
                   <label>วันเกิด (Date of Birth)</label>
-                  <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.bdate }}">
+                  <input type="text" class="form-control border-input" disabled placeholder="bdate" value="{{ Selected_candidate.bdate|date:"d/M/Y" }}">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label>อายุ (Age)</label>
-                  <input type="text" class="form-control border-input" disabled placeholder="Username" value="19 ปี">
+                  <input type="text" class="form-control border-input" disabled placeholder="Age" value="{{ Selected_candidate.calculate_age }}">
                 </div>
               </div>
               <div class="col-md-3">

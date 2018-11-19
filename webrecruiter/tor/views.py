@@ -35,9 +35,11 @@ def index(request):
     project_all = Project.objects.all()
     all_tor_amount = 0
     all_now_amount = 0
+    print("project_all",project_all)
     for project in project_all:
-        all_tor_amount += project.positions.all().aggregate(Sum('position_tor_amount'))['position_tor_amount__sum']
-        all_now_amount += project.positions.all().aggregate(Sum('position_now_amount'))['position_now_amount__sum']
+        if project.positions.all():
+            all_tor_amount += project.positions.all().aggregate(Sum('position_tor_amount'))['position_tor_amount__sum']
+            all_now_amount += project.positions.all().aggregate(Sum('position_now_amount'))['position_now_amount__sum']
     diff_amount = all_tor_amount-all_now_amount
     context={
         'Tors' : tor_all,

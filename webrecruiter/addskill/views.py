@@ -22,6 +22,7 @@ import csv
 from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from candidate_cart.models import OrderItem, Order, InterviewStatus
 from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionAll
+from jobapply.models import CandidateHistoryEducation, CandidateComputerSkill, CandidateLanguageSkill, CandidateCertExperience, CandidateWorkExperience, CandidateAttachment, CandidateBasic, EducationLevel,Institute,Country,Skill,SkillType,ExtraSkill
 
 
 
@@ -109,6 +110,56 @@ def load_interview_status(file_path):
     for row in reader:
         interview_status = InterviewStatus(status_id=row['status_id'],status_name=row['status_name'])
         interview_status.save()
+
+def load_skill_type(file_path):
+    "this loads skill_type from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        skill_type = SkillType(type_id=row['type_id'],type_name=row['type_name'])
+        skill_type.save()
+
+def load_skill(file_path):
+    "this loads Skill from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        skill_type = SkillType.objects.filter(type_id=row['skill_type']).first()
+        skill = Skill(skill_name=row['skill_name'],skill_type=skill_type)
+        skill.save()
+
+def load_edu_level(file_path):
+    "this loads edu_level from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        edu_level = EducationLevel(value=row['value'],education_level=row['education_level'])
+        edu_level.save()
+
+def load_country(file_path):
+    "this loads country from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        country = Country(countryCode=row['countryCode'],currencyCode=row['currencyCode'],countryNameENG=row['countryNameENG'],countryNameTH=row['countryNameTH'])
+        country.save()
+
+def load_institute(file_path):
+    "this loads institute from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        institute = Institute(name=row['name'])
+        institute.save()
+
+def load_status(file_path):
+    "this loads status from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        status = Status(status_id=row['status_id'],status_name=row['status_name'])
+        status.save()
+
+def load_request_type(file_path):
+    "this loads request_type from pipe delimited file with headers"
+    reader = csv.DictReader(open(file_path))
+    for row in reader:
+        request_type = RequestType(request_type_id=row['request_type_id'],request_type_name=row['request_type_name'])
+        request_type.save()
 
 def load_project_type(file_path):
     "this loads ProjectType from pipe delimited file with headers"

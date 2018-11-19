@@ -42,91 +42,103 @@ def get_cart_amount(request):
 def get_open_request(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    status_close = Status.objects.filter(status_name='Closed').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(~Q(status_id='3'))
-        open_request = Request.objects.filter(~Q(status_id='3')).count()
-        close_request = Request.objects.filter(status_id='3').count()
+        request_all = Request.objects.filter(~Q(status_id=status_close))
+        open_request = Request.objects.filter(~Q(status_id=status_close)).count()
+        close_request = Request.objects.filter(status_id=status_close).count()
 
     else:
-        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'))
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3').count()
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close).count()
     return request_all,open_request,close_request
 
 def get_close_request(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    status_close = Status.objects.filter(status_name='Closed').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(status_id='3')
-        open_request = Request.objects.filter(~Q(status_id='3')).count()
-        close_request = Request.objects.filter(status_id='3').count()
+        request_all = Request.objects.filter(status_id=status_close)
+        open_request = Request.objects.filter(~Q(status_id=status_close)).count()
+        close_request = Request.objects.filter(status_id=status_close).count()
 
     else:
-        request_all = Request.objects.filter(owner=user_profile,status_id='3')
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3').count()
+        request_all = Request.objects.filter(owner=user_profile,status_id=status_close)
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close).count()
     return request_all,open_request,close_request
 
 def get_close_request_interview(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    request_type_interview = RequestType.objects.filter(request_type_name='RequestInterview').first()
+    status_close = Status.objects.filter(status_name='Closed').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(status_id='3',request_type='2')
-        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='2')).count()
-        close_request = Request.objects.filter(status_id='3',request_type='2').count()
+        request_all = Request.objects.filter(status_id=status_close,request_type=request_type_interview)
+        open_request = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_interview)).count()
+        close_request = Request.objects.filter(status_id=status_close,request_type=request_type_interview).count()
 
     else:
-        request_all = Request.objects.filter(owner=user_profile,status_id='3',request_type='2')
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='2').count()
+        request_all = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_interview)
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_interview)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_interview).count()
     return request_all,open_request,close_request
 
 def get_open_request_interview(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    request_type_interview = RequestType.objects.filter(request_type_name='RequestInterview').first()
+    status_close = Status.objects.filter(status_name='Closed').first()
+
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(~Q(status_id='3'),Q(request_type='2'))
-        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='2')).count()
-        close_request = Request.objects.filter(status_id='3',request_type='2').count()
+        print("HR")
+        request_all = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_interview))
+        open_request = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_interview)).count()
+        close_request = Request.objects.filter(status_id=status_close,request_type=request_type_interview).count()
 
     else:
-        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2'))
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='2')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='2').count()
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_interview))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_interview)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_interview).count()
     return request_all,open_request,close_request
 
 def get_close_request_candidate(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    request_type_candidate = RequestType.objects.filter(request_type_name='RequestCandidate').first()
+    status_close = Status.objects.filter(status_name='Closed').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(status_id='3',request_type='1')
-        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='1')).count()
-        close_request = Request.objects.filter(status_id='3',request_type='1').count()
+        request_all = Request.objects.filter(status_id=status_close,request_type=request_type_candidate)
+        open_request = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_candidate)).count()
+        close_request = Request.objects.filter(status_id=status_close,request_type=request_type_candidate).count()
 
     else:
-        request_all = Request.objects.filter(owner=user_profile,status_id='3',request_type='1')
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='1').count()
+        request_all = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_candidate)
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_candidate)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_candidate).count()
     return request_all,open_request,close_request
 
 def get_open_request_candidate(request):
     user = request.user
     user_profile = Profile.objects.filter(user=user).first()
+    request_type_candidate = RequestType.objects.filter(request_type_name='RequestCandidate').first()
+    status_close = Status.objects.filter(status_name='Closed').first()
 
     if has_role(user, 'hr'):
-        request_all = Request.objects.filter(~Q(status_id='3'),Q(request_type='1'))
-        open_request = Request.objects.filter(~Q(status_id='3'),Q(request_type='1')).count()
-        close_request = Request.objects.filter(status_id='3',request_type='1').count()
+        request_all = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_candidate))
+        open_request = Request.objects.filter(~Q(status_id=status_close),Q(request_type=request_type_candidate)).count()
+        close_request = Request.objects.filter(status_id=status_close,request_type=request_type_candidate).count()
 
     else:
-        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1'))
-        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id='3'),Q(request_type='1')).count()
-        close_request = Request.objects.filter(owner=user_profile,status_id='3',request_type='1').count()
+        request_all = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_candidate))
+        open_request = Request.objects.filter(Q(owner=user_profile),~Q(status_id=status_close),Q(request_type=request_type_candidate)).count()
+        close_request = Request.objects.filter(owner=user_profile,status_id=status_close,request_type=request_type_candidate).count()
     return request_all,open_request,close_request
 
 # ______________________________________________________________________________________________________________________________________________
@@ -328,7 +340,7 @@ def request_detail(request,request_id):
 
     if request.method == 'POST':
         comment_id = generate_comment_id(request_id)
-        comment_title = request.POST.get('comment_title')
+        comment_title = ''
         comment_detail = request.POST.get('comment_detail')
         status_id = request.POST.get('status')
         owner = get_object_or_404(Profile, user=request.user)
@@ -336,9 +348,7 @@ def request_detail(request,request_id):
             print("Entry1")
             status = Status.objects.filter(status_id=status_id).first()
             if status != last_status:
-                status_comment = 'Status changed from {0} to {1} by {2}'.format(last_status.status_name,status.status_name,owner.user.first_name)
-                comment_detail = status_comment + comment_detail
-                print(comment_detail)
+                comment_title = 'Status changed from {0} to {1} by {2}'.format(last_status.status_name,status.status_name,owner.user.first_name)
                 print("Not Same Status")
                 selected_request.status=status
             comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner,status=status)

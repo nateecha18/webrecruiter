@@ -13,8 +13,8 @@ class Status(models.Model):
         return self.status_name
 
 class Comment(models.Model):
-    comment_id = models.CharField(max_length=15)
-    comment_title = models.CharField(max_length=100)
+    comment_id = models.CharField(max_length=40)
+    comment_title = models.CharField(max_length=100, null=True, blank=True)
     comment_detail = models.CharField(max_length=250)
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True) # hr ที่สร้าง comment

@@ -1,5 +1,6 @@
 
 from django.db import models
+from datetime import datetime, timedelta, time
 
 class SkillType(models.Model):
     type_id = models.AutoField(primary_key=True)
@@ -29,7 +30,7 @@ class EducationLevel(models.Model):
         return self.value
 
 class Country(models.Model):
-    countryCode = models.CharField(primary_key=True,max_length=3)
+    countryCode = models.CharField(primary_key=True,max_length=5)
     currencyCode = models.CharField(max_length=3, blank=True, null=True)
     countryNameENG = models.CharField(max_length=200, blank=True, null=True)
     countryNameTH = models.CharField(max_length=200, blank=True, null=True)
@@ -66,7 +67,7 @@ class CandidateBasic(models.Model):
     name_title = models.CharField(max_length=50, blank=True)
     firstname = models.CharField(max_length=250, blank=True)
     lastname = models.CharField(max_length=250, blank=True)
-    bdate = models.CharField(max_length=250, blank=True)
+    bdate = models.DateTimeField(default=datetime.now)
     blood = models.CharField(max_length=5, blank=True)
     nationality = models.CharField(max_length=100, blank=True)
     race = models.CharField(max_length=100, blank=True)
@@ -95,6 +96,11 @@ class CandidateBasic(models.Model):
 
     def __str__(self):
         return 'CandidateBasic : {0}'.format(self.id_number)
+
+    def calculate_age(self):
+        today = datetime.today()
+        return today.year - self.bdate.year - ((today.month, today.day) < (self.bdate.month, self.bdate.day))
+
 
 def user_attachment_directory_path(instance, filename):
     # file will be uploaded to webrecruiter/static/uploads/candidate_<ID_NUMBER>/attachment/<FILENAME>

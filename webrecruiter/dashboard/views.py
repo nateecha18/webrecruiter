@@ -30,6 +30,11 @@ from dateutil.relativedelta import *
 import calendar
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
+from django.utils import timezone
+import pytz
+from datetime import datetime, timedelta, time
+from django.db.models import Q
+
 # Create your views here.
 
 User = get_user_model()
@@ -62,8 +67,15 @@ class HomeView(View):
             request_interview_open = Request.objects.filter(owner=user_profile,request_type=request_interview_type,status=status_open)
             request_interview_close = Request.objects.filter(owner=user_profile,request_type=request_interview_type,status=status_close)
 
-        today = datetime.datetime.now()
-        candidate_today = CandidateBasic.objects.filter(date_apply__gt=today)
+        print(timezone.now())
+        today = datetime.now()
+        today_date = datetime.now().date()
+        tomorrow = today_date + timedelta(1)
+        today_start = datetime.combine(today_date, time())
+        today_end = datetime.combine(tomorrow, time())
+
+        print(today,"hhhh",today_date,"hhhh",tomorrow,"hhhh",today_start,"hhhh",today_end)
+        candidate_today = CandidateBasic.objects.filter(date_apply__gt=today_date)
         print("++++++++++++++++++++",candidate_today)
         context = {
             'candidates' : candidate,
@@ -89,8 +101,7 @@ class ChartData(APIView):
     permission_classes = []
 
     def get(self, request, format=None):
-        today = datetime.datetime.now()
-
+        today = datetime.now()
         last_month = today.month - 12 if today.month>1 else 12
         last_month_year = today.year if today.month > last_month else today.year - 1
         print(last_month,last_month_year)
@@ -98,7 +109,7 @@ class ChartData(APIView):
         month_label = []
         count_candidate_data = []
         for m in range(0, 6):
-            date_months_ago = datetime.datetime.now() - relativedelta(months=m)
+            date_months_ago = datetime.now() - relativedelta(months=m)
             months_ago = date_months_ago.month
             year_ago = date_months_ago.year
             month_label.insert(0,calendar.month_name[months_ago])
