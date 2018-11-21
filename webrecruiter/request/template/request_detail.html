@@ -171,32 +171,40 @@ Candidate Details | WebRecruiter
                   <div class="row">
                     <fieldset>
                       <div class="form-group">
-                        <label class="col-sm-5 control-label text-right">จำนวนตาม TOR :</label>
-                        <div class="col-sm-7 text-left">
+                        <label class="col-sm-6 control-label text-right">จำนวนตาม TOR :</label>
+                        <div class="col-sm-6 text-left">
                           <p>{{ Selected_request.request_candidate.tor_employee_amount }}</p>
                         </div>
                       </div>
                     </fieldset>
                     <fieldset>
                       <div class="form-group">
-                        <label class="col-sm-5 control-label text-right">จำนวนตามจริง :</label>
-                        <div class="col-sm-7 text-left">
+                        <label class="col-sm-6 control-label text-right">จำนวนตามจริง :</label>
+                        <div class="col-sm-6 text-left">
                           <p>{{ Selected_request.request_candidate.now_employee_amount }}</p>
                         </div>
                       </div>
                     </fieldset>
                     <fieldset>
                       <div class="form-group">
-                        <label class="col-sm-5 control-label text-right">จำนวนที่ขาด :</label>
-                        <div class="col-sm-7 text-left">
+                        <label class="col-sm-6 control-label text-right">จำนวนที่ขาด :</label>
+                        <div class="col-sm-6 text-left">
                           <p>{{ Selected_request.request_candidate.diff_empty_amount }}</p>
                         </div>
                       </div>
                     </fieldset>
                     <fieldset>
                       <div class="form-group">
-                        <label class="col-sm-5 control-label text-right">ความเร่งด่วน :</label>
-                        <div class="col-sm-7 text-left">
+                        <label class="col-sm-6 control-label text-right">จำนวนที่ขาด ณ ปัจจุบัน :</label>
+                        <div class="col-sm-6 text-left">
+                          <p>{{ Selected_request.request_candidate.diff_empty_amount_now }}</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label text-right">ความเร่งด่วน :</label>
+                        <div class="col-sm-6 text-left">
                           <p>{{ Selected_request.request_candidate.project.level.level_name }}</p>
                         </div>
                       </div>
@@ -395,8 +403,8 @@ Candidate Details | WebRecruiter
 
             <fieldset style="margin-bottom:20px;">
               <div class="form-group">
-                <label class="col-sm-3 control-label">Comment</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 control-label">Comment</label>
+                <div class="col-sm-8">
                   <textarea name="comment_detail" rows="7" class="form-control" placeholder="Here can be your Comment !"></textarea>
                 </div>
               </div>
@@ -404,7 +412,7 @@ Candidate Details | WebRecruiter
 
             <fieldset style="margin-bottom:20px;">
               <div class="form-group">
-                <label class="col-sm-3 control-label">Request Status</label>
+                <label class="col-sm-4 control-label">Request Status</label>
                 <div class="col-sm-5">
                   <select class="form-control" name="status" required="required">
                       <!-- <option selected value="0" disabled>สถานะ</option> -->
@@ -419,6 +427,28 @@ Candidate Details | WebRecruiter
                 </div>
               </div>
             </fieldset>
+            {% if Selected_request.request_type.request_type_id == '1' %}
+            <fieldset style="margin-bottom:20px;">
+              <div class="form-group">
+                <div class="col-sm-4 control-label">
+                  <label class="checkbox">
+                    <input type="checkbox" data-toggle="checkbox" class="checkbox_update_amount" value="1" onchange="showAmountField()" name="checkbox_update_amount">
+                    จำนวนพนักงานที่สรรหาเพิ่ม {{Selected_request.request_candidate.diff_empty_amount_now}}
+                  </label>
+                </div>
+                <div class="">
+                  <div class="inline">
+                    <div class="col-sm-2">
+                        <input class="form-control" type="number" name="update_amount" min="1" max="{{Selected_request.request_candidate.diff_empty_amount_now}}"/>
+
+                    </div>
+                    <label class="inline-block" style="margin-top: 15px;"> คน </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            {% endif %}
 
             <div class="row">
               <div class="col-md-12 text-center">

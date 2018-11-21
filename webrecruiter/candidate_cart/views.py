@@ -52,24 +52,27 @@ def add_to_cart(request, **kwargs):
     # create orderItem of the selected product
     order_item, status = OrderItem.objects.get_or_create(candidate=candidate,owner=user_profile,is_ordered=False,is_interviewed=False)
     # ถ้าสร้าง Order_item ขึ้นมาใหม่
-    # if status:
-    interview_status = InterviewStatus.objects.filter(status_name='IN REVIEW').first()
-    print(interview_status)
-    order_item.interview_status = interview_status
-    interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=interview_status)
-    interview_status_log.save()
-    order_item.interview_status_log.add(interview_status_log)
-    order_item.save()
-    # create order associated with the user
-    user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
-    user_order.items.add(order_item)
     if status:
-        # generate a reference code
-        user_order.ref_code = generate_order_id()
-        user_order.save()
-    # show confirmation message and redirect back to the same page
-    messages.info(request, "item added to cart")
-    return redirect(reverse('filter'))
+        interview_status = InterviewStatus.objects.filter(status_name='IN REVIEW').first()
+        print(interview_status)
+        order_item.interview_status = interview_status
+        interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=interview_status)
+        interview_status_log.save()
+        order_item.interview_status_log.add(interview_status_log)
+        order_item.save()
+        # create order associated with the user
+        user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
+        user_order.items.add(order_item)
+        if status:
+            # generate a reference code
+            user_order.ref_code = generate_order_id()
+            user_order.save()
+        # show confirmation message and redirect back to the same page
+        messages.info(request, "Item added to cart!")
+        return redirect(reverse('filter'))
+    else:
+        messages.info(request, 'This candidate is in your cart already')
+        return redirect(reverse('filter'))
 
 
 @login_required()
@@ -204,7 +207,7 @@ def update_interview_records(request, order_id):
 
     # send an email to the customer
     # look at tutorial on how to send emails with sendgrid
-    messages.info(request, "Thank you! Your purchase was successful!")
+    messages.info(request, "Thank you! Your Request was successful!")
     return redirect(reverse('filter'))
 
 #

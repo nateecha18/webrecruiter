@@ -23,7 +23,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from candidate_cart.models import OrderItem, Order
+from candidate_cart.models import OrderItem, Order, InterviewStatus,InterviewStatusLog
 from account.models import Profile
 from django.core import serializers
 import json
@@ -32,6 +32,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 import os
 from django.conf import settings
 from django.template.loader import render_to_string
+from rolepermissions.checkers import has_role
+
 
 
 def get_cart_amount(request):
@@ -335,6 +337,8 @@ def index(request):
 
 def candidate_detail(request,candidate_id):
     if request.user.is_authenticated:
+        user = request.user
+        user_profile = Profile.objects.filter(user=user).first()
         filtered_orders = Order.objects.filter(owner=request.user.profile, is_ordered=False)
         cart_amount = get_cart_amount(request)
 
@@ -353,8 +357,19 @@ def candidate_detail(request,candidate_id):
         if not history_education.exists():
             history_education = CandidateHistoryEducation.objects.none()
         print("History Amount : ",history_education)
-
         print(list_skill)
+        if has_role(user, 'hr'):
+            history = OrderItem.objects.filter(candidate=selected_candidate)
+        else :
+            history = OrderItem.objects.filter(candidate=selected_candidate,owner=user_profile)
+        interview_status_review = InterviewStatus.objects.filter(status_name='IN REVIEW').first()
+        interview_status_request = InterviewStatus.objects.filter(status_name='IN REQUEST').first()
+        interview_status_inprogress = InterviewStatus.objects.filter(status_name='IN PROGRESS').first()
+        interview_status_interviewed = InterviewStatus.objects.filter(status_name='INTERVIEWED').first()
+
+
+
+
         return render(request,
                       'candidate_detail.html',
                       {'Candidate_id': candidate_id,
@@ -366,6 +381,11 @@ def candidate_detail(request,candidate_id):
                        'Attachment' : attachment,
                        'CertExperience' : cert_experience,
                        'WorkExperience' : work_experience,
+                       'History' : history,
+                       'interview_status_review' : interview_status_review,
+                       'interview_status_request' : interview_status_request,
+                       'interview_status_inprogress' : interview_status_inprogress,
+                       'interview_status_interviewed' : interview_status_interviewed,
                        })
     else:
         return redirect('login')

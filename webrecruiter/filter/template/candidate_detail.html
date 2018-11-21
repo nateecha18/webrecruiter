@@ -520,6 +520,48 @@ p.small {
           </ul>
         </div>
       </div>
+      <div class="card">
+        <div class="header">
+          <h4 class="title">History</h4>
+        </div>
+
+        <div class="content">
+          <div style=" overflow: auto; {% if History %}height:400px;{% else %} height:100px;{% endif%}">
+            <ul class="list-unstyled team-members">
+              <!-- ประวัติ -->
+              {% if History %}
+              {% for history in History%}
+                {% for log in history.get_interview_log %}
+                  <li>
+                    <div class="row">
+                      <div class="col-xs-9" style="margin-top:5px;">
+                        {{ log.updater.user.first_name }}
+                        {% if log.interview_status == interview_status_review %}
+                          เพิ่มผู้สมัครลง Cart
+                        {% elif log.interview_status == interview_status_request %}
+                          ส่งคำร้องขอนัดสัมภาษณ์
+                        {% elif log.interview_status == interview_status_inprogress %}
+                          อัพเดตคำร้องของ {{ history.owner.user.first_name }} (อยู่ระหว่างดำเนินการ)
+                        {% elif log.interview_status == interview_status_interviewed %}
+                          อัพเดตคำร้องของ {{ history.owner.user.first_name }} (นัดสัมภาษณแล้ว)
+                        {% endif %}
+                      </div>
+                      <div class="col-xs-3 text-right" style="color:#ff9800; font-weight:500;">
+                        {{ log.datetime_update_status|date:"d/M/Y" }}
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% endfor %}
+              {% else %}
+              <div class="row no_caption">
+                <label>ไม่มีประวัติ</label>
+              </div>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-8 col-md-7">

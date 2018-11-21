@@ -33,6 +33,9 @@ class OrderItem(models.Model):
     def __str__(self):
         return '{0} - {1} - isO:{2} - isI:{3}'.format(self.candidate.id_number,self.owner,self.is_ordered,self.is_interviewed)
 
+    def get_interview_log(self):
+        return self.interview_status_log.all()
+
 
 class Order(models.Model):
     ref_code = models.CharField(max_length=15)

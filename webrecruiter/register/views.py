@@ -50,6 +50,6 @@ class  UserFormView(View):
 
                 if user.is_active:
                     login(request,user)
-                    return redirect('filter')
+                    return redirect('home')
 
         return render(request, self.template_name, {'form':form})

@@ -9,91 +9,333 @@ WebRecruiter
 {% block stylesheet %}
 {% endblock %}
 <script>
-{% block jquery %}
-var endpoint = "{% url 'api-chart-data' %}"
-var labels = []
-var defaultData = []
-$.ajax({
-  method : "GET",
-  url : endpoint,
-  success:function(data){
-    labels = data.labels
-    defaultData = data.default
-    console.log(data)
-    setChart()
-  },
-  error:function(error){
-    console.log("error")
-    console.log(error_data)
+  {% block jquery %}
+  var endpoint = "{% url 'api-chart-data' %}"
+  var labels = []
+  var defaultData = []
+  $.ajax({
+    method : "GET",
+    url : endpoint,
+    success:function(data){
+      labels = data.labels
+      defaultData = data.default
+      console.log(data)
+      setChart()
+    },
+    error:function(error){
+      console.log("error")
+      console.log(error_data)
+    }
+  })
+  function setChart(){
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '# Candidate Amount',
+          data: defaultData,
+          pointBackgroundColor : 'rgba(0, 137, 123,1)',
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 137, 123,1)',
+          borderWidth: 3,
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true,
+              beginAtZero: true,
+              callback: function(value) {if (value % 1 === 0) {return value;}}
+            }
+          }]
+        }
+      }
+    });
   }
-})
-function setChart(){
-  var ctx = document.getElementById("myChart").getContext('2d');
-  var ctx2 = document.getElementById("myChart2").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: '# Candidate Amount',
-        data: defaultData,
-        pointBackgroundColor : 'rgba(255, 152, 0,1)',
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-        borderColor: 'rgba(255, 152, 0,1)',
-        borderWidth: 3,
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero:true,
-            beginAtZero: true,
-            callback: function(value) {if (value % 1 === 0) {return value;}}
-          }
-        }]
-      }
-    }
-  });
+  <!-- Chart 2 -->
+  var endpoint2 = "{% url 'api-chart-position-request' %}"
+  var labels_candidate_req = []
+  var count_administrator = []
+  var count_account_manager = []
+  $.ajax({
+    method : "GET",
+    url : endpoint2,
+    success:function(data){
+      labels_candidate_req = data.labels
+      count_administrator = data.count_administrator
+      count_account_manager = data.count_account_manager
+      count_certified_instructor = data.count_certified_instructor
+      count_internship = data.count_internship
+      count_marketing_product = data.count_marketing_product
+      count_network_engineer = data.count_network_engineer
+      count_network_dev = data.count_network_dev
+      count_outsourcing = data.count_outsourcing
+      count_presale = data.count_presale
+      count_professional_engineer = data.count_professional_engineer
+      count_project_finance_manager = data.count_project_finance_manager
+      count_project_manager = data.count_project_manager
+      count_si_engineer = data.count_si_engineer
+      count_technical_consult_engineer = data.count_technical_consult_engineer
 
-  var myChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'AA',
-        data: defaultData,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
+      console.log(data)
+      setChart2()
     },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
-        }]
-      }
+    error:function(error){
+      console.log("error")
+      console.log(error_data)
     }
-  });
-}
-{% endblock %}
+  })
+  function setChart2(){
+    var canvas = document.getElementById("myChart2");
+    // var canvas = document.getElementById('chart');
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels_candidate_req,
+        datasets: [{
+          label: "Administrator",
+          data: count_administrator,
+          pointBackgroundColor : 'rgba(239, 83, 80,1)',
+          backgroundColor: 'rgba(239, 83, 80,0.2)',
+          borderColor: 'rgba(239, 83, 80,1)',
+        }, {
+          label: "Account Manager",
+          data: count_account_manager,
+          pointBackgroundColor : 'rgba(236, 64, 122,1)',
+          backgroundColor: 'rgba(236, 64, 122,0.2)',
+          borderColor: 'rgba(236, 64, 122,1)',
+        }, {
+          label: "Certified Instructor",
+          data: count_certified_instructor,
+          pointBackgroundColor : 'rgba(171, 71, 188,1)',
+          backgroundColor: 'rgba(171, 71, 188,0.2)',
+          borderColor: 'rgba(171, 71, 188,1)',
+        }
+        , {
+          label: "Internship",
+          data: count_internship,
+          pointBackgroundColor : 'rgba(149, 117, 205 ,1)',
+          backgroundColor: 'rgba(149, 117, 205 ,0.2)',
+          borderColor: 'rgba(149, 117, 205 ,1)',
+        }, {
+          label: "Marketing Product",
+          data: count_marketing_product,
+          pointBackgroundColor : 'rgba(92, 107, 192,1)',
+          backgroundColor: 'rgba(92, 107, 192,0.2)',
+          borderColor: 'rgba(92, 107, 192,1)',
+        }, {
+          label: "Network Engineer",
+          data: count_network_engineer,
+          pointBackgroundColor : 'rgba(66, 165, 245,1)',
+          backgroundColor: 'rgba(66, 165, 245,0.2)',
+          borderColor: 'rgba(66, 165, 245,1)',
+        }, {
+          label: "Network Programmability Developer Specialist",
+          data: count_network_dev,
+          pointBackgroundColor : 'rgba(38, 198, 218 ,1)',
+          backgroundColor: 'rgba(38, 198, 218 ,0.2)',
+          borderColor: 'rgba(38, 198, 218 ,1)',
+        }, {
+          label: "Outsourcing Engineer",
+          data: count_outsourcing,
+          pointBackgroundColor : 'rgba(38, 166, 154 ,1)',
+          backgroundColor: 'rgba(38, 166, 154 ,0.2)',
+          borderColor: 'rgba(38, 166, 154 ,1)',
+        }, {
+          label: "Presale",
+          data: count_presale,
+          pointBackgroundColor : 'rgba(102, 187, 106 ,1)',
+          backgroundColor: 'rgba(102, 187, 106 ,0.2)',
+          borderColor: 'rgba(102, 187, 106 ,1)',
+        }, {
+          label: "Professional Engineer",
+          data: count_professional_engineer,
+          pointBackgroundColor : 'rgba(156, 204, 101 ,1)',
+          backgroundColor: 'rgba(156, 204, 101 ,0.2)',
+          borderColor: 'rgba(156, 204, 101 ,1)',
+        }, {
+          label: "Project Finance Manager",
+          data: count_project_finance_manager,
+          pointBackgroundColor : 'rgba(212, 225, 87 ,1)',
+          backgroundColor: 'rgba(212, 225, 87 ,0.2)',
+          borderColor: 'rgba(212, 225, 87 ,1)',
+        }, {
+          label: "Project Manager",
+          data: count_project_manager,
+          pointBackgroundColor : 'rgba(253, 216, 53 ,1)',
+          backgroundColor: 'rgba(253, 216, 53 ,0.2)',
+          borderColor: 'rgba(253, 216, 53 ,1)',
+        }, {
+          label: "System Integration Engineer",
+          data: count_si_engineer,
+          pointBackgroundColor : 'rgba(255, 167, 38 ,1)',
+          backgroundColor: 'rgba(255, 167, 38 ,0.2)',
+          borderColor: 'rgba(255, 167, 38 ,1)',
+        }, {
+          label: "Technical Consultant Engineer - Services",
+          data: count_technical_consult_engineer,
+          pointBackgroundColor : 'rgba(120, 144, 156 ,1)',
+          backgroundColor: 'rgba(120, 144, 156 ,0.2)',
+          borderColor: 'rgba(120, 144, 156 ,1)',
+        }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true,
+              beginAtZero: true,
+              callback: function(value) {if (value % 1 === 0) {return value;}}
+            }
+          }]
+        }
+      }
+    });
+  }
+  <!-- Chart 3 -->
+  var endpoint3 = "{% url 'api-chart-position-request' %}"
+  var labels_candidate_req = []
+  $.ajax({
+    method : "GET",
+    url : endpoint3,
+    success:function(data){
+      labels_candidate_req = data.labels
+      amount_administrator = data.amount_administrator
+      amount_account_manager = data.amount_account_manager
+      amount_certified_instructor = data.amount_certified_instructor
+      amount_internship = data.amount_internship
+      amount_marketing_product = data.amount_marketing_product
+      amount_network_engineer = data.amount_network_engineer
+      amount_network_dev = data.amount_network_dev
+      amount_outsourcing = data.amount_outsourcing
+      amount_presale = data.amount_presale
+      amount_professional_engineer = data.amount_professional_engineer
+      amount_project_finance_manager = data.amount_project_finance_manager
+      amount_project_manager = data.amount_project_manager
+      amount_si_engineer = data.amount_si_engineer
+      amount_technical_consult_engineer = data.amount_technical_consult_engineer
+
+      console.log(data)
+      setChart3()
+    },
+    error:function(error){
+      console.log("error")
+      console.log(error_data)
+    }
+  })
+  function setChart3(){
+    var canvas = document.getElementById("myChart3");
+    // var canvas = document.getElementById('chart');
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels_candidate_req,
+        datasets: [{
+          label: "Administrator",
+          data: amount_administrator,
+          pointBackgroundColor : 'rgba(239, 83, 80,1)',
+          backgroundColor: 'rgba(239, 83, 80,0.2)',
+          borderColor: 'rgba(239, 83, 80,1)',
+        }, {
+          label: "Account Manager",
+          data: amount_account_manager,
+          pointBackgroundColor : 'rgba(236, 64, 122,1)',
+          backgroundColor: 'rgba(236, 64, 122,0.2)',
+          borderColor: 'rgba(236, 64, 122,1)',
+        }, {
+          label: "Certified Instructor",
+          data: amount_certified_instructor,
+          pointBackgroundColor : 'rgba(171, 71, 188,1)',
+          backgroundColor: 'rgba(171, 71, 188,0.2)',
+          borderColor: 'rgba(171, 71, 188,1)',
+        }
+        , {
+          label: "Internship",
+          data: amount_internship,
+          pointBackgroundColor : 'rgba(149, 117, 205 ,1)',
+          backgroundColor: 'rgba(149, 117, 205 ,0.2)',
+          borderColor: 'rgba(149, 117, 205 ,1)',
+        }, {
+          label: "Marketing Product",
+          data: amount_marketing_product,
+          pointBackgroundColor : 'rgba(92, 107, 192,1)',
+          backgroundColor: 'rgba(92, 107, 192,0.2)',
+          borderColor: 'rgba(92, 107, 192,1)',
+        }, {
+          label: "Network Engineer",
+          data: amount_network_engineer,
+          pointBackgroundColor : 'rgba(66, 165, 245,1)',
+          backgroundColor: 'rgba(66, 165, 245,0.2)',
+          borderColor: 'rgba(66, 165, 245,1)',
+        }, {
+          label: "Network Programmability Developer Specialist",
+          data: amount_network_dev,
+          pointBackgroundColor : 'rgba(38, 198, 218 ,1)',
+          backgroundColor: 'rgba(38, 198, 218 ,0.2)',
+          borderColor: 'rgba(38, 198, 218 ,1)',
+        }, {
+          label: "Outsourcing Engineer",
+          data: amount_outsourcing,
+          pointBackgroundColor : 'rgba(38, 166, 154 ,1)',
+          backgroundColor: 'rgba(38, 166, 154 ,0.2)',
+          borderColor: 'rgba(38, 166, 154 ,1)',
+        }, {
+          label: "Presale",
+          data: amount_presale,
+          pointBackgroundColor : 'rgba(102, 187, 106 ,1)',
+          backgroundColor: 'rgba(102, 187, 106 ,0.2)',
+          borderColor: 'rgba(102, 187, 106 ,1)',
+        }, {
+          label: "Professional Engineer",
+          data: amount_professional_engineer,
+          pointBackgroundColor : 'rgba(156, 204, 101 ,1)',
+          backgroundColor: 'rgba(156, 204, 101 ,0.2)',
+          borderColor: 'rgba(156, 204, 101 ,1)',
+        }, {
+          label: "Project Finance Manager",
+          data: amount_project_finance_manager,
+          pointBackgroundColor : 'rgba(212, 225, 87 ,1)',
+          backgroundColor: 'rgba(212, 225, 87 ,0.2)',
+          borderColor: 'rgba(212, 225, 87 ,1)',
+        }, {
+          label: "Project Manager",
+          data: amount_project_manager,
+          pointBackgroundColor : 'rgba(253, 216, 53 ,1)',
+          backgroundColor: 'rgba(253, 216, 53 ,0.2)',
+          borderColor: 'rgba(253, 216, 53 ,1)',
+        }, {
+          label: "System Integration Engineer",
+          data: amount_si_engineer,
+          pointBackgroundColor : 'rgba(255, 167, 38 ,1)',
+          backgroundColor: 'rgba(255, 167, 38 ,0.2)',
+          borderColor: 'rgba(255, 167, 38 ,1)',
+        }, {
+          label: "Technical Consultant Engineer - Services",
+          data: amount_technical_consult_engineer,
+          pointBackgroundColor : 'rgba(120, 144, 156 ,1)',
+          backgroundColor: 'rgba(120, 144, 156 ,0.2)',
+          borderColor: 'rgba(120, 144, 156 ,1)',
+        }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true,
+              beginAtZero: true,
+              callback: function(value) {if (value % 1 === 0) {return value;}}
+            }
+          }]
+        }
+      }
+    });
+  }
+  {% endblock %}
 </script>
 
 
@@ -201,193 +443,83 @@ function setChart(){
       </div>
     </div>
   </div>
-  <!-- CANDIDATE REQUEST -->
-  <!-- <div class="row">
-    <div class="col-lg-6 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-success text-center">
-                <i class="ti-package"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Request Candidate</p>
-                {{ request_candidate.count }} รายการ
-              </div>
-            </div>
+
+</div>
+<div class="row">
+  <div class="col-md-6" url-endpoint='{% url "api-chart-data" %}'>
+    <div class="card">
+      <div class="header">
+        <h4 class="title">จำนวนคำร้องขอผู้สมัครแต่ละตำแหน่ง (เดือน/จำนวนคำร้อง)</h4>
+        <p class="category">24 Hours performance</p>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <canvas id="myChart2" width="400" height="400"></canvas>
           </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-calendar"></i> Last day
-            </div>
+        </div>
+        <div class="footer">
+          <hr>
+          <div class="stats">
+            <i class="ti-reload"></i> Updated 3 minutes ago
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-success text-center">
-                <i class="ti-package"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Opened Case</p>
-                {{ request_candidate_open.count }} รายการ
-              </div>
-            </div>
+  </div>
+
+  <div class="col-md-6" url-endpoint='{% url "api-chart-data" %}'>
+    <div class="card">
+      <div class="header">
+        <h4 class="title">จำนวนพนักงานที่ขาดแต่ละตำแหน่ง (เดือน/คน)</h4>
+        <p class="category">24 Hours performance</p>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <canvas id="myChart3" width="400" height="400"></canvas>
           </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-calendar"></i> Last day
-            </div>
+        </div>
+        <div class="footer">
+          <hr>
+          <div class="stats">
+            <i class="ti-reload"></i> Updated 3 minutes ago
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-danger text-center">
-                <i class="ti-calendar"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Closed Case</p>
-                {{ request_candidate_close.count }} รายการ
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-timer"></i> In the last hour
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- INTERVIEW REQUEST -->
-  <!-- <div class="row">
-    <div class="col-lg-6 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-success text-center">
-                <i class="ti-package"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Request Interview</p>
-                {{ request_interview.count }} รายการ
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-calendar"></i> Last day
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-success text-center">
-                <i class="ti-package"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Opened Case</p>
-                {{ request_interview_open.count }} รายการ
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-calendar"></i> Last day
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card">
-        <div class="content">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="icon-big icon-danger text-center">
-                <i class="ti-calendar"></i>
-              </div>
-            </div>
-            <div class="col-xs-7">
-              <div class="numbers">
-                <p>Closed Case</p>
-                {{ request_interview_close.count }} รายการ
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <hr />
-            <div class="stats">
-              <i class="ti-timer"></i> In the last hour
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  </div>
 </div>
 <div class="row">
   <div class="col-sm-6" url-endpoint='{% url "api-chart-data" %}'>
     <!-- <div class="row"> -->
-      <!-- <div class="col-sm-12"> -->
-        <div class="card">
-          <div class="header">
-            <h4 class="title">จำนวนผู้สมัครในระบบ</h4>
-            <p class="category">24 Hours performance</p>
-          </div>
-          <div class="content">
-            <div class="row">
-              <div class="col-lg-10 col-lg-offset-1 text-center">
-                <canvas id="myChart" width="400" height="400"></canvas>
-              </div>
-            </div>
-            <div class="footer">
-              <div class="chart-legend">
-                <!-- <i class="fa fa-circle text-info"></i> Open
-                <i class="fa fa-circle text-danger"></i> Click
-                <i class="fa fa-circle text-warning"></i> Click Second Time -->
-                <i class="fa fa-circle" style="color:#ff9800;"></i> จำนวนผู้สมัครที่ส่งเข้ามาในระบบ
-              </div>
-              <hr>
-              <div class="stats">
-                <i class="ti-reload"></i> Updated Now
-              </div>
-            </div>
+    <!-- <div class="col-sm-12"> -->
+    <div class="card">
+      <div class="header">
+        <h4 class="title">จำนวนผู้สมัครในระบบ</h4>
+        <p class="category">24 Hours performance</p>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <canvas id="myChart" width="400" height="400"></canvas>
           </div>
         </div>
-      <!-- </div> -->
+        <div class="footer">
+          <div class="chart-legend">
+            <!-- <i class="fa fa-circle text-info"></i> Open
+            <i class="fa fa-circle text-danger"></i> Click
+            <i class="fa fa-circle text-warning"></i> Click Second Time -->
+            <i class="fa fa-circle" style="color:#ff9800;"></i> จำนวนผู้สมัครที่ส่งเข้ามาในระบบ
+          </div>
+          <hr>
+          <div class="stats">
+            <i class="ti-reload"></i> Updated Now
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
     <!-- </div> -->
 
   </div>
@@ -395,13 +527,13 @@ function setChart(){
   <div class="col-md-6" url-endpoint='{% url "api-chart-data" %}'>
     <div class="card">
       <div class="header">
-        <h4 class="title">Users Behavior</h4>
+        <h4 class="title"></h4>
         <p class="category">24 Hours performance</p>
       </div>
       <div class="content">
         <div class="row">
           <div class="col-lg-10 col-lg-offset-1 text-center">
-            <canvas id="myChart2" width="400" height="400"></canvas>
+            <canvas id="myChart4" width="400" height="400"></canvas>
           </div>
         </div>
         <div class="footer">

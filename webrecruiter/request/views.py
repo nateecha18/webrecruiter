@@ -13,7 +13,7 @@ from jobapply.models import CandidateBasic
 from candidate_cart.models import OrderItem, Order, InterviewStatus, InterviewStatusLog
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.checkers import has_role
-from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
+from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request,UpdateAmountLog
 from request.generate_id import generate_request_id
 from request.generate_id import generate_comment_id
 from request.compare_time import compare_request_now_time
@@ -144,40 +144,49 @@ def get_open_request_candidate(request):
 # ______________________________________________________________________________________________________________________________________________
 
 def index(request):
-    request_all,open_request,close_request = get_open_request(request)
-    cart_amount = get_cart_amount(request)
-    context = {
-        'All_requests' : request_all,
-        'Open_request_amount' : open_request,
-        'Close_request_amount' : close_request,
-        'Cart_amount':cart_amount,
-    }
-    template = loader.get_template("request.html")
-    return HttpResponse(template.render(context, request))
+    if request.user.is_authenticated:
+        request_all,open_request,close_request = get_open_request(request)
+        cart_amount = get_cart_amount(request)
+        context = {
+            'All_requests' : request_all,
+            'Open_request_amount' : open_request,
+            'Close_request_amount' : close_request,
+            'Cart_amount':cart_amount,
+        }
+        template = loader.get_template("request.html")
+        return HttpResponse(template.render(context, request))
+    else:
+        return redirect('login')
 
 def request_interview(request):
-    request_all,open_request,close_request = get_open_request_interview(request)
-    cart_amount = get_cart_amount(request)
-    context = {
-        'All_requests' : request_all,
-        'Open_request_amount' : open_request,
-        'Close_request_amount' : close_request,
-        'Cart_amount':cart_amount,
-    }
-    template = loader.get_template("request_interview.html")
-    return HttpResponse(template.render(context, request))
+    if request.user.is_authenticated:
+        request_all,open_request,close_request = get_open_request_interview(request)
+        cart_amount = get_cart_amount(request)
+        context = {
+            'All_requests' : request_all,
+            'Open_request_amount' : open_request,
+            'Close_request_amount' : close_request,
+            'Cart_amount':cart_amount,
+        }
+        template = loader.get_template("request_interview.html")
+        return HttpResponse(template.render(context, request))
+    else:
+        return redirect('login')
 
 def request_candidate(request):
-    request_all,open_request,close_request = get_open_request_candidate(request)
-    cart_amount = get_cart_amount(request)
-    context = {
-        'All_requests' : request_all,
-        'Open_request_amount' : open_request,
-        'Close_request_amount' : close_request,
-        'Cart_amount':cart_amount,
-    }
-    template = loader.get_template("request_candidate.html")
-    return HttpResponse(template.render(context, request))
+    if request.user.is_authenticated:
+        request_all,open_request,close_request = get_open_request_candidate(request)
+        cart_amount = get_cart_amount(request)
+        context = {
+            'All_requests' : request_all,
+            'Open_request_amount' : open_request,
+            'Close_request_amount' : close_request,
+            'Cart_amount':cart_amount,
+        }
+        template = loader.get_template("request_candidate.html")
+        return HttpResponse(template.render(context, request))
+    else:
+        return redirect('login')
 
 def show_close_request(request):
     if request.method == 'GET':
@@ -283,12 +292,12 @@ def new_request_candidate(request):
                                              certification=certification,
                                              note=note,)
         request_candidate.save()
-
+        print("now_employee_amount",int(now_employee_amount))
         position.update(position_now_amount=int(now_employee_amount),
                         requirement=requirement,
                         certification=certification,
                         note=note,)
-
+        print(position.first().position_now_amount)
         request_detail = Request(request_id=request_id,
                                  request_type=request_type,
                                  request_candidate=request_candidate,
@@ -296,6 +305,7 @@ def new_request_candidate(request):
                                  request_position=position.first().position_name,
                                  owner=owner,status=status)
         request_detail.save()
+        return redirect('request_candidate')
 
     context = {
         'AllProject' : all_project,
@@ -351,9 +361,34 @@ def request_detail(request,request_id):
                 comment_title = 'Status changed from {0} to {1} by {2}'.format(last_status.status_name,status.status_name,owner.user.first_name)
                 print("Not Same Status")
                 selected_request.status=status
-            comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner,status=status)
-            comment.save()
+        if selected_request.request_type.request_type_id == '1':
+            checkbox_update_amount = request.POST.get('checkbox_update_amount')
+            if checkbox_update_amount:
+                update_amount = int(request.POST.get('update_amount'))
+                comment_title = 'สรรหาพนักงานเพิ่ม {0} คน'.format(update_amount)
+        comment = Comment(comment_id=comment_id,comment_title=comment_title,comment_detail=comment_detail,owner=owner,status=status)
+        comment.save()
         # อัพเดต Candidate Status
+        request_type_candidate = RequestType.objects.filter(request_type_name='RequestCandidate').first()
+        if selected_request.request_type.request_type_id == '1':
+            diff_amount = selected_request.request_candidate.tor_employee_amount - selected_request.request_candidate.now_employee_amount
+            selected_position = selected_request.request_candidate.position
+            checkbox_update_amount = request.POST.get('checkbox_update_amount')
+            print(checkbox_update_amount)
+            if checkbox_update_amount:
+                print("Checkbox Selected!!")
+                update_amount = int(request.POST.get('update_amount'))
+                print(update_amount)
+                update_amount_log = UpdateAmountLog(added_amount=update_amount,comment=comment)
+                print(update_amount_log)
+                update_amount_log.save()
+                print(selected_position.position_now_amount)
+                selected_position.position_now_amount = selected_position.position_now_amount+update_amount
+                print(selected_position.position_now_amount )
+                selected_position.save()
+                selected_request.request_candidate.update_amount_log.add(update_amount_log)
+
+
         if selected_request.request_type.request_type_id == '2':
             print("REQUEST INTERVIEW")
             order_items = selected_request.request_interview.order.items.all()
@@ -372,7 +407,7 @@ def request_detail(request,request_id):
                 if status.status_id == '3':
                     interview_status = InterviewStatus.objects.filter(status_name='INTERVIEWED').first()
                     print(interview_status)
-                    order_items.update(interview_status=interview_status)
+                    order_items.update(interview_status=interview_status,is_interviewed=True)
                     update_interview_log(request,owner,interview_status,order_items)
         # else:
         #     print("Entry2")

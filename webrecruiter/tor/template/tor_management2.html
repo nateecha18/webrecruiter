@@ -107,7 +107,7 @@ i.icon-delete { color: #EB5E28; }
                 <div class="row">
                   <div class="col-xs-5">
                     <div class="icon-big icon-success text-center">
-                      <i class="ti-clipboard"></i>
+                      <i class="ti-agenda" style="color:#27a768;"></i>
                     </div>
                   </div>
                   <div class="col-xs-7">
@@ -133,7 +133,7 @@ i.icon-delete { color: #EB5E28; }
                 <div class="row">
                   <div class="col-xs-5">
                     <div class="icon-big icon-success text-center">
-                      <i class="ti-package"></i>
+                      <i class="ti-package" style="color:	#f5bc1a;"></i>
                     </div>
                   </div>
                   <div class="col-xs-7">
@@ -159,7 +159,7 @@ i.icon-delete { color: #EB5E28; }
                 <div class="row">
                   <div class="col-xs-5">
                     <div class="icon-big icon-success text-center">
-                      <i class="ti-package"></i>
+                      <i class="ti-alert" style="color:	#de5347;"></i>
                     </div>
                   </div>
                   <div class="col-xs-7">
@@ -213,7 +213,7 @@ i.icon-delete { color: #EB5E28; }
                               <div class="row">
                                 <div class="col-xs-5">
                                   <div class="icon-big icon-success text-center">
-                                    <i class="ti-clipboard"></i>
+                                    <i class="ti-receipt"></i>
                                   </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -227,12 +227,6 @@ i.icon-delete { color: #EB5E28; }
                                   </div>
                                 </div>
                               </div>
-                              <div class="footer">
-                                <hr />
-                                <div class="stats">
-                                  <i class="ti-calendar"></i> Last day
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -243,7 +237,7 @@ i.icon-delete { color: #EB5E28; }
                               <div class="row">
                                 <div class="col-xs-5">
                                   <div class="icon-big icon-success text-center">
-                                    <i class="ti-package"></i>
+                                    <i class="ti-user"></i>
                                   </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -257,12 +251,6 @@ i.icon-delete { color: #EB5E28; }
                                   </div>
                                 </div>
                               </div>
-                              <div class="footer">
-                                <hr />
-                                <div class="stats">
-                                  <i class="ti-calendar"></i> Last day
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -273,7 +261,7 @@ i.icon-delete { color: #EB5E28; }
                               <div class="row">
                                 <div class="col-xs-5">
                                   <div class="icon-big icon-success text-center">
-                                    <i class="ti-package"></i>
+                                    <i class="ti-info-alt" {% if project.diff_empty_amount %} style="color:	#d06969;" {% endif %}></i>
                                   </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -281,12 +269,6 @@ i.icon-delete { color: #EB5E28; }
                                     <p>จำนวนที่ขาด</p>
                                     {{ project.diff_empty_amount }} คน
                                   </div>
-                                </div>
-                              </div>
-                              <div class="footer">
-                                <hr />
-                                <div class="stats">
-                                  <i class="ti-calendar"></i> Last day
                                 </div>
                               </div>
                             </div>

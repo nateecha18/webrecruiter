@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -66,17 +66,20 @@ def get_rank_filter(request,day):
 
 @has_role_decorator('hr')
 def index(request):
-    CandidateRank.objects.all().delete()
-    ranks = get_rank(request)
+    if request.user.is_authenticated:
+        CandidateRank.objects.all().delete()
+        ranks = get_rank(request)
 
-    print(ranks,"Rank")
-    topthree = ranks[:3]
-    context = {
-        'ranks' : ranks,
-        'topthree' : topthree,
-    }
-    template = loader.get_template("rank.html")
-    return HttpResponse(template.render(context, request))
+        print(ranks,"Rank")
+        topthree = ranks[:3]
+        context = {
+            'ranks' : ranks,
+            'topthree' : topthree,
+        }
+        template = loader.get_template("rank.html")
+        return HttpResponse(template.render(context, request))
+    else:
+        return redirect('login')
 
 @has_role_decorator('hr')
 def rank_filter_day(request, ranks_day):

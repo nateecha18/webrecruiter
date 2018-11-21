@@ -31,6 +31,13 @@ class RequestType(models.Model):
     def __str__(self):
         return self.request_type_id
 
+class UpdateAmountLog(models.Model):
+    added_amount = models.IntegerField(blank=True, null=True)
+    datetime_add_amount = models.DateTimeField(auto_now_add=True)
+    comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return 'เพิ่ม - {0}คน'.format(self.added_amount)
 
 class RequestCandidate(models.Model):
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
@@ -40,11 +47,19 @@ class RequestCandidate(models.Model):
     requirement = models.CharField(max_length=250, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
     note = models.CharField(max_length=250, blank=True, null=True)
+    update_amount_log = models.ManyToManyField(UpdateAmountLog,blank=True)
 
     def __int__(self):
         return self.id
     def diff_empty_amount(self):
         return self.tor_employee_amount - self.now_employee_amount
+    def diff_empty_amount_now(self):
+        update_amount_log_all = self.update_amount_log.all()
+        empty_amount_now = self.tor_employee_amount - self.now_employee_amount
+        for log in update_amount_log_all:
+            empty_amount_now -= log.added_amount
+        print("empty_amount_now!!!",empty_amount_now)
+        return empty_amount_now
 
 class RequestInterview(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)

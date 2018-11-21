@@ -42,7 +42,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         print(request.user.is_authenticated,request.user.get_username)
-        return redirect('filter')
+        return redirect('home')
 
 
     return render(request, "login_form.html", {"form":form, "title":title})
