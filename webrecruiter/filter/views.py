@@ -366,6 +366,12 @@ def candidate_detail(request,candidate_id):
         interview_status_request = InterviewStatus.objects.filter(status_name='IN REQUEST').first()
         interview_status_inprogress = InterviewStatus.objects.filter(status_name='IN PROGRESS').first()
         interview_status_interviewed = InterviewStatus.objects.filter(status_name='INTERVIEWED').first()
+        interview_status_cancled = InterviewStatus.objects.filter(status_name='CANCLED').first()
+        interview_status_hired = InterviewStatus.objects.filter(status_name='HIRED').first()
+        interview_status_nothired = InterviewStatus.objects.filter(status_name='NOT HIRED').first()
+
+
+
 
 
 
@@ -386,6 +392,9 @@ def candidate_detail(request,candidate_id):
                        'interview_status_request' : interview_status_request,
                        'interview_status_inprogress' : interview_status_inprogress,
                        'interview_status_interviewed' : interview_status_interviewed,
+                       'interview_status_cancled' : interview_status_cancled,
+                       'interview_status_hired' : interview_status_hired,
+                       'interview_status_nothired' : interview_status_nothired,
                        })
     else:
         return redirect('login')

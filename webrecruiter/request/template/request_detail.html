@@ -320,7 +320,7 @@ Candidate Details | WebRecruiter
                                       <th class="text-center">เลขประจำตัวประชาชน</th>
                                     	<th class="text-center">ชื่อ</th>
                                       <th class="text-center">เบอร์มือถือ</th>
-                                      <th class="text-center">Email</th>
+                                      <th class="text-center">สถานะ</th>
                                     </thead>
                                     <tbody>
                                       {% for item in Selected_request.request_interview.order.get_cart_items %}
@@ -329,7 +329,7 @@ Candidate Details | WebRecruiter
                                           <td class="text-center"><a href="{% url 'candidate_detail' item.candidate.id_number %}" style="color: #ff9800; font-weight: 400;">{{ item.candidate.id_number }}</a></td>
                                         	<td>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</td>
                                           <td class="text-center">{{ item.candidate.mobile_no }}</td>
-                                          <td>{{ item.candidate.email }}</td>
+                                          <td>{{ item.interview_status.status_name }}</td>
                                         </tr>
                                       {% endfor %}
                                     </tbody>
@@ -453,6 +453,13 @@ Candidate Details | WebRecruiter
             <div class="row">
               <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-info btn-fill">submit comment</button>
+                {% if Selected_request.request_type.request_type_id == '2' %}
+                <a class="open-modal" data-url="{% url 'update_interview_status' Selected_request.request_id %}">
+                  <button type="button" id="1" class="btn btn-simple btn-xs">
+                    <div style="color: #ff8000;">Update Interview Status</div>
+                  </button>
+                </a>
+                {% endif %}
               </div>
             </div>
           </form>
@@ -465,5 +472,25 @@ Candidate Details | WebRecruiter
   </div>
 </div>
 {% endblock %}
+{% block beforebody %}
+<div id="modal-div">
+  {% include 'modal.html' %}
+</div>
+
+{% endblock %}
 {% block javascript %}
+<script>
+var modalDiv = $("#modal-div");
+
+$("a.open-modal").on("click", function() {
+  $.ajax({
+    type : 'GET',
+    url: $(this).attr("data-url"),
+    success: function(data) {
+      modalDiv.html(data);
+      $("#update_status_modal").modal();
+    }
+  });
+});
+</script>
 {% endblock %}

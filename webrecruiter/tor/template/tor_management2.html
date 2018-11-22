@@ -208,6 +208,66 @@ i.icon-delete { color: #EB5E28; }
                 </a>
                 <div id="{{ project.id }}" class="panel-collapse collapse">
                   <div class="panel-body">
+                    <div class="col-lg-12">
+                      <div class="card" style="background-color:#f9f9f9;">
+                        <div class="content">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">หัวหน้าโปรเจค</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.owner.user.first_name}} {{ project.owner.user.last_name}}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">ประเภทโปรเจค</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.project_type.project_type_name }}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">ไซต์งาน</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.project_site }}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">ความเร่งด่วน</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.level.level_name }}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">วันที่สร้างโปรเจค</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.datetime_add_project|date:"d/M/Y" }}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <div class="form-group">
+                                  <label class="col-sm-4 control-label">วันที่อัพเดตล่าสุด</label>
+                                  <div class="col-sm-8">
+                                    <p>{{ project.datetime_update_project|date:"d/M/Y" }}</p>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     {% if project.get_position %}
                     <div class="row">
                       <div class="col-lg-10 col-lg-offset-1">

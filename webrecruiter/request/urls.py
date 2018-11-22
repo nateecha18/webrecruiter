@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^show_open_request_candidate/$', views.show_open_request_candidate, name='show_open_request_candidate'),
     url(r'^get_position/(?P<project_id>[-\w]+)/$', views.get_position, name='get_position'),
     url(r'^get_position_detail/(?P<position_id>[-\w]+)/$', views.get_position_detail, name='get_position_detail'),
+    url(r'^update_interview_status/(?P<request_id>[-\w]+)/$', views.update_interview_status, name='update_interview_status'),
 
 
 

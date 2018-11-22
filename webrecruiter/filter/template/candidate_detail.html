@@ -544,6 +544,12 @@ p.small {
                           อัพเดตคำร้องของ {{ history.owner.user.first_name }} (อยู่ระหว่างดำเนินการ)
                         {% elif log.interview_status == interview_status_interviewed %}
                           อัพเดตคำร้องของ {{ history.owner.user.first_name }} (นัดสัมภาษณแล้ว)
+                        {% elif log.interview_status == interview_status_cancled %}
+                          อัพเดตคำร้องของ {{ history.owner.user.first_name }} (ยกเลิกการสัมภาษณ์)
+                        {% elif log.interview_status == interview_status_hired %}
+                          อัพเดตคำร้องของ {{ history.owner.user.first_name }} (จ้างงาน)
+                        {% elif log.interview_status == interview_status_nothired %}
+                          อัพเดตคำร้องของ {{ history.owner.user.first_name }} (ไม่จ้างงาน)
                         {% endif %}
                       </div>
                       <div class="col-xs-3 text-right" style="color:#ff9800; font-weight:500;">

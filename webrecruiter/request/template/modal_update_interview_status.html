@@ -1,0 +1,109 @@
+<!-- Modal -->
+<div class="modal fade" id="update_status_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <form method="post" action="{% url 'update_interview_status' Selected_request.request_id %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#ff9800">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title" style="color:#fff">Update Interview Status</h5>
+        </div>
+        <div class="modal-body">
+          <form class="" action="" method="post">
+            <fieldset>
+              <div class="form-group">
+                <div class="col-sm-12 text-left">
+                  <div class="content table-responsive table-full-width">
+                            <table class="table table-hover" style="">
+                                <thead>
+                                  <th class="text-center"></th>
+                                  <th class="text-center">ชื่อ</th>
+                                  <th class="text-center">ชื่อเล่น</th>
+                                  <th class="text-center">สถานะ</th>
+
+                                </thead>
+                                <tbody>
+                                  {% for item in Selected_request.request_interview.order.get_cart_items %}
+                                    <tr>
+                                      <td class="text-center">{{ forloop.counter }}</td>
+                                      <td>{{ item.candidate.name_title }}&nbsp;{{ item.candidate.firstname }}&nbsp;&nbsp;{{ item.candidate.lastname }}</td>
+                                      <td class="text-center">{{ item.candidate.nickname }}</td>
+                                      <td class="text-center">
+                                        <select class="form-control" name="update_status" required="required" id="update_status">
+                                          <option selected value="0">{{ item.interview_status }}(current)</option>
+                                          {% for status in InterviewStatus %}
+                                            {% if not status == item.interview_status %}
+                                              <option value="{{ item.id }}_{{ status.status_name }}">{{ status.status_name }}</option>
+                                            {% endif %}
+                                          {% endfor %}
+                                        </select>
+                                      </td>
+
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                </div>
+              </div>
+            </fieldset>
+            <!-- <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Position Owner</label>
+                  <input type="text" name="position_owner" class="form-control border-input" disabled placeholder="Project Owner" value="{{ ProjectOwner.user.username }}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label>Project Name</label>
+                  <input type="text" name="project_name" class="form-control border-input" required placeholder="Project Name" >
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Site</label>
+                  <input type="text" name="project_site" class="form-control border-input" required placeholder="Site" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Project Type</label>
+                  <select class="form-control" name="project_type_id" required>
+                    {% for type in ProjectTypes %}
+                      <option value="{{ type.project_type_id }}">{{ type.project_type_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>ความเร่งด่วน</label>
+                  <select class="form-control" name="level" required>
+                    {% for level in Levels %}
+                      <option value="{{ level.level_id }}">{{ level.level_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div> -->
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-info">Save changes</button>
+        </div>
+      </div>
+      <!--  -->
+    </form>
+  </div>
+</div>

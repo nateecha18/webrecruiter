@@ -25,6 +25,7 @@ from django.db.models import Q
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from tor.models import ProjectType,ProjectLevel,PositionField,Project,PositionAll
+from urllib.request import urlopen
 
 
 def get_cart_amount(request):
@@ -393,7 +394,7 @@ def request_detail(request,request_id):
 
         if selected_request.request_type.request_type_id == '2':
             print("REQUEST INTERVIEW")
-            order_items = selected_request.request_interview.order.items.all()
+            order_items = selected_request.request_interview.order.items.filter(~Q(interview_status__status_name__in = ['CANCLED','HIRED','NOT HIRED']))
             print(order_items)
             if status != last_status:
                 if status.status_id == '2':
@@ -435,3 +436,35 @@ def request_detail(request,request_id):
     }
     template = loader.get_template("request_detail.html")
     return HttpResponse(template.render(context, request))
+
+def update_interview_status(request,request_id):
+    user_profile = get_object_or_404(Profile, user=request.user)
+    selected_request = Request.objects.filter(request_id=request_id).first()
+    order_items = selected_request.request_interview.order.items.all()
+    interview_status = InterviewStatus.objects.filter(status_id__in=['4','6','7'])
+    if request.method == 'POST':
+        update_status = request.POST.getlist('update_status')
+        print("+++++",update_status)
+        for each_update in update_status:
+            if not each_update=='0':
+                splited_update = each_update.split('_')
+                order_item_id = splited_update[0]
+                status_name = splited_update[1]
+                print(order_item_id,status_name)
+                order_item = OrderItem.objects.filter(id=order_item_id).first()
+                selected_status = InterviewStatus.objects.filter(status_name=status_name).first()
+                # อัพเดตสถานะ
+                order_item.interview_status = selected_status
+                # Add Status Log user by user
+                interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=selected_status)
+                interview_status_log.save()
+                order_item.interview_status_log.add(interview_status_log)
+                order_item.save()
+        return (redirect('request_detail', request_id=request_id))
+
+    context={
+        'Selected_request' : selected_request,
+        'order_items' : order_items,
+        'InterviewStatus' : interview_status,
+    }
+    return render(request, 'modal_update_interview_status.html', context)
