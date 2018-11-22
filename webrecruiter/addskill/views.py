@@ -21,7 +21,7 @@ from django.template.loader import render_to_string
 import csv
 from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from candidate_cart.models import OrderItem, Order, InterviewStatus
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionAll
+from tor.models import ProjectType,ProjectLevel,PositionAll
 from jobapply.models import CandidateHistoryEducation, CandidateComputerSkill, CandidateLanguageSkill, CandidateCertExperience, CandidateWorkExperience, CandidateAttachment, CandidateBasic, EducationLevel,Institute,Country,Skill,SkillType,ExtraSkill
 
 

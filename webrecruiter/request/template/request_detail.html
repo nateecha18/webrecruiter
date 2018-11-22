@@ -189,7 +189,7 @@ Candidate Details | WebRecruiter
                       <div class="form-group">
                         <label class="col-sm-6 control-label text-right">จำนวนที่ขาด :</label>
                         <div class="col-sm-6 text-left">
-                          <p>{{ Selected_request.request_candidate.diff_empty_amount }}</p>
+                          <p>{{ Selected_request.request_candidate.empty_employee_amount }}</p>
                         </div>
                       </div>
                     </fieldset>
@@ -433,7 +433,7 @@ Candidate Details | WebRecruiter
                 <div class="col-sm-4 control-label">
                   <label class="checkbox">
                     <input type="checkbox" data-toggle="checkbox" class="checkbox_update_amount" value="1" onchange="showAmountField()" name="checkbox_update_amount">
-                    จำนวนพนักงานที่สรรหาเพิ่ม {{Selected_request.request_candidate.diff_empty_amount_now}}
+                    จำนวนพนักงานที่สรรหาเพิ่ม {{Selected_request.request_candidate.is_full}}
                   </label>
                 </div>
                 <div class="">

@@ -93,6 +93,11 @@ i.icon-delete { color: #EB5E28; }
             <h2>Man Power</h2>
             <div class="col-lg-10 col-sm-offset-1 text-center">
               <h4><small>คำร้องขอจำนวนและคุณสมบัติของผู้สมัคร<br/>เพื่อจัดหาทรัพยากรบุคคลตามความต้องการ ในกรณีที่ผู้สมัครในระบบไม่ตรงตามความต้องการ</small></h4>
+              <a href="{% url 'export_employee_amount_csv' %}">
+                <button type="button" class="btn btn-info">
+                  Export to CSV File
+                </button>
+              </a>
             </div>
           </div>
         </div>

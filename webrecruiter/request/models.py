@@ -2,7 +2,7 @@ from django.db import models
 from jobapply.models import CandidateBasic
 from account.models import Profile
 from candidate_cart.models import OrderItem,Order
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
+from tor.models import ProjectType,ProjectLevel,PositionField,Project,PositionAll
 
 # Create your models here.
 class Status(models.Model):
@@ -44,10 +44,12 @@ class RequestCandidate(models.Model):
     position = models.ForeignKey(PositionField, on_delete=models.SET_NULL, null=True)
     tor_employee_amount = models.IntegerField(blank=True, null=True)
     now_employee_amount = models.IntegerField(blank=True, null=True)
+    empty_employee_amount = models.IntegerField(blank=True, null=True)
     requirement = models.CharField(max_length=250, blank=True, null=True)
     certification = models.CharField(max_length=200, blank=True, null=True)
     note = models.CharField(max_length=250, blank=True, null=True)
     update_amount_log = models.ManyToManyField(UpdateAmountLog,blank=True)
+    is_full = models.BooleanField(default=False)
 
     def __int__(self):
         return self.id
@@ -55,7 +57,7 @@ class RequestCandidate(models.Model):
         return self.tor_employee_amount - self.now_employee_amount
     def diff_empty_amount_now(self):
         update_amount_log_all = self.update_amount_log.all()
-        empty_amount_now = self.tor_employee_amount - self.now_employee_amount
+        empty_amount_now = self.empty_employee_amount
         for log in update_amount_log_all:
             empty_amount_now -= log.added_amount
         print("empty_amount_now!!!",empty_amount_now)

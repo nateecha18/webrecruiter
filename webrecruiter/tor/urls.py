@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^add_project/$', views.add_project, name='add_project'),
     url(r'^add_position/(?P<project_id>[-\w]+)/$', views.add_position, name='add_position'),
     url(r'^remove-position/(?P<project_id>[-\w]+)/(?P<position_id>[-\w]+)/$', views.remove_position, name='remove_position'),
+    url(r'^export_employee_amount_csv/$', views.export_employee_amount_csv, name='export_employee_amount_csv'),
+
 
 
 

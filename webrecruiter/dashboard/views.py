@@ -34,7 +34,7 @@ from django.utils import timezone
 import pytz
 from datetime import datetime, timedelta, time
 from django.db.models import Q
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
+from tor.models import ProjectType,ProjectLevel,PositionField,Project,PositionAll
 
 # Create your views here.
 

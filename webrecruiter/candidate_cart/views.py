@@ -14,7 +14,7 @@ from request.generate_id import generate_request_id
 # import datetime
 # from datetime import datetime,date,time,timedelta, timezone
 from datetime import datetime
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
+from tor.models import ProjectType,ProjectLevel,PositionField,Project,PositionAll
 
 
 import datetime

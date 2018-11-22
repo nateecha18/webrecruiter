@@ -19,19 +19,18 @@ from django.template import Context, Template
 from django.template.loader import render_to_string
 import csv
 
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,Project,PositionField,PositionAll
+from tor.models import ProjectType,ProjectLevel,Project,PositionField,PositionAll
 from account.models import Profile
 from request.models import Status,Comment,RequestType,RequestCandidate,RequestInterview,Request
 from django.db.models import Q
 from django.db.models import Avg, Count, Min, Sum
-
+from collections import Counter
 
 
 
 # Create your views here.
 
 def index(request):
-    tor_all = Tor.objects.all()
     project_all = Project.objects.all()
     all_tor_amount = 0
     all_now_amount = 0
@@ -42,7 +41,6 @@ def index(request):
             all_now_amount += project.positions.all().aggregate(Sum('position_now_amount'))['position_now_amount__sum']
     diff_amount = all_tor_amount-all_now_amount
     context={
-        'Tors' : tor_all,
         'AllProject' : project_all,
         'AllTor' : all_tor_amount,
         'AllNow' : all_now_amount,
@@ -254,3 +252,80 @@ def remove_position(request,project_id=None,position_id=None):
     #     selected_tor[0].position_project.remove(project_to_delete)
 
     return redirect('project')
+
+def export_employee_amount_csv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="existing_project.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['No', 'Existing Project', 'Site', 'จำนวนตาม Tor','จำนวนตามจริง','จำนวนที่ขาด','ความเร่งด่วน','Certification','Requirment','หมายเหตุ'])
+    project_all = []
+    for p in Project.objects.all():
+        project = []
+        project.append(p.id)
+        project.append(p.project_name)
+        project.append(p.project_site)
+        project.append(p.tor_amount()['position_tor_amount__sum'] if p.tor_amount()['position_tor_amount__sum'] else 0)
+        project.append(p.now_amount()['position_now_amount__sum'] if p.now_amount()['position_now_amount__sum'] else 0)
+        project.append(p.diff_empty_amount())
+        project.append(p.level.level_id)
+        position_all = p.positions.all()
+        empty_position = dict()
+        requirement_position = dict()
+        certification_position = dict()
+        for position in position_all:
+            requests = Request.objects.filter(request_candidate__position=position,request_candidate__is_full=False)
+            # ___________________ เก็บ REQUIREMENT
+            request_req = dict()
+            request_cert = dict()
+
+            for request in requests:
+                # ถ้ามี requirement ของ Position นี้อยู่แล้วให้เข้า IF
+                if request_req.get(request.request_candidate.requirement):
+                    request_req[request.request_candidate.requirement] += request.request_candidate.diff_empty_amount_now()
+                # ถ้าไม่มีเข้า ELSE
+                else:
+                    request_req[request.request_candidate.requirement] = request.request_candidate.diff_empty_amount_now()
+
+                # ถ้ามี Certification ของ Position นี้อยู่แล้วให้เข้า IF
+                if request_cert.get(request.request_candidate.certification):
+                    request_cert[request.request_candidate.certification] += request.request_candidate.diff_empty_amount_now()
+                # ถ้าไม่มีเข้า ELSE
+                else:
+                    request_cert[request.request_candidate.certification] = request.request_candidate.diff_empty_amount_now()
+            if request_req:
+                requirement_position[position.position_name.position_name] = request_req
+            print("requirement_position!!!!",requirement_position)
+
+            if request_cert:
+                certification_position[position.position_name.position_name] = request_cert
+            print("certification_position!!!!",certification_position)
+
+            if position.diff_position_empty_amount():
+                empty_position[position.position_name.position_name] = position.diff_position_empty_amount()
+
+        certification_position_list = []
+        for key1, value1 in certification_position.items():
+            for key2, value2 in value1.items():
+                certification_position_list.append(str(key2)+"  ("+str(key1)+"x"+str(value2)+")")
+        project.append(",".join(certification_position_list))
+
+        requirement_position_list = []
+        for key1, value1 in requirement_position.items():
+            for key2, value2 in value1.items():
+                requirement_position_list.append(str(key2)+"  ("+str(key1)+"x"+str(value2)+")")
+        project.append(",".join(requirement_position_list))
+        empty_position_list = []
+        for key, value in empty_position.items():
+            empty_position_list.append(str(key)+str(value))
+        project.append(",".join(empty_position_list))
+
+
+
+        writer.writerow(project)
+
+    # Or if you want to write something else write like this
+
+    return response

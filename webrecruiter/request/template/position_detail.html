@@ -9,9 +9,9 @@
 
 <fieldset>
   <div class="form-group">
-    <label class="col-sm-3 control-label">จำนวนตามจริง</label>
+    <label class="col-sm-3 control-label">จำนวนที่ต้องการร้องขอ</label>
     <div class="col-sm-3">
-      <input class="form-control" type="number" name="now_employee_amount" required="required" value="{{ PositionDetail.position_now_amount }}" />
+      <input class="form-control" type="number" name="empty_employee_amount" required="required" min="0" max="{{ PositionDetail.position_now_amount }}" />
     </div>
   </div>
 </fieldset>

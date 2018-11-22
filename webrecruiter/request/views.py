@@ -24,7 +24,7 @@ import math
 from django.db.models import Q
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-from tor.models import ProjectType,ProjectLevel,PositionProject,Tor,PositionField,Project,PositionAll
+from tor.models import ProjectType,ProjectLevel,PositionField,Project,PositionAll
 
 
 def get_cart_amount(request):
@@ -273,7 +273,8 @@ def new_request_candidate(request):
         position = PositionField.objects.filter(id=position_id)
         print(position_id,"position",position)
         tor_employee_amount = position.first().position_tor_amount
-        now_employee_amount = request.POST.get('now_employee_amount')
+        empty_employee_amount = int(request.POST.get('empty_employee_amount'))
+        now_employee_amount = position.first().position_now_amount-empty_employee_amount
         requirement = request.POST.get('requirement')
         certification = request.POST.get('certification')
         note = request.POST.get('note')
@@ -282,21 +283,18 @@ def new_request_candidate(request):
         status = get_object_or_404(Status, status_id='1')
         request_type = get_object_or_404(RequestType, request_type_id='1')
 
-        print(request_title,tor_employee_amount,now_employee_amount,requirement,certification,note)
+        print(request_title,tor_employee_amount,empty_employee_amount,requirement,certification,note)
         print(owner,status,request_type)
         request_candidate = RequestCandidate(project=project,
                                              position=position.first(),
                                              tor_employee_amount=tor_employee_amount,
                                              now_employee_amount=now_employee_amount,
+                                             empty_employee_amount = empty_employee_amount,
                                              requirement=requirement,
                                              certification=certification,
                                              note=note,)
         request_candidate.save()
         print("now_employee_amount",int(now_employee_amount))
-        position.update(position_now_amount=int(now_employee_amount),
-                        requirement=requirement,
-                        certification=certification,
-                        note=note,)
         print(position.first().position_now_amount)
         request_detail = Request(request_id=request_id,
                                  request_type=request_type,
@@ -305,6 +303,10 @@ def new_request_candidate(request):
                                  request_position=position.first().position_name,
                                  owner=owner,status=status)
         request_detail.save()
+        position.update(position_now_amount=int(now_employee_amount),
+                        requirement=requirement,
+                        certification=certification,
+                        note=note,)
         return redirect('request_candidate')
 
     context = {
@@ -416,6 +418,10 @@ def request_detail(request,request_id):
         selected_request.last_comment_owner = owner
         selected_request.comment.add(comment)
         selected_request.save()
+        if selected_request.request_type.request_type_id == '1':
+            if selected_request.request_candidate.diff_empty_amount_now() == 0:
+                selected_request.request_candidate.is_full = True
+                selected_request.save()
 
 
     context = {
