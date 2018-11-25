@@ -458,6 +458,7 @@ def update_interview_status(request,request_id):
                 # Add Status Log user by user
                 interview_status_log = InterviewStatusLog(updater=user_profile,interview_status=selected_status)
                 interview_status_log.save()
+                print("All log will delete",order_item.interview_status_log.filter(interview_status__status_id__in=['4','6','7']))
                 order_item.interview_status_log.add(interview_status_log)
                 order_item.save()
         return (redirect('request_detail', request_id=request_id))

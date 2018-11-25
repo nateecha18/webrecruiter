@@ -24,6 +24,11 @@ from django.core import serializers
 from datetime import datetime
 from dateutil.parser import parse
 
+import logging
+from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
+
 # Create your views here.
 def index(request):
 
@@ -265,3 +270,58 @@ def get_institute(request):
         data = json.dumps(results)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+def checkPID(pid):
+  if(len(pid) != 13): # ถ้า pid ไม่ใช่ 13 ให้คืนค่า False
+    return False
+  num=0 # ค่าสำหรับอ้างอิง index list ข้อมูลบัตรประชาชน
+  num2=13 # ค่าประจำหลัก
+  listdata=list(pid) # list ข้อมูลบัตรประชาชน
+  sum=0 # ผลลัพธ์
+  while num<12:
+    sum+=int(listdata[num])*(num2-num) # นำค่า num เป็น index list แต่ละตัว * (num2 - num) แล้วรวมเข้ากับ sum
+    num+=1 # เพิ่มค่า num อีก 1
+  digit13 = sum%11 # sum หาร 11 เอาเศษ
+  if digit13==0: # ถ้าเศษ = 0
+    digit13=1 # ค่าหลักที่ 13 คือ 1
+  elif digit13==1: # ถ้าเศษ = 1
+    digit13=0 # ค่าหลักที่ 13 คือ 0
+  else:
+    digit13=11-digit13 # ถ้าเศษไม่ใช่กับอะไร ให้เอา 11 - digit13
+  if digit13==int(listdata[12]): # ถ้าค่าหลักที่ 13 เท่ากับค่าหลักที่ 13 ที่ป้อนข้อมูลมา คืนค่า True
+    return True
+  else: # ถ้าค่าหลักที่ 13 ไม่เท่ากับค่าหลักที่ 13 ที่ป้อนข้อมูลมา คืนค่า False
+    return False
+
+def check_idnumber(request):
+    if request.method == "GET":
+        raise Http404("URL doesn't exists")
+    else:
+        response_data = {}
+        id_number = request.POST["id_number"]
+        candidate = None
+        if checkPID(id_number):
+            try:
+                try:
+                    # we are matching the input again hardcoded value to avoid use of DB.
+                    # You can use DB and fetch value from table and proceed accordingly.
+                    candidate = CandidateBasic.objects.filter(id_number=id_number)
+                    print(candidate)
+                except ObjectDoesNotExist as e:
+                    pass
+                except Exception as e:
+                    raise e
+                if not candidate:
+                    response_data["is_success"] = True
+                    response_data["is_right"] = True
+                else:
+                    response_data["is_success"] = False
+                    response_data["is_right"] = True
+            except Exception as e:
+                response_data["is_success"] = False
+                response_data["msg"] = "Some error occurred. Please let Admin know."
+        else:
+            response_data["is_success"] = False
+            response_data["is_right"] = False
+
+        return JsonResponse(response_data)

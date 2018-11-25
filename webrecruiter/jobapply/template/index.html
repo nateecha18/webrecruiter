@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css?family=Kanit:100,200,400,500,600|Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- CSS Files -->
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet" />
@@ -112,6 +113,72 @@
 	    z-index:1000 !important;
 		}
 </style>
+<script>
+function showErrors(errorMessage, errormap, errorlist) {
+    var val = this;
+    errormap.forEach(function(error, index) {
+        val.settings.highlight.call(val, error.element, val.settings.errorClass, val.settings.validClass);
+        $(error.element).siblings("span.field-validation-valid, span.field-validation-error").html($("<span></span>").html(error.message)).addClass("field-validation-error").removeClass("field-validation-valid").show();
+    });
+}
+
+function fixValidFieldStyles($form, validator) {
+    var errors = {};
+    $form.find("input,select").each(function(index) {
+        var name = $(this).attr("name");
+        errors[name] = validator.errorsFor(name);
+    });
+    validator.showErrors(errors);
+    var invalidFields = $form.find("." + validator.settings.errorClass);
+    if (invalidFields.length) {
+        invalidFields.each(function(index, field) {
+            if ($(field).valid()) {
+                $(field).removeClass(validator.settings.errorClass);
+            }
+        });
+    }
+}
+function check_idnumber(element) {
+	$("#login_ok").hide();
+	$("#login_not").hide();
+	$("#id_notcorrect").hide();
+
+	id_number = $(element).val();
+	var $validator = $('.wizard-card form').validate()
+	if (id_number == "") {
+		return;
+	}
+	$.ajax({
+		url : $(element).attr("data-url"),
+		data : {
+			"csrfmiddlewaretoken" : $(element).siblings("input[name='csrfmiddlewaretoken']" ).val(),
+			"id_number":id_number
+		},
+		method: "POST",
+		dataType : "json",
+		success : function (data) {
+			//console.log(data);
+			if (data.is_success) {
+				$("#id_ok").show();
+			} else {
+				if (data.is_right) {
+					$("#id_not").show();
+					var validator = $( '.wizard-card form' ).validate();
+					validator.showErrors({
+						"id_number": ""
+					});
+				} else {
+					$("#id_notcorrect").show();
+					var validator = $( '.wizard-card form' ).validate();
+					validator.showErrors({
+						"id_number": ""
+					});
+				}
+			}
+		}
+	});
+}
+</script>
 </head>
 
 <body>
@@ -217,7 +284,17 @@
 													</span>
 													<div class="form-group label-floating">
 														<label class="control-label">หมายเลขบัตรประชาชน (ID Number) <div style="display:inline-block; color:#966d6d">*</div></label>
-														<input name="id_number" type="text" class="form-control">
+														<input name="id_number" type="text" class="form-control" id="id_number" required="True" onkeyup="check_idnumber(this);return false;" data-url="{% url "check_idnumber" %}">
+    												{% csrf_token %}
+														<div style="color:red;display: none;margin-top: 4px;"  id="id_notcorrect">
+															<span class="glyphicon glyphicon-remove"></span> This id number is not correct.
+														</div>
+														<div style="color:red;display: none;margin-top: 4px;"  id="id_not">
+															<span class="glyphicon glyphicon-remove"></span> This id number already taken.
+														</div>
+														<div style="color: green;display: none;margin-top: 4px;" id="id_ok">
+															<span class="glyphicon glyphicon-ok"></span> Id number available.
+														</div>
 													</div>
 												</div>
 												<div class="input-group">

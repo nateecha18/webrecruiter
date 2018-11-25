@@ -433,13 +433,13 @@ Candidate Details | WebRecruiter
                 <div class="col-sm-4 control-label">
                   <label class="checkbox">
                     <input type="checkbox" data-toggle="checkbox" class="checkbox_update_amount" value="1" onchange="showAmountField()" name="checkbox_update_amount">
-                    จำนวนพนักงานที่สรรหาเพิ่ม {{Selected_request.request_candidate.is_full}}
+                    จำนวนพนักงานที่สรรหาเพิ่ม
                   </label>
                 </div>
-                <div class="">
+                <div id="show_amount">
                   <div class="inline">
                     <div class="col-sm-2">
-                        <input class="form-control" type="number" name="update_amount" min="1" max="{{Selected_request.request_candidate.diff_empty_amount_now}}"/>
+                        <input class="form-control" type="number" name="update_amount" id="update_amount" min="1" max="{{Selected_request.request_candidate.diff_empty_amount_now}}"/>
 
                     </div>
                     <label class="inline-block" style="margin-top: 15px;"> คน </label>
@@ -492,5 +492,17 @@ $("a.open-modal").on("click", function() {
     }
   });
 });
+</script>
+<script>
+  $("#show_amount").hide();
+  function showAmountField(){
+  	if($('.checkbox_update_amount').is(":checked")){
+      $("#update_amount").prop('required',true);
+  		$("#show_amount").show();
+  	} else {
+  		$("#show_amount").hide();
+      $("#update_amount").removeAttr('required');
+  	}
+  }
 </script>
 {% endblock %}
